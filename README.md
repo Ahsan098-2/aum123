@@ -1,2 +1,68 @@
-# aum123
-Daily Toolkit is an all-in-one online platform offering essential daily-use tools in one place. From image editing and file conversion to code formatting and calculations, everything is fast, free, and browser-based. Built with HTML, CSS, and JavaScript for a smooth, responsive user experience.
+# 🧰 Daily Toolkit
+
+**Daily Toolkit** is a free and modern online platform that gathers all your essential **daily-use tools** in one place. From image editing and file conversion to coding utilities and calculators — everything you need is just one click away.
+
+---
+
+## 🚀 Key Features
+
+* 💼 Office Tools – PDF converter, text formatter, word counter
+* 🎨 Image Tools – Compressor, resizer, background remover
+* 🎬 Media Tools – YouTube downloader, MP3 cutter, audio converter
+* 💻 Developer Tools – JSON formatter, color picker, code beautifier
+* 💰 Finance Tools – Currency converter, crypto price tracker
+* 🧮 Math Tools – Calculator, percentage finder, unit converter
+
+---
+
+## 🏗️ Built With
+
+* HTML5, CSS3, JavaScript
+* Responsive design for all devices
+* Modern UI/UX with glassmorphism
+
+---
+
+## 🌐 Live Demo
+
+🔗 [https://ahsan098-2.github.io](https://ahsan098-2.github.io)
+
+---
+
+## 📁 Folder Structure
+
+```
+daily-toolkit/
+├── index.html
+├── style.css
+├── script.js
+├── assets/
+│   ├── images/
+│   └── icons/
+├── tools/
+│   ├── text-tools.html
+│   ├── image-tools.html
+│   ├── media-tools.html
+│   └── dev-tools.html
+└── README.md
+```
+
+---
+
+## 🤝 Contribute
+
+1. Fork this repository
+2. Create a new branch
+3. Commit your changes
+4. Submit a pull request
+
+---
+
+## 📜 License
+
+Licensed under the **MIT License** — free to use, modify, and share.
+
+---
+
+**Made with ❤️ by [Ahsan098-2](https://github.com/Ahsan098-2) — Creator of Daily Toolkit**
+
