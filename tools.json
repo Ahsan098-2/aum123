@@ -1,0 +1,91 @@
+{
+  "tools": [
+    {
+      "type": "function",
+      "function": {
+        "name": "create_file",
+        "description": "Create a new file with the given content.",
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "file_name": {
+              "type": "string",
+              "description": "The name of the file to create."
+            },
+            "content": {
+              "type": "string",
+              "description": "The content to write into the file."
+            }
+          },
+          "required": ["file_name", "content"]
+        }
+      }
+    },
+    {
+      "type": "function",
+      "function": {
+        "name": "read_file",
+        "description": "Read the content of a file.",
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "file_name": {
+              "type": "string",
+              "description": "The name of the file to read."
+            }
+          },
+          "required": ["file_name"]
+        }
+      }
+    },
+    {
+      "type": "function",
+      "function": {
+        "name": "list_files",
+        "description": "List all files in the current directory.",
+        "parameters": {
+          "type": "object",
+          "properties": {}
+        }
+      }
+    },
+    {
+      "type": "function",
+      "function": {
+        "name": "delete_file",
+        "description": "Delete a file.",
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "file_name": {
+              "type": "string",
+              "description": "The name of the file to delete."
+            }
+          },
+          "required": ["file_name"]
+        }
+      }
+    },
+    {
+      "type": "function",
+      "function": {
+        "name": "append_to_file",
+        "description": "Append content to an existing file.",
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "file_name": {
+              "type": "string",
+              "description": "The name of the file to append to."
+            },
+            "content": {
+              "type": "string",
+              "description": "The content to append to the file."
+            }
+          },
+          "required": ["file_name", "content"]
+        }
+      }
+    }
+  ]
+}

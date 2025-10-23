@@ -1,0 +1,51 @@
+<!-- 🪙 Crypto Price Tracker Tool -->
+<div class="tool-card">
+  <h2>Crypto Price Tracker</h2>
+  <p>Check live crypto prices in USD.</p>
+
+  <select id="cryptoSelect" style="width:100%;padding:8px;margin:10px 0;">
+    <option value="bitcoin">Bitcoin (BTC)</option>
+    <option value="ethereum">Ethereum (ETH)</option>
+    <option value="binancecoin">Binance Coin (BNB)</option>
+    <option value="dogecoin">Dogecoin (DOGE)</option>
+    <option value="solana">Solana (SOL)</option>
+  </select>
+
+  <div>
+    <button id="getCryptoBtn">Get Price</button>
+    <button id="clearCryptoBtn">Clear</button>
+  </div>
+
+  <p id="cryptoResult" style="margin-top:12px;color:#333;">Select a coin and click Get Price.</p>
+</div>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const select = document.getElementById("cryptoSelect");
+  const getBtn = document.getElementById("getCryptoBtn");
+  const clearBtn = document.getElementById("clearCryptoBtn");
+  const result = document.getElementById("cryptoResult");
+
+  getBtn.addEventListener("click", async () => {
+    const crypto = select.value;
+    result.textContent = "Fetching price... ⏳";
+
+    try {
+      const res = await fetch(
+        `https://api.coingecko.com/api/v3/simple/price?ids=${crypto}&vs_currencies=usd`
+      );
+      const data = await res.json();
+      const price = data[crypto]?.usd;
+      result.innerHTML = price
+        ? `💰 <strong>${crypto.toUpperCase()}</strong> = <strong>$${price}</strong> USD`
+        : "Price not found.";
+    } catch {
+      result.textContent = "⚠️ Error fetching price. Try again later.";
+    }
+  });
+
+  clearBtn.addEventListener("click", () => {
+    result.textContent = "Select a coin and click Get Price.";
+  });
+});
+</script>
