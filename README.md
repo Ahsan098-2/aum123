@@ -25,7 +25,7 @@
 
 ## 🌐 Live Demo
 
-🔗 [https://ahsan098-2.github.io](https://ahsan098-2.github.io)
+🔗 https://ahsan098-2.github.io/aum123/
 
 ---
 
@@ -58,9 +58,7 @@ daily-toolkit/
 
 ---
 
-## 📜 License
 
-Licensed under the **MIT License** — free to use, modify, and share.
 
 ---
 
