@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://ahsan098-2.github.io/aum123/sitemap.xml
