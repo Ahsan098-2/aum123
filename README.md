@@ -27,25 +27,6 @@
 
 🔗 https://ahsan098-2.github.io/aum123/
 
----
-
-## 📁 Folder Structure
-
-```
-daily-toolkit/
-├── index.html
-├── style.css
-├── script.js
-├── assets/
-│   ├── images/
-│   └── icons/
-├── tools/
-│   ├── text-tools.html
-│   ├── image-tools.html
-│   ├── media-tools.html
-│   └── dev-tools.html
-└── README.md
-```
 
 ---
 
