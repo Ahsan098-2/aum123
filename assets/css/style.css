@@ -1,249 +1,165 @@
-/* Simple humanized style for Daily Toolkit
-   Save as style.css and link in your HTML head.
-   Focus: readability, clean spacing, accessible colors, mobile-first.
+/*
+  style.css
+  Simple, humanized design for https://ahsan098-2.github.io/aum123
+  - Clean, readable typography
+  - Soft rounded cards, subtle shadows
+  - Accessible colors and spacing
+  - Lightweight animations for a friendly feel
+  Paste this file into your project and link it from <head>:
+  <link rel="stylesheet" href="/path/to/style.css">
 */
 
-/* ========== Root / theme ========== */
 :root{
-  --bg: #0f1114;
-  --card: #121416;
-  --muted: #9aa3ad;
-  --accent: #4fb3ff;
-  --accent-2: #8a6cff;
-  --glass: rgba(255,255,255,0.03);
-  --glass-2: rgba(255,255,255,0.02);
+  --bg: #0f1221;           /* deep dark background */
+  --panel: #0f1724;        /* card/panel background */
+  --muted: #9aa6bd;        /* subtle text */
+  --accent: #6ee7b7;       /* soft green accent */
+  --accent-2: #7dd3fc;     /* soft cyan accent */
+  --glass: rgba(255,255,255,0.04);
+  --card-shadow: 0 8px 20px rgba(3,7,18,0.6);
   --radius: 12px;
   --max-width: 1100px;
-  --flow: 1.15;
-  --shadow: 0 6px 18px rgba(2,6,23,0.6);
-  --soft-shadow: 0 4px 12px rgba(2,6,23,0.45);
-  --focus: 0 0 0 4px rgba(79,179,255,0.12);
-  color-scheme: dark;
-  font-family: Inter, "Segoe UI", Roboto, system-ui, -apple-system, "Helvetica Neue", Arial;
+  --gap: 1rem;
+  --ff-base: "Inter",ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial;
 }
 
-/* ========== Base ========== */
-* { box-sizing: border-box; }
-html,body {
-  height: 100%;
-  margin: 0;
-  background: linear-gradient(180deg, var(--bg) 0%, #0b0c0e 100%);
-  color: #e6eef6;
-  font-size: 16px;
+/* basic reset */
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0;
+  font-family:var(--ff-base);
+  background: radial-gradient(1200px 600px at 10% 10%, rgba(125,211,252,0.04), transparent 6%),
+              radial-gradient(900px 400px at 90% 90%, rgba(110,231,183,0.03), transparent 6%),
+              var(--bg);
+  color: #e6eef8;
   -webkit-font-smoothing:antialiased;
   -moz-osx-font-smoothing:grayscale;
-  line-height: var(--flow);
-  -webkit-tap-highlight-color: transparent;
+  line-height:1.45;
+  padding:2rem 1rem;
 }
 
-/* Container center */
 .container{
-  max-width: var(--max-width);
-  margin: 32px auto;
-  padding: 0 18px;
+  max-width:var(--max-width);
+  margin:0 auto;
+  padding:0 1rem;
 }
 
-/* ========== Header / Nav ========== */
-.header {
+/* Header / Navbar */
+.header{
   display:flex;
   align-items:center;
   justify-content:space-between;
-  gap: 16px;
-  padding: 18px 0;
+  gap:var(--gap);
+  margin-bottom:1.25rem;
 }
-.brand {
+.logo{
   display:flex;
+  gap:.75rem;
   align-items:center;
-  gap:12px;
   text-decoration:none;
   color:inherit;
 }
-.brand .logo {
-  width:44px; height:44px;
-  border-radius:10px;
-  background: linear-gradient(135deg, var(--accent), var(--accent-2));
-  box-shadow: 0 4px 18px rgba(75,179,255,0.16), inset 0 -6px 18px rgba(255,255,255,0.03);
-  display:flex; align-items:center; justify-content:center;
-  font-weight:600;
-  font-size:18px;
-  color:#031025;
+.logo .mark{
+  width:44px;height:44px;border-radius:10px;
+  background: linear-gradient(135deg,var(--accent),var(--accent-2));
+  box-shadow: 0 6px 18px rgba(125,211,252,0.07), inset 0 -8px 18px rgba(0,0,0,0.25);
+  display:flex;align-items:center;justify-content:center;font-weight:700;color:#052b26;
+  font-size:16px;
 }
-.brand h1{
-  font-size:18px;
-  margin:0;
-  letter-spacing:0.2px;
-}
-.nav {
-  display:flex;
-  gap:14px;
-  align-items:center;
+.logo h1{font-size:18px;margin:0}
+.nav{
+  display:flex;gap:1rem;align-items:center;
 }
 .nav a{
-  color:var(--muted);
-  text-decoration:none;
-  font-size:14px;
-  padding:8px 10px;
-  border-radius:10px;
+  color:var(--muted);text-decoration:none;padding:.5rem .75rem;border-radius:999px;font-size:14px;
 }
-.nav a:hover{ color: #dfe9f6; background: var(--glass-2); }
+.nav a:hover{color:var(--accent);background:rgba(255,255,255,0.02)}
 
-/* ========== Hero ========== */
-.hero {
-  margin: 14px 0 26px 0;
-  padding: 22px;
-  border-radius: var(--radius);
-  background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
-  box-shadow: var(--soft-shadow);
-  display:flex;
-  flex-direction:column;
-  gap:12px;
+/* Hero */
+.hero{
+  background:linear-gradient(180deg, rgba(255,255,255,0.02), transparent);
+  border-radius:var(--radius);
+  padding:1.5rem;
+  box-shadow:var(--card-shadow);
+  display:flex;gap:1.25rem;align-items:center;justify-content:space-between;flex-wrap:wrap;
 }
-.hero h2{ margin:0; font-size:24px; letter-spacing:0.2px; }
-.hero p { margin:0; color:var(--muted); font-size:15px; }
-
-/* CTA button */
-.btn {
-  display:inline-flex;
-  align-items:center;
-  gap:10px;
-  background: linear-gradient(90deg, var(--accent), var(--accent-2));
-  color:#031025;
-  font-weight:600;
-  padding:10px 14px;
-  border-radius:10px;
-  border:none;
-  cursor:pointer;
-  box-shadow: 0 8px 28px rgba(75,179,255,0.12);
-  text-decoration:none;
+.hero .left{
+  flex:1 1 320px;
 }
-.btn:focus{ outline: none; box-shadow: var(--focus); }
-
-/* ========== Tools Grid ========== */
-.tools-grid {
-  display:grid;
-  grid-template-columns: repeat(1,1fr);
-  gap:14px;
-  margin-top:18px;
-}
-.tool-card {
-  background: linear-gradient(180deg, var(--card), rgba(255,255,255,0.02));
-  padding:14px;
-  border-radius: 12px;
-  box-shadow: var(--shadow);
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:12px;
-  transition: transform .18s ease, box-shadow .18s ease;
-  border: 1px solid rgba(255,255,255,0.03);
-}
-.tool-card:hover{ transform: translateY(-6px); box-shadow: 0 14px 36px rgba(2,6,23,0.6); }
-.tool-left { display:flex; gap:12px; align-items:center; }
-.tool-icon{
-  width:56px; height:56px; border-radius:12px;
-  background: linear-gradient(135deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
-  display:flex; align-items:center; justify-content:center;
-  font-weight:700; font-size:18px;
-  color: var(--accent);
-  border: 1px solid rgba(255,255,255,0.025);
-}
-.tool-title{ font-weight:600; font-size:16px; margin:0; }
-.tool-desc{ color:var(--muted); font-size:13px; margin:0; }
-
-/* Actions */
-.tool-actions { display:flex; gap:8px; align-items:center; }
-.action {
-  padding:8px 10px;
-  border-radius:10px;
-  background: var(--glass);
-  border: 1px solid rgba(255,255,255,0.02);
-  color:var(--muted);
-  text-decoration:none;
-  font-size:14px;
-}
-.action:hover{ background: rgba(255,255,255,0.03); color: #e8f3ff; }
-
-/* ========== Forms (Contact, tool UIs) ========== */
-.form {
-  background: linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.01));
-  padding:14px;
-  border-radius: 12px;
-  box-shadow: var(--soft-shadow);
-  border:1px solid rgba(255,255,255,0.02);
-}
-.input, textarea, select {
-  width:100%;
-  padding:10px 12px;
-  border-radius:10px;
-  border:1px solid rgba(255,255,255,0.04);
-  background: rgba(255,255,255,0.01);
-  color: #e9f2ff;
-  font-size:14px;
-}
-.input:focus, textarea:focus, select:focus {
-  outline:none;
-  box-shadow: var(--focus);
-  border-color: rgba(79,179,255,0.3);
-}
-label { display:block; font-size:13px; color:var(--muted); margin-bottom:6px; }
-
-/* ========== Footer ========== */
-.footer {
-  margin-top:36px;
-  padding:20px 0;
-  color:var(--muted);
-  font-size:13px;
-  text-align:center;
-  opacity:0.95;
+.hero h2{font-size:24px;margin:0 0 .5rem}
+.hero p{color:var(--muted);margin:0 0 1rem}
+.hero .cta{
+  display:inline-block;padding:.6rem 1rem;border-radius:10px;background:linear-gradient(90deg,var(--accent),var(--accent-2));
+  color:#042226;text-decoration:none;font-weight:600;box-shadow:0 6px 18px rgba(125,211,252,0.12);
 }
 
-/* ========== Utilities ========== */
-.row { display:flex; gap:12px; align-items:center; }
-.col { display:flex; flex-direction:column; gap:8px; }
-.hide-mobile { display:inline-block; }
-
-/* Small screens adjustments */
-@media (min-width:520px){
-  .tools-grid { grid-template-columns: repeat(2, 1fr); }
-  .container { margin-top: 36px; }
-}
-@media (min-width:900px){
-  .tools-grid { grid-template-columns: repeat(3, 1fr); }
-  .header { gap: 28px; }
-  .brand h1 { font-size:20px; }
-  .hero { flex-direction:row; align-items:center; justify-content:space-between; gap:24px; }
-  .hide-mobile { display:inline-block; }
+.hero .visual{
+  min-width:260px;flex:0 0 320px;height:140px;border-radius:10px;background:var(--glass);display:flex;align-items:center;justify-content:center;backdrop-filter: blur(6px);
 }
 
-/* Big screens */
-@media (min-width:1200px){
-  .tools-grid { grid-template-columns: repeat(4, 1fr); gap:18px; }
+/* Cards grid */
+.grid{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1rem;margin-top:1rem;
+}
+.card{
+  background:linear-gradient(180deg, rgba(255,255,255,0.01), transparent);
+  border-radius:12px;padding:1rem;box-shadow:var(--card-shadow);display:flex;flex-direction:column;gap:.5rem;
+}
+.card h3{margin:0;font-size:16px}
+.card p{margin:0;color:var(--muted);font-size:14px}
+.card .meta{display:flex;justify-content:space-between;align-items:center;margin-top:.75rem}
+
+/* Buttons & inputs */
+.button{
+  display:inline-block;padding:.55rem .9rem;border-radius:10px;text-decoration:none;font-weight:600;background:transparent;border:1px solid rgba(255,255,255,0.06);
+  color:var(--accent);cursor:pointer;transition:all .18s ease;
+}
+.button:hover{transform:translateY(-3px);box-shadow:0 8px 20px rgba(2,5,10,0.6)}
+.button.raised{background:linear-gradient(90deg,var(--accent),var(--accent-2));color:#052226;border:0}
+
+.input{
+  width:100%;padding:.6rem .8rem;border-radius:10px;background:transparent;border:1px solid rgba(255,255,255,0.06);color:inherit;font-size:14px;
 }
 
-/* Tiny / mobile tweaks */
-@media (max-width:519px){
-  .nav { display:none; }
-  .brand h1 { font-size:16px; }
-  .tool-icon { width:48px; height:48px; }
-  .hero h2 { font-size:18px; }
-  .container { padding: 0 14px; }
+/* Product list example */
+.product-row{display:flex;gap:1rem;align-items:center}
+.product-row img{width:72px;height:72px;object-fit:cover;border-radius:8px;flex-shrink:0}
+.product-info{flex:1}
+.price{font-weight:700;color:var(--accent)}
+
+/* Footer */
+.footer{margin-top:1.5rem;padding:1rem;border-radius:10px;background:transparent;border:1px solid rgba(255,255,255,0.03);color:var(--muted);text-align:center}
+
+/* small helper styles */
+.kicker{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em}
+.hint{font-size:13px;color:var(--muted)}
+.row{display:flex;gap:1rem;align-items:center}
+
+/* subtle floating animation for friendliness */
+@keyframes floaty{0%{transform:translateY(0)}50%{transform:translateY(-6px)}100%{transform:translateY(0)}}
+.float-slow{animation:floaty 6s ease-in-out infinite}
+
+/* responsive tweaks */
+@media (max-width:720px){
+  .hero{flex-direction:column;align-items:flex-start}
+  .hero .visual{width:100%;height:120px}
+  body{padding:1rem}
 }
 
-/* Accessibility helpers */
-.sr-only {
-  position: absolute !important;
-  height: 1px; width: 1px;
-  overflow: hidden;
-  clip: rect(1px,1px,1px,1px);
-  white-space: nowrap;
-}
+/* accessibility: focus visible */
+:focus{outline:none}
+a:focus,.button:focus,.input:focus{box-shadow:0 0 0 3px rgba(125,211,252,0.12);border-color:var(--accent-2)}
 
-/* Tiny pleasant accent animation for icons */
-@keyframes floaty {
-  0% { transform: translateY(0px); }
-  50% { transform: translateY(-6px); }
-  100% { transform: translateY(0px); }
-}
-.tool-icon { animation: floaty 6s ease-in-out infinite; transform-origin:center; }
+/* small utility classes */
+.text-muted{color:var(--muted)}
+.center{text-align:center}
+.mb-1{margin-bottom:.5rem}
 
-/* ========== End ========== */
+/* usage notes (commented):
+  - Use .container to wrap page
+  - Header: .header > .logo + .nav
+  - Hero: .hero with .left and .visual
+  - Grid of cards: .grid > .card
+  - Buttons: .button or .button.raised
+*/
