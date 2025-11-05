@@ -184,23 +184,19 @@ body {
     width: 100%;
 }
 
-/* Hero Section - MODIFIED */
+/* Hero Section */
 .hero-section {
-    min-height: auto; /* Allow height to adjust based on content */
-    padding: 50px 20px;
-    text-align: center;
-}
-
-.hero-container {
-    display: grid;
-    grid-template-columns: 1fr; /* Default to single column */
-    gap: 40px;
+    min-height: 80vh;
+    display: flex;
     align-items: center;
-    max-width: 1200px;
-    margin: 0 auto;
+    justify-content: center;
+    text-align: center;
+    padding: 50px 20px;
 }
 
-.hero-main-content {
+.hero-content {
+    max-width: 800px;
+    background: var(--glass-bg); /* Use glass-card style */
     padding: 60px 40px;
 }
 
@@ -212,105 +208,11 @@ body {
     line-height: 1.2;
 }
 
-/* New section for Ads and Blog Posts */
-.home-extra-content {
-    display: grid;
-    grid-template-columns: 1fr; /* Default to single column */
-    gap: 30px;
-    margin-top: 30px; /* Space from the main hero content */
-}
-
-.ads-placeholder,
-.blog-preview {
-    padding: 30px;
-    background: var(--glass-bg);
-    border: 1px solid var(--glass-border);
-    border-radius: 15px;
-    box-shadow: 0 8px 32px 0 var(--glass-shadow);
-    text-align: center; /* Center content within these boxes */
-}
-
-.ads-title,
-.blog-title {
-    font-size: 1.8em;
-    color: var(--heading-color);
-    margin-bottom: 20px;
-}
-
-.ad-unit {
-    min-height: 250px; /* Placeholder height for ad */
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    background: rgba(255, 255, 255, 0.03); /* Lighter bg for ad placeholder */
-    border-radius: 8px;
-    padding: 20px;
-    border: 1px dashed var(--glass-border);
-    color: rgba(255, 255, 255, 0.5);
-    font-style: italic;
-    font-size: 0.9em;
-}
-
-.ad-note {
-    font-size: 0.8em;
-    color: rgba(255, 255, 255, 0.4);
-    margin-top: 15px;
-}
-
-.blog-posts-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* 3 columns for blog posts, responsive */
-    gap: 20px;
-    margin-top: 25px;
-}
-
-.blog-post-card {
-    display: flex;
-    flex-direction: column;
-    background: rgba(255, 255, 255, 0.05);
-    border-radius: 10px;
-    overflow: hidden;
-    text-decoration: none;
+.hero-content p {
+    font-size: 1.3em;
     color: var(--text-color);
-    transition: transform var(--transition-speed), box-shadow var(--transition-speed);
-    text-align: left;
-    border: 1px solid rgba(255, 255, 255, 0.08);
+    margin-bottom: 40px;
 }
-
-.blog-post-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 6px 20px rgba(106, 130, 251, 0.3);
-}
-
-.blog-post-card img {
-    width: 100%;
-    height: 120px; /* Fixed height for consistent image size */
-    object-fit: cover;
-    display: block;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.blog-post-card h4 {
-    font-size: 1.2em;
-    color: var(--heading-color);
-    margin: 15px 15px 8px 15px;
-    line-height: 1.3;
-}
-
-.blog-post-card p {
-    font-size: 0.9em;
-    color: rgba(255, 255, 255, 0.7);
-    margin: 0 15px 15px 15px;
-    flex-grow: 1;
-}
-
-.view-all-btn {
-    margin-top: 30px;
-    padding: 12px 30px;
-    font-size: 1em;
-}
-
 
 /* Buttons */
 .btn-primary,
@@ -764,26 +666,8 @@ body {
     max-width: 180px;
 }
 
-/* Responsive Design - MODIFIED FOR HOME SECTION */
-@media (min-width: 992px) {
-    .hero-container {
-        grid-template-columns: 1.2fr 1fr; /* Main hero content takes more space, then ads/blog */
-    }
-    .home-extra-content {
-        grid-template-columns: 1fr; /* Stack ads and blog vertically */
-    }
-}
-
-@media (min-width: 768px) and (max-width: 991px) {
-    .hero-container {
-        grid-template-columns: 1fr; /* Stack all home content */
-    }
-    .home-extra-content {
-        grid-template-columns: 1fr 1fr; /* Ads and blog side-by-side */
-    }
-}
-
-@media (max-width: 767px) {
+/* Responsive Design */
+@media (max-width: 768px) {
     .header-content {
         flex-direction: column;
         gap: 15px;
@@ -803,7 +687,7 @@ body {
         font-size: 2.5em;
     }
 
-    .hero-main-content {
+    .hero-content {
         padding: 40px 20px;
     }
 
@@ -844,14 +728,6 @@ body {
     .tool-full .tool-actions button {
         font-size: 0.9em;
         padding: 10px 15px;
-    }
-
-    /* Home extra content on small screens */
-    .home-extra-content {
-        grid-template-columns: 1fr; /* Stack ads and blog vertically */
-    }
-    .blog-posts-grid {
-        grid-template-columns: 1fr; /* Stack blog posts vertically */
     }
 }
 
