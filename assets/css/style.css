@@ -1,25 +1,26 @@
 /* ================================
-   ✨ REFINED PROFESSIONAL GLASS THEME
+   🚀 DEEP TECH / FUTURISTIC MINIMALIST THEME
    ================================ */
 
 /* ---------- Root Variables ---------- */
 :root {
-  --primary-color: #7b3fe9; /* Deeper, more sophisticated purple */
-  --secondary-color: #5c1ee5; /* Even deeper indigo for accents */
-  --accent-color: #a770ef; /* Slightly richer lavender accent */
-  --text-color: #dee2e6; /* Softer, slightly darker neutral light gray */
-  --heading-color: #ffffff;
-  --background-gradient-start: #0f001a; /* Very dark background */
-  --background-gradient-end: #1e0033;   /* Deepest violet */
-  --glass-bg: rgba(255, 255, 255, 0.05); /* Slightly less opaque glass */
-  --glass-border: rgba(255, 255, 255, 0.12); /* Thinner, more subtle border */
-  --glass-shadow: rgba(0, 0, 0, 0.4); /* Stronger, more defined shadow */
-  --button-hover-bg: #8a30ed; /* Richer purple glow on hover */
-  --button-text: #ffffff;
-  --border-radius: 16px; /* Slightly larger border-radius for softer edges */
-  --transition-speed: 0.35s; /* Slightly smoother transitions */
+  --primary-color: #00e676; /* Vibrant Green - for accents and highlights */
+  --secondary-color: #2196f3; /* Bright Blue - for secondary accents */
+  --accent-gradient-start: #00e676; /* Neon Green */
+  --accent-gradient-end: #00c853;   /* Darker Green */
+  --text-color: #e0e0e0; /* Light gray for body text */
+  --heading-color: #ffffff; /* Pure white for headings */
+  --background-dark: #100f1a; /* Very dark background */
+  --background-gradient-start: #0a0913; /* Even darker start */
+  --background-gradient-end: #1e1d2b;   /* Slightly lighter end for depth */
+  --card-bg: rgba(255, 255, 255, 0.04); /* Subtle transparent dark for cards */
+  --card-border: rgba(0, 230, 118, 0.3); /* Subtle green border for cards */
+  --button-hover-glow: rgba(0, 230, 118, 0.6); /* Green glow for buttons */
+  --border-radius-sm: 8px;
+  --border-radius-md: 12px;
+  --transition-speed: 0.4s;
   --font-family-primary: "Inter", sans-serif;
-  --font-family-headings: "DM Sans", sans-serif;
+  --font-family-headings: "Poppins", sans-serif; /* Poppins for a modern, strong feel */
 }
 
 /* ---------- Base ---------- */
@@ -28,16 +29,17 @@ body {
   margin: 0;
   padding: 0;
   color: var(--text-color);
-  line-height: 1.65; /* Slightly tighter line height */
-  background: linear-gradient(145deg, var(--background-gradient-start), var(--background-gradient-end)); /* Adjusted gradient angle */
+  line-height: 1.6;
+  background: linear-gradient(155deg, var(--background-gradient-start), var(--background-gradient-end));
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   overflow-x: hidden;
-  position: relative; /* For background elements */
+  position: relative;
+  scroll-behavior: smooth;
 }
 
-/* ---------- Background Glow (More refined) ---------- */
+/* ---------- Background Effects (Geometric / Glow) ---------- */
 .background-animation {
   position: fixed;
   top: 0;
@@ -54,68 +56,51 @@ body {
   content: "";
   position: absolute;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(130, 80, 250, 0.18), transparent 75%); /* Softer glow color */
-  animation: floatGlow 25s ease-in-out infinite alternate; /* Slower, smoother animation */
-  filter: blur(120px); /* More blur */
-  opacity: 0.6; /* Softer initial opacity */
+  background: radial-gradient(circle, rgba(0, 230, 118, 0.1), transparent 70%); /* Green glow */
+  animation: pulseGlow 20s ease-in-out infinite alternate;
+  filter: blur(150px);
+  opacity: 0.4;
 }
 
 .background-animation::before {
-  width: 400px;
-  height: 400px;
-  top: 8%;
-  left: 10%;
+  width: 500px;
+  height: 500px;
+  top: 15%;
+  left: -10%;
+  animation-delay: 0s;
 }
 
 .background-animation::after {
-  width: 500px;
-  height: 500px;
-  bottom: 8%;
-  right: 8%;
-  animation-delay: 12s;
+  width: 600px;
+  height: 600px;
+  bottom: 10%;
+  right: -10%;
+  background: radial-gradient(circle, rgba(33, 150, 243, 0.1), transparent 70%); /* Blue glow */
+  animation-delay: 10s;
 }
 
-@keyframes floatGlow {
-  0% { transform: translate(0, 0) scale(0.95); opacity: 0.6; }
-  50% { transform: translate(30px, 40px) scale(1.05); opacity: 0.8; }
-  100% { transform: translate(-10px, -20px) scale(0.98); opacity: 0.6; }
+@keyframes pulseGlow {
+  0%, 100% { transform: scale(1) translate(0, 0); opacity: 0.4; }
+  50% { transform: scale(1.1) translate(20px, 30px); opacity: 0.6; }
 }
+
 
 /* ---------- Container ---------- */
 .container {
-  max-width: 1280px; /* Slightly wider container */
+  max-width: 1300px;
   margin: 0 auto;
-  padding: 0 30px; /* Slightly more padding */
+  padding: 0 25px;
 }
 
-/* ---------- Glass Card (Refined) ---------- */
-.glass-card {
-  background: var(--glass-bg);
-  border-radius: var(--border-radius);
-  border: 1px solid var(--glass-border);
-  box-shadow: 0 10px 40px var(--glass-shadow); /* More pronounced shadow */
-  backdrop-filter: blur(18px); /* Stronger blur */
-  -webkit-backdrop-filter: blur(18px);
-  padding: 40px; /* Slightly more padding */
-  margin-bottom: 35px; /* Slightly more margin */
-  transition: transform var(--transition-speed) ease-out, box-shadow var(--transition-speed) ease-out; /* Smoother ease-out transition */
-}
-
-.glass-card:hover {
-  transform: translateY(-8px); /* More noticeable lift */
-  box-shadow: 0 15px 50px rgba(130, 80, 250, 0.4); /* Enhanced hover shadow */
-}
-
-/* ---------- Header (Refined) ---------- */
+/* ---------- Header ---------- */
 .header {
-  background: rgba(255, 255, 255, 0.03); /* Lighter header background */
-  padding: 20px 0; /* More padding */
-  border-bottom: 1px solid var(--glass-border);
+  background-color: var(--background-dark); /* Solid dark header */
+  padding: 20px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
   position: sticky;
   top: 0;
-  z-index: 1000; /* Higher z-index */
-  backdrop-filter: blur(15px); /* Stronger blur */
-  -webkit-backdrop-filter: blur(15px);
+  z-index: 1000;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3); /* Subtle shadow for depth */
 }
 
 .header-content {
@@ -126,20 +111,20 @@ body {
 
 .logo {
   font-family: var(--font-family-headings);
-  font-size: 2.1em; /* Slightly larger logo */
+  font-size: 2.2em;
   font-weight: 700;
-  color: var(--heading-color);
-  letter-spacing: 1.2px; /* Tighter letter spacing */
-  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.2); /* Subtle text shadow */
+  color: var(--primary-color); /* Vibrant green logo */
+  letter-spacing: 1.5px;
+  text-shadow: 0 0 15px rgba(0, 230, 118, 0.6); /* Glowing effect */
 }
 
 .nav-menu a {
   color: var(--text-color);
   text-decoration: none;
-  margin-left: 32px; /* More spacing */
+  margin-left: 35px;
   font-weight: 500;
-  font-size: 1.05em; /* Slightly larger font */
-  transition: color var(--transition-speed), transform var(--transition-speed);
+  font-size: 1.05em;
+  transition: color var(--transition-speed), text-shadow var(--transition-speed);
   position: relative;
 }
 
@@ -148,9 +133,9 @@ body {
   position: absolute;
   width: 0;
   height: 2px;
-  background: var(--accent-color);
+  background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
   left: 50%;
-  bottom: -6px;
+  bottom: -8px;
   transform: translateX(-50%);
   transition: width var(--transition-speed) ease-out;
 }
@@ -162,15 +147,15 @@ body {
 
 .nav-menu a:hover,
 .nav-menu a.active {
-  color: var(--accent-color);
-  transform: translateY(-3px); /* More noticeable lift */
+  color: var(--primary-color);
+  text-shadow: 0 0 10px rgba(0, 230, 118, 0.4);
 }
 
-/* ---------- Hero (Enhanced) ---------- */
+/* ---------- Hero ---------- */
 .hero-section {
   text-align: center;
-  padding: 120px 0; /* More vertical padding */
-  min-height: calc(100vh - 100px); /* Adjusted height */
+  padding: 140px 0;
+  min-height: calc(100vh - 120px);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -178,162 +163,190 @@ body {
 }
 
 .hero-content {
-  max-width: 900px; /* Wider hero content */
-  padding: 60px; /* More padding */
-  background: rgba(255, 255, 255, 0.03); /* Subtle glass effect for hero content */
-  border-radius: var(--border-radius);
-  border: 1px solid var(--glass-border);
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
+  max-width: 950px;
+  padding: 40px;
+  /* Removed glass-specific styles */
 }
 
 .hero-title {
   font-family: var(--font-family-headings);
-  font-size: 3.8em; /* Larger title */
+  font-size: 4.5em; /* Larger, more impactful title */
   color: var(--heading-color);
-  margin-bottom: 30px;
-  line-height: 1.1; /* Tighter line height */
-  background: linear-gradient(90deg, #d8b4fe, #b88bf2, #9a67ed); /* Richer gradient */
+  margin-bottom: 25px;
+  line-height: 1.1;
+  background: linear-gradient(90deg, var(--primary-color), var(--secondary-color)); /* Green-blue gradient */
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  letter-spacing: -0.5px; /* Slightly tighter letter spacing */
+  letter-spacing: -1px;
+  text-shadow: 0 0 20px rgba(0, 230, 118, 0.3); /* Stronger glow */
+  animation: textFadeIn 1.5s ease-out forwards;
 }
 
-.hero-subtitle { /* Added a subtitle for better structure */
-  font-size: 1.3em;
+.hero-subtitle {
+  font-size: 1.4em;
   color: var(--text-color);
-  margin-bottom: 40px;
-  max-width: 600px;
+  margin-bottom: 50px;
+  max-width: 700px;
   margin-left: auto;
   margin-right: auto;
-  opacity: 0.9;
+  opacity: 0.8;
+  animation: textFadeIn 1.8s ease-out forwards;
+  animation-delay: 0.3s;
 }
 
-/* ---------- Buttons (Refined) ---------- */
+@keyframes textFadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ---------- Buttons ---------- */
 .btn-primary, .btn-secondary {
-  display: inline-flex; /* Use flex for consistent alignment */
+  display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 14px 32px; /* More generous padding */
-  border-radius: var(--border-radius);
+  padding: 15px 35px;
+  border-radius: var(--border-radius-md);
   font-weight: 600;
   cursor: pointer;
   border: none;
-  transition: all var(--transition-speed) ease-out;
+  transition: all var(--transition-speed) ease-out, box-shadow var(--transition-speed) ease-out;
   font-family: var(--font-family-primary);
-  font-size: 1.05em;
-  margin: 0 10px; /* Added margin between buttons */
+  font-size: 1.1em;
+  margin: 0 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
 }
 
 .btn-primary {
-  background-color: var(--primary-color);
-  color: var(--button-text);
-  box-shadow: 0 8px 25px rgba(123, 63, 233, 0.4); /* More defined shadow */
+  background: linear-gradient(45deg, var(--accent-gradient-start), var(--accent-gradient-end));
+  color: var(--heading-color);
+  box-shadow: 0 6px 20px rgba(0, 230, 118, 0.3);
 }
 
 .btn-primary:hover {
-  background-color: var(--button-hover-bg);
-  transform: translateY(-4px); /* More lift */
-  box-shadow: 0 10px 30px rgba(123, 63, 233, 0.55);
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px var(--button-hover-glow);
+  background: linear-gradient(45deg, var(--accent-gradient-end), var(--accent-gradient-start)); /* Invert gradient for subtle effect */
 }
 
 .btn-secondary {
   background: transparent;
-  color: var(--accent-color);
-  border: 2px solid var(--accent-color);
+  color: var(--secondary-color);
+  border: 2px solid var(--secondary-color);
+  box-shadow: 0 0 15px rgba(33, 150, 243, 0.2);
 }
 
 .btn-secondary:hover {
-  background-color: var(--accent-color);
-  color: var(--button-text);
-  transform: translateY(-4px);
-  box-shadow: 0 6px 20px rgba(167, 112, 239, 0.3);
+  background-color: var(--secondary-color);
+  color: var(--heading-color);
+  transform: translateY(-5px);
+  box-shadow: 0 0 25px rgba(33, 150, 243, 0.6);
 }
 
-/* ---------- Sections (Refined) ---------- */
-.section { /* Added a general section class for consistent spacing */
-  padding: 80px 0;
+/* ---------- Sections ---------- */
+.section {
+  padding: 100px 0;
+  position: relative;
+  background-color: var(--background-dark); /* Ensures section background is solid dark */
+  border-top: 1px solid rgba(255, 255, 255, 0.05); /* Subtle separator */
 }
 
 .section-title {
   font-family: var(--font-family-headings);
-  font-size: 3em; /* Larger section titles */
+  font-size: 3.5em;
   color: var(--heading-color);
   text-align: center;
-  margin-bottom: 70px; /* More margin */
+  margin-bottom: 80px;
   position: relative;
-  letter-spacing: -0.3px;
-  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+  letter-spacing: -0.5px;
+  text-transform: uppercase;
+  text-shadow: 0 0 15px rgba(255, 255, 255, 0.1);
 }
 
 .section-title::after {
   content: "";
   position: absolute;
-  width: 90px; /* Wider underline */
-  height: 4px; /* Thicker underline */
-  background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
-  bottom: -20px; /* Lower position */
+  width: 100px;
+  height: 4px;
+  background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+  bottom: -25px;
   left: 50%;
   transform: translateX(-50%);
-  border-radius: 3px;
+  border-radius: 2px;
+  box-shadow: 0 0 15px var(--primary-color); /* Subtle glow */
 }
 
-/* ---------- Tools Grid (Enhanced) ---------- */
-.tools-grid {
+/* ---------- Core Solutions Grid (Non-Glass) ---------- */
+.solutions-grid { /* Renamed from tools-grid */
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Slightly larger min-width */
-  gap: 40px; /* More spacing */
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 40px;
 }
 
-.tool-card {
-  padding: 35px; /* More padding */
+.solution-card { /* Renamed from tool-card */
+  padding: 40px;
   text-align: center;
-  border: 1px solid var(--glass-border);
-  border-radius: var(--border-radius);
-  background: rgba(255, 255, 255, 0.035); /* Slightly different background opacity */
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.35); /* Stronger shadow */
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  transition: transform var(--transition-speed) ease-out, box-shadow var(--transition-speed) ease-out;
-  display: flex; /* Flexbox for internal alignment */
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
-  min-height: 220px; /* Minimum height for cards */
+  background-color: var(--card-bg); /* Solid dark background for card */
+  border-radius: var(--border-radius-md);
+  border: 1px solid rgba(255, 255, 255, 0.08); /* Subtle border */
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+  transition: transform var(--transition-speed) ease-out, box-shadow var(--transition-speed) ease-out, border-color var(--transition-speed);
+  position: relative;
+  overflow: hidden; /* For internal glows */
 }
 
-.tool-card i { /* Style for icons within tool cards (assuming Font Awesome or similar) */
-  font-size: 3.5em; /* Larger icons */
-  color: var(--accent-color);
-  margin-bottom: 20px;
-  text-shadow: 0 0 15px rgba(167, 112, 239, 0.6);
+.solution-card::before { /* Inner glow effect */
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(0, 230, 118, 0.1) 0%, transparent 70%);
+  transition: transform var(--transition-speed) ease-out, opacity var(--transition-speed);
+  transform: rotate(0deg);
+  opacity: 0;
 }
 
-.tool-card h3 {
+.solution-card:hover::before {
+  transform: rotate(45deg);
+  opacity: 1;
+}
+
+
+.solution-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 15px 40px rgba(0, 230, 118, 0.3);
+  border-color: var(--card-border); /* Green border on hover */
+}
+
+.solution-card i {
+  font-size: 4em; /* Larger icons */
+  color: var(--primary-color);
+  margin-bottom: 25px;
+  text-shadow: 0 0 20px rgba(0, 230, 118, 0.7); /* Stronger icon glow */
+}
+
+.solution-card h3 {
   font-family: var(--font-family-headings);
   color: var(--heading-color);
-  font-size: 1.6em;
+  font-size: 1.8em;
   margin-top: 0;
   margin-bottom: 15px;
+  letter-spacing: 0.5px;
 }
 
-.tool-card p {
-  font-size: 0.95em;
+.solution-card p {
+  font-size: 1em;
   line-height: 1.5;
   color: rgba(var(--text-color), 0.9);
 }
 
-.tool-card:hover {
-  transform: translateY(-10px); /* More pronounced lift */
-  box-shadow: 0 18px 45px rgba(130, 80, 250, 0.45); /* Enhanced hover shadow */
-}
-
-/* ---------- Footer (Refined) ---------- */
+/* ---------- Footer ---------- */
 .footer {
-  background: rgba(255, 255, 255, 0.03);
-  padding: 45px 0; /* More padding */
-  border-top: 1px solid var(--glass-border);
+  background-color: var(--background-dark);
+  padding: 50px 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
   text-align: center;
   margin-top: auto;
 }
@@ -343,46 +356,48 @@ body {
   flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
-  gap: 20px; /* More spacing */
-  font-size: 0.9em;
+  gap: 25px;
+  font-size: 0.95em;
 }
 
 .footer-links a {
   color: var(--text-color);
   text-decoration: none;
-  margin: 0 16px; /* More spacing */
+  margin: 0 18px;
   font-size: 0.98em;
   transition: color var(--transition-speed);
 }
 
 .footer-links a:hover {
-  color: var(--accent-color);
+  color: var(--primary-color);
+  text-shadow: 0 0 8px rgba(0, 230, 118, 0.3);
 }
 
 .social-icons a {
   color: var(--text-color);
   text-decoration: none;
-  font-size: 1.4em; /* Larger icons */
-  margin-left: 18px; /* More spacing */
-  transition: color var(--transition-speed), transform var(--transition-speed);
+  font-size: 1.5em;
+  margin-left: 20px;
+  transition: color var(--transition-speed), transform var(--transition-speed), text-shadow var(--transition-speed);
 }
 
 .social-icons a:hover {
-  color: var(--accent-color);
-  transform: scale(1.2); /* More noticeable scale */
+  color: var(--primary-color);
+  transform: scale(1.25);
+  text-shadow: 0 0 15px rgba(0, 230, 118, 0.7);
 }
 
 .footer-copy {
-  color: rgba(var(--text-color), 0.8);
+  color: rgba(var(--text-color), 0.7);
 }
 
-/* ---------- Responsive (Refined) ---------- */
-@media (max-width: 992px) { /* Adjusted breakpoint */
+/* ---------- Responsive ---------- */
+@media (max-width: 1024px) {
   .hero-title {
-    font-size: 3em;
+    font-size: 3.8em;
   }
   .section-title {
-    font-size: 2.5em;
+    font-size: 3em;
   }
 }
 
@@ -392,39 +407,41 @@ body {
     text-align: center;
   }
   .nav-menu {
-    margin-top: 20px;
+    margin-top: 25px;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
   }
   .nav-menu a {
-    margin: 0 12px;
-    margin-bottom: 10px; /* Add some vertical spacing */
+    margin: 0 15px;
+    margin-bottom: 12px;
   }
   .hero-title {
-    font-size: 2.5em;
+    font-size: 3em;
   }
   .hero-subtitle {
-    font-size: 1.1em;
+    font-size: 1.2em;
+    margin-bottom: 40px;
   }
   .btn-primary, .btn-secondary {
-    padding: 10px 24px;
-    font-size: 0.95em;
-    margin: 8px;
+    padding: 12px 28px;
+    font-size: 1em;
+    margin: 10px;
   }
   .section-title {
-    font-size: 2.2em;
+    font-size: 2.5em;
+    margin-bottom: 60px;
   }
-  .tools-grid {
-    grid-template-columns: 1fr; /* Single column on smaller screens */
+  .solutions-grid {
+    grid-template-columns: 1fr;
     gap: 30px;
   }
-  .glass-card, .tool-card {
-    padding: 30px;
+  .solution-card {
+    padding: 35px;
   }
   .footer-content {
     flex-direction: column;
-    gap: 15px;
+    gap: 20px;
   }
   .footer-links {
     display: flex;
@@ -432,7 +449,7 @@ body {
     justify-content: center;
   }
   .footer-links a {
-    margin: 5px 10px;
+    margin: 8px 12px;
   }
 }
 
@@ -440,16 +457,30 @@ body {
   .container {
     padding: 0 15px;
   }
-  .hero-title {
-    font-size: 2em;
-  }
-  .hero-content {
-    padding: 40px 20px;
-  }
-  .section-title {
-    font-size: 1.8em;
-  }
   .logo {
     font-size: 1.8em;
+  }
+  .hero-title {
+    font-size: 2.2em;
+    letter-spacing: 0px;
+  }
+  .hero-subtitle {
+    font-size: 1em;
+  }
+  .section-title {
+    font-size: 2em;
+  }
+  .solution-card i {
+    font-size: 3.5em;
+  }
+  .solution-card h3 {
+    font-size: 1.5em;
+  }
+  .footer-content {
+    font-size: 0.85em;
+  }
+  .social-icons a {
+    font-size: 1.3em;
+    margin-left: 10px;
   }
 }
