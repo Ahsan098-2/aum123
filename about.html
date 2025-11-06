@@ -46,6 +46,20 @@
     a:hover {
       text-decoration: underline;
     }
+    .contact-btn {
+      display: inline-block;
+      background: #00b7ff;
+      color: white;
+      padding: 10px 20px;
+      border-radius: 8px;
+      margin-top: 10px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: background 0.3s;
+    }
+    .contact-btn:hover {
+      background: #0095d9;
+    }
     footer {
       background: #111;
       color: #fff;
@@ -104,10 +118,13 @@
     <h2>Contact & Support</h2>
     <p>
       Have a question or suggestion?  
-      We’d love to hear from you! Please visit our <a href="contact.html">Contact Page</a> or reach out via email.  
-      <br><strong>Email:</strong> <a href="mailto:ahsanullahmahar7116@gmail.com">ahsanullahmahar7116@gmail.com</a>
+      Click the button below to open our <strong>Contact Page</strong> in a new tab and send us a message.
     </p>
 
+    <!-- 👇 Button that opens contact.html in a new tab -->
+    <a href="contact.html" class="contact-btn" target="_blank">Open Contact Page</a>
+
+    <br>
     <a href="index.html" class="back-home">← Back to Home</a>
   </div>
 
