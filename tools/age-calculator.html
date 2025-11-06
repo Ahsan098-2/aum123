@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Age Calculator Tool</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #e8f5e9; /* Light green background */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        .tool-container {
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+            padding: 40px;
+            max-width: 500px;
+            width: 100%;
+            text-align: center;
+            border: 1px solid #c8e6c9;
+        }
+        h1 {
+            color: #388e3c; /* Darker green for heading */
+            margin-bottom: 30px;
+            font-size: 2.2em;
+        }
+        .input-group {
+            margin-bottom: 25px;
+        }
+        .input-group label {
+            display: block;
+            margin-bottom: 10px;
+            font-size: 1.1em;
+            color: #555;
+            font-weight: bold;
+        }
+        input[type="date"] {
+            width: calc(100% - 40px);
+            max-width: 280px;
+            padding: 12px 15px;
+            border: 1px solid #388e3c;
+            border-radius: 8px;
+            font-size: 1.1em;
+            text-align: center;
+            background-color: #f0fdf0; /* Lighter green background */
+            color: #333;
+            outline: none;
+            box-sizing: border-box;
+            cursor: pointer;
+        }
+        button {
+            background-color: #4CAF50; /* Green button */
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1.1em;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            margin-top: 10px;
+            width: auto;
+        }
+        button:hover {
+            background-color: #43a047;
+            transform: translateY(-2px);
+        }
+        button:active {
+            transform: translateY(0);
+        }
+        #ageResult {
+            margin-top: 35px;
+            font-size: 1.6em;
+            color: #333;
+            font-weight: bold;
+            min-height: 40px;
+            line-height: 1.4;
+        }
+        .error-message {
+            color: #d32f2f; /* Red for error */
+            font-weight: normal;
+            font-size: 1em;
+            margin-top: 15px;
+        }
+        .highlight-age {
+            color: #007bff; /* Blue to highlight age */
+        }
+    </style>
+</head>
+<body>
+    <div class="tool-container">
+        <h1>Age Calculator</h1>
+        <div class="input-group">
+            <label for="birthDate">Enter your Date of Birth:</label>
+            <input type="date" id="birthDate">
+        </div>
+        <button onclick="calculateAge()">Calculate Age</button>
+        <p id="ageResult"></p>
+    </div>
+
+    <script>
+        function calculateAge() {
+            const birthDateInput = document.getElementById('birthDate').value;
+            const ageResultElement = document.getElementById('ageResult');
+            ageResultElement.className = ''; // Clear previous classes
+
+            if (!birthDateInput) {
+                ageResultElement.className = 'error-message';
+                ageResultElement.textContent = 'Please enter your date of birth.';
+                return;
+            }
+
+            const birthDate = new Date(birthDateInput);
+            const today = new Date();
+
+            if (isNaN(birthDate.getTime())) { // Check for invalid date
+                ageResultElement.className = 'error-message';
+                ageResultElement.textContent = 'Invalid date entered. Please select a valid date.';
+                return;
+            }
+
+            if (birthDate > today) {
+                ageResultElement.className = 'error-message';
+                ageResultElement.textContent = 'Date of birth cannot be in the future.';
+                return;
+            }
+
+            let ageYears = today.getFullYear() - birthDate.getFullYear();
+            let ageMonths = today.getMonth() - birthDate.getMonth();
+            let ageDays = today.getDate() - birthDate.getDate();
+
+            // Adjust for months
+            if (ageDays < 0) {
+                ageMonths--;
+                // Get number of days in the previous month (birth month)
+                const lastMonth = new Date(today.getFullYear(), today.getMonth(), 0);
+                ageDays += lastMonth.getDate();
+            }
+
+            // Adjust for years
+            if (ageMonths < 0) {
+                ageYears--;
+                ageMonths += 12;
+            }
+
+            ageResultElement.innerHTML = `You are <span class="highlight-age">${ageYears}</span> years, <span class="highlight-age">${ageMonths}</span> months, and <span class="highlight-age">${ageDays}</span> days old.`;
+        }
+
+        // Optional: Set max date for the input to today
+        document.addEventListener('DOMContentLoaded', () => {
+            const today = new Date();
+            const year = today.getFullYear();
+            const month = (today.getMonth() + 1).toString().padStart(2, '0');
+            const day = today.getDate().toString().padStart(2, '0');
+            document.getElementById('birthDate').setAttribute('max', `${year}-${month}-${day}`);
+        });
+    </script>
+</body>
+</html>

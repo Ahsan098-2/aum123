@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Professional Image Compressor</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            background: linear-gradient(135deg, #fceabb 0%, #f8b500 100%);
+            color: #333;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        .container {
+            background: #ffffff;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            max-width: 650px;
+            width: 100%;
+            animation: fadeIn 0.8s ease-out forwards;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        h1 {
+            color: #2c3e50;
+            margin-bottom: 20px;
+            font-size: 2.5em;
+            font-weight: 700;
+        }
+        p {
+            font-size: 1.1em;
+            color: #666;
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+        .upload-area {
+            border: 2px dashed #ffb347;
+            border-radius: 10px;
+            padding: 30px;
+            margin-bottom: 25px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, border-color 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        .upload-area:hover {
+            background-color: #fffaf0;
+            border-color: #f79f1a;
+        }
+        input[type="file"] {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            cursor: pointer;
+        }
+        .upload-area .icon {
+            font-size: 3em;
+            color: #f79f1a;
+            margin-bottom: 15px;
+            display: block;
+        }
+        .upload-area span {
+            font-size: 1.2em;
+            color: #555;
+            font-weight: 600;
+        }
+        .image-preview {
+            margin-top: 20px;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            padding: 10px;
+            min-height: 150px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            background-color: #fcfcfc;
+            box-shadow: inset 0 2px 5px rgba(0,0,0,0.05);
+        }
+        .image-preview img {
+            max-width: 100%;
+            max-height: 250px;
+            border-radius: 5px;
+            object-fit: contain;
+        }
+        .image-preview p {
+            color: #999;
+            font-style: italic;
+            font-size: 1em;
+            margin: 0;
+        }
+        .slider-group {
+            margin-top: 25px;
+            margin-bottom: 30px;
+            text-align: left;
+        }
+        .slider-group label {
+            display: block;
+            font-size: 1.1em;
+            color: #555;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+        input[type="range"] {
+            width: 100%;
+            appearance: none;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            height: 10px;
+            background: #ddd;
+            border-radius: 5px;
+            outline: none;
+            transition: opacity .2s;
+        }
+        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 20px;
+            height: 20px;
+            background: #f8b500;
+            border-radius: 50%;
+            cursor: pointer;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+        input[type="range"]::-moz-range-thumb {
+            width: 20px;
+            height: 20px;
+            background: #f8b500;
+            border-radius: 50%;
+            cursor: pointer;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+        output {
+            display: block;
+            margin-top: 10px;
+            font-size: 1.1em;
+            font-weight: 600;
+            color: #f8b500;
+        }
+        button {
+            background-color: #f8b500;
+            color: white;
+            padding: 14px 30px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1.2em;
+            font-weight: 600;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            box-shadow: 0 5px 15px rgba(248, 181, 0, 0.3);
+        }
+        button:hover {
+            background-color: #e0a800;
+            transform: translateY(-3px);
+        }
+        .note {
+            margin-top: 30px;
+            color: #888;
+            font-size: 0.9em;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .container {
+                padding: 30px;
+            }
+            h1 {
+                font-size: 2em;
+            }
+            .upload-area {
+                padding: 20px;
+            }
+            .upload-area .icon {
+                font-size: 2.5em;
+            }
+            .upload-area span {
+                font-size: 1em;
+            }
+            button {
+                padding: 12px 25px;
+                font-size: 1.1em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>📉 Professional Image Compressor</h1>
+        <p>Reduce your image file sizes without compromising quality. Upload, choose quality, and compress!</p>
+
+        <div class="upload-area" id="uploadArea">
+            <span class="icon">🖼️</span>
+            <span>Drag & Drop your image here or Click to Upload</span>
+            <input type="file" id="imageToCompress" accept="image/*">
+        </div>
+
+        <div class="image-preview" id="imagePreview">
+            <p>No image selected for preview</p>
+        </div>
+
+        <div class="slider-group">
+            <label for="qualityRange">Compression Quality:</label>
+            <input type="range" id="qualityRange" min="10" max="100" value="80" oninput="document.getElementById('qualityOutput').value = this.value + '%'">
+            <output id="qualityOutput">80%</output>
+        </div>
+
+        <button>Compress Image</button>
+
+        <p class="note"><em>Note: Actual image compression requires advanced JavaScript (e.g., Canvas API) or server-side processing. This provides the UI and quality selection.</em></p>
+    </div>
+
+    <script>
+        document.getElementById('imageToCompress').addEventListener('change', function(event) {
+            const file = event.target.files[0];
+            const preview = document.getElementById('imagePreview');
+
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    preview.innerHTML = `<img src="${e.target.result}" alt="Image Preview">`;
+                }
+                reader.readAsDataURL(file);
+            } else {
+                preview.innerHTML = '<p>No image selected for preview</p>';
+            }
+        });
+
+        // Optional: Handle drag and drop for better UX
+        const uploadArea = document.getElementById('uploadArea');
+        uploadArea.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            uploadArea.style.borderColor = '#f79f1a';
+        });
+        uploadArea.addEventListener('dragleave', () => {
+            uploadArea.style.borderColor = '#ffb347';
+        });
+        uploadArea.addEventListener('drop', (e) => {
+            e.preventDefault();
+            uploadArea.style.borderColor = '#ffb347';
+            const files = e.dataTransfer.files;
+            if (files.length > 0) {
+                document.getElementById('imageToCompress').files = files;
+                document.getElementById('imageToCompress').dispatchEvent(new Event('change'));
+            }
+        });
+    </script>
+</body>
+</html>

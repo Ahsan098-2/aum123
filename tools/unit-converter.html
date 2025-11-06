@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unit Converter</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            min-height: 100vh;
+            background: linear-gradient(to right, #4facfe 0%, #00f2fe 100%);
+            margin: 0;
+            padding: 40px 20px;
+            box-sizing: border-box;
+        }
+        .container {
+            background: white;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            text-align: center;
+            max-width: 600px;
+            width: 100%;
+            animation: zoomIn 0.8s ease-out;
+        }
+        @keyframes zoomIn {
+            from { opacity: 0; transform: scale(0.9); }
+            to { opacity: 1; transform: scale(1); }
+        }
+        h1 {
+            color: #333;
+            margin-bottom: 25px;
+            font-size: 2.2em;
+            font-weight: 700;
+        }
+        .converter-section {
+            background-color: #f8f9fa;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            padding: 25px;
+            margin-bottom: 20px;
+            box-shadow: inset 0 1px 5px rgba(0,0,0,0.08);
+            text-align: left;
+        }
+        .input-group {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        .input-group label {
+            flex: 1;
+            color: #555;
+            font-weight: 500;
+            font-size: 1.1em;
+            margin-right: 15px;
+        }
+        .input-group input[type="number"],
+        .input-group select {
+            flex: 2;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 1em;
+            box-shadow: inset 0 1px 3px rgba(0,0,0,0.05);
+            transition: border-color 0.3s ease;
+        }
+        .input-group input[type="number"]:focus,
+        .input-group select:focus {
+            border-color: #00f2fe;
+            outline: none;
+        }
+        .result-output {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #e6f7ff;
+            border: 1px solid #b3e0ff;
+            border-radius: 8px;
+            color: #004085;
+            font-size: 1.2em;
+            font-weight: 700;
+            text-align: center;
+        }
+        .note {
+            margin-top: 25px;
+            color: #888;
+            font-size: 0.9em;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .container {
+                padding: 30px;
+                margin: 20px;
+            }
+            h1 {
+                font-size: 1.8em;
+            }
+            .input-group {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .input-group label {
+                margin-right: 0;
+                margin-bottom: 8px;
+            }
+            .input-group input, .input-group select {
+                width: calc(100% - 22px); /* Adjust for padding/border */
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🔄 Universal Unit Converter</h1>
+        <div class="converter-section">
+            <div class="input-group">
+                <label for="value">Value:</label>
+                <input type="number" id="value" value="100" step="any" oninput="convertUnit()">
+            </div>
+            <div class="input-group">
+                <label for="fromUnit">From:</label>
+                <select id="fromUnit" onchange="convertUnit()">
+                    <optgroup label="Length">
+                        <option value="meters">Meters (m)</option>
+                        <option value="kilometers">Kilometers (km)</option>
+                        <option value="miles">Miles (mi)</option>
+                        <option value="feet">Feet (ft)</option>
+                        <option value="inches">Inches (in)</option>
+                    </optgroup>
+                    <optgroup label="Mass">
+                        <option value="kilograms">Kilograms (kg)</option>
+                        <option value="grams">Grams (g)</option>
+                        <option value="pounds">Pounds (lb)</option>
+                        <option value="ounces">Ounces (oz)</option>
+                    </optgroup>
+                    <optgroup label="Temperature">
+                        <option value="celsius">Celsius (°C)</option>
+                        <option value="fahrenheit">Fahrenheit (°F)</option>
+                        <option value="kelvin">Kelvin (K)</option>
+                    </optgroup>
+                </select>
+            </div>
+            <div class="input-group">
+                <label for="toUnit">To:</label>
+                <select id="toUnit" onchange="convertUnit()">
+                    <optgroup label="Length">
+                        <option value="meters">Meters (m)</option>
+                        <option value="kilometers">Kilometers (km)</option>
+                        <option value="miles">Miles (mi)</option>
+                        <option value="feet">Feet (ft)</option>
+                        <option value="inches">Inches (in)</option>
+                    </optgroup>
+                    <optgroup label="Mass">
+                        <option value="kilograms">Kilograms (kg)</option>
+                        <option value="grams">Grams (g)</option>
+                        <option value="pounds">Pounds (lb)</option>
+                        <option value="ounces">Ounces (oz)</option>
+                    </optgroup>
+                    <optgroup label="Temperature">
+                        <option value="celsius">Celsius (°C)</option>
+                        <option value="fahrenheit" selected>Fahrenheit (°F)</option>
+                        <option value="kelvin">Kelvin (K)</option>
+                    </optgroup>
+                </select>
+            </div>
+            <div class="result-output" id="result">
+                100 Meters = 328.08 Feet
+            </div>
+        </div>
+        <p class="note"><em>Note: All conversions are handled by JavaScript for real-time results.</em></p>
+    </div>
+
+    <script>
+        const conversionRates = {
+            // Length conversions (to meters as base)
+            meters: {
+                meters: 1,
+                kilometers: 0.001,
+                miles: 0.000621371,
+                feet: 3.28084,
+                inches: 39.3701
+            },
+            kilometers: {
+                meters: 1000,
+                kilometers: 1,
+                miles: 0.621371,
+                feet: 3280.84,
+                inches: 39370.1
+            },
+            miles: {
+                meters: 1609.34,
+                kilometers: 1.60934,
+                miles: 1,
+                feet: 5280,
+                inches: 63360
+            },
+            feet: {
+                meters: 0.3048,
+                kilometers: 0.0003048,
+                miles: 0.000189394,
+                feet: 1,
+                inches: 12
+            },
+            inches: {
+                meters: 0.0254,
+                kilometers: 0.0000254,
+                miles: 0.000015783,
+                feet: 0.0833333,
+                inches: 1
+            },
+
+            // Mass conversions (to kilograms as base)
+            kilograms: {
+                kilograms: 1,
+                grams: 1000,
+                pounds: 2.20462,
+                ounces: 35.274
+            },
+            grams: {
+                kilograms: 0.001,
+                grams: 1,
+                pounds: 0.00220462,
+                ounces: 0.035274
+            },
+            pounds: {
+                kilograms: 0.453592,
+                grams: 453.592,
+                pounds: 1,
+                ounces: 16
+            },
+            ounces: {
+                kilograms: 0.0283495,
+                grams: 28.3495,
+                pounds: 0.0625,
+                ounces: 1
+            },
+            // Temperature conversions are handled separately due to their non-linear nature
+        };
+
+        function convertUnit() {
+            const value = parseFloat(document.getElementById('value').value);
+            const fromUnit = document.getElementById('fromUnit').value;
+            const toUnit = document.getElementById('toUnit').value;
+            const resultDiv = document.getElementById('result');
+
+            if (isNaN(value)) {
+                resultDiv.innerText = "Please enter a valid number.";
+                return;
+            }
+
+            let convertedValue;
+            let fromUnitType = getUnitType(fromUnit);
+            let toUnitType = getUnitType(toUnit);
+
+            if (fromUnitType !== toUnitType) {
+                resultDiv.innerText = "Cannot convert between different unit types (e.g., Length to Mass).";
+                return;
+            }
+
+            if (fromUnitType === 'temperature') {
+                convertedValue = convertTemperature(value, fromUnit, toUnit);
+            } else {
+                // Convert 'from' unit to base unit (e.g., meters for length, kg for mass)
+                let baseValue = value;
+                if (conversionRates[fromUnit] && conversionRates[fromUnit][fromUnitType === 'length' ? 'meters' : 'kilograms']) {
+                    baseValue = value / conversionRates[fromUnit][fromUnit]; // convert current unit to base unit
+                }
+
+
+                // Convert from base unit to 'to' unit
+                if (conversionRates[fromUnitType === 'length' ? 'meters' : 'kilograms'] && conversionRates[fromUnitType === 'length' ? 'meters' : 'kilograms'][toUnit]) {
+                    convertedValue = baseValue * conversionRates[fromUnitType === 'length' ? 'meters' : 'kilograms'][toUnit];
+                } else if (conversionRates[toUnit] && conversionRates[toUnit][toUnit]) {
+                    // Fallback for direct conversion if base unit logic is tricky
+                    // For example, if fromUnit is 'feet' and toUnit is 'inches', both are length
+                    convertedValue = value * (conversionRates[fromUnit][fromUnitType === 'length' ? 'inches' : 'grams'] / conversionRates[toUnit][toUnitType === 'length' ? 'inches' : 'grams']);
+                    convertedValue = (value * conversionRates[fromUnit][fromUnit]) * (1 / conversionRates[toUnit][toUnit]);
+                     // More robust direct conversion for same type
+                    if (conversionRates[fromUnit] && conversionRates[toUnit]) {
+                        // Convert 'from' to a common base (e.g. meter for length) then to 'to'
+                        let valueInMeters = value / conversionRates[fromUnit][fromUnit];
+                        convertedValue = valueInMeters * conversionRates[toUnit]['meters'];
+                    }
+
+                    // A more reliable way for direct type conversion:
+                    // Convert fromUnit to its base (e.g., meters for length)
+                    // Then convert from base to toUnit
+                    if (fromUnitType === 'length') {
+                        let valueInBase = value / conversionRates.meters[fromUnit]; // Convert current to meters
+                        convertedValue = valueInBase * conversionRates.meters[toUnit]; // Convert meters to target
+                    } else if (fromUnitType === 'mass') {
+                        let valueInBase = value / conversionRates.kilograms[fromUnit]; // Convert current to kg
+                        convertedValue = valueInBase * conversionRates.kilograms[toUnit]; // Convert kg to target
+                    } else {
+                        convertedValue = value * conversionRates[fromUnit][toUnit]; // Direct lookup for simple cases
+                    }
+
+
+                } else {
+                    resultDiv.innerText = "Conversion not supported for these units.";
+                    return;
+                }
+
+                // A simplified and more reliable approach:
+                // Convert everything to a primary base unit within its category, then to the target unit.
+                // Length: Meters, Mass: Kilograms, Temperature: Celsius (for conversion logic)
+                let baseValueForConversion;
+
+                if (fromUnitType === 'length') {
+                    // Convert original value to meters first
+                    if (fromUnit === 'meters') baseValueForConversion = value;
+                    else if (fromUnit === 'kilometers') baseValueForConversion = value * 1000;
+                    else if (fromUnit === 'miles') baseValueForConversion = value * 1609.34;
+                    else if (fromUnit === 'feet') baseValueForConversion = value * 0.3048;
+                    else if (fromUnit === 'inches') baseValueForConversion = value * 0.0254;
+
+                    // Convert from meters to target unit
+                    if (toUnit === 'meters') convertedValue = baseValueForConversion;
+                    else if (toUnit === 'kilometers') convertedValue = baseValueForConversion / 1000;
+                    else if (toUnit === 'miles') convertedValue = baseValueForConversion / 1609.34;
+                    else if (toUnit === 'feet') convertedValue = baseValueForConversion / 0.3048;
+                    else if (toUnit === 'inches') convertedValue = baseValueForConversion / 0.0254;
+
+                } else if (fromUnitType === 'mass') {
+                    // Convert original value to kilograms first
+                    if (fromUnit === 'kilograms') baseValueForConversion = value;
+                    else if (fromUnit === 'grams') baseValueForConversion = value / 1000;
+                    else if (fromUnit === 'pounds') baseValueForConversion = value * 0.453592;
+                    else if (fromUnit === 'ounces') baseValueForConversion = value * 0.0283495;
+
+                    // Convert from kilograms to target unit
+                    if (toUnit === 'kilograms') convertedValue = baseValueForConversion;
+                    else if (toUnit === 'grams') convertedValue = baseValueForConversion * 1000;
+                    else if (toUnit === 'pounds') convertedValue = baseValueForConversion / 0.453592;
+                    else if (toUnit === 'ounces') convertedValue = baseValueForConversion / 0.0283495;
+                }
+            }
+
+
+            resultDiv.innerText = `${value} ${getUnitSymbol(fromUnit)} = ${convertedValue.toFixed(4)} ${getUnitSymbol(toUnit)}`;
+        }
+
+        function getUnitType(unit) {
+            if (['meters', 'kilometers', 'miles', 'feet', 'inches'].includes(unit)) return 'length';
+            if (['kilograms', 'grams', 'pounds', 'ounces'].includes(unit)) return 'mass';
+            if (['celsius', 'fahrenheit', 'kelvin'].includes(unit)) return 'temperature';
+            return null;
+        }
+
+        function getUnitSymbol(unit) {
+            switch(unit) {
+                case 'meters': return 'm';
+                case 'kilometers': return 'km';
+                case 'miles': return 'mi';
+                case 'feet': return 'ft';
+                case 'inches': return 'in';
+                case 'kilograms': return 'kg';
+                case 'grams': return 'g';
+                case 'pounds': return 'lb';
+                case 'ounces': return 'oz';
+                case 'celsius': return '°C';
+                case 'fahrenheit': return '°F';
+                case 'kelvin': return 'K';
+                default: return '';
+            }
+        }
+
+        function convertTemperature(value, from, to) {
+            let celsius;
+
+            // Convert to Celsius first
+            if (from === 'celsius') {
+                celsius = value;
+            } else if (from === 'fahrenheit') {
+                celsius = (value - 32) * 5 / 9;
+            } else if (from === 'kelvin') {
+                celsius = value - 273.15;
+            }
+
+            // Convert from Celsius to target
+            if (to === 'celsius') {
+                return celsius;
+            } else if (to === 'fahrenheit') {
+                return (celsius * 9 / 5) + 32;
+            } else if (to === 'kelvin') {
+                return celsius + 273.15;
+            }
+            return NaN; // Should not happen with valid inputs
+        }
+
+        // Initialize conversion on page load with default values
+        document.addEventListener('DOMContentLoaded', () => {
+            document.getElementById('fromUnit').value = 'meters';
+            document.getElementById('toUnit').value = 'feet';
+            convertUnit();
+        });
+    </script>
+</body>
+</html>

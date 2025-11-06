@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bio Ideas Generator</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: #333;
+            line-height: 1.6;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        .container {
+            background-color: #fff;
+            padding: 35px 45px;
+            border-radius: 12px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+            width: 100%;
+            max-width: 600px;
+            text-align: center;
+            transform: translateY(0);
+            transition: transform 0.3s ease-out;
+        }
+
+        .container:hover {
+            transform: translateY(-5px);
+        }
+
+        h1 {
+            color: #f5576c;
+            margin-bottom: 30px;
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            font-size: 2.5em;
+        }
+
+        .input-group {
+            margin-bottom: 25px;
+            text-align: left;
+        }
+
+        .input-group label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: 500;
+            color: #555;
+            font-size: 1.1em;
+        }
+
+        .input-group textarea {
+            width: calc(100% - 24px); /* Account for padding and border */
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 1em;
+            box-sizing: border-box;
+            min-height: 80px;
+            resize: vertical;
+            transition: border-color 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .input-group textarea:focus {
+            border-color: #f5576c;
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(245, 87, 108, 0.2);
+        }
+
+        button {
+            background-color: #f5576c;
+            color: #fff;
+            border: none;
+            padding: 14px 30px;
+            border-radius: 8px;
+            font-size: 1.1em;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease;
+            width: 100%;
+            margin-top: 10px;
+            font-weight: 700;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        button:hover {
+            background-color: #e4435b;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+        }
+
+        button:active {
+            transform: translateY(0);
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .results-section {
+            margin-top: 35px;
+            padding-top: 25px;
+            border-top: 1px solid #eee;
+            text-align: left;
+        }
+
+        .results-section h2 {
+            color: #f093fb;
+            margin-bottom: 20px;
+            font-size: 1.8em;
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+        }
+
+        .bio-output {
+            background-color: #fdf6f7;
+            border: 1px solid #ffe8ed;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            font-size: 1.05em;
+            color: #4a4a4a;
+            position: relative;
+            word-wrap: break-word; /* Ensure long bios wrap */
+            line-height: 1.5;
+        }
+
+        .bio-output:last-child {
+            margin-bottom: 0;
+        }
+
+        .bio-output button.copy-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 0.8em;
+            transition: background-color 0.2s ease;
+            width: auto; /* Override full width */
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .bio-output button.copy-btn:hover {
+            background-color: #45a049;
+            transform: translateY(-1px);
+        }
+
+        .bio-output button.copy-btn:active {
+            transform: translateY(0);
+        }
+
+        #bioOutputContainer {
+            min-height: 100px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 600px) {
+            .container {
+                padding: 25px;
+                margin: 15px;
+            }
+            h1 {
+                font-size: 2em;
+            }
+            button {
+                padding: 12px 25px;
+                font-size: 1em;
+            }
+            .results-section h2 {
+                font-size: 1.5em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Bio Ideas Generator</h1>
+        <div class="input-group">
+            <label for="keywordsInput">Enter keywords or interests (e.g., tech, travel, art, foodie, fitness):</label>
+            <textarea id="keywordsInput" placeholder="Separated by commas..."></textarea>
+        </div>
+        <button id="generateBtn">Generate Bio Ideas</button>
+
+        <div class="results-section">
+            <h2>Your Bio Ideas</h2>
+            <div id="bioOutputContainer">
+                <p class="bio-output">Enter keywords and click 'Generate' to get started!</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const keywordsInput = document.getElementById('keywordsInput');
+            const generateBtn = document.getElementById('generateBtn');
+            const bioOutputContainer = document.getElementById('bioOutputContainer');
+
+            const templates = [
+                (k) => `Passionate ${k[0] || 'creator'} | Exploring the world one ${k[1] || 'adventure'} at a time. Sharing my journey.`,
+                (k) => `Dedicated to ${k[0] || 'innovation'} and lifelong learning. Coffee lover, ${k[1] || 'bookworm'}, and aspiring ${k[2] || 'dreamer'}.`,
+                (k) => `Your daily dose of ${k[0] || 'inspiration'} ✨ Lover of ${k[1] || 'good food'} & ${k[2] || 'beautiful places'}. Let's connect!`,
+                (k) => `Crafting ideas and bringing them to life in the world of ${k[0] || 'digital art'}. Always learning, always creating.`,
+                (k) => `Fueled by curiosity and a desire to ${k[0] || 'make a difference'}. ${k[1] || 'Fitness enthusiast'}, ${k[2] || 'travel addict'}.`,
+                (k) => `Just a human doing human things. Obsessed with ${k[0] || 'coding'}, ${k[1] || 'music'}, and all things ${k[2] || 'creative'}.`,
+                (k) => `Sharing tips and tricks on ${k[0] || 'personal growth'}. My mission: to empower you to live your best ${k[1] || 'life'}.`
+            ];
+
+            const emojiPacks = [
+                ['✨', '🚀', '💡', '🌟', '🌈'],
+                ['☕', '📚', '🗺️', '🌿', '🎨'],
+                ['🍔', '🍕', '🌮', '🍣', '🍹'],
+                ['💪', '🏋️‍♂️', '🏃‍♀️', '🧘‍♀️', '🍎'],
+                ['🐾', '🐶', '🐱', '🐠', '🐎']
+            ];
+
+            generateBtn.addEventListener('click', generateBioIdeas);
+
+            function generateBioIdeas() {
+                const keywordsText = keywordsInput.value.toLowerCase().split(',').map(kw => kw.trim()).filter(kw => kw.length > 0);
+                bioOutputContainer.innerHTML = ''; // Clear previous ideas
+
+                if (keywordsText.length === 0) {
+                    bioOutputContainer.innerHTML = '<p class="bio-output">Please enter some keywords or interests to generate ideas.</p>';
+                    return;
+                }
+
+                const generatedBios = new Set();
+                const numBiosToGenerate = 3;
+
+                while (generatedBios.size < numBiosToGenerate) {
+                    const randomTemplate = templates[Math.floor(Math.random() * templates.length)];
+                    const randomEmojis = emojiPacks[Math.floor(Math.random() * emojiPacks.length)];
+
+                    // Prepare keywords for the template, prioritizing user input
+                    const usedKeywords = [];
+                    for (let i = 0; i < 3; i++) { // Max 3 keywords per template slot
+                        if (keywordsText[i]) {
+                            usedKeywords.push(keywordsText[i]);
+                        } else {
+                            // Fallback if not enough user keywords
+                            usedKeywords.push('');
+                        }
+                    }
+
+                    let bio = randomTemplate(usedKeywords);
+
+                    // Add a couple of random emojis
+                    const emoji1 = randomEmojis[Math.floor(Math.random() * randomEmojis.length)];
+                    let emoji2;
+                    do {
+                        emoji2 = randomEmojis[Math.floor(Math.random() * randomEmojis.length)];
+                    } while (emoji1 === emoji2 && randomEmojis.length > 1); // Ensure different emojis if possible
+
+                    bio += ` ${emoji1} ${emoji2}`;
+
+                    if (!generatedBios.has(bio)) {
+                        generatedBios.add(bio);
+                        const bioElement = document.createElement('div');
+                        bioElement.classList.add('bio-output');
+                        bioElement.innerHTML = `<span>${bio}</span><button class="copy-btn">Copy</button>`;
+                        bioOutputContainer.appendChild(bioElement);
+                    }
+                }
+                addCopyListeners();
+            }
+
+            function addCopyListeners() {
+                document.querySelectorAll('.bio-output .copy-btn').forEach(button => {
+                    button.onclick = function() { // Use onclick to re-assign for new buttons
+                        const textToCopy = this.previousElementSibling.textContent;
+                        navigator.clipboard.writeText(textToCopy).then(() => {
+                            this.textContent = 'Copied!';
+                            setTimeout(() => {
+                                this.textContent = 'Copy';
+                            }, 1500);
+                        }).catch(err => {
+                            console.error('Failed to copy text: ', err);
+                            alert('Failed to copy. Please try again or copy manually.');
+                        });
+                    };
+                });
+            }
+
+            // Initial message
+            bioOutputContainer.innerHTML = '<p class="bio-output">Enter keywords and click \'Generate\' to get started!</p>';
+        });
+    </script>
+</body>
+</html>

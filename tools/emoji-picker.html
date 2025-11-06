@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Emoji Picker Tool</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f7f0e6; /* Warm, light background */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        .tool-container {
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+            padding: 40px;
+            max-width: 550px;
+            width: 100%;
+            text-align: center;
+            border: 1px solid #f0e0d0;
+        }
+        h1 {
+            color: #e91e63; /* Pink for heading */
+            margin-bottom: 30px;
+            font-size: 2.2em;
+        }
+        #emojiContainer {
+            font-size: 2.5em; /* Larger emojis */
+            cursor: pointer;
+            border: 1px solid #ffe0b2; /* Light orange border */
+            border-radius: 10px;
+            padding: 15px;
+            max-height: 250px;
+            overflow-y: auto;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 8px; /* Space between emojis */
+            background-color: #fffaf0; /* Even lighter background for container */
+            margin-bottom: 25px;
+        }
+        #emojiContainer span {
+            padding: 5px;
+            transition: transform 0.2s ease, background-color 0.2s ease;
+            border-radius: 5px;
+            line-height: 1; /* Ensure consistent spacing */
+        }
+        #emojiContainer span:hover {
+            transform: scale(1.1);
+            background-color: #ffebee; /* Very light pink on hover */
+        }
+        input[type="text"] {
+            width: calc(100% - 40px); /* Adjust for padding */
+            padding: 12px 15px;
+            margin-bottom: 20px;
+            border: 1px solid #e91e63;
+            border-radius: 8px;
+            font-size: 1.1em;
+            text-align: center;
+            color: #333;
+            background-color: #fff8f8;
+            outline: none;
+        }
+        button {
+            background-color: #e91e63;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1.1em;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            margin-top: 10px;
+            width: auto;
+        }
+        button:hover {
+            background-color: #c2185b; /* Darker pink */
+            transform: translateY(-2px);
+        }
+        button:active {
+            transform: translateY(0);
+        }
+        .copied-message {
+            margin-top: 20px;
+            font-size: 1em;
+            color: #4CAF50; /* Green for success message */
+            font-weight: bold;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="tool-container">
+        <h1>Emoji Picker</h1>
+        <div id="emojiContainer">
+            <!-- Emojis will be loaded here by JS -->
+        </div>
+        <input type="text" id="selectedEmoji" placeholder="Click an emoji to select" readonly>
+        <button onclick="copyEmoji()">Copy Selected Emoji</button>
+        <p class="copied-message" id="copyMessage"></p>
+    </div>
+
+    <script>
+        const emojis = [
+            '😀', '😃', '😄', '😁', '😆', '😅', '😂', '🤣', '😊', '😇',
+            '🙂', '🙃', '😉', '😌', '😍', '🥰', '😘', '😗', '😙', '😚',
+            '😋', '😛', '😝', '😜', '🤪', '🤨', '🧐', '🤓', '😎', '🤩',
+            '🥳', '😏', '😒', '😞', '😔', '😟', '😕', '🙁', '☹️', '😤',
+            '😠', '😡', '🤬', '🤯', '😳', '🥵', '🥶', '😱', '😨', '😰',
+            '😭', '😢', '😥', '😓', '🤗', '🤔', '🤫', '🤭', '🤥', '😶',
+            '😐', '😑', '😬', '🫠', '🙄', '😮‍💨', '😲', '🥱', '😴', '🤤',
+            '😪', '😵', '🥴', '🤢', '🤮', '🤧', '😷', '🤒', '🤕', '🤑',
+            '🤠', '🥳', '😎', '🥸', '🤓', '🧐', '🧑‍🎄', '👼', '🧑‍🍼', '🦸',
+            '🎉', '🎊', '🎁', '🎂', '🎈', '🎄', '🎆', '🎇', '✨', '🌟',
+            '💫', '💥', '🔥', '💯', '🌈', '☀️', '☁️', '☂️', '☔', '⚡',
+            '🌊', '💧', '🌍', '🌎', '🌏', '🌸', '🌼', '🌻', '🌹', '🌷'
+        ];
+
+        function loadEmojis() {
+            const emojiContainer = document.getElementById('emojiContainer');
+            emojis.forEach(emoji => {
+                const span = document.createElement('span');
+                span.textContent = emoji;
+                span.title = `Click to select ${emoji}`;
+                span.onclick = () => {
+                    document.getElementById('selectedEmoji').value = emoji;
+                    document.getElementById('copyMessage').style.display = 'none'; // Clear message
+                };
+                emojiContainer.appendChild(span);
+            });
+        }
+
+        async function copyEmoji() {
+            const selectedEmojiInput = document.getElementById('selectedEmoji');
+            const copyMessage = document.getElementById('copyMessage');
+            
+            copyMessage.style.display = 'none'; // Hide previous message
+
+            if (selectedEmojiInput.value) {
+                try {
+                    await navigator.clipboard.writeText(selectedEmojiInput.value);
+                    copyMessage.textContent = `"${selectedEmojiInput.value}" copied to clipboard!`;
+                    copyMessage.style.color = '#4CAF50';
+                } catch (err) {
+                    console.error('Failed to copy emoji:', err);
+                    copyMessage.textContent = 'Failed to copy emoji. Please try manually.';
+                    copyMessage.style.color = '#f44336';
+                }
+            } else {
+                copyMessage.textContent = 'Please select an emoji first!';
+                copyMessage.style.color = '#ff9800';
+            }
+            copyMessage.style.display = 'block';
+        }
+
+        // Load emojis when the page is fully loaded
+        document.addEventListener('DOMContentLoaded', loadEmojis);
+    </script>
+</body>
+</html>

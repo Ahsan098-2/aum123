@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Professional CSS Gradient Generator</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            background: linear-gradient(135deg, #a1c4fd 0%, #c2e9fb 100%);
+            color: #333;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        .container {
+            background: #ffffff;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            max-width: 600px;
+            width: 100%;
+            animation: fadeInScale 0.8s ease-out forwards;
+        }
+        @keyframes fadeInScale {
+            from { opacity: 0; transform: scale(0.9); }
+            to { opacity: 1; transform: scale(1); }
+        }
+        h1 {
+            color: #2c3e50;
+            margin-bottom: 20px;
+            font-size: 2.5em;
+            font-weight: 700;
+        }
+        p {
+            font-size: 1.1em;
+            color: #666;
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+        .color-selector {
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 30px;
+            gap: 20px;
+            flex-wrap: wrap; /* Allow wrapping on small screens */
+        }
+        .color-group {
+            text-align: center;
+            flex: 1;
+            min-width: 120px; /* Minimum width for each color picker group */
+        }
+        .color-group label {
+            display: block;
+            margin-bottom: 10px;
+            font-size: 1.1em;
+            color: #555;
+            font-weight: 600;
+        }
+        input[type="color"] {
+            width: 80px;
+            height: 80px;
+            border: 3px solid #ddd;
+            border-radius: 10px;
+            padding: 0;
+            cursor: pointer;
+            transition: border-color 0.3s ease, transform 0.2s ease;
+        }
+        input[type="color"]:hover {
+            border-color: #a1c4fd;
+            transform: scale(1.05);
+        }
+        .gradient-preview {
+            width: 100%;
+            height: 150px;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            margin-top: 25px;
+            margin-bottom: 25px;
+            background: linear-gradient(to right, #FF5F6D, #FFC371); /* Default gradient */
+            box-shadow: inset 0 2px 8px rgba(0,0,0,0.08);
+        }
+        textarea {
+            width: calc(100% - 24px); /* Full width minus padding */
+            height: 120px;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 1em;
+            font-family: 'Courier New', monospace;
+            resize: vertical;
+            background-color: #f9f9f9;
+            box-shadow: inset 0 1px 3px rgba(0,0,0,0.05);
+            line-height: 1.6;
+            color: #333;
+        }
+        button {
+            background-color: #007bff;
+            color: white;
+            padding: 14px 30px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1.2em;
+            font-weight: 600;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            box-shadow: 0 5px 15px rgba(0, 123, 255, 0.3);
+            margin-top: 30px;
+        }
+        button:hover {
+            background-color: #0056b3;
+            transform: translateY(-3px);
+        }
+        .note {
+            margin-top: 30px;
+            color: #888;
+            font-size: 0.9em;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .container {
+                padding: 30px;
+            }
+            h1 {
+                font-size: 2em;
+            }
+            .color-selector {
+                flex-direction: column;
+                gap: 20px;
+            }
+            input[type="color"] {
+                width: 60px;
+                height: 60px;
+            }
+            button {
+                width: 100%;
+                padding: 12px 25px;
+                font-size: 1.1em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎨 Professional Gradient Generator</h1>
+        <p>Choose your colors, and we'll generate the perfect CSS gradient code for you!</p>
+
+        <div class="color-selector">
+            <div class="color-group">
+                <label for="color1">Start Color:</label>
+                <input type="color" id="color1" value="#FF5F6D" oninput="updateGradient()">
+            </div>
+            <div class="color-group">
+                <label for="color2">End Color:</label>
+                <input type="color" id="color2" value="#FFC371" oninput="updateGradient()">
+            </div>
+        </div>
+
+        <div class="gradient-preview" id="gradientPreview"></div>
+
+        <textarea id="gradientCode" rows="5" readonly>background: linear-gradient(to right, #FF5F6D, #FFC371);</textarea>
+
+        <button onclick="copyGradientCode()">Copy CSS Code</button>
+
+        <p class="note"><em>Note: The gradient preview and code update in real-time with JavaScript.</em></p>
+    </div>
+
+    <script>
+        function updateGradient() {
+            const color1 = document.getElementById('color1').value;
+            const color2 = document.getElementById('color2').value;
+            const gradientPreview = document.getElementById('gradientPreview');
+            const gradientCode = document.getElementById('gradientCode');
+
+            const cssGradient = `linear-gradient(to right, ${color1}, ${color2})`;
+            gradientPreview.style.background = cssGradient;
+            gradientCode.value = `background: ${cssGradient};`;
+        }
+
+        function copyGradientCode() {
+            const gradientCode = document.getElementById('gradientCode');
+            gradientCode.select();
+            gradientCode.setSelectionRange(0, 99999); // For mobile devices
+
+            navigator.clipboard.writeText(gradientCode.value).then(() => {
+                alert("CSS gradient code copied to clipboard!");
+            }).catch(err => {
+                console.error('Failed to copy: ', err);
+                alert("Failed to copy code. Please copy it manually.");
+            });
+        }
+
+        // Initialize gradient on page load
+        document.addEventListener('DOMContentLoaded', updateGradient);
+    </script>
+</body>
+</html>

@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PDF Splitter Tool</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #fff8eb; /* Light orange-yellow background */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        .tool-container {
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+            padding: 40px;
+            max-width: 600px;
+            width: 100%;
+            text-align: center;
+            border: 1px solid #ffe0b2;
+        }
+        h1 {
+            color: #ff9800; /* Orange for heading */
+            margin-bottom: 30px;
+            font-size: 2.2em;
+        }
+        input[type="file"] {
+            display: block;
+            margin: 20px auto;
+            padding: 12px;
+            border: 2px dashed #ff9800;
+            border-radius: 8px;
+            width: calc(100% - 40px);
+            background-color: #fff3e0; /* Lighter orange background */
+            color: #ff9800;
+            cursor: pointer;
+            font-size: 1em;
+        }
+        input[type="file"]::file-selector-button {
+            border: none;
+            padding: 10px 20px;
+            border-radius: 6px;
+            background-color: #ff9800;
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            margin-right: 15px;
+        }
+        input[type="file"]::file-selector-button:hover {
+            background-color: #fb8c00;
+        }
+        .page-selection-group {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 15px;
+            margin-top: 25px;
+            margin-bottom: 25px;
+        }
+        .page-selection-group label {
+            font-size: 1.1em;
+            color: #555;
+            white-space: nowrap;
+        }
+        input[type="number"] {
+            width: 70px;
+            padding: 10px 12px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 1em;
+            text-align: center;
+            outline: none;
+            -webkit-appearance: textfield;
+            -moz-appearance: textfield;
+            appearance: textfield;
+        }
+        input[type="number"]::-webkit-outer-spin-button,
+        input[type="number"]::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+        button {
+            background-color: #2196F3; /* Blue button */
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1.1em;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            margin-top: 10px;
+            width: auto;
+        }
+        button:hover {
+            background-color: #1976D2;
+            transform: translateY(-2px);
+        }
+        button:active {
+            transform: translateY(0);
+        }
+        #downloadSplitPdf {
+            display: none;
+            margin-top: 30px;
+            padding: 12px 25px;
+            background-color: #ff9800;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-size: 1.1em;
+            transition: background-color 0.3s ease;
+            display: inline-block;
+        }
+        #downloadSplitPdf:hover {
+            background-color: #fb8c00;
+        }
+        .result-message {
+            margin-top: 25px;
+            font-size: 1.1em;
+            color: #555;
+            min-height: 25px;
+        }
+        .loading-spinner {
+            display: none;
+            border: 4px solid rgba(0, 0, 0, 0.1);
+            border-top: 4px solid #ff9800;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            animation: spin 1s linear infinite;
+            margin: 20px auto;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+    <!-- Include pdf-lib for client-side PDF manipulation -->
+    <script src="https://unpkg.com/pdf-lib/dist/pdf-lib.min.js"></script>
+</head>
+<body>
+    <div class="tool-container">
+        <h1>PDF Splitter</h1>
+        <input type="file" id="pdfSplitterInput" accept=".pdf">
+        <div class="page-selection-group">
+            <label for="splitStartPage">Start Page:</label>
+            <input type="number" id="splitStartPage" value="1" min="1">
+            <label for="splitEndPage">End Page:</label>
+            <input type="number" id="splitEndPage" value="1" min="1">
+        </div>
+        <button onclick="splitPdf()">Split PDF</button>
+        <div class="loading-spinner" id="splitterLoading"></div>
+        <p class="result-message" id="splitterResultMessage"></p>
+        <a id="downloadSplitPdf" style="display:none;" download="split.pdf">Download Split PDF</a>
+    </div>
+
+    <script>
+        async function splitPdf() {
+            const input = document.getElementById('pdfSplitterInput');
+            const startPage = parseInt(document.getElementById('splitStartPage').value);
+            const endPage = parseInt(document.getElementById('splitEndPage').value);
+            const downloadLink = document.getElementById('downloadSplitPdf');
+            const resultMessage = document.getElementById('splitterResultMessage');
+            const loadingSpinner = document.getElementById('splitterLoading');
+
+            resultMessage.textContent = '';
+            downloadLink.style.display = 'none';
+
+            if (!input.files.length) {
+                resultMessage.textContent = 'Please select a PDF file.';
+                return;
+            }
+            if (input.files[0].type !== 'application/pdf') {
+                resultMessage.textContent = 'Please upload a valid PDF file.';
+                return;
+            }
+            if (isNaN(startPage) || isNaN(endPage) || startPage <= 0 || endPage <= 0 || startPage > endPage) {
+                resultMessage.textContent = 'Please enter valid positive start and end page numbers, with start page <= end page.';
+                return;
+            }
+
+            loadingSpinner.style.display = 'block';
+            resultMessage.textContent = `Splitting PDF (pages ${startPage} to ${endPage})...`;
+
+            try {
+                const file = input.files[0];
+                const arrayBuffer = await file.arrayBuffer();
+                const { PDFDocument } = PDFLib;
+                const originalPdf = await PDFDocument.load(arrayBuffer);
+
+                if (startPage > originalPdf.getPageCount() || endPage > originalPdf.getPageCount()) {
+                    resultMessage.textContent = `Page numbers out of range. This PDF has ${originalPdf.getPageCount()} pages.`;
+                    return;
+                }
+
+                const newPdf = await PDFDocument.create();
+                const pagesToCopy = [];
+                for (let i = startPage - 1; i < endPage; i++) {
+                    pagesToCopy.push(i);
+                }
+
+                const copiedPages = await newPdf.copyPages(originalPdf, pagesToCopy);
+                copiedPages.forEach(page => newPdf.addPage(page));
+
+                const newPdfBytes = await newPdf.save();
+                const blob = new Blob([newPdfBytes], { type: 'application/pdf' });
+                const url = URL.createObjectURL(blob);
+
+                downloadLink.href = url;
+                downloadLink.style.display = 'inline-block';
+                downloadLink.textContent = `Download Split PDF (Pages ${startPage}-${endPage})`;
+                resultMessage.textContent = `PDF split successfully! Pages ${startPage} to ${endPage} extracted.`;
+
+            } catch (error) {
+                console.error('Error splitting PDF:', error);
+                resultMessage.textContent = 'An error occurred during splitting. Please ensure the file is a valid PDF.';
+            } finally {
+                loadingSpinner.style.display = 'none';
+            }
+        }
+    </script>
+</body>
+</html>

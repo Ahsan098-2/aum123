@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PDF to Image Converter Tool</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #e0f2f7; /* Light cyan background */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        .tool-container {
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+            padding: 40px;
+            max-width: 700px;
+            width: 100%;
+            text-align: center;
+            border: 1px solid #b2ebf2;
+        }
+        h1 {
+            color: #00bcd4; /* Cyan for heading */
+            margin-bottom: 30px;
+            font-size: 2.2em;
+        }
+        input[type="file"] {
+            display: block;
+            margin: 20px auto;
+            padding: 12px;
+            border: 2px dashed #00bcd4;
+            border-radius: 8px;
+            width: calc(100% - 40px);
+            background-color: #e0f7fa; /* Lighter cyan background */
+            color: #00bcd4;
+            cursor: pointer;
+            font-size: 1em;
+        }
+        input[type="file"]::file-selector-button {
+            border: none;
+            padding: 10px 20px;
+            border-radius: 6px;
+            background-color: #00bcd4;
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            margin-right: 15px;
+        }
+        input[type="file"]::file-selector-button:hover {
+            background-color: #00acc1;
+        }
+        button {
+            background-color: #4CAF50; /* Green button */
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1.1em;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            margin-top: 20px;
+            width: auto;
+        }
+        button:hover {
+            background-color: #45a049;
+            transform: translateY(-2px);
+        }
+        button:active {
+            transform: translateY(0);
+        }
+        .result-message {
+            margin-top: 25px;
+            font-size: 1.1em;
+            color: #555;
+            min-height: 25px;
+        }
+        .loading-spinner {
+            display: none;
+            border: 4px solid rgba(0, 0, 0, 0.1);
+            border-top: 4px solid #00bcd4;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            animation: spin 1s linear infinite;
+            margin: 20px auto;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        #pdfImageOutput {
+            margin-top: 30px;
+            border-top: 1px solid #eee;
+            padding-top: 20px;
+            max-height: 400px; /* Limit height for scrollability */
+            overflow-y: auto;
+            text-align: left;
+        }
+        #pdfImageOutput div {
+            margin-bottom: 25px;
+            padding: 15px;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            background-color: #fcfcfc;
+            text-align: center;
+        }
+        #pdfImageOutput h3 {
+            color: #333;
+            margin-top: 0;
+            margin-bottom: 15px;
+        }
+        #pdfImageOutput canvas {
+            display: block;
+            max-width: 100%;
+            height: auto;
+            margin: 0 auto 15px auto;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        #pdfImageOutput a {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 8px 15px;
+            background-color: #00bcd4;
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            transition: background-color 0.3s ease;
+        }
+        #pdfImageOutput a:hover {
+            background-color: #00acc1;
+        }
+    </style>
+    <!-- Include pdf.js library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.4.120/pdf.min.js"></script>
+    <script>
+        // Set workerSrc for pdf.js
+        pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.4.120/pdf.worker.min.js';
+    </script>
+</head>
+<body>
+    <div class="tool-container">
+        <h1>PDF to Image Converter</h1>
+        <input type="file" id="pdfToImageInput" accept=".pdf">
+        <button onclick="convertPdfToImages()">Convert to Images</button>
+        <div class="loading-spinner" id="pdfToImageLoading"></div>
+        <p class="result-message" id="pdfToImageResultMessage"></p>
+        <div id="pdfImageOutput">
+            <!-- Converted images will be displayed here -->
+        </div>
+    </div>
+
+    <script>
+        async function convertPdfToImages() {
+            const input = document.getElementById('pdfToImageInput');
+            const outputDiv = document.getElementById('pdfImageOutput');
+            const resultMessage = document.getElementById('pdfToImageResultMessage');
+            const loadingSpinner = document.getElementById('pdfToImageLoading');
+
+            outputDiv.innerHTML = ''; // Clear previous output
+            resultMessage.textContent = '';
+            
+            if (!input.files.length) {
+                resultMessage.textContent = 'Please select a PDF file.';
+                return;
+            }
+            if (input.files[0].type !== 'application/pdf') {
+                resultMessage.textContent = 'Please upload a valid PDF file.';
+                return;
+            }
+
+            const file = input.files[0];
+            const fileReader = new FileReader();
+
+            loadingSpinner.style.display = 'block';
+            resultMessage.textContent = 'Converting PDF pages to images...';
+
+            fileReader.onload = async function() {
+                try {
+                    const pdfData = new Uint8Array(this.result);
+                    const loadingTask = pdfjsLib.getDocument({ data: pdfData });
+                    const pdf = await loadingTask.promise;
+
+                    resultMessage.textContent = `Converting ${pdf.numPages} page(s)...`;
+
+                    for (let i = 1; i <= pdf.numPages; i++) {
+                        const page = await pdf.getPage(i);
+                        const viewport = page.getViewport({ scale: 1.5 }); // Adjust scale as needed
+                        
+                        const canvas = document.createElement('canvas');
+                        const context = canvas.getContext('2d');
+                        canvas.height = viewport.height;
+                        canvas.width = viewport.width;
+
+                        const renderContext = {
+                            canvasContext: context,
+                            viewport: viewport
+                        };
+                        await page.render(renderContext).promise;
+
+                        const imgDiv = document.createElement('div');
+                        imgDiv.innerHTML = `<h3>Page ${i}</h3>`;
+                        imgDiv.appendChild(canvas);
+
+                        const downloadLink = document.createElement('a');
+                        downloadLink.href = canvas.toDataURL('image/png');
+                        downloadLink.download = `${file.name.replace('.pdf', '')}_page_${i}.png`;
+                        downloadLink.textContent = `Download Page ${i} as PNG`;
+                        imgDiv.appendChild(downloadLink);
+                        
+                        outputDiv.appendChild(imgDiv);
+                    }
+                    resultMessage.textContent = 'Conversion complete! Scroll down to see and download images.';
+
+                } catch (error) {
+                    console.error('Error converting PDF to images:', error);
+                    resultMessage.textContent = 'An error occurred during conversion. Please check the PDF file.';
+                } finally {
+                    loadingSpinner.style.display = 'none';
+                }
+            };
+            fileReader.onerror = () => {
+                resultMessage.textContent = 'Error reading file.';
+                loadingSpinner.style.display = 'none';
+            };
+            fileReader.readAsArrayBuffer(file);
+        }
+    </script>
+</body>
+</html>

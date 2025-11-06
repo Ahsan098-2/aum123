@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image to PDF Converter Tool</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0fdf4; /* Very light green background */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        .tool-container {
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+            padding: 40px;
+            max-width: 650px;
+            width: 100%;
+            text-align: center;
+            border: 1px solid #d4edda;
+        }
+        h1 {
+            color: #28a745; /* Green for heading */
+            margin-bottom: 30px;
+            font-size: 2.2em;
+        }
+        input[type="file"] {
+            display: block;
+            margin: 20px auto;
+            padding: 12px;
+            border: 2px dashed #28a745;
+            border-radius: 8px;
+            width: calc(100% - 40px);
+            background-color: #e6ffed; /* Lighter green background */
+            color: #28a745;
+            cursor: pointer;
+            font-size: 1em;
+        }
+        input[type="file"]::file-selector-button {
+            border: none;
+            padding: 10px 20px;
+            border-radius: 6px;
+            background-color: #28a745;
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            margin-right: 15px;
+        }
+        input[type="file"]::file-selector-button:hover {
+            background-color: #218838;
+        }
+        button {
+            background-color: #007bff; /* Blue button */
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1.1em;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            margin-top: 20px;
+            width: auto;
+        }
+        button:hover {
+            background-color: #0056b3;
+            transform: translateY(-2px);
+        }
+        button:active {
+            transform: translateY(0);
+        }
+        #downloadPdfFromImages {
+            display: none;
+            margin-top: 30px;
+            padding: 12px 25px;
+            background-color: #28a745;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-size: 1.1em;
+            transition: background-color 0.3s ease;
+            display: inline-block;
+        }
+        #downloadPdfFromImages:hover {
+            background-color: #218838;
+        }
+        .result-message {
+            margin-top: 25px;
+            font-size: 1.1em;
+            color: #555;
+            min-height: 25px;
+        }
+        .loading-spinner {
+            display: none;
+            border: 4px solid rgba(0, 0, 0, 0.1);
+            border-top: 4px solid #28a745;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            animation: spin 1s linear infinite;
+            margin: 20px auto;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+    <!-- Include jspdf library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</head>
+<body>
+    <div class="tool-container">
+        <h1>Image to PDF Converter</h1>
+        <input type="file" id="imageToPdfInput" accept="image/*" multiple>
+        <button onclick="convertImagesToPdf()">Convert to PDF</button>
+        <div class="loading-spinner" id="imageToPdfLoading"></div>
+        <p class="result-message" id="imageToPdfResultMessage"></p>
+        <a id="downloadPdfFromImages" style="display:none;" download="images.pdf">Download PDF</a>
+    </div>
+
+    <script>
+        async function convertImagesToPdf() {
+            const input = document.getElementById('imageToPdfInput');
+            const downloadLink = document.getElementById('downloadPdfFromImages');
+            const resultMessage = document.getElementById('imageToPdfResultMessage');
+            const loadingSpinner = document.getElementById('imageToPdfLoading');
+
+            resultMessage.textContent = '';
+            downloadLink.style.display = 'none';
+
+            if (!input.files.length) {
+                resultMessage.textContent = 'Please select one or more image files.';
+                return;
+            }
+
+            loadingSpinner.style.display = 'block';
+            resultMessage.textContent = `Converting ${input.files.length} image(s) to PDF...`;
+
+            try {
+                const { jsPDF } = window.jspdf;
+                const doc = new jsPDF();
+                const margin = 10;
+                const pageHeight = doc.internal.pageSize.getHeight();
+                const pageWidth = doc.internal.pageSize.getWidth();
+
+                for (let i = 0; i < input.files.length; i++) {
+                    const file = input.files[i];
+                    if (!file.type.startsWith('image/')) {
+                        resultMessage.textContent = `Skipping non-image file: ${file.name}`;
+                        continue;
+                    }
+
+                    const reader = new FileReader();
+                    await new Promise((resolve, reject) => {
+                        reader.onload = function(event) {
+                            const img = new Image();
+                            img.onload = function() {
+                                if (i > 0) {
+                                    doc.addPage();
+                                }
+
+                                // Calculate image dimensions to fit page with aspect ratio
+                                const imgWidth = img.width;
+                                const imgHeight = img.height;
+                                const ratio = Math.min((pageWidth - 2 * margin) / imgWidth, (pageHeight - 2 * margin) / imgHeight);
+                                const newWidth = imgWidth * ratio;
+                                const newHeight = imgHeight * ratio;
+
+                                // Center image horizontally
+                                const xPos = (pageWidth - newWidth) / 2;
+                                // Center image vertically on the page
+                                const yPos = (pageHeight - newHeight) / 2;
+
+                                doc.addImage(img, img.src.split(',')[0].split(':')[1].split(';')[0].split('/')[1].toUpperCase(), xPos, yPos, newWidth, newHeight);
+                                resolve();
+                            };
+                            img.onerror = reject;
+                            img.src = event.target.result;
+                        };
+                        reader.onerror = reject;
+                        reader.readAsDataURL(file);
+                    });
+                }
+
+                doc.save('images.pdf');
+                const pdfBlob = doc.output('blob');
+                const url = URL.createObjectURL(pdfBlob);
+
+                downloadLink.href = url;
+                downloadLink.style.display = 'inline-block';
+                downloadLink.textContent = 'Download PDF';
+                resultMessage.textContent = `${input.files.length} image(s) converted and ready for download.`;
+
+            } catch (error) {
+                console.error('Error converting images to PDF:', error);
+                resultMessage.textContent = 'An error occurred during conversion. Please try again.';
+            } finally {
+                loadingSpinner.style.display = 'none';
+            }
+        }
+    </script>
+</body>
+</html>

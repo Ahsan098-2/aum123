@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crypto Price Checker Tool</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #e6f7ff; /* Lighter blue background */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        .tool-container {
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+            padding: 40px;
+            max-width: 500px;
+            width: 100%;
+            text-align: center;
+            border: 1px solid #d0e7f7;
+        }
+        h1 {
+            color: #0056b3; /* Darker blue for heading */
+            margin-bottom: 30px;
+            font-size: 2.2em;
+        }
+        select {
+            padding: 12px 15px;
+            border: 1px solid #007bff;
+            border-radius: 8px;
+            font-size: 1em;
+            width: calc(100% - 20px);
+            max-width: 300px;
+            margin-bottom: 20px;
+            background-color: #f8faff;
+            color: #333;
+            appearance: none; /* Remove default arrow */
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23007bff'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 10px center;
+            background-size: 20px;
+            cursor: pointer;
+        }
+        button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1.1em;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            margin-top: 10px;
+            width: auto;
+        }
+        button:hover {
+            background-color: #0056b3;
+            transform: translateY(-2px);
+        }
+        button:active {
+            transform: translateY(0);
+        }
+        #cryptoPriceResult {
+            margin-top: 30px;
+            font-size: 1.4em;
+            color: #28a745; /* Green for positive results */
+            font-weight: bold;
+            min-height: 30px; /* Reserve space */
+        }
+        .loading-text {
+            color: #555;
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+    <div class="tool-container">
+        <h1>Crypto Price Checker</h1>
+        <select id="cryptoSelect">
+            <option value="bitcoin">Bitcoin (BTC)</option>
+            <option value="ethereum">Ethereum (ETH)</option>
+            <option value="ripple">XRP (XRP)</option>
+            <option value="dogecoin">Dogecoin (DOGE)</option>
+            <option value="cardano">Cardano (ADA)</option>
+            <option value="solana">Solana (SOL)</option>
+            <option value="polkadot">Polkadot (DOT)</option>
+            <option value="litecoin">Litecoin (LTC)</option>
+            <option value="chainlink">Chainlink (LINK)</option>
+            <option value="polygon">Polygon (MATIC)</option>
+        </select>
+        <button onclick="checkCryptoPrice()">Check Price</button>
+        <p id="cryptoPriceResult"></p>
+    </div>
+
+    <script>
+        async function checkCryptoPrice() {
+            const cryptoSelect = document.getElementById('cryptoSelect');
+            const selectedCrypto = cryptoSelect.value;
+            const resultElement = document.getElementById('cryptoPriceResult');
+            resultElement.className = 'loading-text';
+            resultElement.textContent = 'Fetching price...';
+
+            try {
+                // Using CoinGecko API for cryptocurrency prices
+                const response = await fetch(`https://api.coingecko.com/api/v3/simple/price?ids=${selectedCrypto}&vs_currencies=usd`);
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                const data = await response.json();
+                
+                if (data && data[selectedCrypto] && data[selectedCrypto].usd) {
+                    resultElement.className = ''; // Remove loading class
+                    resultElement.textContent = `${selectedCrypto.charAt(0).toUpperCase() + selectedCrypto.slice(1)} Price: $${data[selectedCrypto].usd.toLocaleString()}`;
+                } else {
+                    resultElement.className = '';
+                    resultElement.textContent = 'Could not fetch price. Please try again.';
+                }
+            } catch (error) {
+                console.error('Error fetching crypto price:', error);
+                resultElement.className = '';
+                resultElement.textContent = 'Error fetching price. Please check your internet connection or try again later.';
+            }
+        }
+
+        // Optional: Load initial price when the page loads
+        document.addEventListener('DOMContentLoaded', checkCryptoPrice);
+    </script>
+</body>
+</html>

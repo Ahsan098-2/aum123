@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PDF Compressor Tool</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f7f6;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        .tool-container {
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+            padding: 40px;
+            max-width: 600px;
+            width: 100%;
+            text-align: center;
+            border: 1px solid #e0e0e0;
+        }
+        h1 {
+            color: #333;
+            margin-bottom: 30px;
+            font-size: 2.2em;
+        }
+        input[type="file"] {
+            display: block;
+            margin: 20px auto;
+            padding: 12px;
+            border: 2px dashed #007bff;
+            border-radius: 8px;
+            width: calc(100% - 40px);
+            background-color: #f8faff;
+            color: #007bff;
+            cursor: pointer;
+            font-size: 1em;
+        }
+        input[type="file"]::file-selector-button {
+            border: none;
+            padding: 10px 20px;
+            border-radius: 6px;
+            background-color: #007bff;
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            margin-right: 15px;
+        }
+        input[type="file"]::file-selector-button:hover {
+            background-color: #0056b3;
+        }
+        button {
+            background-color: #28a745;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1.1em;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            margin-top: 20px;
+            width: auto;
+        }
+        button:hover {
+            background-color: #218838;
+            transform: translateY(-2px);
+        }
+        button:active {
+            transform: translateY(0);
+        }
+        #downloadCompressedPdf {
+            display: none;
+            margin-top: 30px;
+            padding: 12px 25px;
+            background-color: #007bff;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-size: 1.1em;
+            transition: background-color 0.3s ease;
+            display: inline-block; /* To make it visible when JS makes it active */
+        }
+        #downloadCompressedPdf:hover {
+            background-color: #0056b3;
+        }
+        .result-message {
+            margin-top: 25px;
+            font-size: 1.1em;
+            color: #555;
+            min-height: 25px; /* Reserve space */
+        }
+        .loading-spinner {
+            display: none;
+            border: 4px solid rgba(0, 0, 0, 0.1);
+            border-top: 4px solid #007bff;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            animation: spin 1s linear infinite;
+            margin: 20px auto;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+    <!-- Include pdf-lib for client-side PDF manipulation -->
+    <script src="https://unpkg.com/pdf-lib/dist/pdf-lib.min.js"></script>
+</head>
+<body>
+    <div class="tool-container">
+        <h1>PDF Compressor</h1>
+        <input type="file" id="compressPdfInput" accept=".pdf">
+        <button onclick="compressPdf()">Compress PDF</button>
+        <div class="loading-spinner" id="compressLoading"></div>
+        <p class="result-message" id="compressResultMessage"></p>
+        <a id="downloadCompressedPdf" style="display:none;" download="compressed.pdf">Download Compressed PDF</a>
+    </div>
+
+    <script>
+        async function compressPdf() {
+            const input = document.getElementById('compressPdfInput');
+            const resultMessage = document.getElementById('compressResultMessage');
+            const downloadLink = document.getElementById('downloadCompressedPdf');
+            const loadingSpinner = document.getElementById('compressLoading');
+
+            resultMessage.textContent = '';
+            downloadLink.style.display = 'none';
+
+            if (!input.files.length) {
+                resultMessage.textContent = 'Please select a PDF file.';
+                return;
+            }
+
+            const file = input.files[0];
+            if (file.type !== 'application/pdf') {
+                resultMessage.textContent = 'Please upload a valid PDF file.';
+                return;
+            }
+
+            loadingSpinner.style.display = 'block';
+            resultMessage.textContent = 'Compressing PDF... This might take a moment.';
+
+            try {
+                const { PDFDocument } = PDFLib;
+                const arrayBuffer = await file.arrayBuffer();
+                const pdfDoc = await PDFDocument.load(arrayBuffer);
+
+                // Create a new PDF document
+                const newPdfDoc = await PDFDocument.create();
+
+                // Iterate through each page of the original PDF
+                for (let i = 0; i < pdfDoc.getPageCount(); i++) {
+                    const [page] = await newPdfDoc.copyPages(pdfDoc, [i]);
+                    newPdfDoc.addPage(page);
+                }
+
+                // Save the new PDF (this implicitly "compresses" by removing redundant objects,
+                // and you can also apply more aggressive compression strategies here if needed,
+                // though direct image compression within PDF-Lib is more advanced and requires further logic.)
+                const compressedPdfBytes = await newPdfDoc.save();
+                
+                const originalSize = file.size;
+                const compressedSize = compressedPdfBytes.length;
+                const savings = ((originalSize - compressedSize) / originalSize * 100).toFixed(2);
+
+                const blob = new Blob([compressedPdfBytes], { type: 'application/pdf' });
+                const url = URL.createObjectURL(blob);
+
+                downloadLink.href = url;
+                downloadLink.style.display = 'inline-block';
+                downloadLink.textContent = 'Download Compressed PDF';
+                resultMessage.textContent = `Compression complete! Saved ${savings}% (${(originalSize/1024/1024).toFixed(2)} MB to ${(compressedSize/1024/1024).toFixed(2)} MB).`;
+
+            } catch (error) {
+                console.error('Error compressing PDF:', error);
+                resultMessage.textContent = 'An error occurred during compression. Please try again or check the file.';
+            } finally {
+                loadingSpinner.style.display = 'none';
+            }
+        }
+    </script>
+</body>
+</html>

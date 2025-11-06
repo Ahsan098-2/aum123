@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>URL Encoder/Decoder Tool</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa; /* Light grey background */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        .tool-container {
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+            padding: 40px;
+            max-width: 700px;
+            width: 100%;
+            text-align: center;
+            border: 1px solid #e9ecef;
+        }
+        h1 {
+            color: #17a2b8; /* Info blue/cyan for heading */
+            margin-bottom: 30px;
+            font-size: 2.2em;
+        }
+        textarea {
+            width: calc(100% - 40px); /* Adjust for padding */
+            height: 120px;
+            padding: 15px 18px;
+            margin-bottom: 25px;
+            border: 1px solid #17a2b8;
+            border-radius: 8px;
+            font-size: 1.1em;
+            resize: vertical;
+            outline: none;
+            box-sizing: border-box;
+            background-color: #eaf8fa; /* Lighter background for input */
+            line-height: 1.5;
+        }
+        textarea::placeholder {
+            color: #aaa;
+        }
+        .button-group {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        .button-group button {
+            background-color: #17a2b8; /* Info blue/cyan */
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1.1em;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            min-width: 150px;
+        }
+        .button-group button:hover {
+            background-color: #138496;
+            transform: translateY(-2px);
+        }
+        .button-group button:active {
+            transform: translateY(0);
+        }
+        #outputTextArea {
+            background-color: #f0f8f9; /* Even lighter for output */
+            border: 1px solid #ced4da;
+            color: #333;
+            cursor: text;
+        }
+        .info-message {
+            margin-top: 20px;
+            color: #6c757d;
+            font-size: 0.95em;
+        }
+        .error-message {
+            color: #dc3545;
+            font-weight: bold;
+            margin-top: 15px;
+        }
+    </style>
+</head>
+<body>
+    <div class="tool-container">
+        <h1>URL Encoder / Decoder</h1>
+        <textarea id="inputTextArea" placeholder="Enter URL or text to encode/decode..."></textarea>
+        <div class="button-group">
+            <button onclick="encodeUrl()">Encode URL</button>
+            <button onclick="decodeUrl()">Decode URL</button>
+        </div>
+        <textarea id="outputTextArea" readonly placeholder="Result will appear here..."></textarea>
+        <p class="info-message" id="messageArea"></p>
+    </div>
+
+    <script>
+        function getInputValue() {
+            return document.getElementById('inputTextArea').value;
+        }
+
+        function setOutputValue(value) {
+            document.getElementById('outputTextArea').value = value;
+        }
+
+        function displayMessage(message, isError = false) {
+            const messageArea = document.getElementById('messageArea');
+            messageArea.textContent = message;
+            messageArea.className = isError ? 'error-message' : 'info-message';
+        }
+
+        function clearMessages() {
+            document.getElementById('messageArea').textContent = '';
+            document.getElementById('messageArea').className = 'info-message';
+        }
+
+        function encodeUrl() {
+            clearMessages();
+            const input = getInputValue().trim();
+            if (!input) {
+                displayMessage('Please enter text to encode.', true);
+                return;
+            }
+            try {
+                const encoded = encodeURIComponent(input);
+                setOutputValue(encoded);
+                displayMessage('URL encoded successfully!');
+            } catch (e) {
+                console.error('Encoding error:', e);
+                displayMessage('Error encoding URL. Ensure it\'s valid text.', true);
+            }
+        }
+
+        function decodeUrl() {
+            clearMessages();
+            const input = getInputValue().trim();
+            if (!input) {
+                displayMessage('Please enter text to decode.', true);
+                return;
+            }
+            try {
+                const decoded = decodeURIComponent(input);
+                setOutputValue(decoded);
+                displayMessage('URL decoded successfully!');
+            } catch (e) {
+                console.error('Decoding error:', e);
+                displayMessage('Error decoding URL. Ensure it\'s a valid encoded URL.', true);
+            }
+        }
+    </script>
+</body>
+</html>

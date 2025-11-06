@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Color Picker</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+            color: #333;
+            line-height: 1.6;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        .container {
+            background-color: #fff;
+            padding: 35px 45px;
+            border-radius: 12px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+            width: 100%;
+            max-width: 500px;
+            text-align: center;
+            transform: translateY(0);
+            transition: transform 0.3s ease-out;
+        }
+
+        .container:hover {
+            transform: translateY(-5px);
+        }
+
+        h1 {
+            color: #2575fc;
+            margin-bottom: 30px;
+            font-weight: 700;
+            font-size: 2em;
+        }
+
+        .color-display-wrapper {
+            margin-bottom: 25px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .color-display {
+            width: 150px;
+            height: 150px;
+            border: 3px solid #eee;
+            border-radius: 50%; /* Make it round */
+            box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.1), 0 0 15px rgba(37, 117, 252, 0.3);
+            transition: background-color 0.1s ease-out, transform 0.2s ease;
+            cursor: pointer;
+        }
+
+        .color-display:active {
+            transform: scale(0.98);
+        }
+
+        .color-inputs {
+            margin-bottom: 30px;
+        }
+
+        .input-group {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .input-group label {
+            flex: 0 0 60px; /* Fixed width for labels */
+            text-align: right;
+            margin-right: 15px;
+            font-weight: 500;
+            color: #555;
+        }
+
+        .input-group input[type="text"] {
+            flex-grow: 1;
+            padding: 10px 12px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 1em;
+            font-family: 'Roboto Mono', monospace; /* Monospace for code values */
+            box-shadow: inset 0 1px 3px rgba(0,0,0,0.05);
+        }
+
+        .input-group input[type="text"]:focus {
+            border-color: #2575fc;
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(37, 117, 252, 0.15);
+        }
+
+        .copy-btn {
+            background-color: #4CAF50; /* Green copy button */
+            color: #fff;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 6px;
+            margin-left: 10px;
+            cursor: pointer;
+            font-size: 0.9em;
+            transition: background-color 0.2s ease, transform 0.1s ease;
+            white-space: nowrap; /* Prevent text wrapping */
+        }
+
+        .copy-btn:hover {
+            background-color: #45a049;
+            transform: translateY(-1px);
+        }
+
+        .copy-btn:active {
+            transform: translateY(0);
+        }
+
+        .slider-group {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .slider-group label {
+            flex: 0 0 60px;
+            text-align: right;
+            margin-right: 15px;
+            font-weight: 500;
+            color: #555;
+        }
+
+        .slider-group input[type="range"] {
+            flex-grow: 1;
+            -webkit-appearance: none; /* Override default look */
+            -moz-appearance: none;
+            appearance: none;
+            height: 8px;
+            background: #e0e0e0;
+            border-radius: 5px;
+            outline: none;
+            transition: background 0.2s;
+            margin: 0 10px;
+        }
+
+        .slider-group input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            background: #2575fc;
+            cursor: pointer;
+            border: 3px solid #fff;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            transition: background 0.2s;
+        }
+
+        .slider-group input[type="range"]::-webkit-slider-thumb:hover {
+            background: #1a5acb;
+        }
+
+        /* Specific slider colors */
+        #redSlider::-webkit-slider-thumb { background: #e74c3c; }
+        #redSlider:hover::-webkit-slider-thumb { background: #c0392b; }
+        #greenSlider::-webkit-slider-thumb { background: #2ecc71; }
+        #greenSlider:hover::-webkit-slider-thumb { background: #27ae60; }
+        #blueSlider::-webkit-slider-thumb { background: #3498db; }
+        #blueSlider:hover::-webkit-slider-thumb { background: #2980b9; }
+
+
+        .slider-group span {
+            width: 35px;
+            text-align: right;
+            font-weight: 500;
+            color: #444;
+        }
+
+        .native-picker {
+            width: 80px;
+            height: 40px;
+            border: none;
+            background: none;
+            cursor: pointer;
+            margin-top: 25px;
+            padding: 0;
+            -webkit-appearance: none; /* Hide default native picker */
+            appearance: none;
+            border-radius: 8px;
+            overflow: hidden;
+            position: relative;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.2s ease;
+        }
+
+        /* Custom styling for native color picker */
+        .native-picker::-webkit-color-swatch-wrapper {
+            padding: 0;
+        }
+        .native-picker::-webkit-color-swatch {
+            border: none;
+        }
+        .native-picker:hover {
+            transform: scale(1.05);
+        }
+        .native-picker:active {
+            transform: scale(1);
+        }
+
+        .native-picker-info {
+            font-size: 0.9em;
+            color: #777;
+            margin-top: 10px;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 600px) {
+            .container {
+                padding: 25px;
+                margin: 15px;
+            }
+            h1 {
+                font-size: 1.8em;
+            }
+            .input-group label, .slider-group label {
+                flex: 0 0 50px;
+                margin-right: 10px;
+            }
+            .input-group {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .input-group input[type="text"] {
+                width: 100%;
+                margin-bottom: 10px;
+            }
+            .copy-btn {
+                margin-left: 0;
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Advanced Color Picker</h1>
+        <div class="color-display-wrapper">
+            <div id="colorDisplay" class="color-display" style="background-color: #000000;"></div>
+        </div>
+
+        <div class="color-inputs">
+            <div class="input-group">
+                <label for="hexInput">HEX:</label>
+                <input type="text" id="hexInput" value="#000000" maxlength="7">
+                <button class="copy-btn" data-target="hexInput">Copy</button>
+            </div>
+            <div class="input-group">
+                <label for="rgbInput">RGB:</label>
+                <input type="text" id="rgbInput" value="rgb(0,0,0)" readonly>
+                <button class="copy-btn" data-target="rgbInput">Copy</button>
+            </div>
+        </div>
+
+        <div class="slider-group">
+            <label for="redSlider">Red:</label>
+            <input type="range" id="redSlider" min="0" max="255" value="0">
+            <span id="redValue">0</span>
+        </div>
+        <div class="slider-group">
+            <label for="greenSlider">Green:</label>
+            <input type="range" id="greenSlider" min="0" max="255" value="0">
+            <span id="greenValue">0</span>
+        </div>
+        <div class="slider-group">
+            <label for="blueSlider">Blue:</label>
+            <input type="range" id="blueSlider" min="0" max="255" value="0">
+            <span id="blueValue">0</span>
+        </div>
+
+        <input type="color" id="nativeColorPicker" value="#000000" class="native-picker">
+        <p class="native-picker-info">Use the native color picker for quick selection.</p>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const colorDisplay = document.getElementById('colorDisplay');
+            const hexInput = document.getElementById('hexInput');
+            const rgbInput = document.getElementById('rgbInput');
+
+            const redSlider = document.getElementById('redSlider');
+            const greenSlider = document.getElementById('greenSlider');
+            const blueSlider = document.getElementById('blueSlider');
+
+            const redValueSpan = document.getElementById('redValue');
+            const greenValueSpan = document.getElementById('greenValue');
+            const blueValueSpan = document.getElementById('blueValue');
+
+            const nativeColorPicker = document.getElementById('nativeColorPicker');
+            const copyButtons = document.querySelectorAll('.copy-btn');
+
+            let red = 0;
+            let green = 0;
+            let blue = 0;
+
+            // Function to update all displays based on current RGB values
+            function updateColor() {
+                const rgbColor = `rgb(${red},${green},${blue})`;
+                const hexColor = rgbToHex(red, green, blue);
+
+                colorDisplay.style.backgroundColor = rgbColor;
+                hexInput.value = hexColor.toUpperCase();
+                rgbInput.value = rgbColor;
+
+                redValueSpan.textContent = red;
+                greenValueSpan.textContent = green;
+                blueValueSpan.textContent = blue;
+
+                // Update native color picker
+                nativeColorPicker.value = hexColor;
+            }
+
+            // --- Event Listeners for Sliders ---
+            redSlider.addEventListener('input', (event) => {
+                red = parseInt(event.target.value);
+                updateColor();
+            });
+
+            greenSlider.addEventListener('input', (event) => {
+                green = parseInt(event.target.value);
+                updateColor();
+            });
+
+            blueSlider.addEventListener('input', (event) => {
+                blue = parseInt(event.target.value);
+                updateColor();
+            });
+
+            // --- Event Listener for HEX Input ---
+            hexInput.addEventListener('input', (event) => {
+                const hex = event.target.value;
+                if (isValidHex(hex)) {
+                    const rgb = hexToRgb(hex);
+                    red = rgb.r;
+                    green = rgb.g;
+                    blue = rgb.b;
+                    // Update sliders and other displays based on new RGB
+                    redSlider.value = red;
+                    greenSlider.value = green;
+                    blueSlider.value = blue;
+                    updateColor(); // This will also update nativeColorPicker and RGB input
+                }
+            });
+
+            // --- Event Listener for Native Color Picker ---
+            nativeColorPicker.addEventListener('input', (event) => {
+                const hex = event.target.value;
+                const rgb = hexToRgb(hex);
+                red = rgb.r;
+                green = rgb.g;
+                blue = rgb.b;
+                // Update sliders and other displays based on new RGB
+                redSlider.value = red;
+                greenSlider.value = green;
+                blueSlider.value = blue;
+                updateColor(); // This will also update hexInput and RGB input
+            });
+
+            // --- Event Listeners for Copy Buttons ---
+            copyButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const targetId = button.dataset.target;
+                    const targetInput = document.getElementById(targetId);
+                    targetInput.select();
+                    document.execCommand('copy');
+                    // Optional: Provide visual feedback
+                    button.textContent = 'Copied!';
+                    setTimeout(() => {
+                        button.textContent = 'Copy';
+                    }, 1500);
+                });
+            });
+
+            // --- Utility Functions ---
+
+            // Converts an RGB color value to HEX.
+            function componentToHex(c) {
+                const hex = c.toString(16);
+                return hex.length === 1 ? '0' + hex : hex;
+            }
+
+            function rgbToHex(r, g, b) {
+                return `#${componentToHex(r)}${componentToHex(g)}${componentToHex(b)}`;
+            }
+
+            // Converts a HEX color value to RGB.
+            function hexToRgb(hex) {
+                const shorthandRegex = /^#?([a-f\d])([a-f\d])([a-f\d])$/i;
+                hex = hex.replace(shorthandRegex, function(m, r, g, b) {
+                    return r + r + g + g + b + b;
+                });
+
+                const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+                return result ? {
+                    r: parseInt(result[1], 16),
+                    g: parseInt(result[2], 16),
+                    b: parseInt(result[3], 16)
+                } : null;
+            }
+
+            // Checks if a string is a valid HEX color format.
+            function isValidHex(hex) {
+                return /^#([A-Fa-f0-9]{3}){1,2}$/.test(hex);
+            }
+
+            // Initialize the color picker
+            updateColor();
+        });
+    </script>
+</body>
+</html>

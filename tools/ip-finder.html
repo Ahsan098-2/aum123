@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IP Address Finder Tool</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f8ff; /* Alice Blue background */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        .tool-container {
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+            padding: 40px;
+            max-width: 450px;
+            width: 100%;
+            text-align: center;
+            border: 1px solid #d9e9f9;
+        }
+        h1 {
+            color: #007bff; /* Blue for heading */
+            margin-bottom: 30px;
+            font-size: 2.2em;
+        }
+        button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1.1em;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            margin-top: 20px;
+            width: auto;
+        }
+        button:hover {
+            background-color: #0056b3;
+            transform: translateY(-2px);
+        }
+        button:active {
+            transform: translateY(0);
+        }
+        #ipAddressResult {
+            margin-top: 35px;
+            font-size: 1.5em;
+            color: #333;
+            font-weight: bold;
+            min-height: 30px;
+            word-break: break-all; /* For long IPs */
+        }
+        .result-loading {
+            color: #555;
+            font-style: italic;
+        }
+        .result-error {
+            color: #f44336;
+        }
+        .ip-highlight {
+            color: #28a745; /* Green to highlight IP */
+        }
+    </style>
+</head>
+<body>
+    <div class="tool-container">
+        <h1>IP Address Finder</h1>
+        <button onclick="findMyIp()">Find My Public IP</button>
+        <p id="ipAddressResult"></p>
+    </div>
+
+    <script>
+        async function findMyIp() {
+            const resultElement = document.getElementById('ipAddressResult');
+            resultElement.className = 'result-loading';
+            resultElement.textContent = 'Finding your IP address...';
+
+            try {
+                // Using ipify.org API for public IP address
+                const response = await fetch('https://api.ipify.org?format=json');
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                const data = await response.json();
+                
+                if (data && data.ip) {
+                    resultElement.className = ''; // Remove loading class
+                    resultElement.innerHTML = `Your Public IP Address:<br><span class="ip-highlight">${data.ip}</span>`;
+                } else {
+                    resultElement.className = 'result-error';
+                    resultElement.textContent = 'Could not find IP address.';
+                }
+            } catch (error) {
+                console.error('Error fetching IP:', error);
+                resultElement.className = 'result-error';
+                resultElement.textContent = 'Error finding IP. Please check your internet connection.';
+            }
+        }
+
+        // Optional: Find IP automatically when the page loads
+        document.addEventListener('DOMContentLoaded', findMyIp);
+    </script>
+</body>
+</html>

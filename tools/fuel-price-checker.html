@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Global Fuel Price Checker</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #eef6ff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      margin: 0;
+      padding: 20px;
+    }
+    .tool-container {
+      background-color: #fff;
+      border-radius: 12px;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+      padding: 40px;
+      max-width: 550px;
+      width: 100%;
+      text-align: center;
+      border: 1px solid #d9e9f9;
+    }
+    h1 {
+      color: #0066cc;
+      margin-bottom: 25px;
+      font-size: 2em;
+    }
+    input {
+      width: 90%;
+      padding: 12px;
+      margin-bottom: 15px;
+      border: 1px solid #0066cc;
+      border-radius: 8px;
+      font-size: 1.1em;
+      text-align: center;
+    }
+    button {
+      background-color: #0066cc;
+      color: #fff;
+      border: none;
+      padding: 12px 25px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 1em;
+      transition: 0.3s ease;
+    }
+    button:hover {
+      background-color: #004f99;
+      transform: translateY(-2px);
+    }
+    #fuelPriceResult {
+      margin-top: 25px;
+      font-size: 1.2em;
+      color: #333;
+      font-weight: 500;
+      line-height: 1.6;
+    }
+    .error {
+      color: red;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <div class="tool-container">
+    <h1>🌍 Global Fuel Price Checker</h1>
+    <input type="text" id="fuelLocation" placeholder="Enter Country or City (e.g. Pakistan, USA, London)" />
+    <button onclick="checkFuelPrice()">Check Price</button>
+    <p id="fuelPriceResult"></p>
+  </div>
+
+  <script>
+    const fuelPrices = {
+      pakistan: { petrol: 'PKR 283.38/L', diesel: 'PKR 288.83/L' },
+      india: { petrol: '₹96.72/L', diesel: '₹89.62/L' },
+      usa: { petrol: '$3.45/gallon', diesel: '$4.10/gallon' },
+      uk: { petrol: '£1.48/L', diesel: '£1.56/L' },
+      uae: { petrol: 'AED 3.03/L', diesel: 'AED 3.16/L' },
+      saudiarabia: { petrol: 'SAR 2.18/L', diesel: 'SAR 0.75/L' },
+      qatar: { petrol: 'QAR 2.10/L', diesel: 'QAR 2.05/L' },
+      china: { petrol: '¥8.20/L', diesel: '¥7.50/L' },
+      japan: { petrol: '¥171/L', diesel: '¥150/L' },
+      germany: { petrol: '€1.80/L', diesel: '€1.70/L' },
+      france: { petrol: '€1.82/L', diesel: '€1.70/L' },
+      canada: { petrol: 'CA$1.65/L', diesel: 'CA$1.80/L' },
+      australia: { petrol: 'AU$1.85/L', diesel: 'AU$2.00/L' },
+      singapore: { petrol: 'SGD 2.70/L', diesel: 'SGD 2.30/L' },
+      brazil: { petrol: 'R$5.90/L', diesel: 'R$5.70/L' },
+      southafrica: { petrol: 'R24.50/L', diesel: 'R22.90/L' },
+      bangladesh: { petrol: '৳125/L', diesel: '৳109/L' },
+      sriLanka: { petrol: 'Rs. 371/L', diesel: 'Rs. 343/L' },
+      egypt: { petrol: 'EGP 13.50/L', diesel: 'EGP 14.00/L' },
+      turkey: { petrol: '₺44.5/L', diesel: '₺43.1/L' }
+    };
+
+    function checkFuelPrice() {
+      const input = document.getElementById('fuelLocation').value.trim().toLowerCase();
+      const result = document.getElementById('fuelPriceResult');
+
+      if (!input) {
+        result.innerHTML = '<span class="error">Please enter a country or city name!</span>';
+        return;
+      }
+
+      result.textContent = 'Fetching prices... ⛽';
+
+      setTimeout(() => {
+        const found = Object.keys(fuelPrices).find(key => input.includes(key));
+        if (found) {
+          const { petrol, diesel } = fuelPrices[found];
+          result.innerHTML = `
+            <strong>${found.toUpperCase()}</strong><br>
+            Petrol: <span style="color:#007bff;">${petrol}</span><br>
+            Diesel: <span style="color:#28a745;">${diesel}</span>
+          `;
+        } else {
+          result.innerHTML = `<span class="error">Sorry, no data found for "${input}".</span>`;
+        }
+      }, 1200);
+    }
+  </script>
+</body>
+</html>

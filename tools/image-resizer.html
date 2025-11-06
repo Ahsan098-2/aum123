@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Resizer Tool</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f7f9fc; /* Light blue-grey background */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        .tool-container {
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+            padding: 40px;
+            max-width: 600px;
+            width: 100%;
+            text-align: center;
+            border: 1px solid #e0e6ed;
+        }
+        h1 {
+            color: #4CAF50; /* Green for heading */
+            margin-bottom: 30px;
+            font-size: 2.2em;
+        }
+        input[type="file"] {
+            display: block;
+            margin: 20px auto;
+            padding: 12px;
+            border: 2px dashed #4CAF50;
+            border-radius: 8px;
+            width: calc(100% - 40px);
+            background-color: #f0fff0; /* Light green background */
+            color: #4CAF50;
+            cursor: pointer;
+            font-size: 1em;
+        }
+        input[type="file"]::file-selector-button {
+            border: none;
+            padding: 10px 20px;
+            border-radius: 6px;
+            background-color: #4CAF50;
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            margin-right: 15px;
+        }
+        input[type="file"]::file-selector-button:hover {
+            background-color: #45a049;
+        }
+        .dimensions-group {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+        .dimensions-group label {
+            font-size: 1.1em;
+            color: #555;
+            white-space: nowrap;
+        }
+        input[type="number"] {
+            width: 80px;
+            padding: 10px 12px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 1em;
+            text-align: center;
+            outline: none;
+            appearance: textfield; /* Standard property for compatibility */
+            -moz-appearance: textfield; /* Remove spinner for Firefox */
+        }
+        input[type="number"]::-webkit-outer-spin-button,
+        input[type="number"]::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+        button {
+            background-color: #2196F3; /* Blue button */
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1.1em;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            margin-top: 10px;
+            width: auto;
+        }
+        button:hover {
+            background-color: #1976D2;
+            transform: translateY(-2px);
+        }
+        button:active {
+            transform: translateY(0);
+        }
+        #downloadResizedImage {
+            display: none;
+            margin-top: 30px;
+            padding: 12px 25px;
+            background-color: #4CAF50;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-size: 1.1em;
+            transition: background-color 0.3s ease;
+            display: inline-block;
+        }
+        #downloadResizedImage:hover {
+            background-color: #45a049;
+        }
+        #imageCanvas {
+            display: none;
+            border: 1px solid #e0e0e0;
+            max-width: 100%;
+            height: auto;
+            margin-top: 25px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+            border-radius: 8px;
+        }
+        .result-message {
+            margin-top: 20px;
+            font-size: 1em;
+            color: #555;
+            min-height: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="tool-container">
+        <h1>Image Resizer</h1>
+        <input type="file" id="imageResizerInput" accept="image/*">
+        <div class="dimensions-group">
+            <label for="resizeWidth">Width:</label>
+            <input type="number" id="resizeWidth" value="300" min="1">px
+            <label for="resizeHeight">Height:</label>
+            <input type="number" id="resizeHeight" value="200" min="1">px
+        </div>
+        <button onclick="resizeImage()">Resize Image</button>
+        <p class="result-message" id="resizeResultMessage"></p>
+        <canvas id="imageCanvas"></canvas>
+        <a id="downloadResizedImage" style="display:none;" download="resized_image.png">Download Resized Image</a>
+    </div>
+
+    <script>
+        function resizeImage() {
+            const input = document.getElementById('imageResizerInput');
+            const width = parseInt(document.getElementById('resizeWidth').value);
+            const height = parseInt(document.getElementById('resizeHeight').value);
+            const downloadLink = document.getElementById('downloadResizedImage');
+            const canvas = document.getElementById('imageCanvas');
+            const ctx = canvas.getContext('2d');
+            const resultMessage = document.getElementById('resizeResultMessage');
+
+            downloadLink.style.display = 'none';
+            canvas.style.display = 'none';
+            resultMessage.textContent = '';
+
+            if (!input.files.length) {
+                resultMessage.textContent = 'Please select an image file.';
+                return;
+            }
+            if (isNaN(width) || isNaN(height) || width <= 0 || height <= 0) {
+                resultMessage.textContent = 'Please enter valid positive width and height.';
+                return;
+            }
+
+            const file = input.files[0];
+            const reader = new FileReader();
+
+            reader.onload = function(event) {
+                const img = new Image();
+                img.onload = function() {
+                    canvas.width = width;
+                    canvas.height = height;
+                    ctx.drawImage(img, 0, 0, width, height);
+                    canvas.style.display = 'block';
+
+                    const dataURL = canvas.toDataURL(file.type); // Use original file type
+                    downloadLink.href = dataURL;
+                    downloadLink.style.display = 'inline-block';
+                    downloadLink.textContent = `Download Resized ${file.type.split('/')[1].toUpperCase()}`;
+                    resultMessage.textContent = `Image resized to ${width}x${height} pixels.`;
+                };
+                img.onerror = () => {
+                    resultMessage.textContent = 'Could not load image. Please try a different file.';
+                };
+                img.src = event.target.result;
+            };
+            reader.onerror = () => {
+                resultMessage.textContent = 'Error reading file.';
+            };
+            reader.readAsDataURL(file);
+        }
+    </script>
+</body>
+</html>

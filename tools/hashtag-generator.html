@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Professional Hashtag Generator</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            background: linear-gradient(135deg, #FF6B6B 0%, #FFE66D 100%);
+            color: #333;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        .container {
+            background: #ffffff;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            max-width: 700px;
+            width: 100%;
+            animation: slideDown 0.8s ease-out forwards;
+        }
+        @keyframes slideDown {
+            from { opacity: 0; transform: translateY(-30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        h1 {
+            color: #2c3e50;
+            margin-bottom: 20px;
+            font-size: 2.5em;
+            font-weight: 700;
+        }
+        p {
+            font-size: 1.1em;
+            color: #666;
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+        textarea {
+            width: calc(100% - 24px); /* Full width minus padding */
+            height: 150px;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 1.1em;
+            resize: vertical;
+            margin-bottom: 25px;
+            box-shadow: inset 0 1px 3px rgba(0,0,0,0.05);
+            transition: border-color 0.3s ease;
+        }
+        textarea:focus {
+            border-color: #FF6B6B;
+            outline: none;
+        }
+        button {
+            background-color: #2ecc71;
+            color: white;
+            padding: 14px 30px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1.2em;
+            font-weight: 600;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            box-shadow: 0 5px 15px rgba(46, 204, 113, 0.3);
+        }
+        button:hover {
+            background-color: #27ae60;
+            transform: translateY(-3px);
+        }
+        .hashtags-output {
+            margin-top: 30px;
+            padding: 20px;
+            background-color: #f8f9fa;
+            border: 1px solid #e0e0e0;
+            border-radius: 10px;
+            min-height: 80px;
+            text-align: left;
+            word-wrap: break-word;
+            color: #333;
+            line-height: 1.6;
+            box-shadow: inset 0 2px 8px rgba(0,0,0,0.08);
+            font-size: 1.1em;
+        }
+        .hashtags-output span {
+            display: inline-block;
+            background-color: #e0f2f7;
+            color: #007bff;
+            padding: 5px 10px;
+            border-radius: 20px;
+            margin: 5px;
+            font-weight: 600;
+        }
+        .hashtags-output span:hover {
+            background-color: #cce9f4;
+        }
+        .note {
+            margin-top: 30px;
+            color: #888;
+            font-size: 0.9em;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .container {
+                padding: 30px;
+            }
+            h1 {
+                font-size: 2em;
+            }
+            button {
+                width: 100%;
+                padding: 12px 25px;
+                font-size: 1.1em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>#️⃣ Professional Hashtag Generator</h1>
+        <p>Enter your text or keywords, and let us generate relevant hashtags for your social media posts!</p>
+        <textarea id="inputText" placeholder="e.g., A beautiful morning hike in the mountains, feeling refreshed."></textarea>
+        <button onclick="generateHashtags()">Generate Hashtags</button>
+        <div class="hashtags-output" id="outputHashtags">
+            <span>#example</span><span>#hashtags</span><span>#will</span><span>#appear</span><span>#here</span>
+        </div>
+        <p class="note"><em>Note: For more advanced and context-aware hashtag generation, server-side processing or AI would be needed. This provides basic word-based hashtags.</em></p>
+    </div>
+
+    <script>
+        function generateHashtags() {
+            const inputText = document.getElementById('inputText').value;
+            const outputDiv = document.getElementById('outputHashtags');
+            outputDiv.innerHTML = ''; // Clear previous hashtags
+
+            if (inputText.trim() === "") {
+                outputDiv.innerHTML = '<span>#Enter</span><span>#text</span><span>#to</span><span>#generate</span>';
+                return;
+            }
+
+            // Simple hashtag generation logic: split by spaces and add '#'
+            const words = inputText.toLowerCase().split(/\s+/).filter(word => word.length > 2); // Filter out very short words
+
+            // Remove duplicates and limit to a reasonable number
+            const uniqueWords = [...new Set(words)];
+            const hashtags = uniqueWords.slice(0, 15); // Limit to 15 hashtags for example
+
+            if (hashtags.length === 0) {
+                outputDiv.innerHTML = '<span>#No</span><span>#relevant</span><span>#words</span><span>#found</span>';
+                return;
+            }
+
+            hashtags.forEach(word => {
+                const span = document.createElement('span');
+                span.innerText = `#${word.replace(/[^a-z0-9]/g, '')}`; // Remove non-alphanumeric
+                outputDiv.appendChild(span);
+            });
+        }
+
+        // Generate default hashtags on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            document.getElementById('inputText').value = "Discover the beauty of nature with breathtaking landscapes and serene environments. Perfect for a peaceful getaway.";
+            generateHashtags();
+        });
+    </script>
+</body>
+</html>
