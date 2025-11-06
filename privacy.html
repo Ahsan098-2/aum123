@@ -1,51 +1,144 @@
-<!-- 🪙 Crypto Price Tracker Tool -->
-<div class="tool-card">
-  <h2>Crypto Price Tracker</h2>
-  <p>Check live crypto prices in USD.</p>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Privacy Policy - AUM123</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      font-family: "Poppins", sans-serif;
+      line-height: 1.6;
+      margin: 0;
+      padding: 0;
+      background: #f7f7f7;
+      color: #333;
+    }
+    header {
+      background: #111;
+      color: #fff;
+      text-align: center;
+      padding: 30px 15px;
+    }
+    header h1 {
+      margin: 0;
+      font-size: 2rem;
+    }
+    .container {
+      width: 90%;
+      max-width: 900px;
+      margin: 40px auto;
+      background: #fff;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+    h2 {
+      color: #111;
+      border-left: 5px solid #00b7ff;
+      padding-left: 10px;
+      margin-top: 30px;
+    }
+    a {
+      color: #007bff;
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+    footer {
+      background: #111;
+      color: #fff;
+      text-align: center;
+      padding: 15px 0;
+      margin-top: 50px;
+      font-size: 0.9rem;
+    }
+    .back-home {
+      display: inline-block;
+      margin-top: 15px;
+      color: #00ccff;
+      text-decoration: none;
+    }
+    .back-home:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Privacy Policy</h1>
+    <p>Last updated: November 2025</p>
+  </header>
 
-  <select id="cryptoSelect" style="width:100%;padding:8px;margin:10px 0;">
-    <option value="bitcoin">Bitcoin (BTC)</option>
-    <option value="ethereum">Ethereum (ETH)</option>
-    <option value="binancecoin">Binance Coin (BNB)</option>
-    <option value="dogecoin">Dogecoin (DOGE)</option>
-    <option value="solana">Solana (SOL)</option>
-  </select>
+  <div class="container">
+    <p>
+      Welcome to <strong>AUM123</strong> (accessible from <a href="https://ahsan098-2.github.io/aum123/">https://ahsan098-2.github.io/aum123/</a>).  
+      This Privacy Policy explains how we collect, use, and protect your information when you visit our website.
+    </p>
 
-  <div>
-    <button id="getCryptoBtn">Get Price</button>
-    <button id="clearCryptoBtn">Clear</button>
+    <h2>1. Information We Collect</h2>
+    <p>
+      We may collect the following types of information:
+      <ul>
+        <li>Personal information (such as your name or email address) if you voluntarily submit it via forms.</li>
+        <li>Non-personal data such as browser type, device information, and pages visited — collected automatically.</li>
+      </ul>
+    </p>
+
+    <h2>2. Use of Information</h2>
+    <p>
+      The information we collect is used to:
+      <ul>
+        <li>Improve website content and user experience.</li>
+        <li>Analyze traffic and usage patterns.</li>
+        <li>Display personalized advertisements through Google AdSense.</li>
+      </ul>
+    </p>
+
+    <h2>3. Google AdSense and Cookies</h2>
+    <p>
+      Third-party vendors, including Google, use cookies to serve ads based on a user's prior visits to this website or other websites.  
+      Google's use of advertising cookies enables it and its partners to serve ads to users based on their visit to this site and/or other sites on the Internet.  
+      Users may opt out of personalized advertising by visiting <a href="https://adssettings.google.com/">Google Ads Settings</a>.
+    </p>
+
+    <h2>4. Third-Party Links</h2>
+    <p>
+      Our website may contain links to other sites. We are not responsible for the privacy practices or content of these third-party websites.
+    </p>
+
+    <h2>5. Data Security</h2>
+    <p>
+      We take reasonable steps to protect your personal data. However, please note that no method of online transmission or storage is 100% secure.
+    </p>
+
+    <h2>6. Children's Privacy</h2>
+    <p>
+      Our services are not directed to children under 13 years of age. We do not knowingly collect personal data from minors.
+    </p>
+
+    <h2>7. Consent</h2>
+    <p>
+      By using our website, you hereby consent to our Privacy Policy and agree to its terms.
+    </p>
+
+    <h2>8. Updates to This Policy</h2>
+    <p>
+      We may update this Privacy Policy from time to time. Any changes will be posted on this page with an updated date.
+    </p>
+
+    <h2>9. Contact Us</h2>
+    <p>
+      If you have any questions about this Privacy Policy, you can contact us at:  
+      <br><strong>Email:</strong> example@gmail.com
+    </p>
+
+    <a href="index.html" class="back-home">← Back to Home</a>
   </div>
 
-  <p id="cryptoResult" style="margin-top:12px;color:#333;">Select a coin and click Get Price.</p>
-</div>
-
-<script>
-document.addEventListener("DOMContentLoaded", () => {
-  const select = document.getElementById("cryptoSelect");
-  const getBtn = document.getElementById("getCryptoBtn");
-  const clearBtn = document.getElementById("clearCryptoBtn");
-  const result = document.getElementById("cryptoResult");
-
-  getBtn.addEventListener("click", async () => {
-    const crypto = select.value;
-    result.textContent = "Fetching price... ⏳";
-
-    try {
-      const res = await fetch(
-        `https://api.coingecko.com/api/v3/simple/price?ids=${crypto}&vs_currencies=usd`
-      );
-      const data = await res.json();
-      const price = data[crypto]?.usd;
-      result.innerHTML = price
-        ? `💰 <strong>${crypto.toUpperCase()}</strong> = <strong>$${price}</strong> USD`
-        : "Price not found.";
-    } catch {
-      result.textContent = "⚠️ Error fetching price. Try again later.";
-    }
-  });
-
-  clearBtn.addEventListener("click", () => {
-    result.textContent = "Select a coin and click Get Price.";
-  });
-});
-</script>
+  <footer>
+    <p>© 2025 AUM123 | All Rights Reserved</p>
+  </footer>
+</body>
+</html>
