@@ -1,55 +1,65 @@
-// app.js (example of how it might be handled - needs verification from your actual app.js)
-
+// App script: load tool HTML files from /tools/ into the modal
 document.addEventListener('DOMContentLoaded', () => {
-    const toolModalBackdrop = document.getElementById('toolModalBackdrop');
-    const toolModalContent = document.getElementById('toolModalContent');
-    const closeToolModalBtn = document.getElementById('closeToolModal');
-    const mainContent = document.getElementById('mainContent');
+  const modalBackdrop = document.getElementById('toolModalBackdrop');
+  const modalContent = document.getElementById('toolModalContent');
+  const closeBtn = document.getElementById('closeToolModal');
 
-    document.querySelectorAll('.open-tool-btn').forEach(button => {
-        button.addEventListener('click', function() {
-            const toolId = this.dataset.tool; // e.g., 'age', 'password'
-            const fullToolDivId = `tool-full-${toolId}`; // e.g., 'tool-full-age'
-            const toolContentToLoad = document.getElementById(fullToolDivId);
+  function openModalWithHtml(html) {
+    if (!modalBackdrop || !modalContent) return;
+    modalContent.innerHTML = html;
+    modalBackdrop.classList.add('active');
+  }
 
-            if (toolContentToLoad) {
-                // Clear previous content
-                toolModalContent.innerHTML = ''; 
-                
-                // IMPORTANT: Move the original element into the modal
-                // If you are cloning, you need to make IDs unique or remove them.
-                // Moving is generally safer for ID uniqueness.
-                toolModalContent.appendChild(toolContentToLoad); 
-                
-                // Make the original hidden div temporarily visible within the modal
-                toolContentToLoad.style.display = 'block'; 
+  function closeModal() {
+    if (!modalBackdrop) return;
+    modalBackdrop.classList.remove('active');
+    // clear content to free memory
+    if (modalContent) modalContent.innerHTML = '';
+  }
 
-                toolModalBackdrop.classList.add('active');
-                mainContent.classList.add('modal-open'); // To prevent main content scrolling
-            } else {
-                console.error(`Tool content for ${fullToolDivId} not found.`);
-            }
+  if (closeBtn) {
+    closeBtn.addEventListener('click', closeModal);
+  }
+
+  if (modalBackdrop) {
+    modalBackdrop.addEventListener('click', (e) => {
+      if (e.target === modalBackdrop) closeModal();
+    });
+  }
+
+  // Attach click handlers to tool cards that link to tools/*.html
+  document.querySelectorAll('.tool-card').forEach(card => {
+    // the card may be an <a> element or contain an <a>
+    const anchor = card.closest('a') || card.querySelector('a') || card;
+    const href = (anchor && anchor.getAttribute) ? anchor.getAttribute('href') : null;
+    if (!href) return;
+
+    card.addEventListener('click', (e) => {
+      // If user holds ctrl/meta/middle-click, allow default behavior (open in new tab)
+      if (e.ctrlKey || e.metaKey || e.button === 1) return;
+      e.preventDefault();
+
+      // Try to fetch the HTML from the href
+      fetch(href, { cache: 'no-store' })
+        .then(resp => {
+          if (!resp.ok) throw new Error('Network response was not ok');
+          return resp.text();
+        })
+        .then(html => {
+          openModalWithHtml(html);
+        })
+        .catch(err => {
+          console.error('Failed to load tool HTML:', err);
+          // fallback: navigate to the tool page
+          window.location.href = href;
         });
     });
+  });
 
-    closeToolModalBtn.addEventListener('click', closeModal);
-    toolModalBackdrop.addEventListener('click', (e) => {
-        if (e.target === toolModalBackdrop) {
-            closeModal();
-        }
-    });
-
-    function closeModal() {
-        toolModalBackdrop.classList.remove('active');
-        mainContent.classList.remove('modal-open');
-
-        // IMPORTANT: Move the tool content back to its original hidden parent
-        // or ensure it's hidden again.
-        const currentToolInModal = toolModalContent.querySelector('.tool-full');
-        if (currentToolInModal) {
-            currentToolInModal.style.display = 'none'; // Hide it
-            document.body.appendChild(currentToolInModal); // Move it back to body or its original parent
-        }
-        toolModalContent.innerHTML = ''; // Clear modal content
-    }
+  // Optional: if the page was loaded with a #tool=slug hash, open that tool
+  const hash = window.location.hash;
+  if (hash && hash.startsWith('#tool=')) {
+    const toolPath = hash.replace('#tool=', 'tools/') + '.html';
+    fetch(toolPath).then(r => r.text()).then(html => openModalWithHtml(html)).catch(()=>{});
+  }
 });
