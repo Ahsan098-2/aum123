@@ -258,11 +258,9 @@ body {
 
 /* ===== TOOLS SECTION (MATCHED WITH HOME THEME) ===== */
 .tools-section {
-  padding: 80px 20px;
+  padding: 100px 20px; /* Pehle 80px tha, ab 100px kar diya */
   text-align: center;
-  background: transparent; /* Changed to transparent to use body's gradient */
-  /* color: #ffffff; Already defined by body text-color */
-  /* box-shadow: inset 0 0 30px rgba(0, 204, 255, 0.2); Removed for consistency with glassmorphism */
+  background: transparent;
 }
 
 .section-title {
@@ -273,26 +271,27 @@ body {
   margin-bottom: 50px;
 }
 
-.tools-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 35px;
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 10px;
+@media (max-width: 768px) {
+    /* ... existing styles ... */
+    .tools-grid {
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* 300px se 280px wapis kar diya agar choti screens par zaroorat ho */
+        gap: 30px; /* Gap thoda kam kar diya */
+    }
+    .tool-card {
+        height: 220px; /* Height thodi kam kar di choti screens ke liye */
+        padding: 30px 20px;
+    }
+    /* ... rest of your media query styles ... */
 }
 
 .tool-card {
-  /* Inherits glass-card for background, border, shadow */
-  /* background: rgba(255, 255, 255, 0.06); */
-  /* border: 1px solid rgba(0, 204, 255, 0.2); */
   border-radius: 20px;
-  padding: 40px 20px;
-  transition: all var(--transition-speed); /* Use variable */
+  padding: 50px 25px; /* Pehle 40px 20px tha, ab thoda badha diya */
+  transition: all var(--transition-speed);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  height: 220px;
+  height: 250px; /* Pehle 220px tha, ab 250px kar diya */
   position: relative;
   overflow: hidden;
 }
@@ -304,24 +303,17 @@ body {
 }
 
 .tool-card h3 {
-  font-size: 1.3rem;
-  color: var(--primary-color); /* Use primary color */
-  margin-bottom: 15px;
+  font-size: 1.4rem; /* H3 font size thoda badha diya */
+  color: var(--primary-color);
+  margin-bottom: 20px; /* Margin badha diya */
   text-transform: uppercase;
   letter-spacing: 1px;
 }
 
 .tool-btn {
-  background: linear-gradient(45deg, var(--primary-color), var(--secondary-color)); /* Use gradient */
-  color: #fff;
-  padding: 12px 25px;
-  border-radius: 10px;
-  font-weight: 600;
-  text-decoration: none;
-  font-size: 1rem;
-  transition: var(--transition-speed); /* Use variable */
-  align-self: center;
-  box-shadow: 0 4px 10px rgba(106, 130, 251, 0.3);
+  /* Button style unchanged, it should automatically adjust */
+  padding: 14px 30px; /* Button padding thoda badha diya */
+  font-size: 1.05rem; /* Font size thoda badha diya */
 }
 
 .tool-btn:hover {
@@ -786,3 +778,4 @@ body {
         align-items: center;
     }
 }
+
