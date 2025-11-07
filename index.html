@@ -71,8 +71,8 @@
       --glass-border: rgba(255, 255, 255, 0.2); /* Lighter border for glass effect */
       --shadow-light: rgba(0, 0, 0, 0.08); /* Subtle shadow for depth */
       --shadow-strong: rgba(0, 0, 0, 0.15); /* Stronger shadow on hover/focus */
-      --btn-primary-bg: #007bff; /* Primary button background */
-      --btn-primary-hover: #0056b3; /* Primary button hover background */
+  --btn-primary-bg: #0056b3; /* Primary button background (darker for contrast) */
+  --btn-primary-hover: #003d80; /* Primary button hover background (darker on hover) */
       --btn-secondary-bg: #6c757d; /* Secondary button background */
       --btn-secondary-hover: #5a6268; /* Secondary button hover background */
       --header-bg: rgba(0, 0, 0, 0.9); /* Dark header background for better text visibility */
@@ -313,7 +313,7 @@
       padding: 15px 30px;
       border-radius: 30px;
       font-size: 18px;
-      font-weight: 600;
+      font-weight: 700;
       cursor: pointer;
       border: none;
       transition: all 0.3s ease;
@@ -324,14 +324,22 @@
 
     .btn-primary {
       background-color: var(--btn-primary-bg);
-      color: white;
-      box-shadow: 0 4px 15px rgba(0, 123, 255, 0.4);
+      color: #ffffff;
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.35);
+      font-weight: 700;
     }
 
     .btn-primary:hover {
       background-color: var(--btn-primary-hover);
       transform: translateY(-3px);
-      box-shadow: 0 6px 20px rgba(0, 123, 255, 0.6);
+      box-shadow: 0 8px 26px rgba(0, 0, 0, 0.45);
+    }
+
+    /* Strong visible focus for keyboard users */
+    .btn-primary:focus-visible {
+      outline: none;
+      box-shadow: 0 0 0 4px rgba(0,86,179,0.25), 0 8px 20px rgba(0,0,0,0.35);
+      border-radius: 30px;
     }
 
     .btn-secondary {
