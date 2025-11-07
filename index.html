@@ -726,6 +726,47 @@
         }
     }
   </style>
+
+  <!-- Search functionality -->
+  <script>
+    function searchTools(event) {
+      event.preventDefault();
+      const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+      const toolCards = document.querySelectorAll('.tool-card');
+      
+      toolCards.forEach(card => {
+        const toolName = card.querySelector('h3').textContent.toLowerCase();
+        if (toolName.includes(searchTerm)) {
+          card.style.display = '';
+          card.style.opacity = '1';
+        } else {
+          card.style.display = 'none';
+          card.style.opacity = '0';
+        }
+      });
+
+      // Scroll to tools section if we're not already there
+      if (!window.location.hash.includes('tools')) {
+        document.getElementById('tools').scrollIntoView({ behavior: 'smooth' });
+      }
+      
+      return false;
+    }
+
+    // Real-time search as user types
+    document.addEventListener('DOMContentLoaded', function() {
+      const searchInput = document.getElementById('searchInput');
+      let searchTimeout;
+
+      searchInput.addEventListener('input', function() {
+        clearTimeout(searchTimeout);
+        searchTimeout = setTimeout(() => {
+          const event = { preventDefault: () => {} };
+          searchTools(event);
+        }, 300); // Small delay for performance
+      });
+    });
+  </script>
 </head>
 <body>
   <!-- Background Animation for Ethereal Flow -->
@@ -745,8 +786,8 @@
             <a href="blog.html" class="nav-link">Blog</a>
           </nav>
           <div class="search-container">
-            <form action="/search" method="get">
-              <input type="text" placeholder="Search for tools..." name="q">
+            <form onsubmit="return searchTools(event)">
+              <input type="text" id="searchInput" placeholder="Search for tools..." name="q">
               <button type="submit"><i class="fas fa-search"></i></button>
             </form>
           </div>
