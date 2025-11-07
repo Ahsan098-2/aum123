@@ -108,6 +108,18 @@
       padding: 0 20px;
     }
 
+    /* Visually hidden helper for screen-reader-only text */
+    .sr-only {
+      position: absolute !important;
+      width: 1px !important;
+      height: 1px !important;
+      padding: 0 !important;
+      margin: -1px !important;
+      overflow: hidden !important;
+      clip: rect(0, 0, 0, 0) !important;
+      white-space: nowrap !important;
+      border: 0 !important;
+    }
     /* Glassmorphism Effect */
     .glass-card {
       background: rgba(255, 255, 255, 0.1);
@@ -814,8 +826,11 @@
           </nav>
           <div class="search-container">
             <form onsubmit="return searchTools(event)">
-              <input type="text" id="searchInput" placeholder="Search for tools..." name="q">
-              <button type="submit"><i class="fas fa-search"></i></button>
+              <input type="text" id="searchInput" placeholder="Search for tools..." name="q" aria-label="Search for tools">
+              <button type="submit" aria-label="Search" title="Search">
+                <i class="fas fa-search" aria-hidden="true"></i>
+                <span class="sr-only">Search</span>
+              </button>
             </form>
           </div>
       </div>
