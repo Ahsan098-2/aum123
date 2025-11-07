@@ -72,8 +72,8 @@
       --btn-primary-hover: #0056b3; /* Primary button hover background */
       --btn-secondary-bg: #6c757d; /* Secondary button background */
       --btn-secondary-hover: #5a6268; /* Secondary button hover background */
-      --header-bg: rgba(255, 255, 255, 0.15); /* Slightly less transparent header */
-      --footer-bg: rgba(0, 0, 0, 0.2); /* Darker transparent footer */
+      --header-bg: rgba(0, 0, 0, 0.9); /* Dark header background for better text visibility */
+      --footer-bg: rgba(0, 0, 0, 0.9); /* Dark footer background to match header */
     }
 
     /* Base Styles */
@@ -84,7 +84,7 @@
       color: var(--text-color);
       line-height: 1.6;
       scroll-behavior: smooth;
-      background: linear-gradient(135deg, #a7b7d9, #e0eafc, #f2f2f2); /* Soft gradient background */
+      background: linear-gradient(135deg, #1a1a1a, #2d3436, #2c3e50); /* Dark modern gradient */
       min-height: 100vh;
       display: flex;
       flex-direction: column;
@@ -107,13 +107,20 @@
 
     /* Glassmorphism Effect */
     .glass-card {
-      background: var(--glass-background);
-      border: 1px solid var(--glass-border);
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.2);
       backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px); /* Safari support */
+      -webkit-backdrop-filter: blur(10px);
       border-radius: 15px;
-      box-shadow: 0 8px 32px var(--shadow-light);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
       padding: 25px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .glass-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
+      border: 1px solid rgba(255, 255, 255, 0.3);
     }
 
     /* Background Animation (Ethereal Flow) */
@@ -180,12 +187,13 @@
     }
 
     .nav-link {
-        color: white; /* Changed for better contrast */
-        font-weight: 500;
+        color: #ffffff; /* Bright white for better visibility */
+        font-weight: 600; /* Made slightly bolder */
         font-size: 17px;
         position: relative;
         padding-bottom: 5px;
         transition: color 0.3s ease;
+        text-shadow: 0 1px 2px rgba(0,0,0,0.2); /* Added subtle text shadow for better readability */
     }
 
     .nav-link:hover {
@@ -280,9 +288,10 @@
     .hero-title {
       font-size: 48px;
       font-weight: 700;
-      color: var(--text-color);
+      color: #ffffff;
       margin-bottom: 25px;
-      text-shadow: 0 3px 6px var(--shadow-light);
+      text-shadow: 0 3px 6px rgba(0, 0, 0, 0.3);
+      letter-spacing: -0.5px;
     }
 
     .btn-primary, .btn-secondary {
@@ -334,8 +343,9 @@
       font-size: 38px;
       font-weight: 700;
       margin-bottom: 50px;
-      color: var(--text-color);
-      text-shadow: 0 2px 5px var(--shadow-light);
+      color: #ffffff;
+      text-shadow: 0 2px 8px rgba(0,0,0,0.3);
+      letter-spacing: -0.5px;
     }
 
     .tools-grid {
@@ -363,17 +373,24 @@
     }
 
     .tool-card i {
-      font-size: 55px; /* Larger icons */
-      color: var(--primary-color);
+      font-size: 55px;
+      color: #ffffff;
       margin-bottom: 20px;
-      text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      text-shadow: 0 2px 8px rgba(0,0,0,0.2);
+      transition: transform 0.3s ease, color 0.3s ease;
+    }
+
+    .tool-card:hover i {
+      transform: scale(1.1);
+      color: #00ff9d;
     }
 
     .tool-card h3 {
       font-size: 20px;
       font-weight: 600;
-      color: var(--text-color);
+      color: #ffffff;
       margin: 0;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.2);
     }
 
     .tool-card .tool-btn {
@@ -396,14 +413,14 @@
     /* Footer */
     .footer {
       background-color: var(--footer-bg);
-      color: rgba(255, 255, 255, 0.8);
+      color: #ffffff;
       padding: 30px 0;
       text-align: center;
       margin-top: auto; /* Pushes footer to the bottom */
       backdrop-filter: blur(5px);
       -webkit-backdrop-filter: blur(5px);
-      border-top: 1px solid rgba(255, 255, 255, 0.1);
-      box-shadow: 0 -4px 15px var(--shadow-light);
+      border-top: 1px solid rgba(255, 255, 255, 0.2);
+      box-shadow: 0 -4px 15px rgba(0, 0, 0, 0.2);
     }
 
     .footer-content {
@@ -415,6 +432,9 @@
     .footer p {
       margin: 0 0 15px 0;
       font-size: 15px;
+      color: #ffffff;
+      font-weight: 500;
+      text-shadow: 0 1px 2px rgba(0,0,0,0.2);
     }
 
     .footer-links {
@@ -422,16 +442,20 @@
     }
 
     .footer-links a {
-      color: rgba(255, 255, 255, 0.9);
+      color: #ffffff;
       margin: 0 15px;
       font-size: 16px;
-      transition: color 0.3s ease;
+      font-weight: 500;
+      transition: all 0.3s ease;
       position: relative;
+      text-shadow: 0 1px 2px rgba(0,0,0,0.2);
     }
 
     .footer-links a:hover {
-      color: var(--primary-color);
+      color: #fff;
       text-decoration: none;
+      transform: translateY(-2px);
+      text-shadow: 0 2px 4px rgba(0,0,0,0.3);
     }
 
     .social-icons {
