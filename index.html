@@ -207,60 +207,87 @@
     .nav-link:hover::after {
         transform: scaleX(1);
     }
+    
+     <script>
+        const searchInput = document.getElementById('searchInput');
+        const toolsContainer = document.getElementById('toolsContainer'); 
 
-    /* Search Container in Header */
-    .header .search-container {
-        display: flex;
-        flex-grow: 1;
-        max-width: 350px; /* Adjust as needed */
-        margin-left: 30px; /* Space from nav */
-    }
+        const tools = [
+            // Har tool ke 'url' mein 'tools/' prefix add kiya gaya hai
+            { name: "age-calculator", url: "tools/age-calculator.html", description: "Calculate age instantly." },
+            { name: "background-remover", url: "tools/background-remover.html", description: "Remove image backgrounds online." },
+            { name: "barcode-generator", url: "tools/barcode-generator.html", description: "Generate barcodes for products." },
+            { name: "bio-ideas-generator", url: "tools/bio-ideas-generator.html", description: "Get creative bio ideas for social media." },
+            { name: "bmi-calculator", url: "tools/bmi-calculator.html", description: "Check your Body Mass Index (BMI)." },
+            { name: "color-picker", url: "tools/color-picker.html", description: "Pick colors from anywhere." },
+            { name: "compress-pdf", url: "tools/compress-pdf.html", description: "Reduce PDF file size." },
+            { name: "crypto-price-checker", url: "tools/crypto-price-checker.html", description: "Track cryptocurrency prices." },
+            { name: "emoji-picker", url: "tools/emoji-picker.html", description: "Find and copy emojis quickly." },
+            { name: "fuel-price-checker", url: "tools/fuel-price-checker.html", description: "Check current fuel prices." },
+            { name: "gold-price-checker", url: "tools/gold-price-checker.html", description: "Monitor real-time gold prices." },
+            { name: "gradient-generator", url: "tools/gradient-generator.html", description: "Create beautiful CSS gradients." },
+            { name: "hashtag-generator", url: "tools/hashtag-generator.html", description: "Generate relevant hashtags for your posts." },
+            { name: "image-compressor", url: "tools/image-compressor.html", description: "Compress images without losing quality." },
+            { name: "image-resizer", url: "tools/image-resizer.html", description: "Resize images to custom dimensions." },
+            { name: "image-to-pdf", url: "tools/image-to-pdf.html", description: "Convert images to PDF documents." },
+            { name: "instagram-caption-maker", url: "tools/instagram-caption-maker.html", description: "Create engaging Instagram captions." },
+            { name: "ip-finder", url: "tools/ip-finder.html", description: "Find your IP address and location." },
+            { name: "loan-calculator", url: "tools/loan-calculator.html", description: "Calculate loan payments and interest." },
+            { name: "password-gen", url: "tools/password-gen.html", description: "Generate strong, secure passwords." },
+            { name: "pdf-merger", url: "tools/pdf-merger.html", description: "Combine multiple PDF files." },
+            { name: "pdf-splitter", url: "tools/pdf-splitter.html", description: "Split PDF files into smaller ones." },
+            { name: "pdf-to-image", url: "tools/pdf-to-image.html", description: "Convert PDF pages into images." },
+            { name: "qr-generator", url: "tools/qr-generator.html", description: "Generate QR codes for links or text." },
+            { name: "stock-price-tracker", url: "tools/stock-price-tracker.html", description: "Track real-time stock prices." },
+            { name: "text-case-converter", url: "tools/text-case-converter.html", description: "Convert text to various cases." },
+            { name: "unit-converter", url: "tools/unit-converter.html", description: "Convert between different units of measurement." },
+            { name: "url-encoder-decoder", url: "tools/url-encoder-decoder.html", description: "Encode and decode URLs easily." },
+            { name: "word-counter", url: "tools/word-counter.html", description: "Count words, characters, and sentences." }
+        ];
 
-    .header .search-container form {
-        display: flex;
-        width: 100%;
-    }
+        // Function to display tools
+        function displayTools(filteredTools) {
+            toolsContainer.innerHTML = ''; // Clear previous tools
 
-    .header .search-container input[type="text"] {
-        flex-grow: 1;
-        padding: 10px 15px;
-        border: 1px solid var(--glass-border);
-        border-radius: 20px 0 0 20px;
-        font-size: 15px;
-        background: rgba(255, 255, 255, 0.1); /* Light background for input */
-        color: white;
-        outline: none;
-        transition: border-color 0.3s ease, background 0.3s ease;
-    }
-    .header .search-container input[type="text"]::placeholder {
-        color: rgba(255, 255, 255, 0.7);
-    }
+            if (filteredTools.length > 0) {
+                filteredTools.forEach(tool => {
+                    const toolCard = document.createElement('a'); 
+                    toolCard.href = tool.url; 
+                    toolCard.classList.add('tool-card'); 
 
-    .header .search-container input[type="text"]:focus {
-        border-color: var(--primary-color);
-        background: rgba(255, 255, 255, 0.2);
-    }
+                    const displayName = tool.name.split('-')
+                                                 .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+                                                 .join(' ');
 
-    .header .search-container button {
-        background-color: var(--primary-color);
-        color: white;
-        border: none;
-        padding: 10px 15px;
-        border-radius: 0 20px 20px 0;
-        cursor: pointer;
-        font-size: 15px;
-        transition: background-color 0.3s ease;
-    }
+                    toolCard.innerHTML = `
+                        <div class="icon"><i class="fas fa-tools"></i></div> 
+                        <h2>${displayName}</h2>
+                        <p>${tool.description}</p>
+                    `;
+                    toolsContainer.appendChild(toolCard);
+                });
+            } else {
+                toolsContainer.innerHTML = '<p class="no-tools-message">No tools found matching your search.</p>';
+            }
+        }
 
-    .header .search-container button:hover {
-        background-color: var(--btn-primary-hover);
-    }
+        // Initial display of all tools when the page loads
+        displayTools(tools);
 
-    /* Main Content */
-    main {
-        flex-grow: 1; /* Allows main to take up available space */
-    }
+        // Event listener for search input
+        searchInput.addEventListener('input', function() {
+            const query = searchInput.value.toLowerCase().trim();
 
+            const filteredTools = tools.filter(tool => {
+                return tool.name.toLowerCase().includes(query) ||
+                       tool.description.toLowerCase().includes(query); 
+            });
+
+            displayTools(filteredTools); 
+        });
+    </script>
+</body>
+</html>
     /* Hero Section */
     .hero-section {
       text-align: center;
@@ -1466,6 +1493,7 @@
   <script src="assets/js/app.js"></script> 
 </body>
 </html>
+
 
 
 
