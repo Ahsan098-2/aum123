@@ -10,7 +10,7 @@
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6737111642010842"
        crossorigin="anonymous"></script>
   
-    <!-- Google tag (gtag.js) -->
+  <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-3K7RBN1QSL"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
@@ -19,15 +19,15 @@
   
     gtag('config', 'G-3K7RBN1QSL');
   </script>
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6737111642010842"
-     crossorigin="anonymous"></script>
 
-  <!-- Font Awesome (added as requested) -->
+  <!-- Google Fonts for a clean look -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <!-- Font Awesome for Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
   <!-- SEO Meta Tags -->
   <meta name="title" content="Daily Toolkit – Free Online Tools for Everyday Use">
-  <meta name="description" content="Access powerful daily-use online tools in one place! Daily Toolkit offers calculators, converters, text formatters, and image utilities — all free, fast, and easy[...]
+  <meta name="description" content="Access powerful daily-use online tools in one place! Daily Toolkit offers calculators, converters, text formatters, and image utilities — all free, fast, and easy to use.">
   <meta name="keywords" content="daily toolkit, online tools, free tools, file converter, calculator, image editor, text formatter, website tools, aum123, github pages">
   <meta name="robots" content="index, follow">
   <meta name="author" content="Ahsan098-2">
@@ -38,10 +38,6 @@
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://ahsan098-2.github.io/aum123/">
   <meta property="og:image" content="https://ahsan098-2.github.io/aum123/assets/preview.png">
-
-
-  <!-- CSS Link -->
- <link rel="stylesheet" href="assets/css/style.css">
 
   <!-- Extra: Schema.org JSON-LD (SEO Boost) -->
   <script type="application/ld+json">
@@ -57,8 +53,682 @@
     }
   }
   </script>
+
+  <!-- Consolidated CSS Styles -->
+  <style>
+    :root {
+      --primary-color: #007bff; /* A vibrant blue for primary actions */
+      --secondary-color: #6c757d; /* Muted gray for secondary elements */
+      --text-color: #343a40; /* Dark gray for main text */
+      --light-text-color: #6c757d; /* Lighter gray for secondary text */
+      --glass-background: rgba(255, 255, 255, 0.1); /* Transparent white for glass effect */
+      --glass-border: rgba(255, 255, 255, 0.2); /* Lighter border for glass effect */
+      --shadow-light: rgba(0, 0, 0, 0.08); /* Subtle shadow for depth */
+      --shadow-strong: rgba(0, 0, 0, 0.15); /* Stronger shadow on hover/focus */
+      --btn-primary-bg: #007bff; /* Primary button background */
+      --btn-primary-hover: #0056b3; /* Primary button hover background */
+      --btn-secondary-bg: #6c757d; /* Secondary button background */
+      --btn-secondary-hover: #5a6268; /* Secondary button hover background */
+      --header-bg: rgba(255, 255, 255, 0.15); /* Slightly less transparent header */
+      --footer-bg: rgba(0, 0, 0, 0.2); /* Darker transparent footer */
+    }
+
+    /* Base Styles */
+    body {
+      font-family: 'Poppins', sans-serif;
+      margin: 0;
+      padding: 0;
+      color: var(--text-color);
+      line-height: 1.6;
+      scroll-behavior: smooth;
+      background: linear-gradient(135deg, #a7b7d9, #e0eafc, #f2f2f2); /* Soft gradient background */
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    a {
+      text-decoration: none;
+      color: var(--primary-color);
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    /* Glassmorphism Effect */
+    .glass-card {
+      background: var(--glass-background);
+      border: 1px solid var(--glass-border);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px); /* Safari support */
+      border-radius: 15px;
+      box-shadow: 0 8px 32px var(--shadow-light);
+      padding: 25px;
+    }
+
+    /* Background Animation (Ethereal Flow) */
+    .background-animation {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, rgba(167, 183, 217, 0.7), rgba(224, 234, 252, 0.7), rgba(242, 242, 242, 0.7));
+      animation: gradientFlow 20s ease infinite;
+      z-index: -1; /* Send to back */
+    }
+
+    @keyframes gradientFlow {
+      0% {
+        background-position: 0% 50%;
+      }
+      50% {
+        background-position: 100% 50%;
+      }
+      100% {
+        background-position: 0% 50%;
+      }
+    }
+
+    /* Header */
+    .header {
+      background-color: var(--header-bg);
+      padding: 15px 0;
+      box-shadow: 0 4px 15px var(--shadow-light);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      backdrop-filter: blur(5px);
+      -webkit-backdrop-filter: blur(5px);
+    }
+
+    .header-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .logo {
+      font-size: 28px;
+      font-weight: 700;
+      color: white; /* Changed for better contrast on glass header */
+      text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+      display: flex;
+      align-items: center;
+    }
+
+    .logo i {
+      margin-right: 10px;
+      color: var(--primary-color); /* Still primary color for the icon */
+    }
+    
+    .nav-menu {
+        display: flex;
+        gap: 25px;
+        margin: 0 20px; /* Space around nav */
+    }
+
+    .nav-link {
+        color: white; /* Changed for better contrast */
+        font-weight: 500;
+        font-size: 17px;
+        position: relative;
+        padding-bottom: 5px;
+        transition: color 0.3s ease;
+    }
+
+    .nav-link:hover {
+        color: var(--primary-color);
+        text-decoration: none;
+    }
+
+    .nav-link.active::after,
+    .nav-link:hover::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 2px;
+        background-color: var(--primary-color);
+        transform: scaleX(0);
+        transition: transform 0.3s ease;
+    }
+
+    .nav-link.active::after,
+    .nav-link:hover::after {
+        transform: scaleX(1);
+    }
+
+    /* Search Container in Header */
+    .header .search-container {
+        display: flex;
+        flex-grow: 1;
+        max-width: 350px; /* Adjust as needed */
+        margin-left: 30px; /* Space from nav */
+    }
+
+    .header .search-container form {
+        display: flex;
+        width: 100%;
+    }
+
+    .header .search-container input[type="text"] {
+        flex-grow: 1;
+        padding: 10px 15px;
+        border: 1px solid var(--glass-border);
+        border-radius: 20px 0 0 20px;
+        font-size: 15px;
+        background: rgba(255, 255, 255, 0.1); /* Light background for input */
+        color: white;
+        outline: none;
+        transition: border-color 0.3s ease, background 0.3s ease;
+    }
+    .header .search-container input[type="text"]::placeholder {
+        color: rgba(255, 255, 255, 0.7);
+    }
+
+    .header .search-container input[type="text"]:focus {
+        border-color: var(--primary-color);
+        background: rgba(255, 255, 255, 0.2);
+    }
+
+    .header .search-container button {
+        background-color: var(--primary-color);
+        color: white;
+        border: none;
+        padding: 10px 15px;
+        border-radius: 0 20px 20px 0;
+        cursor: pointer;
+        font-size: 15px;
+        transition: background-color 0.3s ease;
+    }
+
+    .header .search-container button:hover {
+        background-color: var(--btn-primary-hover);
+    }
+
+    /* Main Content */
+    main {
+        flex-grow: 1; /* Allows main to take up available space */
+    }
+
+    /* Hero Section */
+    .hero-section {
+      text-align: center;
+      padding: 100px 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: calc(100vh - 100px); /* Adjust based on header/footer height */
+      box-sizing: border-box;
+    }
+
+    .hero-content {
+      max-width: 800px;
+      padding: 40px 30px;
+      text-align: center;
+      margin-top: -50px; /* Pull up a bit to feel more centered on the page */
+    }
+
+    .hero-title {
+      font-size: 48px;
+      font-weight: 700;
+      color: var(--text-color);
+      margin-bottom: 25px;
+      text-shadow: 0 3px 6px var(--shadow-light);
+    }
+
+    .btn-primary, .btn-secondary {
+      padding: 15px 30px;
+      border-radius: 30px;
+      font-size: 18px;
+      font-weight: 600;
+      cursor: pointer;
+      border: none;
+      transition: all 0.3s ease;
+      display: inline-block; /* For button-like links */
+      text-align: center;
+      margin: 10px;
+    }
+
+    .btn-primary {
+      background-color: var(--btn-primary-bg);
+      color: white;
+      box-shadow: 0 4px 15px rgba(0, 123, 255, 0.4);
+    }
+
+    .btn-primary:hover {
+      background-color: var(--btn-primary-hover);
+      transform: translateY(-3px);
+      box-shadow: 0 6px 20px rgba(0, 123, 255, 0.6);
+    }
+
+    .btn-secondary {
+      background-color: var(--btn-secondary-bg);
+      color: white;
+      box-shadow: 0 4px 15px rgba(108, 117, 125, 0.4);
+    }
+
+    .btn-secondary:hover {
+      background-color: var(--btn-secondary-hover);
+      transform: translateY(-3px);
+      box-shadow: 0 6px 20px rgba(108, 117, 125, 0.6);
+    }
+
+
+    /* Tools Section */
+    .tools-section {
+      padding: 80px 0;
+      text-align: center;
+      background: rgba(255,255,255,0.05); /* Slightly lighter background for the section */
+    }
+
+    .section-title {
+      font-size: 38px;
+      font-weight: 700;
+      margin-bottom: 50px;
+      color: var(--text-color);
+      text-shadow: 0 2px 5px var(--shadow-light);
+    }
+
+    .tools-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 30px;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    .tool-card {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 30px 20px;
+      min-height: 180px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      text-align: center;
+    }
+
+    .tool-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 12px 30px var(--shadow-strong);
+    }
+
+    .tool-card i {
+      font-size: 55px; /* Larger icons */
+      color: var(--primary-color);
+      margin-bottom: 20px;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+
+    .tool-card h3 {
+      font-size: 20px;
+      font-weight: 600;
+      color: var(--text-color);
+      margin: 0;
+    }
+
+    .tool-card .tool-btn {
+      margin-top: 15px;
+      padding: 8px 18px;
+      font-size: 15px;
+      border-radius: 20px;
+      background-color: var(--primary-color);
+      color: white;
+      text-decoration: none;
+      transition: background-color 0.3s ease, transform 0.3s ease;
+    }
+
+    .tool-card .tool-btn:hover {
+      background-color: var(--btn-primary-hover);
+      transform: translateY(-2px);
+      text-decoration: none;
+    }
+
+    /* Footer */
+    .footer {
+      background-color: var(--footer-bg);
+      color: rgba(255, 255, 255, 0.8);
+      padding: 30px 0;
+      text-align: center;
+      margin-top: auto; /* Pushes footer to the bottom */
+      backdrop-filter: blur(5px);
+      -webkit-backdrop-filter: blur(5px);
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      box-shadow: 0 -4px 15px var(--shadow-light);
+    }
+
+    .footer-content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .footer p {
+      margin: 0 0 15px 0;
+      font-size: 15px;
+    }
+
+    .footer-links {
+      margin-bottom: 15px;
+    }
+
+    .footer-links a {
+      color: rgba(255, 255, 255, 0.9);
+      margin: 0 15px;
+      font-size: 16px;
+      transition: color 0.3s ease;
+      position: relative;
+    }
+
+    .footer-links a:hover {
+      color: var(--primary-color);
+      text-decoration: none;
+    }
+
+    .social-icons {
+      display: flex;
+      gap: 20px;
+    }
+
+    .social-icons a {
+      color: rgba(255, 255, 255, 0.9);
+      font-size: 20px; /* Adjust size for text social icons */
+      transition: color 0.3s ease, transform 0.3s ease;
+    }
+
+    .social-icons a:hover {
+      color: var(--primary-color);
+      transform: translateY(-3px);
+    }
+
+    /* Modal Styling (using your existing classes) */
+    .tool-modal-backdrop {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 2000;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.3s ease, visibility 0.3s ease;
+    }
+
+    .tool-modal-backdrop.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .tool-modal {
+      position: relative;
+      max-width: 500px;
+      width: 90%;
+      padding: 35px; /* Increased padding */
+      text-align: center;
+      transform: translateY(-20px);
+      opacity: 0;
+      transition: transform 0.3s ease, opacity 0.3s ease;
+    }
+
+    .tool-modal-backdrop.active .tool-modal {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    .close-btn {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      background: none;
+      border: none;
+      font-size: 24px;
+      color: var(--light-text-color);
+      cursor: pointer;
+      transition: color 0.3s ease;
+    }
+
+    .close-btn:hover {
+      color: var(--primary-color);
+    }
+
+    .tool-full input[type="text"],
+    .tool-full input[type="number"],
+    .tool-full input[type="date"],
+    .tool-full input[type="file"],
+    .tool-full textarea,
+    .tool-full select {
+      width: calc(100% - 20px);
+      padding: 12px 10px;
+      margin-bottom: 15px;
+      border: 1px solid var(--glass-border);
+      border-radius: 8px;
+      background-color: rgba(255, 255, 255, 0.1);
+      color: var(--text-color);
+      font-size: 16px;
+      box-sizing: border-box;
+      outline: none;
+      transition: border-color 0.3s ease;
+    }
+    .tool-full input::placeholder,
+    .tool-full textarea::placeholder {
+        color: var(--light-text-color);
+    }
+
+    .tool-full input:focus,
+    .tool-full textarea:focus,
+    .tool-full select:focus {
+      border-color: var(--primary-color);
+      box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+    }
+
+    .tool-full label {
+      display: block;
+      text-align: left;
+      margin-bottom: 8px;
+      font-weight: 500;
+      color: var(--text-color);
+    }
+
+    .tool-full .tool-actions {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      margin-top: 20px;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+    }
+
+    .tool-full .tool-actions .btn-primary,
+    .tool-full .tool-actions .btn-secondary {
+      padding: 10px 20px;
+      font-size: 16px;
+      margin: 0; /* Remove extra margin from general button styles */
+    }
+
+    .tool-full p {
+      margin-top: 20px;
+      font-size: 17px;
+      font-weight: 500;
+      color: var(--text-color);
+    }
+    .tool-full ul {
+        list-style: none;
+        padding: 0;
+        margin-top: 15px;
+        text-align: left;
+    }
+    .tool-full ul li {
+        background-color: rgba(255, 255, 255, 0.1);
+        border: 1px solid var(--glass-border);
+        padding: 10px 15px;
+        margin-bottom: 8px;
+        border-radius: 8px;
+        font-size: 15px;
+        color: var(--text-color);
+    }
+
+    /* Responsive Adjustments */
+    @media (max-width: 992px) {
+        .header-content {
+            flex-direction: column;
+            align-items: flex-start;
+        }
+        .logo {
+            margin-bottom: 15px;
+        }
+        .nav-menu {
+            margin: 0;
+            width: 100%;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+        .header .search-container {
+            width: 100%;
+            margin: 0;
+            max-width: none;
+        }
+        .hero-title {
+            font-size: 40px;
+        }
+        .section-title {
+            font-size: 32px;
+        }
+        .tools-grid {
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            gap: 20px;
+        }
+        .tool-card {
+            min-height: 160px;
+            padding: 25px 15px;
+        }
+        .tool-card i {
+            font-size: 45px;
+        }
+        .tool-card h3 {
+            font-size: 18px;
+        }
+    }
+
+    @media (max-width: 768px) {
+        .header-content {
+            padding: 0 10px;
+        }
+        .nav-menu {
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .nav-link {
+            font-size: 15px;
+        }
+        .hero-section {
+            padding: 80px 15px;
+        }
+        .hero-title {
+            font-size: 32px;
+        }
+        .btn-primary, .btn-secondary {
+            padding: 12px 25px;
+            font-size: 16px;
+        }
+        .section-title {
+            font-size: 28px;
+            margin-bottom: 30px;
+        }
+        .tools-grid {
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 15px;
+        }
+        .tool-card {
+            min-height: 140px;
+            padding: 20px 10px;
+        }
+        .tool-card i {
+            font-size: 38px;
+            margin-bottom: 15px;
+        }
+        .tool-card h3 {
+            font-size: 16px;
+        }
+        .footer-links a {
+            margin: 0 10px;
+            font-size: 14px;
+        }
+        .social-icons a {
+            font-size: 18px;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .logo {
+            font-size: 24px;
+        }
+        .nav-menu {
+            gap: 10px;
+        }
+        .nav-link {
+            font-size: 14px;
+            padding-bottom: 3px;
+        }
+        .header .search-container input[type="text"],
+        .header .search-container button {
+            padding: 8px 12px;
+            font-size: 13px;
+        }
+        .hero-title {
+            font-size: 28px;
+        }
+        .btn-primary, .btn-secondary {
+            padding: 10px 20px;
+            font-size: 14px;
+            margin: 5px;
+        }
+        .section-title {
+            font-size: 24px;
+        }
+        .tools-grid {
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 10px;
+        }
+        .tool-card {
+            min-height: 120px;
+            padding: 15px 5px;
+        }
+        .tool-card i {
+            font-size: 32px;
+            margin-bottom: 10px;
+        }
+        .tool-card h3 {
+            font-size: 14px;
+        }
+        .footer p {
+            font-size: 13px;
+        }
+        .footer-links a {
+            margin: 0 8px;
+            font-size: 13px;
+        }
+        .social-icons a {
+            font-size: 16px;
+        }
+    }
+  </style>
 </head>
-<link rel="stylesheet" href="style.css">
 <body>
   <!-- Background Animation for Ethereal Flow -->
   <div class="background-animation"></div>
@@ -66,16 +736,22 @@
   <!-- Header for Ethereal Flow -->
   <header class="header">
       <div class="container header-content">
-          <div class="logo">Daily Toolkit</div>
-        <nav class="nav-menu">
-          <a href="index.html" target="_blank" class="nav-link active">Home</a>
-          <a href="tools.html" target="_blank" class="nav-link">Tools</a>
-          <a href="about.html" target="_blank" class="nav-link">About</a>
-          <a href="privacy.html" target="_blank" class="nav-link">Privacy</a>
-          <a href="contact.html" target="_blank" class="nav-link">Contact</a>
-          <a href="terms.html" target="_blank" class="nav-link">Terms</a>
-          <a href="blog.html" target="_blank" class="nav-link">Blog</a>
-        </nav>
+          <div class="logo"><i class="fas fa-tools"></i>Daily Toolkit</div>
+          <nav class="nav-menu">
+            <a href="index.html" class="nav-link active">Home</a>
+            <a href="tools.html" class="nav-link">Tools</a>
+            <a href="about.html" class="nav-link">About</a>
+            <a href="privacy.html" class="nav-link">Privacy</a>
+            <a href="contact.html" class="nav-link">Contact</a>
+            <a href="terms.html" class="nav-link">Terms</a>
+            <a href="blog.html" class="nav-link">Blog</a>
+          </nav>
+          <div class="search-container">
+            <form action="/search" method="get">
+              <input type="text" placeholder="Search for tools..." name="q">
+              <button type="submit"><i class="fas fa-search"></i></button>
+            </form>
+          </div>
       </div>
   </header>
 
@@ -88,162 +764,192 @@
           </section>
       
             <section id="tools" class="tools-section">
+  <div class="container">
   <h2 class="section-title">Tools</h2>
   <div class="tools-grid">
 
-    <!-- Existing Tools from your HTML -->
-    <div class="tool-card glass-card">
+    <!-- Tool Card 1: Age Calculator -->
+    <a href="tools/age-calculator.html" class="tool-card glass-card">
+      <i class="fas fa-birthday-cake"></i>
       <h3>Age Calculator</h3>
-      <a href="tools/age-calculator.html" target="_blank" class="tool-btn">Open</a>
-    </div>
+      <!-- <span class="tool-btn">Open</span> Removed button, made card clickable -->
+    </a>
 
-    <div class="tool-card glass-card">
-      <h3>Password Generator</h3>
-      <a href="tools/password-gen.html" target="_blank" class="tool-btn">Open</a>
-    </div>
+    <!-- Tool Card 2: Password Generator -->
+    <a href="tools/password-gen.html" class="tool-card glass-card">
+      <i class="fas fa-key"></i>
+      <h3>Password Gen.</h3>
+    </a>
 
-    <div class="tool-card glass-card">
+    <!-- Tool Card 3: Background Remover -->
+    <a href="tools/background-remover.html" class="tool-card glass-card">
+      <i class="fas fa-image"></i>
       <h3>Background Remover</h3>
-      <a href="tools/background-remover.html" target="_blank" class="tool-btn">Open</a>
-    </div>
+    </a>
 
-    <div class="tool-card glass-card">
+    <!-- Tool Card 4: Barcode Generator -->
+    <a href="tools/barcode-generator.html" class="tool-card glass-card">
+      <i class="fas fa-barcode"></i>
       <h3>Barcode Generator</h3>
-      <a href="tools/barcode-generator.html" target="_blank" class="tool-btn">Open</a>
-    </div>
+    </a>
 
-    <div class="tool-card glass-card">
-      <h3>Bio Ideas Generator</h3>
-      <a href="tools/bio-ideas-generator.html" target="_blank" class="tool-btn">Open</a>
-    </div>
+    <!-- Tool Card 5: Bio Ideas Generator -->
+    <a href="tools/bio-ideas-generator.html" class="tool-card glass-card">
+      <i class="fas fa-lightbulb"></i>
+      <h3>Bio Ideas Gen.</h3>
+    </a>
 
-    <div class="tool-card glass-card">
+    <!-- Tool Card 6: BMI Calculator -->
+    <a href="tools/bmi-calculator.html" class="tool-card glass-card">
+      <i class="fas fa-weight"></i>
       <h3>BMI Calculator</h3>
-      <a href="tools/bmi-calculator.html" target="_blank" class="tool-btn">Open</a>
-    </div>
+    </a>
 
-    <div class="tool-card glass-card">
+    <!-- Tool Card 7: Color Picker -->
+    <a href="tools/color-picker.html" class="tool-card glass-card">
+      <i class="fas fa-palette"></i>
       <h3>Color Picker</h3>
-      <a href="tools/color-picker.html" target="_blank" class="tool-btn">Open</a>
-    </div>
+    </a>
 
-    <div class="tool-card glass-card">
+    <!-- Tool Card 8: Image Compressor -->
+    <a href="tools/image-compressor.html" class="tool-card glass-card">
+      <i class="fas fa-compress-alt"></i>
       <h3>Image Compressor</h3>
-      <a href="tools/image-compressor.html" target="_blank" class="tool-btn">Open</a>
-    </div>
+    </a>
 
-    <div class="tool-card glass-card">
+    <!-- Tool Card 9: Hashtag Generator -->
+    <a href="tools/hashtag-generator.html" class="tool-card glass-card">
+      <i class="fas fa-hashtag"></i>
       <h3>Hashtag Generator</h3>
-      <a href="tools/hashtag-generator.html" target="_blank" class="tool-btn">Open</a>
-    </div>
+    </a>
 
-    <div class="tool-card glass-card">
-      <h3>Gradient Generator</h3>
-      <a href="tools/gradient-generator.html" target="_blank" class="tool-btn">Open</a>
-    </div>
+    <!-- Tool Card 10: Gradient Generator -->
+    <a href="tools/gradient-generator.html" class="tool-card glass-card">
+      <i class="fas fa-fill-drip"></i>
+      <h3>Gradient Gen.</h3>
+    </a>
 
-    <div class="tool-card glass-card">
+    <!-- Tool Card 11: QR Generator -->
+    <a href="tools/qr-generator.html" class="tool-card glass-card">
+      <i class="fas fa-qrcode"></i>
       <h3>QR Generator</h3>
-      <a href="tools/qr-generator.html" target="_blank" class="tool-btn">Open</a>
-    </div>
+    </a>
 
-    <div class="tool-card glass-card">
+    <!-- Tool Card 12: Loan Calculator -->
+    <a href="tools/loan-calculator.html" class="tool-card glass-card">
+      <i class="fas fa-hand-holding-usd"></i>
       <h3>Loan Calculator</h3>
-      <a href="tools/loan-calculator.html" target="_blank" class="tool-btn">Open</a>
-    </div>
+    </a>
 
-    <div class="tool-card glass-card">
+    <!-- Tool Card 13: Word Counter -->
+    <a href="tools/word-counter.html" class="tool-card glass-card">
+      <i class="fas fa-font"></i>
       <h3>Word Counter</h3>
-      <a href="tools/word-counter.html" target="_blank" class="tool-btn">Open</a>
-    </div>
+    </a>
 
-    <div class="tool-card glass-card">
-      <h3>Instagram Caption Maker</h3>
-      <a href="tools/instagram-caption-maker.html" target="_blank" class="tool-btn">Open</a>
-    </div>
+    <!-- Tool Card 14: Instagram Caption Maker -->
+    <a href="tools/instagram-caption-maker.html" class="tool-card glass-card">
+      <i class="fab fa-instagram"></i>
+      <h3>Instagram Caption</h3>
+    </a>
 
-    <div class="tool-card glass-card">
+    <!-- Tool Card 15: Unit Converter -->
+    <a href="tools/unit-converter.html" class="tool-card glass-card">
+      <i class="fas fa-ruler-horizontal"></i>
       <h3>Unit Converter</h3>
-      <a href="tools/unit-converter.html" target="_blank" class="tool-btn">Open</a>
-    </div>
+    </a>
 
-    <!-- Missing Tools - Added Here -->
-    <div class="tool-card glass-card">
+    <!-- Tool Card 16: Compress PDF -->
+    <a href="tools/compress-pdf.html" class="tool-card glass-card">
+      <i class="fas fa-file-pdf"></i>
       <h3>Compress PDF</h3>
-      <a href="tools/compress-pdf.html" target="_blank" class="tool-btn">Open</a>
-    </div>
+    </a>
 
-    <div class="tool-card glass-card">
-      <h3>Crypto Price Checker</h3>
-      <a href="tools/crypto-price-checker.html" target="_blank" class="tool-btn">Open</a>
-    </div>
+    <!-- Tool Card 17: Crypto Price Checker -->
+    <a href="tools/crypto-price-checker.html" class="tool-card glass-card">
+      <i class="fas fa-bitcoin"></i>
+      <h3>Crypto Price</h3>
+    </a>
 
-    <div class="tool-card glass-card">
+    <!-- Tool Card 18: Emoji Picker -->
+    <a href="tools/emoji-picker.html" class="tool-card glass-card">
+      <i class="fas fa-smile-beam"></i>
       <h3>Emoji Picker</h3>
-      <a href="tools/emoji-picker.html" target="_blank" class="tool-btn">Open</a>
-    </div>
+    </a>
 
-    <div class="tool-card glass-card">
-      <h3>Fuel Price Checker</h3>
-      <a href="tools/fuel-price-checker.html" target="_blank" class="tool-btn">Open</a>
-    </div>
+    <!-- Tool Card 19: Fuel Price Checker -->
+    <a href="tools/fuel-price-checker.html" class="tool-card glass-card">
+      <i class="fas fa-gas-pump"></i>
+      <h3>Fuel Price</h3>
+    </a>
 
-    <div class="tool-card glass-card">
-      <h3>Gold Price Checker</h3>
-      <a href="tools/gold-price-checker.html" target="_blank" class="tool-btn">Open</a>
-    </div>
+    <!-- Tool Card 20: Gold Price Checker -->
+    <a href="tools/gold-price-checker.html" class="tool-card glass-card">
+      <i class="fas fa-coins"></i>
+      <h3>Gold Price</h3>
+    </a>
 
-    <div class="tool-card glass-card">
+    <!-- Tool Card 21: Image Resizer -->
+    <a href="tools/image-resizer.html" class="tool-card glass-card">
+      <i class="fas fa-expand-alt"></i>
       <h3>Image Resizer</h3>
-      <a href="tools/image-resizer.html" target="_blank" class="tool-btn">Open</a>
-    </div>
+    </a>
 
-    <div class="tool-card glass-card">
+    <!-- Tool Card 22: Image to PDF -->
+    <a href="tools/image-to-pdf.html" class="tool-card glass-card">
+      <i class="fas fa-file-image"></i>
       <h3>Image to PDF</h3>
-      <a href="tools/image-to-pdf.html" target="_blank" class="tool-btn">Open</a>
-    </div>
+    </a>
 
-    <div class="tool-card glass-card">
+    <!-- Tool Card 23: IP Finder -->
+    <a href="tools/ip-finder.html" class="tool-card glass-card">
+      <i class="fas fa-network-wired"></i>
       <h3>IP Finder</h3>
-      <a href="tools/ip-finder.html" target="_blank" class="tool-btn">Open</a>
-    </div>
+    </a>
 
-    <div class="tool-card glass-card">
+    <!-- Tool Card 24: PDF Merger -->
+    <a href="tools/pdf-merger.html" class="tool-card glass-card">
+      <i class="fas fa-file-contract"></i>
       <h3>PDF Merger</h3>
-      <a href="tools/pdf-merger.html" target="_blank" class="tool-btn">Open</a>
-    </div>
+    </a>
 
-    <div class="tool-card glass-card">
+    <!-- Tool Card 25: PDF Splitter -->
+    <a href="tools/pdf-splitter.html" class="tool-card glass-card">
+      <i class="fas fa-file-archive"></i>
       <h3>PDF Splitter</h3>
-      <a href="tools/pdf-splitter.html" target="_blank" class="tool-btn">Open</a>
-    </div>
+    </a>
 
-    <div class="tool-card glass-card">
+    <!-- Tool Card 26: PDF to Image -->
+    <a href="tools/pdf-to-image.html" class="tool-card glass-card">
+      <i class="fas fa-file-export"></i>
       <h3>PDF to Image</h3>
-      <a href="tools/pdf-to-image.html" target="_blank" class="tool-btn">Open</a>
-    </div>
+    </a>
 
-    <div class="tool-card glass-card">
-      <h3>Stock Price Tracker</h3>
-      <a href="tools/stock-price-tracker.html" target="_blank" class="tool-btn">Open</a>
-    </div>
+    <!-- Tool Card 27: Stock Price Tracker -->
+    <a href="tools/stock-price-tracker.html" class="tool-card glass-card">
+      <i class="fas fa-chart-line"></i>
+      <h3>Stock Price</h3>
+    </a>
 
-    <div class="tool-card glass-card">
-      <h3>Text Case Converter</h3>
-      <a href="tools/text-case-converter.html" target="_blank" class="tool-btn">Open</a>
-    </div>
+    <!-- Tool Card 28: Text Case Converter -->
+    <a href="tools/text-case-converter.html" class="tool-card glass-card">
+      <i class="fas fa-text-height"></i>
+      <h3>Text Case Conv.</h3>
+    </a>
 
-    <div class="tool-card glass-card">
-      <h3>URL Encoder Decoder</h3>
-      <a href="tools/url-encoder-decoder.html" target="_blank" class="tool-btn">Open</a>
-    </div>
+    <!-- Tool Card 29: URL Encoder Decoder -->
+    <a href="tools/url-encoder-decoder.html" class="tool-card glass-card">
+      <i class="fas fa-link"></i>
+      <h3>URL Encode/Decode</h3>
+    </a>
 
+  </div>
   </div>
 </section>
     
   </main>
 
-  <!-- Modal for full tool view -->
+  <!-- Modal for full tool view (UNCHANGED) -->
   <div id="toolModalBackdrop" class="tool-modal-backdrop">
     <div class="tool-modal glass-card" role="dialog" aria-modal="true">
       <button class="close-btn" id="closeToolModal">✕</button>
@@ -251,7 +957,7 @@
     </div>
   </div>
 
-  <!-- Hidden full tool elements (kept in DOM for modal content) -->
+  <!-- Hidden full tool elements (kept in DOM for modal content - UNCHANGED) -->
   <div id="tool-full-age" class="tool-full" style="display:none">
     <div class="tool-card glass-card">
       <h2>Age Calculator</h2>
@@ -712,28 +1418,28 @@
       <div class="container footer-content">
           <p>&copy; 2025 Daily Toolkit</p>
           <nav class="footer-links">
-              <a href="#privacy">Privacy Protocols</a>
+              <a href="privacy.html">Privacy Protocols</a>
+              <a href="terms.html">Terms of Service</a>
+              <a href="contact.html">Contact Us</a>
           </nav>
           <div class="social-icons">
-              <!-- Using simple text placeholders for social icons, you can replace with SVGs -->
-              <a href="#" aria-label="Facebook">F</a>
-              <a href="#" aria-label="Twitter">T</a>
-              <a href="#" aria-label="LinkedIn">L</a>
-              <a href="#" aria-label="Instagram">I</a>
+              <!-- Using Font Awesome icons now -->
+              <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+              <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+              <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+              <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
           </div>
       </div>
   </footer>
 
   <!-- JS Links (KEEPING YOUR ORIGINAL SCRIPT STRUCTURE) -->
+  <!-- Note: Ensure these paths are correct relative to your index.html -->
   <script src="assets/js/tools/age-calculator.js"></script>
   <script src="assets/js/tools/password-gen.js"></script>
   <script src="assets/js/tools/background-remover.js"></script>
   <script src="assets/js/tools/barcode-generator.js"></script>
   <script src="assets/js/tools/bio-ideas-generator.js"></script>
   <script src="assets/js/tools/bmi-calculator.js"></script>
-  <!-- Main app.js for modal handling and general site logic -->
-  <script src="assets/js/app.js"></script> 
-  <!-- Additional tool scripts -->
   <script src="assets/js/tools/color-picker.js"></script>
   <script src="assets/js/tools/image-compressor.js"></script>
   <script src="assets/js/tools/hashtag-generator.js"></script>
@@ -757,28 +1463,7 @@
   <script src="assets/js/tools/gold-price-checker.js"></script>
   <script src="assets/js/tools/compress-pdf.js"></script>
   <script src="assets/js/tools/instagram-caption-maker.js"></script>
+  <!-- Main app.js for modal handling and general site logic (keep this last if it depends on other tool scripts) -->
+  <script src="assets/js/app.js"></script> 
 </body>
-
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
