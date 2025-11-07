@@ -258,42 +258,41 @@ body {
 
 /* ===== TOOLS SECTION (MATCHED WITH HOME THEME) ===== */
 .tools-section {
-  padding: 100px 20px; /* Pehle 80px tha, ab 100px kar diya */
+  padding: 100px 20px;
   text-align: center;
   background: transparent;
 }
 
-.section-title {
-  font-size: 2.5rem; /* Changed from 2.8em for specific section title */
-  font-weight: 700;
-  color: var(--heading-color); /* Changed to use variable */
-  text-shadow: 0 0 10px rgba(255, 255, 255, 0.3); /* Softened text-shadow */
-  margin-bottom: 50px;
+.tools-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Consistent card width */
+    gap: 40px; /* Increased gap for better spacing */
+    margin-top: 60px;
 }
 
-@media (max-width: 768px) {
-    /* ... existing styles ... */
-    .tools-grid {
-        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* 300px se 280px wapis kar diya agar choti screens par zaroorat ho */
-        gap: 30px; /* Gap thoda kam kar diya */
-    }
-    .tool-card {
-        height: 220px; /* Height thodi kam kar di choti screens ke liye */
-        padding: 30px 20px;
-    }
-    /* ... rest of your media query styles ... */
+.section-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--heading-color);
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+  margin-bottom: 50px;
 }
 
 .tool-card {
   border-radius: 20px;
-  padding: 50px 25px; /* Pehle 40px 20px tha, ab thoda badha diya */
+  padding: 35px 25px; /* Slightly reduced padding to match classic feel */
   transition: all var(--transition-speed);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  height: 250px; /* Pehle 220px tha, ab 250px kar diya */
+  height: 250px; /* Consistent height for all cards */
   position: relative;
   overflow: hidden;
+  /* Applying glassmorphism to tool cards as well */
+  backdrop-filter: blur(10px);
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  box-shadow: 0 8px 32px 0 var(--glass-shadow);
 }
 
 .tool-card:hover {
@@ -303,23 +302,42 @@ body {
 }
 
 .tool-card h3 {
-  font-size: 1.4rem; /* H3 font size thoda badha diya */
+  font-size: 1.5rem; /* Slightly larger for prominence */
   color: var(--primary-color);
-  margin-bottom: 20px; /* Margin badha diya */
+  margin-bottom: 25px; /* Increased margin below title */
   text-transform: uppercase;
-  letter-spacing: 1px;
+  letter-spacing: 1.5px; /* Increased letter spacing */
+}
+
+.tool-card p {
+    font-size: 1em;
+    color: var(--text-color);
+    flex-grow: 1; /* Allows paragraph to take available space */
+    margin-bottom: 20px;
+    line-height: 1.5;
 }
 
 .tool-btn {
-  /* Button style unchanged, it should automatically adjust */
-  padding: 14px 30px; /* Button padding thoda badha diya */
-  font-size: 1.05rem; /* Font size thoda badha diya */
+  display: inline-block;
+  padding: 12px 28px; /* Classic button size */
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 1em; /* Classic font size */
+  cursor: pointer;
+  border: 2px solid var(--primary-color); /* Visible border */
+  background: transparent;
+  color: var(--primary-color);
+  transition: all var(--transition-speed);
+  box-shadow: 0 2px 10px rgba(106, 130, 251, 0.2); /* Subtle shadow */
 }
 
 .tool-btn:hover {
-  background: linear-gradient(45deg, var(--secondary-color), var(--primary-color)); /* Reverse gradient */
+  background: linear-gradient(45deg, var(--primary-color), var(--secondary-color)); /* Gradient on hover */
   color: #fff;
-  box-shadow: 0 0 15px rgba(252, 92, 125, 0.5); /* Use secondary color for hover shadow */
+  border-color: transparent; /* Border disappears on hover */
+  box-shadow: 0 4px 15px rgba(106, 130, 251, 0.4); /* Enhanced shadow on hover */
+  transform: translateY(-2px);
 }
 
 /* Placeholder Sections (About, Privacy, Contact) */
@@ -686,6 +704,13 @@ body {
 }
 
 /* Responsive Design */
+@media (max-width: 992px) { /* Added breakpoint for larger tablets */
+    .tools-grid {
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 30px;
+    }
+}
+
 @media (max-width: 768px) {
     .header-content {
         flex-direction: column;
@@ -716,11 +741,23 @@ body {
     }
 
     .tools-grid {
-        grid-template-columns: 1fr;
+        grid-template-columns: 1fr; /* Single column on smaller screens */
+        gap: 25px;
     }
 
     .tool-card {
-        padding: 20px;
+        padding: 30px; /* Adjust padding for smaller screens */
+        height: auto; /* Allow height to adjust based on content */
+    }
+
+    .tool-card h3 {
+        font-size: 1.3rem;
+        margin-bottom: 15px;
+    }
+
+    .tool-btn {
+        padding: 10px 20px;
+        font-size: 0.95em;
     }
 
     .footer-content {
@@ -778,4 +815,3 @@ body {
         align-items: center;
     }
 }
-
