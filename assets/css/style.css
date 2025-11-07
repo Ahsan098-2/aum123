@@ -418,44 +418,52 @@ body {
 }
 
 
-/* Footer */
-.footer {
-    background: rgba(0, 0, 0, 0.1);
-    padding: 30px 0;
-    margin-top: auto; /* Push footer to the bottom */
-    border-top: 1px solid rgba(255, 255, 255, 0.05);
-    backdrop-filter: blur(8px);
+/* Styling for the main footer container */
+.site-footer { /* Assuming your main footer HTML element has this class */
+    background-color: black; /* This makes the entire footer background black */
+    color: white; /* Default text color for the footer */
+    padding: 20px 0; /* Adjust padding as needed for vertical spacing */
+    /* If you have other styles for .site-footer, keep them here */
 }
 
+/* Your existing .footer-content styles */
 .footer-content {
     display: flex;
     justify-content: space-between;
     align-items: center;
     flex-wrap: wrap; /* Allow wrapping on smaller screens */
-    text-align: center;
+    text-align: center; /* This might be overridden by flexbox for direct children, but useful for overall alignment */
+    /* Add max-width and margin: auto for centering content within the footer */
+    max-width: 1200px; /* Example max width, adjust as needed */
+    margin: 0 auto; /* Centers the content block */
+    padding: 0 20px; /* Add horizontal padding inside the centered content */
 }
 
+/* Your existing .footer-content p styles */
 .footer-content p {
-    color: rgba(255, 255, 255, 0.6);
+    color: rgba(255, 255, 255, 0.8); /* Changed to 0.8 for better contrast on black */
     font-size: 0.9em;
     margin: 10px 0;
 }
 
+/* Your existing .footer-links styles */
 .footer-links {
     display: flex;
     gap: 20px;
     margin: 10px 0;
 }
 
+/* Your existing .footer-links a styles */
 .footer-links a {
-    color: rgba(255, 255, 255, 0.8);
+    color: rgba(255, 255, 255, 0.8); /* Changed to 0.8 for better contrast on black */
     text-decoration: none;
     font-size: 0.9em;
-    transition: color var(--transition-speed);
+    transition: color var(--transition-speed); /* Make sure --transition-speed is defined */
 }
 
+/* Your existing .footer-links a:hover styles */
 .footer-links a:hover {
-    color: var(--primary-color);
+    color: var(--primary-color); /* Make sure --primary-color is defined */
 }
 
 .social-icons {
@@ -820,3 +828,4 @@ body {
         align-items: center;
     }
 }
+
