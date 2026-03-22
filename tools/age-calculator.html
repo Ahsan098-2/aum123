@@ -1,165 +1,190 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Age Calculator Tool</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #e8f5e9; /* Light green background */
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            margin: 0;
-            padding: 20px;
-            box-sizing: border-box;
-        }
-        .tool-container {
-            background-color: #ffffff;
-            border-radius: 12px;
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
-            padding: 40px;
-            max-width: 500px;
-            width: 100%;
-            text-align: center;
-            border: 1px solid #c8e6c9;
-        }
-        h1 {
-            color: #388e3c; /* Darker green for heading */
-            margin-bottom: 30px;
-            font-size: 2.2em;
-        }
-        .input-group {
-            margin-bottom: 25px;
-        }
-        .input-group label {
-            display: block;
-            margin-bottom: 10px;
-            font-size: 1.1em;
-            color: #555;
-            font-weight: bold;
-        }
-        input[type="date"] {
-            width: calc(100% - 40px);
-            max-width: 280px;
-            padding: 12px 15px;
-            border: 1px solid #388e3c;
-            border-radius: 8px;
-            font-size: 1.1em;
-            text-align: center;
-            background-color: #f0fdf0; /* Lighter green background */
-            color: #333;
-            outline: none;
-            box-sizing: border-box;
-            cursor: pointer;
-        }
-        button {
-            background-color: #4CAF50; /* Green button */
-            color: white;
-            border: none;
-            padding: 15px 30px;
-            border-radius: 8px;
-            cursor: pointer;
-            font-size: 1.1em;
-            transition: background-color 0.3s ease, transform 0.2s ease;
-            margin-top: 10px;
-            width: auto;
-        }
-        button:hover {
-            background-color: #43a047;
-            transform: translateY(-2px);
-        }
-        button:active {
-            transform: translateY(0);
-        }
-        #ageResult {
-            margin-top: 35px;
-            font-size: 1.6em;
-            color: #333;
-            font-weight: bold;
-            min-height: 40px;
-            line-height: 1.4;
-        }
-        .error-message {
-            color: #d32f2f; /* Red for error */
-            font-weight: normal;
-            font-size: 1em;
-            margin-top: 15px;
-        }
-        .highlight-age {
-            color: #007bff; /* Blue to highlight age */
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Age Calculator – Daily Toolkit</title>
+
+  <!-- Fonts & Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+  <style>
+    :root{
+      --bg: #0f172a;
+      --bg-soft: #111827;
+      --panel: rgba(255,255,255,0.08);
+      --border: rgba(255,255,255,0.14);
+      --text: #e5e7eb;
+      --muted: #cbd5e1;
+      --primary: #3b82f6;
+      --primary-hover: #2563eb;
+      --success: #22c55e;
+      --shadow: 0 10px 30px rgba(0,0,0,0.25);
+      --radius: 20px;
+      --max-width: 500px;
+    }
+    *{box-sizing:border-box;margin:0;padding:0;}
+    body{
+      font-family:'Poppins',sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(59,130,246,0.18), transparent 30%),
+        radial-gradient(circle at top right, rgba(34,197,94,0.10), transparent 25%),
+        linear-gradient(135deg, #0f172a, #111827 45%, #1e293b);
+      color: var(--text);
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      min-height:100vh;
+      padding:20px;
+    }
+    .tool-container{
+      background: var(--panel);
+      border:1px solid var(--border);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 40px 30px;
+      width:100%;
+      max-width: var(--max-width);
+      text-align: center;
+    }
+    h1{
+      font-size:2.2em;
+      margin-bottom:30px;
+      font-weight:800;
+      color: var(--primary);
+    }
+    .input-group{
+      margin-bottom: 25px;
+      text-align:left;
+    }
+    .input-group label{
+      display:block;
+      margin-bottom:8px;
+      font-weight:600;
+      font-size:1em;
+      color: var(--text);
+    }
+    input[type="date"]{
+      width:100%;
+      padding:12px 14px;
+      border-radius:10px;
+      border:1px solid var(--border);
+      background-color: var(--bg-soft);
+      color: var(--text);
+      font-size:1em;
+      outline:none;
+    }
+    input[type="date"]::-webkit-calendar-picker-indicator {
+      filter: invert(1);
+      cursor:pointer;
+    }
+    button{
+      background: var(--primary);
+      color:#fff;
+      border:none;
+      padding:12px 25px;
+      border-radius:999px;
+      cursor:pointer;
+      font-size:1em;
+      font-weight:600;
+      transition:0.25s ease;
+    }
+    button:hover{
+      background: var(--primary-hover);
+      transform: translateY(-2px);
+    }
+    button:active{
+      transform: translateY(0);
+    }
+    #ageResult{
+      margin-top:35px;
+      font-size:1.2em;
+      font-weight:600;
+      min-height:40px;
+      line-height:1.4;
+    }
+    .highlight-age{
+      color: var(--primary);
+      font-weight:700;
+    }
+    .error-message{
+      color:#f87171;
+      font-weight:500;
+    }
+    @media (max-width:480px){
+      .tool-container{
+        padding:30px 20px;
+      }
+    }
+  </style>
 </head>
 <body>
-    <div class="tool-container">
-        <h1>Age Calculator</h1>
-        <div class="input-group">
-            <label for="birthDate">Enter your Date of Birth:</label>
-            <input type="date" id="birthDate">
-        </div>
-        <button onclick="calculateAge()">Calculate Age</button>
-        <p id="ageResult"></p>
+  <div class="tool-container">
+    <h1>Age Calculator</h1>
+    <div class="input-group">
+      <label for="birthDate">Enter your Date of Birth:</label>
+      <input type="date" id="birthDate">
     </div>
+    <button onclick="calculateAge()">Calculate Age</button>
+    <p id="ageResult"></p>
+  </div>
 
-    <script>
-        function calculateAge() {
-            const birthDateInput = document.getElementById('birthDate').value;
-            const ageResultElement = document.getElementById('ageResult');
-            ageResultElement.className = ''; // Clear previous classes
+  <script>
+    function calculateAge() {
+      const birthDateInput = document.getElementById('birthDate').value;
+      const ageResultElement = document.getElementById('ageResult');
+      ageResultElement.className = '';
 
-            if (!birthDateInput) {
-                ageResultElement.className = 'error-message';
-                ageResultElement.textContent = 'Please enter your date of birth.';
-                return;
-            }
+      if (!birthDateInput) {
+        ageResultElement.className = 'error-message';
+        ageResultElement.textContent = 'Please enter your date of birth.';
+        return;
+      }
 
-            const birthDate = new Date(birthDateInput);
-            const today = new Date();
+      const birthDate = new Date(birthDateInput);
+      const today = new Date();
 
-            if (isNaN(birthDate.getTime())) { // Check for invalid date
-                ageResultElement.className = 'error-message';
-                ageResultElement.textContent = 'Invalid date entered. Please select a valid date.';
-                return;
-            }
+      if (isNaN(birthDate.getTime())) {
+        ageResultElement.className = 'error-message';
+        ageResultElement.textContent = 'Invalid date entered. Please select a valid date.';
+        return;
+      }
 
-            if (birthDate > today) {
-                ageResultElement.className = 'error-message';
-                ageResultElement.textContent = 'Date of birth cannot be in the future.';
-                return;
-            }
+      if (birthDate > today) {
+        ageResultElement.className = 'error-message';
+        ageResultElement.textContent = 'Date of birth cannot be in the future.';
+        return;
+      }
 
-            let ageYears = today.getFullYear() - birthDate.getFullYear();
-            let ageMonths = today.getMonth() - birthDate.getMonth();
-            let ageDays = today.getDate() - birthDate.getDate();
+      let ageYears = today.getFullYear() - birthDate.getFullYear();
+      let ageMonths = today.getMonth() - birthDate.getMonth();
+      let ageDays = today.getDate() - birthDate.getDate();
 
-            // Adjust for months
-            if (ageDays < 0) {
-                ageMonths--;
-                // Get number of days in the previous month (birth month)
-                const lastMonth = new Date(today.getFullYear(), today.getMonth(), 0);
-                ageDays += lastMonth.getDate();
-            }
+      if (ageDays < 0) {
+        ageMonths--;
+        const lastMonth = new Date(today.getFullYear(), today.getMonth(), 0);
+        ageDays += lastMonth.getDate();
+      }
+      if (ageMonths < 0) {
+        ageYears--;
+        ageMonths += 12;
+      }
 
-            // Adjust for years
-            if (ageMonths < 0) {
-                ageYears--;
-                ageMonths += 12;
-            }
+      ageResultElement.innerHTML = `You are <span class="highlight-age">${ageYears}</span> years, <span class="highlight-age">${ageMonths}</span> months, and <span class="highlight-age">${ageDays}</span> days old.`;
+    }
 
-            ageResultElement.innerHTML = `You are <span class="highlight-age">${ageYears}</span> years, <span class="highlight-age">${ageMonths}</span> months, and <span class="highlight-age">${ageDays}</span> days old.`;
-        }
-
-        // Optional: Set max date for the input to today
-        document.addEventListener('DOMContentLoaded', () => {
-            const today = new Date();
-            const year = today.getFullYear();
-            const month = (today.getMonth() + 1).toString().padStart(2, '0');
-            const day = today.getDate().toString().padStart(2, '0');
-            document.getElementById('birthDate').setAttribute('max', `${year}-${month}-${day}`);
-        });
-    </script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const today = new Date();
+      const year = today.getFullYear();
+      const month = (today.getMonth()+1).toString().padStart(2,'0');
+      const day = today.getDate().toString().padStart(2,'0');
+      document.getElementById('birthDate').setAttribute('max', `${year}-${month}-${day}`);
+    });
+  </script>
 </body>
 </html>
