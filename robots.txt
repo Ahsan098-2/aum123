@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://ahsan098-2.github.io/aum123/sitemap.xml
+Sitemap: https://dailytoolkit123.vercel.app/sitemap.xml
