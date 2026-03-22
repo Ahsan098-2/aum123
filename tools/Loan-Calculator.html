@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Loan Calculator – Daily Toolkit</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg: #0f172a;
+      --bg-soft: #111827;
+      --panel: rgba(255,255,255,0.08);
+      --border: rgba(255,255,255,0.14);
+      --text: #e5e7eb;
+      --muted: #cbd5e1;
+      --heading: #ffffff;
+      --primary: #3b82f6;
+      --primary-hover: #2563eb;
+      --success: #22c55e;
+      --shadow: 0 10px 30px rgba(0,0,0,0.25);
+      --radius: 20px;
+      --max-width: 900px;
+    }
+
+    body{
+      font-family:'Poppins',sans-serif;
+      background:var(--bg);
+      color:var(--text);
+      min-height:100vh;
+      display:flex;
+      flex-direction:column;
+      padding:24px 16px;
+    }
+
+    h1,h2,h3{
+      color:var(--heading);
+    }
+
+    a{
+      text-decoration:none;
+      color:inherit;
+    }
+
+    .container{
+      max-width:var(--max-width);
+      margin-inline:auto;
+      width:100%;
+    }
+
+    .glass-card{
+      background:var(--panel);
+      border:1px solid var(--border);
+      backdrop-filter:blur(14px);
+      -webkit-backdrop-filter:blur(14px);
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
+      padding:28px;
+      margin-bottom:32px;
+    }
+
+    label{
+      display:block;
+      margin-bottom:6px;
+      font-weight:500;
+    }
+
+    input, select{
+      width:100%;
+      padding:12px 14px;
+      border-radius:var(--radius);
+      border:1px solid var(--border);
+      background:var(--bg-soft);
+      color:var(--text);
+      margin-bottom:16px;
+      font-size:15px;
+    }
+
+    input:focus, select:focus{
+      outline:none;
+      border-color:var(--primary);
+      box-shadow:0 0 6px var(--primary);
+    }
+
+    button{
+      background:var(--primary);
+      color:#fff;
+      border:none;
+      padding:14px 20px;
+      border-radius:var(--radius);
+      font-size:15px;
+      font-weight:600;
+      cursor:pointer;
+      transition:0.25s ease;
+      display:flex;
+      align-items:center;
+      gap:10px;
+    }
+
+    button:hover{
+      background:var(--primary-hover);
+      transform:translateY(-2px);
+    }
+
+    .result-box{
+      margin-top:20px;
+      background:rgba(255,255,255,0.06);
+      padding:16px;
+      border-radius:var(--radius);
+      border:1px solid rgba(255,255,255,0.10);
+    }
+
+    .result-box p{
+      margin-bottom:8px;
+      font-size:16px;
+    }
+
+    @media (max-width:768px){
+      body{
+        padding:16px 8px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h1>Loan Calculator</h1>
+    <p class="glass-card" style="padding:16px; font-size:15px; background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.08);">
+      Calculate monthly payments, total interest, and total payment. Choose your preferred currency.
+    </p>
+
+    <div class="glass-card">
+      <form id="loanForm">
+        <label for="loanAmount">Loan Amount</label>
+        <input type="number" id="loanAmount" placeholder="Enter loan amount" min="0" required>
+
+        <label for="currency">Currency</label>
+        <select id="currency" required>
+          <option value="$">USD ($)</option>
+          <option value="€">EUR (€)</option>
+          <option value="£">GBP (£)</option>
+          <option value="₹">INR (₹)</option>
+          <option value="¥">JPY (¥)</option>
+          <option value="A$">AUD (A$)</option>
+          <option value="C$">CAD (C$)</option>
+          <option value="CHF">CHF (CHF)</option>
+          <option value="₽">RUB (₽)</option>
+          <option value="₩">KRW (₩)</option>
+          <option value="฿">THB (฿)</option>
+          <option value="₺">TRY (₺)</option>
+        </select>
+
+        <label for="interestRate">Annual Interest Rate (%)</label>
+        <input type="number" id="interestRate" placeholder="Enter interest rate" step="0.01" min="0" required>
+
+        <label for="loanTerm">Loan Term (Years)</label>
+        <input type="number" id="loanTerm" placeholder="Enter loan term in years" min="0" required>
+
+        <button type="submit"><i class="fas fa-calculator"></i> Calculate</button>
+      </form>
+
+      <div id="loanResult" class="result-box" style="display:none;">
+        <p><strong>Monthly Payment:</strong> <span id="monthlyPayment"></span></p>
+        <p><strong>Total Payment:</strong> <span id="totalPayment"></span></p>
+        <p><strong>Total Interest:</strong> <span id="totalInterest"></span></p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    document.getElementById('loanForm').addEventListener('submit', function(e){
+      e.preventDefault();
+
+      const P = parseFloat(document.getElementById('loanAmount').value);
+      const annualInterest = parseFloat(document.getElementById('interestRate').value);
+      const years = parseFloat(document.getElementById('loanTerm').value);
+      const currency = document.getElementById('currency').value;
+
+      if(P <= 0 || annualInterest < 0 || years <= 0){
+        alert('Please enter valid positive numbers for all fields.');
+        return;
+      }
+
+      const r = annualInterest / 100 / 12; // monthly interest
+      const n = years * 12; // total months
+      const x = Math.pow(1 + r, n);
+      const monthly = (P * r * x) / (x - 1);
+      const totalPayment = monthly * n;
+      const totalInterest = totalPayment - P;
+
+      document.getElementById('monthlyPayment').textContent = currency + monthly.toFixed(2);
+      document.getElementById('totalPayment').textContent = currency + totalPayment.toFixed(2);
+      document.getElementById('totalInterest').textContent = currency + totalInterest.toFixed(2);
+
+      document.getElementById('loanResult').style.display = 'block';
+    });
+  </script>
+
+</body>
+</html>
