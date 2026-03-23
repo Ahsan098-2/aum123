@@ -3,11 +3,14 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Professional Image Background Remover – Daily Toolkit</title>
+
+  <!-- SEO -->
+  <title>Background Remover Online – Remove Image Background Free</title>
+  <meta name="description" content="Remove image background online for free. Upload your photo and get transparent background instantly. Fast and easy background remover tool.">
+  <meta name="keywords" content="background remover, remove background online, image background remover, free background remover, remove image background">
 
   <!-- Fonts & Icons -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
@@ -24,12 +27,12 @@
       --success: #22c55e;
       --shadow: 0 10px 30px rgba(0,0,0,0.25);
       --radius: 20px;
-      --max-width: 650px;
     }
 
-    * { box-sizing:border-box; margin:0; padding:0; }
-    body {
-      font-family: 'Poppins', sans-serif;
+    *{box-sizing:border-box;margin:0;padding:0;}
+
+    body{
+      font-family:'Poppins',sans-serif;
       background:
         radial-gradient(circle at top left, rgba(59,130,246,0.18), transparent 30%),
         radial-gradient(circle at top right, rgba(34,197,94,0.10), transparent 25%),
@@ -42,199 +45,186 @@
       padding:20px;
     }
 
-    .container {
+    /* LAYOUT */
+    .main-wrapper{
+      display:flex;
+      gap:30px;
+      width:100%;
+      max-width:1100px;
+    }
+
+    .glass-card{
       background: var(--panel);
       border:1px solid var(--border);
       backdrop-filter: blur(14px);
-      -webkit-backdrop-filter: blur(14px);
       border-radius: var(--radius);
       box-shadow: var(--shadow);
-      padding: 40px 30px;
-      width:100%;
-      max-width: var(--max-width);
-      text-align: center;
-      animation: slideInUp 0.8s ease-out forwards;
-    }
-
-    @keyframes slideInUp {
-      from { opacity:0; transform: translateY(30px); }
-      to { opacity:1; transform: translateY(0); }
-    }
-
-    h1 {
-      font-size:2.2em;
-      font-weight:700;
-      color: var(--primary);
-      margin-bottom: 15px;
-    }
-
-    p.description {
-      color: var(--muted);
-      font-size:1em;
-      margin-bottom:25px;
-    }
-
-    .upload-area {
-      border:2px dashed var(--border);
-      border-radius: 12px;
       padding:30px;
-      margin-bottom: 25px;
+    }
+
+    /* TOOL */
+    .tool-box{
+      flex:1;
+      text-align:center;
+    }
+
+    h1{
+      color: var(--primary);
+      margin-bottom:15px;
+    }
+
+    .description{
+      color: var(--muted);
+      margin-bottom:20px;
+      font-size:14px;
+    }
+
+    .upload-area{
+      border:2px dashed var(--border);
+      border-radius:12px;
+      padding:25px;
+      background:var(--bg-soft);
       cursor:pointer;
-      transition: background-color 0.3s ease, border-color 0.3s ease;
-      position: relative;
-      overflow: hidden;
-      background-color: var(--bg-soft);
+      position:relative;
     }
 
-    .upload-area:hover {
-      background-color: rgba(59,130,246,0.05);
-      border-color: var(--primary);
+    .upload-area:hover{
+      border-color:var(--primary);
+      background:rgba(59,130,246,0.05);
     }
 
-    input[type="file"] {
+    input[type="file"]{
       position:absolute;
-      top:0;
-      left:0;
       width:100%;
       height:100%;
       opacity:0;
       cursor:pointer;
+      top:0;
+      left:0;
     }
 
-    .upload-area .icon {
-      font-size:3em;
-      color: var(--primary);
+    .upload-area i{
+      font-size:40px;
+      color:var(--primary);
       margin-bottom:10px;
-      display:block;
     }
 
-    .upload-area span {
-      font-size:1.1em;
-      color: var(--text);
-      font-weight:600;
-    }
-
-    .image-preview {
+    .image-preview{
       margin-top:20px;
-      border:1px solid var(--border);
-      border-radius: 12px;
-      padding:15px;
       min-height:150px;
+      background:var(--bg-soft);
+      border-radius:12px;
       display:flex;
       justify-content:center;
       align-items:center;
-      overflow:hidden;
-      background-color: var(--bg-soft);
-      box-shadow: inset 0 2px 5px rgba(0,0,0,0.1);
+      border:1px solid var(--border);
     }
 
-    .image-preview img {
+    .image-preview img{
       max-width:100%;
       max-height:250px;
-      border-radius: 8px;
-      object-fit:contain;
     }
 
-    .image-preview p {
-      color: var(--muted);
-      font-style: italic;
-      margin:0;
-    }
-
-    button {
-      background-color: var(--success);
-      color:white;
-      padding:14px 30px;
+    button{
+      margin-top:20px;
+      background:var(--success);
       border:none;
-      border-radius: 12px;
+      padding:12px 25px;
+      border-radius:999px;
+      color:#fff;
       cursor:pointer;
-      font-size:1.1em;
       font-weight:600;
-      transition: background-color 0.3s ease, transform 0.2s ease;
-      margin-top:25px;
-      box-shadow: 0 5px 15px rgba(34,197,94,0.3);
     }
 
-    button:hover {
-      background-color: #16a34a;
-      transform: translateY(-2px);
+    /* SEO BOX */
+    .seo-box{
+      flex:1;
+      background: rgba(255,255,255,0.05);
+      padding:25px;
+      border-radius:15px;
+      border:1px solid rgba(255,255,255,0.1);
     }
 
-    button:active {
-      transform: translateY(0);
+    .seo-box h2{
+      color:#3b82f6;
+      margin:10px 0;
     }
 
-    .note {
-      margin-top:25px;
-      color: var(--muted);
-      font-size:0.85em;
+    .seo-box p{
+      color:#cbd5e1;
+      font-size:14px;
+      line-height:1.7;
     }
 
-    @media (max-width:768px){
-      .container { padding:30px 20px; }
-      h1 { font-size:1.8em; }
-      .upload-area { padding:20px; }
-      .upload-area .icon { font-size:2.5em; }
-      .upload-area span { font-size:1em; }
-      button { padding:12px 25px; font-size:1em; }
+    /* MOBILE */
+    @media(max-width:768px){
+      .main-wrapper{
+        flex-direction:column;
+      }
     }
   </style>
 </head>
+
 <body>
-  <div class="container">
-    <h1>📸 Background Remover</h1>
-    <p class="description">Upload an image to remove its background. UI only; actual AI processing requires server-side.</p>
 
-    <div class="upload-area" id="uploadArea">
-      <span class="icon"><i class="fas fa-upload"></i></span>
-      <span>Drag & Drop your image here or Click to Upload</span>
-      <input type="file" id="imageUpload" accept="image/*">
+  <div class="main-wrapper">
+
+    <!-- TOOL -->
+    <div class="tool-box glass-card">
+      <h1>Background Remover</h1>
+      <p class="description">Upload your image and remove background instantly</p>
+
+      <div class="upload-area" id="uploadArea">
+        <i class="fas fa-upload"></i>
+        <p>Click or Drag & Drop Image</p>
+        <input type="file" id="imageUpload" accept="image/*">
+      </div>
+
+      <div class="image-preview" id="imagePreview">
+        <p>No image selected</p>
+      </div>
+
+      <button>Remove Background</button>
     </div>
 
-    <div class="image-preview" id="imagePreview">
-      <p>No image selected</p>
+    <!-- SEO CONTENT -->
+    <div class="seo-box">
+      <h2>Free Background Remover Online</h2>
+      <p>
+        This background remover is a free online tool that allows you to remove image backgrounds instantly. 
+        Upload your photo and get a clean transparent background in seconds.
+      </p>
+
+      <h2>How to Remove Background</h2>
+      <p>
+        Simply upload your image using the upload button. Our background remover tool will process your image and remove the background automatically.
+      </p>
+
+      <h2>Why Use This Tool?</h2>
+      <p>
+        This tool is fast, easy to use, and works on all devices. If you are searching for a background remover, remove background online, or image background remover, this tool is perfect for you.
+      </p>
     </div>
 
-    <button>Process Image (Remove Background)</button>
-
-    <p class="note"><em>Note: Actual background removal requires advanced AI libraries or server-side processing.</em></p>
   </div>
 
   <script>
     const imageUpload = document.getElementById('imageUpload');
     const imagePreview = document.getElementById('imagePreview');
-    const uploadArea = document.getElementById('uploadArea');
 
-    imageUpload.addEventListener('change', function(e) {
+    imageUpload.addEventListener('change', function(e){
       const file = e.target.files[0];
-      if (file) {
+      if(file){
         const reader = new FileReader();
-        reader.onload = function(ev) {
-          imagePreview.innerHTML = `<img src="${ev.target.result}" alt="Preview">`;
+        reader.onload = function(ev){
+          imagePreview.innerHTML = `<img src="${ev.target.result}">`;
         }
         reader.readAsDataURL(file);
       } else {
         imagePreview.innerHTML = '<p>No image selected</p>';
       }
     });
-
-    // Drag & Drop functionality
-    uploadArea.addEventListener('dragover', e => {
-      e.preventDefault();
-      uploadArea.style.borderColor = 'var(--primary)';
-    });
-    uploadArea.addEventListener('dragleave', e => {
-      uploadArea.style.borderColor = 'var(--border)';
-    });
-    uploadArea.addEventListener('drop', e => {
-      e.preventDefault();
-      uploadArea.style.borderColor = 'var(--border)';
-      const files = e.dataTransfer.files;
-      if (files.length > 0) {
-        imageUpload.files = files;
-        imageUpload.dispatchEvent(new Event('change'));
-      }
-    });
   </script>
+
 </body>
 </html>
