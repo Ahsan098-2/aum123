@@ -3,9 +3,15 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Barcode Generator – Daily Toolkit</title>
+
+<!-- SEO -->
+<title>Barcode Generator Online – Create Barcode Free Tool</title>
+<meta name="description" content="Generate barcodes online for free. Create CODE128, EAN13, UPC barcodes instantly with our fast and easy barcode generator tool.">
+<meta name="keywords" content="barcode generator, generate barcode online, free barcode generator, create barcode, barcode maker">
+
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
 <style>
 :root {
   --bg: #0f172a;
@@ -19,228 +25,221 @@
   --success: #22c55e;
   --radius: 20px;
   --shadow: 0 10px 30px rgba(0,0,0,0.25);
-  --max-width: 500px;
 }
 
-* { box-sizing: border-box; margin:0; padding:0; }
+*{box-sizing:border-box;margin:0;padding:0;}
 
-body {
-  font-family: 'Poppins', sans-serif;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
-  background: radial-gradient(circle at top left, rgba(59,130,246,0.18), transparent 30%),
-              radial-gradient(circle at top right, rgba(34,197,94,0.10), transparent 25%),
-              linear-gradient(135deg, #0f172a, #111827 45%, #1e293b);
-  color: var(--text);
-  padding: 20px;
+body{
+  font-family:'Poppins',sans-serif;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  min-height:100vh;
+  background:
+    radial-gradient(circle at top left, rgba(59,130,246,0.18), transparent 30%),
+    radial-gradient(circle at top right, rgba(34,197,94,0.10), transparent 25%),
+    linear-gradient(135deg, #0f172a, #111827 45%, #1e293b);
+  color:var(--text);
+  padding:20px;
 }
 
-.container {
-  background: var(--panel);
-  border: 1px solid var(--border);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
-  border-radius: var(--radius);
-  box-shadow: var(--shadow);
-  padding: 40px 30px;
-  max-width: var(--max-width);
-  width: 100%;
-  text-align: center;
+/* LAYOUT */
+.main-wrapper{
+  display:flex;
+  gap:30px;
+  width:100%;
+  max-width:1100px;
 }
 
-h1 {
-  font-size: 2em;
-  margin-bottom: 25px;
-  color: var(--primary);
-  font-weight: 700;
+/* TOOL */
+.container{
+  flex:1;
+  background:var(--panel);
+  border:1px solid var(--border);
+  backdrop-filter:blur(14px);
+  border-radius:var(--radius);
+  box-shadow:var(--shadow);
+  padding:30px;
+  text-align:center;
 }
 
-.input-group {
-  margin-bottom: 20px;
-  text-align: left;
+h1{
+  color:var(--primary);
+  margin-bottom:20px;
 }
 
-.input-group label {
-  display: block;
-  margin-bottom: 8px;
-  font-weight: 600;
-  color: var(--text);
+.input-group{
+  margin-bottom:15px;
+  text-align:left;
 }
 
-.input-group input[type="text"],
-.input-group select {
-  width: 100%;
-  padding: 12px;
-  border-radius: 10px;
-  border: 1px solid var(--border);
-  background-color: var(--bg-soft);
-  color: var(--text);
-  font-size: 1em;
-  outline: none;
+label{
+  margin-bottom:6px;
+  display:block;
+  font-weight:600;
 }
 
-.input-group input[type="text"]::placeholder {
-  color: var(--muted);
+input, select{
+  width:100%;
+  padding:12px;
+  border-radius:10px;
+  border:1px solid var(--border);
+  background:var(--bg-soft);
+  color:var(--text);
 }
 
-.input-group input[type="text"]:focus,
-.input-group select:focus {
-  border-color: var(--primary);
-  box-shadow: 0 0 0 3px rgba(59,130,246,0.2);
+button{
+  margin-top:15px;
+  background:var(--primary);
+  color:#fff;
+  border:none;
+  padding:12px;
+  border-radius:999px;
+  cursor:pointer;
+  width:100%;
 }
 
-button {
-  background-color: var(--primary);
-  color: #fff;
-  border: none;
-  padding: 12px 25px;
-  border-radius: 999px;
-  cursor: pointer;
-  font-weight: 600;
-  font-size: 1em;
-  transition: background 0.3s ease, transform 0.2s ease;
-  margin-top: 15px;
-  width: 100%;
-  max-width: 250px;
+button:hover{
+  background:var(--primary-hover);
 }
 
-button:hover {
-  background-color: var(--primary-hover);
-  transform: translateY(-2px);
+.barcode-output-section{
+  margin-top:20px;
 }
 
-.barcode-output-section {
-  margin-top: 30px;
-  padding-top: 25px;
-  border-top: 1px solid var(--border);
-  text-align: center;
+#barcodeDisplay{
+  margin-top:15px;
+  background:var(--bg-soft);
+  padding:10px;
+  border-radius:10px;
 }
 
-.barcode-output-section h2 {
-  color: var(--success);
-  margin-bottom: 20px;
-  font-size: 1.8em;
-  font-weight: 700;
+.error-message{
+  color:#f87171;
+  margin-top:10px;
+  display:none;
 }
 
-#barcodeDisplay {
-  width: 100%;
-  max-width: 350px;
-  margin: 0 auto;
-  display: block;
-  border: 1px solid var(--border);
-  border-radius: 10px;
-  background-color: var(--bg-soft);
-  padding: 10px;
+/* SEO BOX */
+.seo-box{
+  flex:1;
+  background:rgba(255,255,255,0.05);
+  padding:25px;
+  border-radius:15px;
+  border:1px solid rgba(255,255,255,0.1);
 }
 
-#barcodeDisplay svg {
-  display: block;
-  width: 100%;
-  height: auto;
+.seo-box h2{
+  color:#3b82f6;
+  margin:10px 0;
 }
 
-.error-message {
-  color: #f87171;
-  margin-top: 15px;
-  font-size: 0.9em;
-  font-weight: 500;
-  display: none;
+.seo-box p{
+  color:#cbd5e1;
+  font-size:14px;
+  line-height:1.7;
 }
 
-@media (max-width: 480px) {
-  .container {
-    padding: 30px 20px;
-  }
-  h1 {
-    font-size: 1.7em;
-  }
-  button {
-    max-width: 100%;
-    padding: 12px 20px;
-  }
-  .barcode-output-section h2 {
-    font-size: 1.5em;
+/* MOBILE */
+@media(max-width:768px){
+  .main-wrapper{
+    flex-direction:column;
   }
 }
 </style>
 </head>
-<body>
-<div class="container">
-  <h1>📦 Barcode Generator</h1>
-  <div class="input-group">
-    <label for="barcodeData">Enter data for barcode:</label>
-    <input type="text" id="barcodeData" placeholder="e.g., ProductID123 or URL">
-  </div>
-  <div class="input-group">
-    <label for="barcodeType">Select barcode type:</label>
-    <select id="barcodeType">
-      <option value="CODE128">CODE128 (General)</option>
-      <option value="EAN13">EAN13 (Europe)</option>
-      <option value="UPC">UPC (Universal)</option>
-      <option value="CODE39">CODE39 (Alpha-numeric)</option>
-      <option value="ITF14">ITF14 (Shipping)</option>
-    </select>
-  </div>
-  <button id="generateBarcodeBtn">Generate Barcode</button>
 
-  <div class="barcode-output-section">
-    <h2>Your Barcode</h2>
-    <div id="barcodeDisplay">
-      <svg id="barcode"></svg>
+<body>
+
+<div class="main-wrapper">
+
+  <!-- TOOL -->
+  <div class="container">
+    <h1>📦 Barcode Generator</h1>
+
+    <div class="input-group">
+      <label>Enter data</label>
+      <input type="text" id="barcodeData" placeholder="Product ID or URL">
     </div>
-    <p id="errorMessage" class="error-message"></p>
+
+    <div class="input-group">
+      <label>Select type</label>
+      <select id="barcodeType">
+        <option value="CODE128">CODE128</option>
+        <option value="EAN13">EAN13</option>
+        <option value="UPC">UPC</option>
+        <option value="CODE39">CODE39</option>
+      </select>
+    </div>
+
+    <button id="generateBarcodeBtn">Generate Barcode</button>
+
+    <div class="barcode-output-section">
+      <div id="barcodeDisplay">
+        <svg id="barcode"></svg>
+      </div>
+      <p id="errorMessage" class="error-message"></p>
+    </div>
   </div>
+
+  <!-- SEO CONTENT -->
+  <div class="seo-box">
+    <h2>Free Barcode Generator Online</h2>
+    <p>
+      This barcode generator allows you to create barcodes instantly for products, URLs, and business use. 
+      Generate CODE128, EAN13, and UPC barcodes quickly using this free online tool.
+    </p>
+
+    <h2>How to Generate Barcode</h2>
+    <p>
+      Enter your data such as product ID or text, select the barcode type, and click generate. 
+      Your barcode will be created instantly and ready to use.
+    </p>
+
+    <h2>Why Use This Barcode Tool?</h2>
+    <p>
+      This tool is fast, reliable, and works on all devices. 
+      If you are searching for a barcode generator, create barcode online, or free barcode maker, this tool is perfect for you.
+    </p>
+  </div>
+
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/jsbarcode@3.11.5/dist/JsBarcode.all.min.js"></script>
+
 <script>
-document.addEventListener('DOMContentLoaded', () => {
-  const barcodeDataInput = document.getElementById('barcodeData');
-  const barcodeTypeSelect = document.getElementById('barcodeType');
-  const generateBarcodeBtn = document.getElementById('generateBarcodeBtn');
-  const barcodeSVG = document.getElementById('barcode');
-  const errorMessage = document.getElementById('errorMessage');
+const dataInput = document.getElementById('barcodeData');
+const typeSelect = document.getElementById('barcodeType');
+const btn = document.getElementById('generateBarcodeBtn');
+const svg = document.getElementById('barcode');
+const error = document.getElementById('errorMessage');
 
-  generateBarcodeBtn.addEventListener('click', generateBarcode);
+btn.addEventListener('click', () => {
+  const value = dataInput.value.trim();
+  error.style.display = 'none';
 
-  function generateBarcode() {
-    const data = barcodeDataInput.value.trim();
-    const type = barcodeTypeSelect.value;
-
-    errorMessage.style.display = 'none';
-    barcodeSVG.innerHTML = '';
-
-    if (!data) {
-      errorMessage.textContent = 'Please enter data to generate a barcode.';
-      errorMessage.style.display = 'block';
-      return;
-    }
-
-    try {
-      JsBarcode(barcodeSVG, data, {
-        format: type,
-        displayValue: true,
-        lineColor: "#fff",
-        width: 2,
-        height: 100,
-        textMargin: 5,
-        font: "Poppins",
-        fontSize: 16,
-        background: "transparent"
-      });
-    } catch (error) {
-      errorMessage.textContent = `Error generating barcode: ${error.message}`;
-      errorMessage.style.display = 'block';
-      console.error(error);
-    }
+  if(!value){
+    error.textContent = "Enter data first";
+    error.style.display = "block";
+    return;
   }
 
-  barcodeDataInput.value = 'HelloWorld'; // default text
-  generateBarcode();
+  try{
+    JsBarcode(svg, value, {
+      format: typeSelect.value,
+      displayValue: true,
+      lineColor: "#fff",
+      background: "transparent"
+    });
+  }catch(e){
+    error.textContent = "Invalid data for selected barcode type";
+    error.style.display = "block";
+  }
 });
+
+dataInput.value = "Hello123";
+btn.click();
 </script>
+
 </body>
 </html>
