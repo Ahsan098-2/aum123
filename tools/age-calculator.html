@@ -9,13 +9,12 @@
 
   <!-- SEO Meta -->
   <meta name="description" content="Use our free Age Calculator online to calculate your exact age in years, months, and days. Fast, accurate, and easy to use age calculator tool.">
-  <meta name="keywords" content="age calculator, online age calculator, calculate age, age calculator tool, exact age calculator">
+  <meta name="keywords" content="age calculator, online age calculator, calculate age, age calculator tool, Tool, Online age finder tool 2026, Umar maloom krne ka tarika, Age calculator year month day and hours, exact age calculator">
 
-  <!-- Fonts & Icons -->
+  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
   <style>
     :root{
@@ -29,9 +28,10 @@
       --primary-hover: #2563eb;
       --shadow: 0 10px 30px rgba(0,0,0,0.25);
       --radius: 20px;
-      --max-width: 500px;
     }
+
     *{box-sizing:border-box;margin:0;padding:0;}
+
     body{
       font-family:'Poppins',sans-serif;
       background:
@@ -40,36 +40,51 @@
         linear-gradient(135deg, #0f172a, #111827 45%, #1e293b);
       color: var(--text);
       display:flex;
-      flex-direction:column;
+      justify-content:center;
       align-items:center;
+      min-height:100vh;
       padding:20px;
     }
+
+    /* MAIN LAYOUT */
+    .main-wrapper{
+      display:flex;
+      gap:30px;
+      width:100%;
+      max-width:1000px;
+      align-items:stretch;
+    }
+
+    /* TOOL */
     .tool-container{
+      flex:1;
       background: var(--panel);
       border:1px solid var(--border);
       backdrop-filter: blur(14px);
       border-radius: var(--radius);
       box-shadow: var(--shadow);
       padding: 40px 30px;
-      width:100%;
-      max-width: var(--max-width);
       text-align: center;
     }
+
     h1{
       font-size:2.2em;
       margin-bottom:30px;
       font-weight:800;
       color: var(--primary);
     }
+
     .input-group{
       margin-bottom: 25px;
       text-align:left;
     }
+
     .input-group label{
       display:block;
       margin-bottom:8px;
       font-weight:600;
     }
+
     input[type="date"]{
       width:100%;
       padding:12px;
@@ -78,6 +93,7 @@
       background-color: var(--bg-soft);
       color: var(--text);
     }
+
     button{
       background: var(--primary);
       color:#fff;
@@ -86,73 +102,93 @@
       border-radius:999px;
       cursor:pointer;
       font-weight:600;
+      transition:0.2s;
     }
+
     button:hover{
       background: var(--primary-hover);
+      transform: translateY(-2px);
     }
+
     #ageResult{
       margin-top:35px;
       font-size:1.2em;
       font-weight:600;
     }
+
     .highlight-age{
       color: var(--primary);
     }
 
-    /* SEO Content Box */
+    /* SEO BOX */
     .seo-box{
-      margin-top:30px;
+      flex:1;
       background: rgba(255,255,255,0.05);
-      padding:20px;
+      padding:25px;
       border-radius:15px;
       border:1px solid rgba(255,255,255,0.1);
-      max-width:500px;
     }
+
     .seo-box h2{
       color:#3b82f6;
       margin-bottom:10px;
+      margin-top:10px;
     }
+
     .seo-box p{
       color:#cbd5e1;
       font-size:14px;
       line-height:1.7;
     }
+
+    /* MOBILE FIX */
+    @media (max-width:768px){
+      .main-wrapper{
+        flex-direction:column;
+      }
+    }
+
   </style>
 </head>
 
 <body>
 
-  <div class="tool-container">
-    <h1>Online Age Calculator</h1>
+  <div class="main-wrapper">
 
-    <div class="input-group">
-      <label for="birthDate">Enter your Date of Birth:</label>
-      <input type="date" id="birthDate">
+    <!-- TOOL -->
+    <div class="tool-container">
+      <h1>Online Age Calculator</h1>
+
+      <div class="input-group">
+        <label for="birthDate">Enter your Date of Birth:</label>
+        <input type="date" id="birthDate">
+      </div>
+
+      <button onclick="calculateAge()">Calculate Age</button>
+      <p id="ageResult"></p>
     </div>
 
-    <button onclick="calculateAge()">Calculate Age</button>
-    <p id="ageResult"></p>
-  </div>
+    <!-- SEO CONTENT -->
+    <div class="seo-box">
+      <h2>Free Age Calculator Online</h2>
+      <p>
+        This Age Calculator is a free online tool that helps you calculate your exact age instantly. 
+        Whether you want to know your age in years, months, or days, this online age calculator provides accurate results in seconds.
+      </p>
 
-  <!-- SEO CONTENT -->
-  <div class="seo-box">
-    <h2>Free Age Calculator Online</h2>
-    <p>
-      This Age Calculator is a free online tool that helps you calculate your exact age instantly. 
-      Whether you want to know your age in years, months, or days, this online age calculator provides accurate results in seconds.
-    </p>
+      <h2>How to Calculate Age</h2>
+      <p>
+        To calculate age, simply enter your date of birth and click the calculate button. 
+        Our tool will automatically calculate your age based on the current date without any manual effort.
+      </p>
 
-    <h2>How to Calculate Age</h2>
-    <p>
-      To calculate age, simply enter your date of birth and click the calculate button. 
-      Our tool will automatically calculate your age based on the current date without any manual effort.
-    </p>
+      <h2>Why Use This Age Calculator?</h2>
+      <p>
+        This tool is fast, accurate, and easy to use. It works on all devices and does not require any signup. 
+        If you are searching for an age calculator, online age calculator, or want to calculate age quickly, this is the perfect solution.
+      </p>
+    </div>
 
-    <h2>Why Use This Age Calculator?</h2>
-    <p>
-      This tool is fast, accurate, and easy to use. It works on all devices and does not require any signup. 
-      If you are searching for an age calculator, online age calculator, or want to calculate age quickly, this is the perfect solution.
-    </p>
   </div>
 
   <script>
@@ -174,8 +210,10 @@
 
       if (ageDays < 0) {
         ageMonths--;
-        ageDays += 30;
+        const lastMonth = new Date(today.getFullYear(), today.getMonth(), 0);
+        ageDays += lastMonth.getDate();
       }
+
       if (ageMonths < 0) {
         ageYears--;
         ageMonths += 12;
@@ -186,6 +224,14 @@
         <span class="highlight-age">${ageMonths}</span> months, 
         and <span class="highlight-age">${ageDays}</span> days old.`;
     }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      const today = new Date();
+      const year = today.getFullYear();
+      const month = (today.getMonth()+1).toString().padStart(2,'0');
+      const day = today.getDate().toString().padStart(2,'0');
+      document.getElementById('birthDate').setAttribute('max', `${year}-${month}-${day}`);
+    });
   </script>
 
 </body>
