@@ -25,7 +25,7 @@
 
 ## 🌐 Live Demo
 
-🔗 https://ahsan098-2.github.io/aum123/
+🔗 https://dailytoolkit.xyz
 
 
 ---
