@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://dailytoolkit123.vercel.app/sitemap.xml
+Sitemap: https://www.dailytoolkit.xyz/sitemap.xml
