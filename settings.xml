@@ -17,7 +17,7 @@
         </repository>
         <repository>
           <id>github</id>
-          <url>https://maven.pkg.github.com/OWNER/REPOSITORY</url>
+          <url>https://maven.pkg.github.com/Ahsan098-2/dailytoolkit.xyz</url>
           <snapshots>
             <enabled>true</enabled>
           </snapshots>
@@ -29,7 +29,7 @@
   <servers>
     <server>
       <id>github</id>
-      <username>@Ahsan098-2</username>
+      <username>Ahsan098-2</username>
       <password>Mahar@098</password>
     </server>
   </servers>
