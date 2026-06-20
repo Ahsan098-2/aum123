@@ -7,138 +7,568 @@
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
-
     gtag('config', 'G-3K7RBN1QSL');
   </script>
+
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>About Us - Daily toolkit</title>
-  <link rel="stylesheet" href="style.css">
+  <title>About Us – Daily Toolkit</title>
+
+  <!-- SEO -->
+  <meta name="description" content="Learn about Daily Toolkit — our mission, who we are, and what we offer. Free online tools built for everyone.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://dailytoolkit.xyz/about.html">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="About Us – Daily Toolkit">
+  <meta property="og:description" content="Learn about Daily Toolkit — our mission, who we are, and what we offer.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://dailytoolkit.xyz/about.html">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+  <!-- Google AdSense -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6737111642010842" crossorigin="anonymous"></script>
+
   <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --black: #0A0A0A;
+      --white: #FFFFFF;
+      --gray-100: #F7F7F7;
+      --gray-200: #EFEFEF;
+      --gray-400: #ABABAB;
+      --gray-600: #6B6B6B;
+      --gold: #C9A84C;
+      --gold-light: #E8D28A;
+      --font-display: 'Playfair Display', Georgia, serif;
+      --font-body: 'Inter', system-ui, sans-serif;
+      --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    html { scroll-behavior: smooth; }
+
     body {
-      font-family: "Poppins", sans-serif;
+      font-family: var(--font-body);
+      background: var(--white);
+      color: var(--black);
       line-height: 1.6;
-      margin: 0;
-      padding: 0;
-      background: #f7f7f7;
-      color: #333;
+      overflow-x: hidden;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
     }
-    header {
-      background: #111;
-      color: #fff;
-      text-align: center;
-      padding: 30px 15px;
+
+    a { text-decoration: none; color: inherit; }
+
+    /* SCROLLBAR */
+    ::-webkit-scrollbar { width: 4px; }
+    ::-webkit-scrollbar-track { background: var(--gray-100); }
+    ::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 2px; }
+
+    /* ── NAVBAR ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 4%;
+      height: 68px;
+      background: rgba(255,255,255,0.96);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--gray-200);
+      transition: box-shadow var(--transition);
+      gap: 1rem;
     }
-    header h1 {
-      margin: 0;
-      font-size: 2rem;
+    nav.scrolled { box-shadow: 0 2px 24px rgba(0,0,0,0.07); }
+
+    .nav-logo {
+      font-family: var(--font-display);
+      font-size: 1.3rem; font-weight: 700;
+      color: var(--black); white-space: nowrap;
+      display: flex; align-items: center; gap: 0.4rem;
     }
-    .container {
-      width: 90%;
-      max-width: 900px;
-      margin: 40px auto;
-      background: #fff;
-      padding: 30px;
-      border-radius: 10px;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    .nav-logo span { color: var(--gold); }
+    .nav-logo i { color: var(--gold); font-size: 1.1rem; }
+
+    .nav-links {
+      display: flex; gap: 1.6rem; list-style: none; align-items: center;
     }
-    h2 {
-      color: #111;
-      border-left: 5px solid #00b7ff;
-      padding-left: 10px;
-      margin-top: 30px;
+    .nav-links a {
+      font-size: 0.82rem; font-weight: 500; color: var(--gray-600);
+      letter-spacing: 0.04em; text-transform: uppercase;
+      transition: color var(--transition); padding: 4px 0;
+      position: relative;
     }
-    a {
-      color: #007bff;
-      text-decoration: none;
+    .nav-links a::after {
+      content: ''; position: absolute; bottom: 0; left: 0; right: 0;
+      height: 1px; background: var(--gold);
+      transform: scaleX(0); transform-origin: left;
+      transition: transform var(--transition);
     }
-    a:hover {
-      text-decoration: underline;
+    .nav-links a:hover { color: var(--black); }
+    .nav-links a.active { color: var(--black); }
+    .nav-links a:hover::after, .nav-links a.active::after { transform: scaleX(1); }
+
+    .hamburger {
+      display: none; flex-direction: column; gap: 5px;
+      cursor: pointer; padding: 4px; background: none; border: none;
     }
-    .contact-btn {
-      display: inline-block;
-      background: #00b7ff;
-      color: white;
-      padding: 10px 20px;
+    .hamburger span {
+      display: block; width: 22px; height: 1.5px;
+      background: var(--black); transition: var(--transition);
+    }
+
+    .mobile-menu {
+      display: none; position: fixed; top: 68px; left: 0; right: 0;
+      background: var(--white); border-bottom: 1px solid var(--gray-200);
+      padding: 1.2rem 4%; flex-direction: column; gap: 1rem; z-index: 999;
+    }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a {
+      font-size: 0.88rem; font-weight: 500; color: var(--gray-600);
+      letter-spacing: 0.04em; text-transform: uppercase;
+      transition: color var(--transition);
+    }
+    .mobile-menu a:hover { color: var(--gold); }
+
+    /* ── PAGE HERO ── */
+    .page-hero {
+      margin-top: 68px;
+      padding: 72px 4% 56px;
+      background: var(--gray-100);
+      border-bottom: 1px solid var(--gray-200);
+      position: relative;
+      overflow: hidden;
+    }
+    .page-hero-bg {
+      position: absolute; top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      font-family: var(--font-display);
+      font-size: clamp(80px, 14vw, 180px);
+      font-weight: 700; color: transparent;
+      -webkit-text-stroke: 1px var(--gray-200);
+      user-select: none; pointer-events: none;
+      white-space: nowrap; opacity: 0.6;
+    }
+    .page-hero-inner {
+      max-width: 1200px; margin: 0 auto;
+      position: relative; z-index: 1;
+    }
+    .page-eyebrow {
+      display: inline-flex; align-items: center; gap: 0.6rem;
+      font-size: 0.72rem; font-weight: 600; letter-spacing: 0.14em;
+      text-transform: uppercase; color: var(--gold); margin-bottom: 1rem;
+    }
+    .page-eyebrow::before {
+      content: ''; display: block; width: 24px; height: 1px; background: var(--gold);
+    }
+    .page-hero h1 {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      font-weight: 700; line-height: 1.1;
+      letter-spacing: -0.03em; color: var(--black);
+      margin-bottom: 1rem;
+    }
+    .page-hero h1 em { font-style: italic; color: var(--gold); }
+    .page-hero p {
+      font-size: 0.98rem; color: var(--gray-600);
+      line-height: 1.8; max-width: 520px;
+    }
+    .breadcrumb {
+      display: flex; align-items: center; gap: 0.5rem;
+      margin-top: 1.8rem;
+      font-size: 0.76rem; color: var(--gray-400);
+      letter-spacing: 0.04em;
+    }
+    .breadcrumb a { color: var(--gray-400); transition: color var(--transition); }
+    .breadcrumb a:hover { color: var(--gold); }
+    .breadcrumb i { font-size: 0.6rem; }
+
+    /* ── GOLD DIVIDER ── */
+    .gold-divider {
+      width: 100%; height: 1px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    }
+
+    /* ── MAIN CONTENT ── */
+    .about-content {
+      padding: 72px 4%;
+      max-width: 1200px;
+      margin: 0 auto;
+      width: 100%;
+    }
+
+    /* Mission Section — Full width */
+    .mission-block {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+      margin-bottom: 72px;
+    }
+    .mission-text .sec-eyebrow {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      font-size: 0.7rem; font-weight: 600; letter-spacing: 0.14em;
+      text-transform: uppercase; color: var(--gold); margin-bottom: 0.6rem;
+    }
+    .mission-text .sec-eyebrow::before {
+      content: ''; display: block; width: 18px; height: 1px; background: var(--gold);
+    }
+    .mission-text h2 {
+      font-family: var(--font-display);
+      font-size: clamp(1.6rem, 2.8vw, 2.2rem);
+      font-weight: 700; color: var(--black);
+      letter-spacing: -0.02em; margin-bottom: 1rem; line-height: 1.2;
+    }
+    .mission-text p {
+      font-size: 0.96rem; color: var(--gray-600);
+      line-height: 1.85; margin-bottom: 1rem;
+    }
+
+    .mission-visual {
+      background: var(--black);
+      border-radius: 4px;
+      padding: 2.8rem;
+      display: flex; flex-direction: column; gap: 1.4rem;
+      position: relative; overflow: hidden;
+    }
+    .mission-visual::before {
+      content: '';
+      position: absolute; bottom: 0; left: 0; right: 0; height: 2px;
+      background: linear-gradient(90deg, var(--gold), var(--gold-light), var(--gold));
+    }
+    .mission-stat {
+      display: flex; flex-direction: column; gap: 0.15rem;
+      padding-bottom: 1.2rem;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+    .mission-stat:last-child { border-bottom: none; padding-bottom: 0; }
+    .mission-stat .num {
+      font-family: var(--font-display);
+      font-size: 2.2rem; font-weight: 700;
+      color: var(--gold); line-height: 1;
+    }
+    .mission-stat .label {
+      font-size: 0.75rem; color: rgba(255,255,255,0.5);
+      letter-spacing: 0.08em; text-transform: uppercase;
+    }
+    .mission-stat .desc {
+      font-size: 0.82rem; color: rgba(255,255,255,0.7);
+      margin-top: 0.2rem;
+    }
+
+    /* Who We Are — Cards */
+    .team-section { margin-bottom: 72px; }
+    .team-section .section-header { margin-bottom: 2rem; }
+    .section-header .sec-eyebrow {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      font-size: 0.7rem; font-weight: 600; letter-spacing: 0.14em;
+      text-transform: uppercase; color: var(--gold); margin-bottom: 0.6rem;
+    }
+    .section-header .sec-eyebrow::before {
+      content: ''; display: block; width: 18px; height: 1px; background: var(--gold);
+    }
+    .section-header h2 {
+      font-family: var(--font-display);
+      font-size: clamp(1.6rem, 2.8vw, 2.2rem);
+      font-weight: 700; color: var(--black);
+      letter-spacing: -0.02em; margin-bottom: 0.5rem;
+    }
+    .section-header p {
+      font-size: 0.92rem; color: var(--gray-600);
+      max-width: 520px; line-height: 1.75;
+    }
+
+    .values-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.2rem;
+    }
+    .value-card {
+      background: var(--gray-100);
+      border: 1px solid var(--gray-200);
+      border-radius: 4px;
+      padding: 1.8rem 1.5rem;
+      position: relative; overflow: hidden;
+      transition: var(--transition);
+    }
+    .value-card::after {
+      content: ''; position: absolute; bottom: 0; left: 0; right: 0;
+      height: 2px; background: var(--gold);
+      transform: scaleX(0); transform-origin: left;
+      transition: transform var(--transition);
+    }
+    .value-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 32px rgba(0,0,0,0.07);
+      background: var(--white);
+    }
+    .value-card:hover::after { transform: scaleX(1); }
+    .value-icon {
+      width: 42px; height: 42px;
+      background: var(--white);
       border-radius: 8px;
-      margin-top: 10px;
-      text-decoration: none;
-      font-weight: 600;
-      transition: background 0.3s;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.2rem; color: var(--gold);
+      box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+      margin-bottom: 1rem;
     }
-    .contact-btn:hover {
-      background: #0095d9;
+    .value-card h3 {
+      font-size: 0.95rem; font-weight: 700;
+      margin-bottom: 0.5rem; color: var(--black);
     }
+    .value-card p {
+      font-size: 0.82rem; color: var(--gray-600); line-height: 1.65;
+    }
+
+    /* What We Offer */
+    .offers-section { margin-bottom: 72px; }
+    .offers-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
+      margin-top: 2rem;
+    }
+    .offer-item {
+      display: flex; gap: 1rem; align-items: flex-start;
+      padding: 1.4rem;
+      border: 1px solid var(--gray-200);
+      border-radius: 4px;
+      transition: var(--transition);
+    }
+    .offer-item:hover {
+      border-color: var(--gold);
+      background: var(--gray-100);
+    }
+    .offer-num {
+      font-family: var(--font-display);
+      font-size: 1.4rem; font-weight: 700;
+      color: var(--gold-light); line-height: 1;
+      flex-shrink: 0; min-width: 28px;
+    }
+    .offer-text h4 {
+      font-size: 0.9rem; font-weight: 700;
+      color: var(--black); margin-bottom: 0.3rem;
+    }
+    .offer-text p {
+      font-size: 0.8rem; color: var(--gray-600); line-height: 1.6;
+    }
+
+    /* Vision + CTA */
+    .vision-cta {
+      background: var(--black);
+      border-radius: 4px;
+      padding: 3.5rem 3rem;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 2rem;
+      align-items: center;
+      position: relative; overflow: hidden;
+      margin-bottom: 72px;
+    }
+    .vision-cta::before {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0; height: 1px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    }
+    .vision-cta::after {
+      content: '';
+      position: absolute; bottom: 0; left: 0; right: 0; height: 1px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    }
+    .vision-bg-text {
+      position: absolute; top: 50%; right: -2%;
+      transform: translateY(-50%);
+      font-family: var(--font-display);
+      font-size: clamp(80px, 12vw, 140px);
+      font-weight: 700; color: transparent;
+      -webkit-text-stroke: 1px rgba(255,255,255,0.04);
+      user-select: none; pointer-events: none;
+    }
+    .vision-text { position: relative; z-index: 1; }
+    .vision-text .sec-eyebrow {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      font-size: 0.7rem; font-weight: 600; letter-spacing: 0.14em;
+      text-transform: uppercase; color: var(--gold); margin-bottom: 0.8rem;
+    }
+    .vision-text .sec-eyebrow::before {
+      content: ''; display: block; width: 18px; height: 1px; background: var(--gold);
+    }
+    .vision-text h2 {
+      font-family: var(--font-display);
+      font-size: clamp(1.5rem, 2.5vw, 2rem);
+      font-weight: 700; color: var(--white);
+      letter-spacing: -0.02em; margin-bottom: 0.8rem; line-height: 1.2;
+    }
+    .vision-text h2 em { color: var(--gold); font-style: italic; }
+    .vision-text p {
+      font-size: 0.92rem; color: rgba(255,255,255,0.6);
+      line-height: 1.8; max-width: 500px;
+    }
+    .vision-actions {
+      display: flex; flex-direction: column; gap: 0.8rem;
+      position: relative; z-index: 1; flex-shrink: 0;
+    }
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      background: var(--gold); color: var(--black);
+      padding: 0.82rem 1.6rem; font-size: 0.82rem; font-weight: 600;
+      letter-spacing: 0.06em; text-transform: uppercase;
+      border-radius: 2px; transition: var(--transition);
+      white-space: nowrap; justify-content: center;
+    }
+    .btn-primary:hover { background: var(--gold-light); }
+    .btn-outline-white {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      background: transparent; color: rgba(255,255,255,0.7);
+      padding: 0.82rem 1.6rem; font-size: 0.82rem; font-weight: 600;
+      letter-spacing: 0.06em; text-transform: uppercase;
+      border: 1px solid rgba(255,255,255,0.15); border-radius: 2px;
+      transition: var(--transition); white-space: nowrap; justify-content: center;
+    }
+    .btn-outline-white:hover {
+      border-color: var(--gold); color: var(--gold);
+    }
+
+    /* ── FOOTER ── */
     footer {
-      background: #111;
-      color: #fff;
-      text-align: center;
-      padding: 15px 0;
-      margin-top: 50px;
-      font-size: 0.9rem;
+      background: var(--black);
+      color: rgba(255,255,255,0.5);
+      padding: 2.4rem 4%;
+      margin-top: auto;
+      border-top: 1px solid rgba(255,255,255,0.06);
     }
-    .back-home {
-      display: inline-block;
-      margin-top: 15px;
-      color: #00ccff;
-      text-decoration: none;
+    .footer-inner {
+      max-width: 1200px; margin: 0 auto;
+      display: flex; justify-content: space-between;
+      align-items: center; flex-wrap: wrap; gap: 1rem;
     }
-    .back-home:hover {
-      text-decoration: underline;
+    .footer-logo {
+      font-family: var(--font-display);
+      font-size: 1.1rem; font-weight: 700;
+      color: var(--white);
+    }
+    .footer-logo span { color: var(--gold); }
+    .footer-links {
+      display: flex; gap: 1.8rem; list-style: none;
+    }
+    .footer-links a {
+      font-size: 0.76rem; color: rgba(255,255,255,0.4);
+      letter-spacing: 0.06em; text-transform: uppercase;
+      transition: color var(--transition);
+    }
+    .footer-links a:hover { color: var(--gold); }
+    .footer-copy {
+      font-size: 0.75rem; color: rgba(255,255,255,0.25);
+      width: 100%; text-align: center;
+      padding-top: 1.2rem;
+      border-top: 1px solid rgba(255,255,255,0.06);
+      margin-top: 0.8rem;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      .mission-block { grid-template-columns: 1fr; gap: 2rem; }
+      .values-grid { grid-template-columns: repeat(2, 1fr); }
+      .vision-cta { grid-template-columns: 1fr; }
+      .vision-actions { flex-direction: row; flex-wrap: wrap; }
+      .nav-links { display: none; }
+      .hamburger { display: flex; }
+    }
+    @media (max-width: 600px) {
+      .values-grid { grid-template-columns: 1fr; }
+      .offers-grid { grid-template-columns: 1fr; }
+      .vision-cta { padding: 2.4rem 1.6rem; }
+      .about-content { padding: 48px 4%; }
     }
   </style>
 </head>
 <body>
-  <header>
-    <h1>About Daily Toolkit</h1>
-    <p>Discover who we are and what we stand for</p>
-  </header>
 
-  <div class="container">
-    <h2>Our Mission</h2>
-    <p>
-      At <strong>Daily Toolkit</strong>, our goal is to make the digital world simpler and more useful for everyone.  
-      We create and share online tools, guides, and resources that help users learn new skills, stay informed,  
-      and explore modern technology in an easy way.
-    </p>
+  <!-- ── NAVBAR ── -->
+  <nav id="navbar">
+    <a href="index.html" class="nav-logo">
+      <i class="fa-solid fa-toolbox"></i>
+      Daily <span>Toolkit</span>
+    </a>
 
-    <h2>Who We Are</h2>
-    <p>
-      We are a small, passionate team of creators and developers who love working with technology and innovation.  
-      Our focus is on providing free, educational, and helpful content for learners, tech enthusiasts, and  
-      entrepreneurs around the world.
-    </p>
-
-    <h2>What We Offer</h2>
-    <ul>
-      <li>Informative articles and blog posts about AI, tech, and digital tools</li>
-      <li>Free and easy-to-use online tools for productivity</li>
-      <li>Tips and tutorials for website owners and developers</li>
-      <li>Content designed to help users grow their knowledge and online presence</li>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="tools.html">Tools</a></li>
+      <li><a href="about.html" class="active">About</a></li>
+      <li><a href="contact.html">Contact</a></li>
     </ul>
 
-    <h2>Our Vision</h2>
-    <p>
-      We believe technology should empower, not confuse.  
-      Our vision is to build a friendly digital ecosystem where everyone can access learning, growth,  
-      and digital opportunities with confidence.
-    </p>
+    <button class="hamburger" id="hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
 
-    <h2>Contact & Support</h2>
-    <p>
-      Have a question or suggestion?  
-      Click the button below to open our <strong>Contact Page</strong> in a new tab and send us a message.
-    </p>
-
-    <!-- 👇 Button that opens contact.html in a new tab -->
-    <a href="contact.html" class="contact-btn" target="_blank">Open Contact Page</a>
-
-    <br>
-    <a href="index.html" class="back-home">← Back to Home</a>
+  <!-- Mobile Menu -->
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="index.html">Home</a>
+    <a href="tools.html">Tools</a>
+    <a href="about.html">About</a>
+    <a href="contact.html">Contact</a>
   </div>
 
-  <footer>
-    <p>© 2025 Daily Toolkit | All Rights Reserved</p>
-  </footer>
-</body>
-</html>
+  <!-- ── PAGE HERO ── -->
+  <section class="page-hero">
+    <div class="page-hero-bg">About</div>
+    <div class="page-hero-inner">
+      <div class="page-eyebrow">Who We Are</div>
+      <h1>Built for the <em>everyday</em> user</h1>
+      <p>Daily Toolkit was created with one idea in mind — powerful tools should be free, fast, and simple for everyone to use.</p>
+      <div class="breadcrumb">
+        <a href="index.html">Home</a>
+        <i class="fa-solid fa-chevron-right"></i>
+        <span>About</span>
+      </div>
+    </div>
+  </section>
+
+  <div class="gold-divider"></div>
+
+  <!-- ── MAIN CONTENT ── -->
+  <div class="about-content">
+
+    <!-- Mission -->
+    <div class="mission-block">
+      <div class="mission-text">
+        <div class="sec-eyebrow">Our Mission</div>
+        <h2>Making the digital world simpler</h2>
+        <p>At Daily Toolkit, we believe every person deserves access to high-quality digital tools — without paywalls, without confusion, and without wasted time.</p>
+        <p>We build fast, reliable, browser-based tools that work anywhere. No sign-ups, no installs. Just open and use.</p>
+      </div>
+      <div class="mission-visual">
+        <div class="mission-stat">
+          <span class="num">50+</span>
+          <span class="label">Free Tools</span>
+          <span class="desc">Calculators, converters, PDF tools, image utilities & more</span>
+        </div>
+        <div class="mission-stat">
+          <span class="num">100%</span>
+          <span class="label">Browser-Based</span>
+          <span class="desc">No installation. No account needed. Works on any device</span>
+        </div>
+        <div class="mission-stat">
+          <span class="num">0</span>
+          <span class="label">Cost to You</span>
+          <span class="desc">Every tool on Daily Toolkit is completely free</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Who We Are -->
+    <div class="team-section">
+      <div class="section-header">
+        <div class="sec-eyebrow">Who We Are</div>
+        <h2>A small team, a big vision</h2>
+        <p>We're a passionate group of developers and creators who believe technology should empower — not overwhelm.</p>
+  
