@@ -1,167 +1,1105 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Emoji Picker Tool</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f7f0e6; /* Warm, light background */
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            margin: 0;
-            padding: 20px;
-            box-sizing: border-box;
-        }
-        .tool-container {
-            background-color: #ffffff;
-            border-radius: 12px;
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
-            padding: 40px;
-            max-width: 550px;
-            width: 100%;
-            text-align: center;
-            border: 1px solid #f0e0d0;
-        }
-        h1 {
-            color: #e91e63; /* Pink for heading */
-            margin-bottom: 30px;
-            font-size: 2.2em;
-        }
-        #emojiContainer {
-            font-size: 2.5em; /* Larger emojis */
-            cursor: pointer;
-            border: 1px solid #ffe0b2; /* Light orange border */
-            border-radius: 10px;
-            padding: 15px;
-            max-height: 250px;
-            overflow-y: auto;
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 8px; /* Space between emojis */
-            background-color: #fffaf0; /* Even lighter background for container */
-            margin-bottom: 25px;
-        }
-        #emojiContainer span {
-            padding: 5px;
-            transition: transform 0.2s ease, background-color 0.2s ease;
-            border-radius: 5px;
-            line-height: 1; /* Ensure consistent spacing */
-        }
-        #emojiContainer span:hover {
-            transform: scale(1.1);
-            background-color: #ffebee; /* Very light pink on hover */
-        }
-        input[type="text"] {
-            width: calc(100% - 40px); /* Adjust for padding */
-            padding: 12px 15px;
-            margin-bottom: 20px;
-            border: 1px solid #e91e63;
-            border-radius: 8px;
-            font-size: 1.1em;
-            text-align: center;
-            color: #333;
-            background-color: #fff8f8;
-            outline: none;
-        }
-        button {
-            background-color: #e91e63;
-            color: white;
-            border: none;
-            padding: 15px 30px;
-            border-radius: 8px;
-            cursor: pointer;
-            font-size: 1.1em;
-            transition: background-color 0.3s ease, transform 0.2s ease;
-            margin-top: 10px;
-            width: auto;
-        }
-        button:hover {
-            background-color: #c2185b; /* Darker pink */
-            transform: translateY(-2px);
-        }
-        button:active {
-            transform: translateY(0);
-        }
-        .copied-message {
-            margin-top: 20px;
-            font-size: 1em;
-            color: #4CAF50; /* Green for success message */
-            font-weight: bold;
-            display: none;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Emoji Picker – Daily Toolkit</title>
+
+  <!-- Content Security Policy -->
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://pagead2.googlesyndication.com https://www.googletagmanager.com https://*.google.com https://*.doubleclick.net; connect-src 'self' https://pagead2.googlesyndication.com https://www.google-analytics.com https://www.googletagmanager.com; img-src 'self' data: https://*.googlesyndication.com https://*.doubleclick.net https://www.google-analytics.com https://*.google.com https://ahsan098-2.github.io; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com; font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com; frame-src 'self' https://googleads.g.doubleclick.net https://pagead2.googlesyndication.com; object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests;">
+
+  <!-- Google AdSense -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6737111642010842" crossorigin="anonymous"></script>
+
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XSNWLXJKBZ"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-XSNWLXJKBZ');
+  </script>
+
+  <!-- SEO -->
+  <meta name="description" content="Free online Emoji Picker – browse 500+ emojis by category, search, copy with one click. No signup needed.">
+  <meta name="keywords" content="emoji picker, copy emoji, emoji tool, free emoji, emoji search, daily toolkit">
+  <meta name="robots" content="index, follow">
+  <meta name="author" content="Ahsanullah">
+  <link rel="canonical" href="https://dailytoolkit.xyz/tools/emoji-picker.html">
+  <meta property="og:title" content="Emoji Picker – Daily Toolkit">
+  <meta property="og:description" content="Browse 500+ emojis, search by name, copy instantly. Free online emoji picker tool.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://dailytoolkit.xyz/tools/emoji-picker.html">
+  <meta property="og:image" content="https://ahsan098-2.github.io/aum123/assets/preview.png">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Emoji Picker",
+    "url": "https://dailytoolkit.xyz/tools/emoji-picker.html",
+    "description": "Browse and copy 500+ emojis instantly. Free online emoji picker tool.",
+    "applicationCategory": "UtilityApplication",
+    "operatingSystem": "Any",
+    "offers": { "@type": "Offer", "price": "0" }
+  }
+  </script>
+
+  <!-- Fonts & Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --black: #0A0A0A;
+      --white: #FFFFFF;
+      --gray-100: #F7F7F7;
+      --gray-200: #EFEFEF;
+      --gray-400: #ABABAB;
+      --gray-600: #6B6B6B;
+      --gold: #C9A84C;
+      --font-display: 'Playfair Display', Georgia, serif;
+      --font-body: 'Inter', system-ui, sans-serif;
+      --transition: 0.3s cubic-bezier(0.4,0,0.2,1);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font-body);
+      background: var(--white);
+      color: var(--black);
+      line-height: 1.6;
+      overflow-x: hidden;
+      display: flex; flex-direction: column; min-height: 100vh;
+    }
+
+    a { text-decoration: none; color: inherit; }
+
+    ::-webkit-scrollbar { width: 4px; }
+    ::-webkit-scrollbar-track { background: var(--gray-100); }
+    ::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 2px; }
+
+    .sr-only {
+      position: absolute !important; width: 1px !important; height: 1px !important;
+      padding: 0 !important; margin: -1px !important; overflow: hidden !important;
+      clip: rect(0,0,0,0) !important; white-space: nowrap !important; border: 0 !important;
+    }
+
+    /* ── NAVBAR ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 4%; height: 68px;
+      background: rgba(255,255,255,0.96); backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--gray-200);
+      transition: box-shadow var(--transition); gap: 1rem;
+    }
+    nav.scrolled { box-shadow: 0 2px 24px rgba(0,0,0,0.07); }
+
+    .nav-logo {
+      font-family: var(--font-display); font-size: 1.3rem; font-weight: 700;
+      color: var(--black); white-space: nowrap;
+      display: flex; align-items: center; gap: 0.4rem;
+    }
+    .nav-logo span { color: var(--gold); }
+    .nav-logo i { color: var(--gold); font-size: 1.1rem; }
+
+    .nav-links { display: flex; gap: 1.5rem; list-style: none; align-items: center; }
+    .nav-links a {
+      font-size: 0.8rem; font-weight: 500; color: var(--gray-600);
+      letter-spacing: 0.04em; text-transform: uppercase;
+      transition: color var(--transition); padding: 4px 0; position: relative;
+    }
+    .nav-links a::after {
+      content: ''; position: absolute; bottom: 0; left: 0; right: 0;
+      height: 1px; background: var(--gold);
+      transform: scaleX(0); transform-origin: left; transition: transform var(--transition);
+    }
+    .nav-links a:hover, .nav-links a.active { color: var(--black); }
+    .nav-links a:hover::after, .nav-links a.active::after { transform: scaleX(1); }
+
+    .nav-search {
+      display: flex; align-items: center;
+      background: var(--gray-100); border: 1px solid var(--gray-200);
+      border-radius: 2px; overflow: hidden; min-width: 200px;
+    }
+    .nav-search input {
+      flex: 1; border: none; background: transparent;
+      padding: 0.5rem 0.8rem; font-family: var(--font-body);
+      font-size: 0.82rem; color: var(--black); outline: none;
+    }
+    .nav-search input::placeholder { color: var(--gray-400); }
+    .nav-search button {
+      background: var(--black); color: var(--white); border: none;
+      padding: 0.5rem 0.75rem; cursor: pointer;
+      transition: background var(--transition); font-size: 0.8rem;
+    }
+    .nav-search button:hover { background: var(--gold); color: var(--black); }
+
+    .hamburger {
+      display: none; flex-direction: column; gap: 5px;
+      cursor: pointer; padding: 4px; background: none; border: none;
+    }
+    .hamburger span { display: block; width: 22px; height: 1.5px; background: var(--black); }
+
+    .mobile-menu {
+      display: none; position: fixed; top: 68px; left: 0; right: 0;
+      background: var(--white); border-bottom: 1px solid var(--gray-200);
+      padding: 1.2rem 4%; flex-direction: column; gap: 1rem; z-index: 999;
+    }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a {
+      font-size: 0.88rem; font-weight: 500; color: var(--gray-600);
+      letter-spacing: 0.04em; text-transform: uppercase;
+    }
+    .mobile-menu a:hover { color: var(--gold); }
+
+    /* ── GOLD DIVIDER ── */
+    .gold-divider {
+      width: 100%; height: 1px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    }
+
+    /* ── PAGE HEADER ── */
+    .page-header {
+      padding: 104px 4% 48px; background: var(--gray-100);
+      border-bottom: 1px solid var(--gray-200);
+      text-align: center; position: relative; overflow: hidden;
+    }
+    .page-header-bg {
+      position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%);
+      font-family: var(--font-display);
+      font-size: clamp(70px, 13vw, 160px); font-weight: 700;
+      color: transparent; -webkit-text-stroke: 1px var(--gray-200);
+      user-select: none; pointer-events: none; white-space: nowrap; opacity: 0.5;
+    }
+    .page-header-inner { position: relative; z-index: 1; }
+    .page-eyebrow {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      font-size: 0.7rem; font-weight: 600; letter-spacing: 0.14em;
+      text-transform: uppercase; color: var(--gold); margin-bottom: 0.7rem;
+    }
+    .page-eyebrow::before, .page-eyebrow::after {
+      content: ''; display: block; width: 18px; height: 1px; background: var(--gold);
+    }
+    .page-header h1 {
+      font-family: var(--font-display);
+      font-size: clamp(1.9rem, 4vw, 3rem); font-weight: 700;
+      letter-spacing: -0.03em; color: var(--black); margin-bottom: 0.5rem;
+    }
+    .page-header h1 em { font-style: italic; color: var(--gold); }
+    .page-header p { font-size: 0.92rem; color: var(--gray-600); max-width: 460px; margin: 0 auto; }
+
+    /* ── BREADCRUMB ── */
+    .breadcrumb {
+      max-width: 1100px; margin: 0 auto; padding: 0.9rem 4%;
+      display: flex; align-items: center; gap: 0.4rem;
+      font-size: 0.76rem; color: var(--gray-400);
+    }
+    .breadcrumb a { color: var(--gray-600); transition: color var(--transition); }
+    .breadcrumb a:hover { color: var(--gold); }
+    .breadcrumb i { font-size: 0.6rem; }
+
+    /* ── MAIN ── */
+    main { flex: 1; padding: 0 4% 72px; }
+    .main-inner { max-width: 1100px; margin: 0 auto; }
+
+    /* ── TOOL CARD ── */
+    .tool-card {
+      background: var(--white); border: 1px solid var(--gray-200);
+      border-radius: 4px; padding: 2rem;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.04);
+      margin-bottom: 2rem;
+    }
+
+    /* Search + filter bar */
+    .toolbar {
+      display: flex; flex-wrap: wrap; gap: 0.8rem;
+      align-items: center; margin-bottom: 1.4rem;
+    }
+    .emoji-search {
+      flex: 1; min-width: 180px;
+      display: flex; align-items: center; gap: 0.6rem;
+      background: var(--gray-100); border: 1px solid var(--gray-200);
+      border-radius: 2px; padding: 0.6rem 0.9rem;
+      transition: var(--transition);
+    }
+    .emoji-search:focus-within {
+      background: var(--white); border-color: var(--black);
+      box-shadow: 0 0 0 3px rgba(10,10,10,0.05);
+    }
+    .emoji-search i { color: var(--gray-400); font-size: 0.85rem; }
+    .emoji-search input {
+      border: none; background: transparent;
+      font-family: var(--font-body); font-size: 0.88rem;
+      color: var(--black); outline: none; width: 100%;
+    }
+    .emoji-search input::placeholder { color: var(--gray-400); }
+
+    /* Category tabs */
+    .cat-tabs {
+      display: flex; flex-wrap: wrap; gap: 0.4rem;
+    }
+    .cat-tab {
+      padding: 0.38rem 0.85rem; font-size: 0.75rem; font-weight: 500;
+      letter-spacing: 0.03em; border: 1px solid var(--gray-200);
+      border-radius: 2px; background: transparent; cursor: pointer;
+      color: var(--gray-600); transition: var(--transition);
+      font-family: var(--font-body); display: flex; align-items: center; gap: 0.3rem;
+    }
+    .cat-tab.active, .cat-tab:hover {
+      background: var(--black); color: var(--white); border-color: var(--black);
+    }
+
+    /* Emoji grid */
+    .emoji-grid-label {
+      font-size: 0.7rem; font-weight: 600; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--gray-400);
+      margin-bottom: 0.8rem; display: flex; align-items: center; gap: 0.5rem;
+    }
+    .emoji-grid-label span { color: var(--gold); }
+
+    .emoji-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(46px, 1fr));
+      gap: 6px; max-height: 320px; overflow-y: auto;
+      padding: 1rem; background: var(--gray-100);
+      border-radius: 4px; border: 1px solid var(--gray-200);
+      margin-bottom: 1.4rem;
+    }
+    .emoji-grid::-webkit-scrollbar { width: 3px; }
+    .emoji-grid::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 2px; }
+
+    .emoji-btn {
+      width: 46px; height: 46px; font-size: 1.4rem;
+      border: 1px solid transparent; border-radius: 6px;
+      background: var(--white); cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      transition: var(--transition); position: relative;
+    }
+    .emoji-btn:hover {
+      border-color: var(--gold); transform: scale(1.15);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1); z-index: 1;
+    }
+    .emoji-btn.selected {
+      border-color: var(--black); background: var(--black);
+      transform: scale(1.1);
+    }
+
+    .no-result {
+      grid-column: 1/-1; text-align: center;
+      padding: 2rem; font-size: 0.88rem; color: var(--gray-400);
+    }
+
+    /* Selected + copy area */
+    .selected-area {
+      display: flex; gap: 0.8rem; align-items: stretch; flex-wrap: wrap;
+    }
+    .selected-display {
+      flex: 1; min-width: 200px;
+      display: flex; align-items: center; gap: 0.8rem;
+      background: var(--gray-100); border: 1px solid var(--gray-200);
+      border-radius: 4px; padding: 0.8rem 1rem;
+    }
+    .selected-emoji-preview {
+      font-size: 2rem; min-width: 42px; text-align: center;
+    }
+    .selected-info { flex: 1; }
+    .selected-info .sel-name {
+      font-size: 0.78rem; font-weight: 600; color: var(--black);
+    }
+    .selected-info .sel-code {
+      font-size: 0.7rem; color: var(--gray-400); font-family: monospace;
+    }
+    .selected-input-box {
+      flex: 1; min-width: 160px;
+      padding: 0.75rem 1rem; font-size: 1.1rem; text-align: center;
+      border: 1px solid var(--gray-200); border-radius: 4px;
+      background: var(--white); outline: none; font-family: var(--font-body);
+      color: var(--black); cursor: default;
+    }
+
+    .copy-btn {
+      padding: 0 1.6rem; background: var(--black); color: var(--white);
+      border: none; border-radius: 4px; cursor: pointer;
+      font-family: var(--font-body); font-size: 0.82rem;
+      font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase;
+      transition: var(--transition); display: flex; align-items: center; gap: 0.4rem;
+      white-space: nowrap;
+    }
+    .copy-btn:hover { background: var(--gold); color: var(--black); }
+    .copy-btn.copied { background: #2d8a4e; }
+
+    /* Recent + Favourites row */
+    .mini-sections {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; margin-top: 1.6rem;
+    }
+    .mini-sec { background: var(--gray-100); border: 1px solid var(--gray-200); border-radius: 4px; padding: 1rem; }
+    .mini-sec-title {
+      font-size: 0.7rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--gray-400); margin-bottom: 0.7rem; display: flex; align-items: center; gap: 0.4rem;
+    }
+    .mini-sec-title i { color: var(--gold); }
+    .mini-emoji-row { display: flex; flex-wrap: wrap; gap: 6px; min-height: 40px; }
+    .mini-emoji-btn {
+      width: 38px; height: 38px; font-size: 1.2rem; border-radius: 6px;
+      background: var(--white); border: 1px solid var(--gray-200);
+      cursor: pointer; display: flex; align-items: center; justify-content: center;
+      transition: var(--transition);
+    }
+    .mini-emoji-btn:hover { border-color: var(--gold); transform: scale(1.12); }
+    .mini-empty { font-size: 0.75rem; color: var(--gray-400); display: flex; align-items: center; }
+
+    /* Toast */
+    .toast {
+      position: fixed; bottom: 2rem; left: 50%; transform: translateX(-50%) translateY(60px);
+      background: var(--black); color: var(--white);
+      padding: 0.65rem 1.4rem; border-radius: 2px;
+      font-size: 0.82rem; font-weight: 500; z-index: 999;
+      transition: transform 0.35s ease, opacity 0.35s ease; opacity: 0;
+      display: flex; align-items: center; gap: 0.5rem; white-space: nowrap;
+    }
+    .toast.show { transform: translateX(-50%) translateY(0); opacity: 1; }
+    .toast i { color: var(--gold); }
+
+    /* ── HOW TO USE ── */
+    .how-card {
+      background: var(--gray-100); border: 1px solid var(--gray-200);
+      border-radius: 4px; padding: 1.6rem 2rem; margin-bottom: 2rem;
+    }
+    .how-title {
+      font-family: var(--font-display); font-size: 1.15rem; font-weight: 700;
+      margin-bottom: 1.2rem; display: flex; align-items: center; gap: 0.6rem;
+    }
+    .how-title i { color: var(--gold); font-size: 1rem; }
+    .how-steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; }
+    .how-step { display: flex; flex-direction: column; gap: 0.4rem; }
+    .step-num {
+      font-family: var(--font-display); font-size: 1.6rem;
+      font-weight: 700; color: var(--gold); line-height: 1;
+    }
+    .step-text { font-size: 0.8rem; color: var(--gray-600); line-height: 1.5; }
+
+    /* ── BOTTOM INFO ── */
+    .info-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; margin-bottom: 2rem;
+    }
+    .info-box {
+      background: var(--white); border: 1px solid var(--gray-200);
+      border-radius: 4px; padding: 1.4rem;
+      position: relative; overflow: hidden;
+    }
+    .info-box::before {
+      content: ''; position: absolute; left: 0; top: 0; bottom: 0;
+      width: 2px; background: var(--gold);
+    }
+    .info-box h3 { font-size: 0.9rem; font-weight: 700; margin-bottom: 0.5rem; }
+    .info-box p { font-size: 0.8rem; color: var(--gray-600); line-height: 1.65; }
+
+    /* ── RELATED TOOLS ── */
+    .related-title {
+      font-family: var(--font-display); font-size: 1.2rem; font-weight: 700;
+      margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem;
+    }
+    .related-title::after {
+      content: ''; flex: 1; height: 1px; background: var(--gray-200);
+    }
+    .related-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.8rem; margin-bottom: 2rem; }
+    .related-card {
+      background: var(--gray-100); border: 1px solid var(--gray-200);
+      border-radius: 4px; padding: 1rem; text-decoration: none;
+      color: var(--black); transition: var(--transition);
+      display: flex; flex-direction: column; gap: 0.3rem;
+    }
+    .related-card:hover { border-color: var(--gold); background: var(--white); transform: translateY(-2px); }
+    .related-card .rc-icon { font-size: 1.3rem; color: var(--gold); }
+    .related-card .rc-name { font-size: 0.82rem; font-weight: 600; }
+    .related-card .rc-desc { font-size: 0.72rem; color: var(--gray-400); }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--black); color: var(--gray-400); padding: 48px 4% 24px;
+    }
+    .footer-inner { max-width: 1100px; margin: 0 auto; }
+    .footer-top {
+      display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 2rem; margin-bottom: 2rem;
+    }
+    .footer-brand .nav-logo { color: var(--white); margin-bottom: 0.8rem; }
+    .footer-desc { font-size: 0.8rem; line-height: 1.7; max-width: 220px; }
+    .footer-col h4 {
+      font-size: 0.68rem; font-weight: 600; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--white); margin-bottom: 1rem;
+    }
+    .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; }
+    .footer-col ul a { font-size: 0.78rem; color: var(--gray-400); transition: color var(--transition); }
+    .footer-col ul a:hover { color: var(--gold); }
+    .social-links { display: flex; gap: 0.7rem; margin-top: 1rem; }
+    .social-link {
+      width: 32px; height: 32px; border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 50%; display: flex; align-items: center; justify-content: center;
+      color: var(--gray-400); font-size: 0.78rem; transition: var(--transition);
+    }
+    .social-link:hover { border-color: var(--gold); color: var(--gold); }
+    .footer-bottom {
+      padding-top: 1.5rem; border-top: 1px solid rgba(255,255,255,0.06);
+      display: flex; justify-content: space-between; align-items: center;
+      flex-wrap: wrap; gap: 0.8rem;
+    }
+    .footer-bottom p { font-size: 0.76rem; }
+
+    .back-top {
+      position: fixed; bottom: 1.8rem; right: 1.8rem;
+      width: 38px; height: 38px; background: var(--black); color: var(--white);
+      border: none; border-radius: 2px; cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      opacity: 0; transform: translateY(8px); transition: var(--transition); z-index: 50;
+    }
+    .back-top.show { opacity: 1; transform: translateY(0); }
+    .back-top:hover { background: var(--gold); color: var(--black); }
+
+    .reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.55s ease, transform 0.55s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    @media (max-width: 900px) {
+      .how-steps { grid-template-columns: 1fr 1fr; }
+      .related-grid { grid-template-columns: 1fr 1fr; }
+      .footer-top { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 768px) {
+      .nav-links, .nav-search { display: none; }
+      .hamburger { display: flex; }
+      .mini-sections { grid-template-columns: 1fr; }
+      .info-grid { grid-template-columns: 1fr; }
+      .footer-top { grid-template-columns: 1fr; }
+      .selected-area { flex-direction: column; }
+      .copy-btn { width: 100%; justify-content: center; padding: 0.8rem; }
+    }
+    @media (max-width: 480px) {
+      .how-steps { grid-template-columns: 1fr; }
+      .related-grid { grid-template-columns: 1fr 1fr; }
+      .emoji-grid { grid-template-columns: repeat(auto-fill, minmax(40px,1fr)); max-height: 260px; }
+    }
+  </style>
 </head>
 <body>
-    <div class="tool-container">
-        <h1>Emoji Picker</h1>
-        <div id="emojiContainer">
-            <!-- Emojis will be loaded here by JS -->
+
+<!-- NAVBAR -->
+<nav id="navbar">
+  <a href="../index.html" class="nav-logo"><i class="fas fa-tools"></i> Daily<span>Toolkit</span></a>
+  <ul class="nav-links">
+    <li><a href="../index.html" class="nav-link">Home</a></li>
+    <li><a href="../tools.html" class="nav-link">Tools</a></li>
+    <li><a href="../about.html" class="nav-link">About</a></li>
+    <li><a href="../privacy.html" class="nav-link">Privacy</a></li>
+    <li><a href="../contact.html" class="nav-link">Contact</a></li>
+    <li><a href="../terms.html" class="nav-link">Terms</a></li>
+    <li><a href="../blog.html" class="nav-link">Blog</a></li>
+  </ul>
+  <form class="nav-search" onsubmit="event.preventDefault(); window.location='../index.html#tools'">
+    <input type="text" placeholder="Search tools..." aria-label="Search tools">
+    <button type="submit" aria-label="Search"><i class="fas fa-search"></i></button>
+  </form>
+  <button class="hamburger" id="hamburger" onclick="toggleMenu()" aria-label="Toggle menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="../index.html">Home</a>
+  <a href="../tools.html">Tools</a>
+  <a href="../about.html">About</a>
+  <a href="../contact.html">Contact</a>
+  <a href="../blog.html">Blog</a>
+</div>
+
+<!-- PAGE HEADER -->
+<div class="page-header">
+  <div class="page-header-bg" aria-hidden="true">EMOJI</div>
+  <div class="page-header-inner">
+    <div class="page-eyebrow">Free Tool</div>
+    <h1>Emoji <em>Picker</em></h1>
+    <p>Browse 500+ emojis by category, search by name, and copy with one click.</p>
+  </div>
+</div>
+
+<div class="gold-divider"></div>
+
+<!-- BREADCRUMB -->
+<div class="breadcrumb">
+  <a href="../index.html">Home</a>
+  <i class="fas fa-chevron-right"></i>
+  <a href="../index.html#tools">Tools</a>
+  <i class="fas fa-chevron-right"></i>
+  <span style="color:var(--gold)">Emoji Picker</span>
+</div>
+
+<main>
+  <div class="main-inner">
+
+    <!-- TOOL -->
+    <div class="tool-card reveal">
+
+      <!-- Toolbar -->
+      <div class="toolbar">
+        <div class="emoji-search">
+          <i class="fas fa-search"></i>
+          <input type="text" id="emojiSearch" placeholder="Search emoji name, e.g. heart, fire, cat..." oninput="searchEmojis(this.value)" aria-label="Search emojis">
         </div>
-        <input type="text" id="selectedEmoji" placeholder="Click an emoji to select" readonly>
-        <button onclick="copyEmoji()">Copy Selected Emoji</button>
-        <p class="copied-message" id="copyMessage"></p>
+        <div class="cat-tabs" id="catTabs"></div>
+      </div>
+
+      <!-- Grid label -->
+      <div class="emoji-grid-label">
+        Showing <span id="emojiCount">0</span> emojis &nbsp;·&nbsp; Click to select
+      </div>
+
+      <!-- Emoji grid -->
+      <div class="emoji-grid" id="emojiGrid"></div>
+
+      <!-- Selected + copy -->
+      <div class="selected-area">
+        <div class="selected-display">
+          <div class="selected-emoji-preview" id="previewEmoji">😊</div>
+          <div class="selected-info">
+            <div class="sel-name" id="selName">Select an emoji</div>
+            <div class="sel-code" id="selCode">—</div>
+          </div>
+        </div>
+        <input type="text" class="selected-input-box" id="selectedInput" value="😊" readonly aria-label="Selected emoji">
+        <button class="copy-btn" id="copyBtn" onclick="copyEmoji()">
+          <i class="fas fa-copy"></i> Copy
+        </button>
+      </div>
+
+      <!-- Recent + Favourites -->
+      <div class="mini-sections">
+        <div class="mini-sec">
+          <div class="mini-sec-title"><i class="fas fa-clock"></i> Recently Used</div>
+          <div class="mini-emoji-row" id="recentRow">
+            <span class="mini-empty">No recent emojis yet</span>
+          </div>
+        </div>
+        <div class="mini-sec">
+          <div class="mini-sec-title"><i class="fas fa-heart"></i> Favourites
+            <span style="margin-left:auto;font-size:0.68rem;color:var(--gold);cursor:pointer;" onclick="clearFavourites()">Clear</span>
+          </div>
+          <div class="mini-emoji-row" id="favRow">
+            <span class="mini-empty">Right-click an emoji to favourite</span>
+          </div>
+        </div>
+      </div>
     </div>
 
-    <script>
-        const emojis = [
-            '😀', '😃', '😄', '😁', '😆', '😅', '😂', '🤣', '😊', '😇',
-            '🙂', '🙃', '😉', '😌', '😍', '🥰', '😘', '😗', '😙', '😚',
-            '😋', '😛', '😝', '😜', '🤪', '🤨', '🧐', '🤓', '😎', '🤩',
-            '🥳', '😏', '😒', '😞', '😔', '😟', '😕', '🙁', '☹️', '😤',
-            '😠', '😡', '🤬', '🤯', '😳', '🥵', '🥶', '😱', '😨', '😰',
-            '😭', '😢', '😥', '😓', '🤗', '🤔', '🤫', '🤭', '🤥', '😶',
-            '😐', '😑', '😬', '🫠', '🙄', '😮‍💨', '😲', '🥱', '😴', '🤤',
-            '😪', '😵', '🥴', '🤢', '🤮', '🤧', '😷', '🤒', '🤕', '🤑',
-            '🤠', '🥳', '😎', '🥸', '🤓', '🧐', '🧑‍🎄', '👼', '🧑‍🍼', '🦸',
-            '🎉', '🎊', '🎁', '🎂', '🎈', '🎄', '🎆', '🎇', '✨', '🌟',
-            '💫', '💥', '🔥', '💯', '🌈', '☀️', '☁️', '☂️', '☔', '⚡',
-            '🌊', '💧', '🌍', '🌎', '🌏', '🌸', '🌼', '🌻', '🌹', '🌷'
-        ];
+    <!-- HOW TO USE -->
+    <div class="how-card reveal">
+      <div class="how-title"><i class="fas fa-circle-info"></i> How to Use Emoji Picker</div>
+      <div class="how-steps">
+        <div class="how-step">
+          <div class="step-num">01</div>
+          <div class="step-text">Search or browse emojis by category using the filter tabs above.</div>
+        </div>
+        <div class="how-step">
+          <div class="step-num">02</div>
+          <div class="step-text">Click any emoji to select it — it appears in the preview box below.</div>
+        </div>
+        <div class="how-step">
+          <div class="step-num">03</div>
+          <div class="step-text">Press <strong>Copy</strong> to copy it to your clipboard instantly.</div>
+        </div>
+        <div class="how-step">
+          <div class="step-num">04</div>
+          <div class="step-text">Paste it anywhere — WhatsApp, Instagram, Twitter, or any text field.</div>
+        </div>
+      </div>
+    </div>
 
-        function loadEmojis() {
-            const emojiContainer = document.getElementById('emojiContainer');
-            emojis.forEach(emoji => {
-                const span = document.createElement('span');
-                span.textContent = emoji;
-                span.title = `Click to select ${emoji}`;
-                span.onclick = () => {
-                    document.getElementById('selectedEmoji').value = emoji;
-                    document.getElementById('copyMessage').style.display = 'none'; // Clear message
-                };
-                emojiContainer.appendChild(span);
-            });
-        }
+    <!-- INFO BOXES -->
+    <div class="info-grid reveal">
+      <div class="info-box">
+        <h3><i class="fas fa-circle-check" style="color:var(--gold);margin-right:0.4rem;"></i> No Signup Required</h3>
+        <p>The Emoji Picker works instantly in your browser. No account, no login, no download needed. Just pick and copy.</p>
+      </div>
+      <div class="info-box">
+        <h3><i class="fas fa-mobile-screen-button" style="color:var(--gold);margin-right:0.4rem;"></i> Works on All Devices</h3>
+        <p>Fully responsive — use it on your phone, tablet, or desktop. Emojis render natively so you always see what you copy.</p>
+      </div>
+      <div class="info-box">
+        <h3><i class="fas fa-magnifying-glass" style="color:var(--gold);margin-right:0.4rem;"></i> Search by Name</h3>
+        <p>Type "fire", "heart", "cat" or any keyword and the grid filters instantly so you find what you need in seconds.</p>
+      </div>
+      <div class="info-box">
+        <h3><i class="fas fa-star" style="color:var(--gold);margin-right:0.4rem;"></i> Favourites & Recents</h3>
+        <p>Right-click any emoji to save it to Favourites. Recently clicked emojis are remembered so your go-to emojis are always nearby.</p>
+      </div>
+    </div>
 
-        async function copyEmoji() {
-            const selectedEmojiInput = document.getElementById('selectedEmoji');
-            const copyMessage = document.getElementById('copyMessage');
-            
-            copyMessage.style.display = 'none'; // Hide previous message
+    <!-- RELATED TOOLS -->
+    <div class="reveal">
+      <div class="related-title">Related Tools</div>
+      <div class="related-grid">
+        <a href="hashtag-generator.html" class="related-card">
+          <div class="rc-icon"><i class="fas fa-hashtag"></i></div>
+          <div class="rc-name">Hashtag Generator</div>
+          <div class="rc-desc">Generate hashtags for posts</div>
+        </a>
+        <a href="instagram-caption-maker.html" class="related-card">
+          <div class="rc-icon"><i class="fab fa-instagram"></i></div>
+          <div class="rc-name">Caption Maker</div>
+          <div class="rc-desc">Instagram caption ideas</div>
+        </a>
+        <a href="bio-ideas-generator.html" class="related-card">
+          <div class="rc-icon"><i class="fas fa-user-edit"></i></div>
+          <div class="rc-name">Bio Generator</div>
+          <div class="rc-desc">Stylish social media bios</div>
+        </a>
+        <a href="text-case-converter.html" class="related-card">
+          <div class="rc-icon"><i class="fas fa-text-height"></i></div>
+          <div class="rc-name">Text Case Converter</div>
+          <div class="rc-desc">Upper, lower, title case</div>
+        </a>
+      </div>
+    </div>
 
-            if (selectedEmojiInput.value) {
-                try {
-                    await navigator.clipboard.writeText(selectedEmojiInput.value);
-                    copyMessage.textContent = `"${selectedEmojiInput.value}" copied to clipboard!`;
-                    copyMessage.style.color = '#4CAF50';
-                } catch (err) {
-                    console.error('Failed to copy emoji:', err);
-                    copyMessage.textContent = 'Failed to copy emoji. Please try manually.';
-                    copyMessage.style.color = '#f44336';
-                }
-            } else {
-                copyMessage.textContent = 'Please select an emoji first!';
-                copyMessage.style.color = '#ff9800';
-            }
-            copyMessage.style.display = 'block';
-        }
+  </div>
+</main>
 
-        // Load emojis when the page is fully loaded
-        document.addEventListener('DOMContentLoaded', loadEmojis);
-    </script>
+<!-- TOAST -->
+<div class="toast" id="toast"><i class="fas fa-check"></i> <span id="toastMsg">Copied!</span></div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <a href="../index.html" class="nav-logo"><i class="fas fa-tools"></i> Daily<span>Toolkit</span></a>
+        <p class="footer-desc">Free online tools for everyday digital tasks. No signup, no limits.</p>
+        <div class="social-links">
+          <a href="https://www.facebook.com/Ahsanullah7116/" class="social-link" target="_blank" rel="noopener" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+          <a href="https://twitter.com/yourprofile" class="social-link" target="_blank" rel="noopener" aria-label="Twitter"><i class="fab fa-x-twitter"></i></a>
+          <a href="https://www.instagram.com/ahsan_ontop01/" class="social-link" target="_blank" rel="noopener" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+          <a href="https://pk.linkedin.com/in/ahsanullah-mahar-b1b177285" class="social-link" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Quick Tools</h4>
+        <ul>
+          <li><a href="age-calculator.html">Age Calculator</a></li>
+          <li><a href="bmi-calculator.html">BMI Calculator</a></li>
+          <li><a href="compress-pdf.html">Compress PDF</a></li>
+          <li><a href="qr-generator.html">QR Generator</a></li>
+          <li><a href="password-gen.html">Password Generator</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Pages</h4>
+        <ul>
+          <li><a href="../about.html">About</a></li>
+          <li><a href="../blog.html">Blog</a></li>
+          <li><a href="../privacy.html">Privacy Policy</a></li>
+          <li><a href="../terms.html">Terms of Service</a></li>
+          <li><a href="../contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Categories</h4>
+        <ul>
+          <li><a href="../index.html#categories">Calculators</a></li>
+          <li><a href="../index.html#categories">PDF Tools</a></li>
+          <li><a href="../index.html#categories">Image Tools</a></li>
+          <li><a href="../index.html#categories">Text Utilities</a></li>
+          <li><a href="../index.html#categories">Generators</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025 Daily Toolkit. All rights reserved.</p>
+      <p style="font-size:0.74rem;">Built with care for everyday users.</p>
+    </div>
+  </div>
+</footer>
+
+<button class="back-top" id="backTop" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Back to top">
+  <i class="fas fa-arrow-up"></i>
+</button>
+
+<script>
+// ── EMOJI DATA ──
+const emojiData = {
+  "Smileys": [
+    {e:"😀",n:"Grinning Face"},{e:"😃",n:"Grinning Face Big Eyes"},{e:"😄",n:"Grinning Face Smiling Eyes"},
+    {e:"😁",n:"Beaming Face Smiling Eyes"},{e:"😆",n:"Grinning Squinting Face"},{e:"😅",n:"Grinning Face Sweat"},
+    {e:"😂",n:"Face Tears of Joy"},{e:"🤣",n:"Rolling on the Floor Laughing"},{e:"😊",n:"Smiling Face"},
+    {e:"😇",n:"Smiling Face with Halo"},{e:"🙂",n:"Slightly Smiling Face"},{e:"🙃",n:"Upside Down Face"},
+    {e:"😉",n:"Winking Face"},{e:"😌",n:"Relieved Face"},{e:"😍",n:"Smiling Face Heart Eyes"},
+    {e:"🥰",n:"Smiling Face Hearts"},{e:"😘",n:"Face Blowing a Kiss"},{e:"😗",n:"Kissing Face"},
+    {e:"😙",n:"Kissing Face Smiling Eyes"},{e:"😚",n:"Kissing Face Closed Eyes"},{e:"😋",n:"Face Savoring Food"},
+    {e:"😛",n:"Face with Tongue"},{e:"😝",n:"Squinting Face with Tongue"},{e:"😜",n:"Winking Face with Tongue"},
+    {e:"🤪",n:"Zany Face"},{e:"🤨",n:"Face with Raised Eyebrow"},{e:"🧐",n:"Face with Monocle"},
+    {e:"🤓",n:"Nerd Face"},{e:"😎",n:"Smiling Face with Sunglasses"},{e:"🤩",n:"Star Struck"},
+    {e:"🥳",n:"Partying Face"},{e:"😏",n:"Smirking Face"},{e:"😒",n:"Unamused Face"},
+    {e:"😞",n:"Disappointed Face"},{e:"😔",n:"Pensive Face"},{e:"😟",n:"Worried Face"},
+    {e:"😕",n:"Confused Face"},{e:"🙁",n:"Slightly Frowning Face"},{e:"☹️",n:"Frowning Face"},
+    {e:"😣",n:"Persevering Face"},{e:"😖",n:"Confounded Face"},{e:"😫",n:"Tired Face"},
+    {e:"😩",n:"Weary Face"},{e:"🥺",n:"Pleading Face"},{e:"😢",n:"Crying Face"},
+    {e:"😭",n:"Loudly Crying Face"},{e:"😤",n:"Face with Steam From Nose"},{e:"😠",n:"Angry Face"},
+    {e:"😡",n:"Pouting Face"},{e:"🤬",n:"Face with Symbols on Mouth"},{e:"🤯",n:"Exploding Head"},
+    {e:"😳",n:"Flushed Face"},{e:"🥵",n:"Hot Face"},{e:"🥶",n:"Cold Face"},
+    {e:"😱",n:"Face Screaming in Fear"},{e:"😨",n:"Fearful Face"},{e:"😰",n:"Anxious Face with Sweat"},
+    {e:"😥",n:"Sad but Relieved Face"},{e:"😓",n:"Downcast Face with Sweat"},{e:"🤗",n:"Hugging Face"},
+    {e:"🤔",n:"Thinking Face"},{e:"🤫",n:"Shushing Face"},{e:"🤭",n:"Face with Hand Over Mouth"},
+    {e:"😶",n:"Face Without Mouth"},{e:"😐",n:"Neutral Face"},{e:"😑",n:"Expressionless Face"},
+    {e:"😬",n:"Grimacing Face"},{e:"🙄",n:"Face with Rolling Eyes"},{e:"😲",n:"Astonished Face"},
+    {e:"🥱",n:"Yawning Face"},{e:"😴",n:"Sleeping Face"},{e:"😵",n:"Dizzy Face"},
+    {e:"🤤",n:"Drooling Face"},{e:"🤢",n:"Nauseated Face"},{e:"🤮",n:"Face Vomiting"},
+    {e:"🤧",n:"Sneezing Face"},{e:"😷",n:"Face with Medical Mask"},{e:"🤒",n:"Face with Thermometer"},
+    {e:"🤕",n:"Face with Head Bandage"},{e:"🤑",n:"Money Mouth Face"},{e:"🤠",n:"Cowboy Hat Face"},
+    {e:"🥸",n:"Disguised Face"},{e:"😈",n:"Smiling Face with Horns"},{e:"👿",n:"Angry Face with Horns"},
+    {e:"👻",n:"Ghost"},{e:"💀",n:"Skull"},{e:"☠️",n:"Skull and Crossbones"},
+    {e:"👽",n:"Alien"},{e:"🤖",n:"Robot"},{e:"🎭",n:"Performing Arts"}
+  ],
+  "Gestures": [
+    {e:"👋",n:"Waving Hand"},{e:"🤚",n:"Raised Back of Hand"},{e:"🖐️",n:"Hand with Fingers Splayed"},
+    {e:"✋",n:"Raised Hand"},{e:"🖖",n:"Vulcan Salute"},{e:"👌",n:"OK Hand"},
+    {e:"🤌",n:"Pinched Fingers"},{e:"✌️",n:"Victory Hand"},{e:"🤞",n:"Crossed Fingers"},
+    {e:"🤟",n:"Love You Gesture"},{e:"🤘",n:"Sign of the Horns"},{e:"🤙",n:"Call Me Hand"},
+    {e:"👈",n:"Backhand Index Pointing Left"},{e:"👉",n:"Backhand Index Pointing Right"},
+    {e:"👆",n:"Backhand Index Pointing Up"},{e:"☝️",n:"Index Pointing Up"},
+    {e:"👇",n:"Backhand Index Pointing Down"},{e:"👍",n:"Thumbs Up"},{e:"👎",n:"Thumbs Down"},
+    {e:"✊",n:"Raised Fist"},{e:"👊",n:"Oncoming Fist"},{e:"🤛",n:"Left-Facing Fist"},
+    {e:"🤜",n:"Right-Facing Fist"},{e:"👏",n:"Clapping Hands"},{e:"🙌",n:"Raising Hands"},
+    {e:"👐",n:"Open Hands"},{e:"🤲",n:"Palms Up Together"},{e:"🙏",n:"Folded Hands"},
+    {e:"🤝",n:"Handshake"},{e:"💅",n:"Nail Polish"},{e:"🤳",n:"Selfie"},
+    {e:"💪",n:"Flexed Biceps"},{e:"🦾",n:"Mechanical Arm"},{e:"🦿",n:"Mechanical Leg"},
+    {e:"🦵",n:"Leg"},{e:"🦶",n:"Foot"},{e:"👂",n:"Ear"},{e:"👃",n:"Nose"},
+    {e:"🫀",n:"Anatomical Heart"},{e:"🧠",n:"Brain"},{e:"🦷",n:"Tooth"},{e:"👀",n:"Eyes"},
+    {e:"👁️",n:"Eye"},{e:"👅",n:"Tongue"},{e:"👄",n:"Mouth"}
+  ],
+  "Hearts": [
+    {e:"❤️",n:"Red Heart"},{e:"🧡",n:"Orange Heart"},{e:"💛",n:"Yellow Heart"},
+    {e:"💚",n:"Green Heart"},{e:"💙",n:"Blue Heart"},{e:"💜",n:"Purple Heart"},
+    {e:"🖤",n:"Black Heart"},{e:"🤍",n:"White Heart"},{e:"🤎",n:"Brown Heart"},
+    {e:"💔",n:"Broken Heart"},{e:"❤️‍🔥",n:"Heart on Fire"},{e:"❤️‍🩹",n:"Mending Heart"},
+    {e:"💕",n:"Two Hearts"},{e:"💞",n:"Revolving Hearts"},{e:"💓",n:"Beating Heart"},
+    {e:"💗",n:"Growing Heart"},{e:"💖",n:"Sparkling Heart"},{e:"💘",n:"Heart with Arrow"},
+    {e:"💝",n:"Heart with Ribbon"},{e:"💟",n:"Heart Decoration"},{e:"♥️",n:"Heart Suit"},
+    {e:"💌",n:"Love Letter"},{e:"💋",n:"Kiss Mark"},{e:"😻",n:"Smiling Cat Heart Eyes"}
+  ],
+  "Animals": [
+    {e:"🐶",n:"Dog Face"},{e:"🐱",n:"Cat Face"},{e:"🐭",n:"Mouse Face"},
+    {e:"🐹",n:"Hamster"},{e:"🐰",n:"Rabbit Face"},{e:"🦊",n:"Fox"},
+    {e:"🐻",n:"Bear"},{e:"🐼",n:"Panda"},{e:"🐨",n:"Koala"},
+    {e:"🐯",n:"Tiger Face"},{e:"🦁",n:"Lion"},{e:"🐮",n:"Cow Face"},
+    {e:"🐷",n:"Pig Face"},{e:"🐸",n:"Frog"},{e:"🐵",n:"Monkey Face"},
+    {e:"🐔",n:"Chicken"},{e:"🐧",n:"Penguin"},{e:"🐦",n:"Bird"},
+    {e:"🦆",n:"Duck"},{e:"🦅",n:"Eagle"},{e:"🦉",n:"Owl"},
+    {e:"🦇",n:"Bat"},{e:"🐺",n:"Wolf"},{e:"🐗",n:"Boar"},
+    {e:"🐴",n:"Horse Face"},{e:"🦄",n:"Unicorn"},{e:"🐝",n:"Honeybee"},
+    {e:"🐛",n:"Bug"},{e:"🦋",n:"Butterfly"},{e:"🐌",n:"Snail"},
+    {e:"🐞",n:"Lady Beetle"},{e:"🐜",n:"Ant"},{e:"🦟",n:"Mosquito"},
+    {e:"🐢",n:"Turtle"},{e:"🐍",n:"Snake"},{e:"🦎",n:"Lizard"},
+    {e:"🐊",n:"Crocodile"},{e:"🦕",n:"Sauropod"},{e:"🦖",n:"T-Rex"},
+    {e:"🐋",n:"Whale"},{e:"🐬",n:"Dolphin"},{e:"🦈",n:"Shark"},
+    {e:"🐙",n:"Octopus"},{e:"🦑",n:"Squid"},{e:"🦀",n:"Crab"},
+    {e:"🦞",n:"Lobster"},{e:"🦐",n:"Shrimp"},{e:"🐡",n:"Blowfish"},
+    {e:"🐠",n:"Tropical Fish"},{e:"🐟",n:"Fish"},{e:"🐓",n:"Rooster"}
+  ],
+  "Food": [
+    {e:"🍎",n:"Red Apple"},{e:"🍊",n:"Tangerine"},{e:"🍋",n:"Lemon"},
+    {e:"🍇",n:"Grapes"},{e:"🍓",n:"Strawberry"},{e:"🫐",n:"Blueberries"},
+    {e:"🍒",n:"Cherries"},{e:"🍑",n:"Peach"},{e:"🥭",n:"Mango"},
+    {e:"🍍",n:"Pineapple"},{e:"🥥",n:"Coconut"},{e:"🍌",n:"Banana"},
+    {e:"🍉",n:"Watermelon"},{e:"🍈",n:"Melon"},{e:"🫒",n:"Olive"},
+    {e:"🍕",n:"Pizza"},{e:"🍔",n:"Hamburger"},{e:"🍟",n:"French Fries"},
+    {e:"🌭",n:"Hot Dog"},{e:"🌮",n:"Taco"},{e:"🌯",n:"Burrito"},
+    {e:"🍜",n:"Steaming Bowl"},{e:"🍣",n:"Sushi"},{e:"🍰",n:"Shortcake"},
+    {e:"🎂",n:"Birthday Cake"},{e:"🍩",n:"Doughnut"},{e:"🍪",n:"Cookie"},
+    {e:"🍫",n:"Chocolate Bar"},{e:"🍬",n:"Candy"},{e:"🍭",n:"Lollipop"},
+    {e:"☕",n:"Hot Beverage"},{e:"🍵",n:"Teacup"},{e:"🧋",n:"Bubble Tea"},
+    {e:"🥤",n:"Cup with Straw"},{e:"🍺",n:"Beer Mug"},{e:"🥂",n:"Clinking Glasses"},
+    {e:"🍾",n:"Bottle with Popping Cork"},{e:"🧁",n:"Cupcake"},{e:"🥐",n:"Croissant"},
+    {e:"🥞",n:"Pancakes"},{e:"🧇",n:"Waffle"},{e:"🍿",n:"Popcorn"}
+  ],
+  "Nature": [
+    {e:"🌸",n:"Cherry Blossom"},{e:"🌼",n:"Blossom"},{e:"🌻",n:"Sunflower"},
+    {e:"🌹",n:"Rose"},{e:"🌷",n:"Tulip"},{e:"🌺",n:"Hibiscus"},
+    {e:"🌿",n:"Herb"},{e:"🍀",n:"Four Leaf Clover"},{e:"🌱",n:"Seedling"},
+    {e:"🌲",n:"Evergreen Tree"},{e:"🌳",n:"Deciduous Tree"},{e:"🌴",n:"Palm Tree"},
+    {e:"🍂",n:"Fallen Leaf"},{e:"🍁",n:"Maple Leaf"},{e:"🍃",n:"Leaf Fluttering in Wind"},
+    {e:"🌍",n:"Earth Globe Europe Africa"},{e:"🌎",n:"Earth Globe Americas"},
+    {e:"🌏",n:"Earth Globe Asia Australia"},{e:"🌊",n:"Water Wave"},
+    {e:"💧",n:"Droplet"},{e:"🔥",n:"Fire"},{e:"⭐",n:"Star"},
+    {e:"🌟",n:"Glowing Star"},{e:"✨",n:"Sparkles"},{e:"💫",n:"Dizzy"},
+    {e:"❄️",n:"Snowflake"},{e:"🌈",n:"Rainbow"},{e:"☀️",n:"Sun"},
+    {e:"🌙",n:"Crescent Moon"},{e:"⭐",n:"Star"},{e:"🌤️",n:"Sun Behind Small Cloud"},
+    {e:"⛅",n:"Sun Behind Cloud"},{e:"🌧️",n:"Cloud with Rain"},{e:"⛈️",n:"Thunder Cloud"},
+    {e:"🌪️",n:"Tornado"},{e:"🌊",n:"Wave"},{e:"🏔️",n:"Snow Capped Mountain"},
+    {e:"🏝️",n:"Desert Island"},{e:"🌋",n:"Volcano"},{e:"🌵",n:"Cactus"}
+  ],
+  "Travel": [
+    {e:"✈️",n:"Airplane"},{e:"🚀",n:"Rocket"},{e:"🛸",n:"Flying Saucer"},
+    {e:"🚂",n:"Locomotive"},{e:"🚢",n:"Ship"},{e:"🚗",n:"Automobile"},
+    {e:"🏎️",n:"Racing Car"},{e:"🚕",n:"Taxi"},{e:"🚙",n:"Sport Utility Vehicle"},
+    {e:"🚌",n:"Bus"},{e:"🛻",n:"Pickup Truck"},{e:"🚒",n:"Fire Engine"},
+    {e:"🚑",n:"Ambulance"},{e:"🏍️",n:"Motorcycle"},{e:"🛵",n:"Motor Scooter"},
+    {e:"🚲",n:"Bicycle"},{e:"🛺",n:"Auto Rickshaw"},{e:"🛶",n:"Canoe"},
+    {e:"⛵",n:"Sailboat"},{e:"🛥️",n:"Motor Boat"},{e:"🛩️",n:"Small Airplane"},
+    {e:"🚁",n:"Helicopter"},{e:"🏠",n:"House"},{e:"🏰",n:"Castle"},
+    {e:"🗼",n:"Tokyo Tower"},{e:"🗽",n:"Statue of Liberty"},{e:"🌉",n:"Bridge at Night"},
+    {e:"🎡",n:"Ferris Wheel"},{e:"🎢",n:"Roller Coaster"},{e:"🎠",n:"Carousel Horse"},
+    {e:"🏖️",n:"Beach with Umbrella"},{e:"🏕️",n:"Camping"},{e:"🗺️",n:"World Map"},
+    {e:"🧭",n:"Compass"},{e:"⛽",n:"Fuel Pump"}
+  ],
+  "Activities": [
+    {e:"⚽",n:"Soccer Ball"},{e:"🏀",n:"Basketball"},{e:"🏈",n:"American Football"},
+    {e:"⚾",n:"Baseball"},{e:"🥎",n:"Softball"},{e:"🏐",n:"Volleyball"},
+    {e:"🏉",n:"Rugby Football"},{e:"🎾",n:"Tennis"},{e:"🏸",n:"Badminton"},
+    {e:"🏓",n:"Ping Pong"},{e:"🥏",n:"Flying Disc"},{e:"🥅",n:"Goal Net"},
+    {e:"⛳",n:"Flag in Hole"},{e:"🏹",n:"Bow and Arrow"},{e:"🎣",n:"Fishing Pole"},
+    {e:"🤿",n:"Diving Mask"},{e:"🥊",n:"Boxing Glove"},{e:"🥋",n:"Martial Arts Uniform"},
+    {e:"🛹",n:"Skateboard"},{e:"🛼",n:"Roller Skate"},{e:"🛷",n:"Sled"},
+    {e:"⛸️",n:"Ice Skate"},{e:"🏂",n:"Snowboarder"},{e:"🤸",n:"Person Cartwheeling"},
+    {e:"🏋️",n:"Person Lifting Weights"},{e:"🤼",n:"People Wrestling"},
+    {e:"🧘",n:"Person in Lotus Position"},{e:"🏄",n:"Person Surfing"},
+    {e:"🚵",n:"Person Mountain Biking"},{e:"🏇",n:"Horse Racing"},
+    {e:"🎮",n:"Video Game"},{e:"🎲",n:"Game Die"},{e:"♟️",n:"Chess Pawn"},
+    {e:"🎯",n:"Direct Hit"},{e:"🎳",n:"Bowling"},{e:"🎰",n:"Slot Machine"}
+  ],
+  "Objects": [
+    {e:"💡",n:"Light Bulb"},{e:"🔑",n:"Key"},{e:"🗝️",n:"Old Key"},
+    {e:"🔒",n:"Locked"},{e:"🔓",n:"Unlocked"},{e:"🔨",n:"Hammer"},
+    {e:"⚙️",n:"Gear"},{e:"🔧",n:"Wrench"},{e:"🔩",n:"Nut and Bolt"},
+    {e:"📱",n:"Mobile Phone"},{e:"💻",n:"Laptop"},{e:"🖥️",n:"Desktop Computer"},
+    {e:"⌨️",n:"Keyboard"},{e:"🖨️",n:"Printer"},{e:"📷",n:"Camera"},
+    {e:"📸",n:"Camera with Flash"},{e:"📹",n:"Video Camera"},{e:"🎥",n:"Movie Camera"},
+    {e:"📞",n:"Telephone Receiver"},{e:"☎️",n:"Telephone"},{e:"📺",n:"Television"},
+    {e:"📻",n:"Radio"},{e:"🔋",n:"Battery"},{e:"🔌",n:"Electric Plug"},
+    {e:"💾",n:"Floppy Disk"},{e:"💿",n:"Optical Disk"},{e:"📀",n:"DVD"},
+    {e:"🖱️",n:"Computer Mouse"},{e:"🖨️",n:"Printer"},{e:"⌚",n:"Watch"},
+    {e:"⏰",n:"Alarm Clock"},{e:"⏱️",n:"Stopwatch"},{e:"🕰️",n:"Mantelpiece Clock"},
+    {e:"📎",n:"Paperclip"},{e:"✂️",n:"Scissors"},{e:"📏",n:"Straight Ruler"},
+    {e:"📐",n:"Triangular Ruler"},{e:"📌",n:"Pushpin"},{e:"✏️",n:"Pencil"},
+    {e:"🖊️",n:"Pen"},{e:"📝",n:"Memo"},{e:"📖",n:"Open Book"},
+    {e:"📚",n:"Books"},{e:"📦",n:"Package"},{e:"💰",n:"Money Bag"}
+  ],
+  "Celebration": [
+    {e:"🎉",n:"Party Popper"},{e:"🎊",n:"Confetti Ball"},{e:"🎈",n:"Balloon"},
+    {e:"🎁",n:"Wrapped Gift"},{e:"🎂",n:"Birthday Cake"},{e:"🎄",n:"Christmas Tree"},
+    {e:"🎆",n:"Fireworks"},{e:"🎇",n:"Sparkler"},{e:"✨",n:"Sparkles"},
+    {e:"🌟",n:"Glowing Star"},{e:"💫",n:"Dizzy"},{e:"💥",n:"Collision"},
+    {e:"🔥",n:"Fire"},{e:"💯",n:"Hundred Points"},{e:"🏆",n:"Trophy"},
+    {e:"🥇",n:"1st Place Medal"},{e:"🥈",n:"2nd Place Medal"},{e:"🥉",n:"3rd Place Medal"},
+    {e:"🎖️",n:"Military Medal"},{e:"🏅",n:"Sports Medal"},{e:"🎗️",n:"Reminder Ribbon"},
+    {e:"🎀",n:"Ribbon"},{e:"🎟️",n:"Admission Tickets"},{e:"🎫",n:"Ticket"},
+    {e:"🎪",n:"Circus Tent"},{e:"🎠",n:"Carousel Horse"},{e:"🎡",n:"Ferris Wheel"},
+    {e:"🎢",n:"Roller Coaster"},{e:"🪅",n:"Pinata"},{e:"🎭",n:"Performing Arts"},
+    {e:"🎨",n:"Artist Palette"},{e:"🎬",n:"Clapper Board"},{e:"🎤",n:"Microphone"},
+    {e:"🎵",n:"Musical Note"},{e:"🎶",n:"Musical Notes"},{e:"🎸",n:"Guitar"},
+    {e:"🥁",n:"Drum"},{e:"🎹",n:"Musical Keyboard"},{e:"🎺",n:"Trumpet"}
+  ],
+  "Symbols": [
+    {e:"💯",n:"Hundred Points"},{e:"🔴",n:"Red Circle"},{e:"🟠",n:"Orange Circle"},
+    {e:"🟡",n:"Yellow Circle"},{e:"🟢",n:"Green Circle"},{e:"🔵",n:"Blue Circle"},
+    {e:"🟣",n:"Purple Circle"},{e:"⚫",n:"Black Circle"},{e:"⚪",n:"White Circle"},
+    {e:"🟥",n:"Red Square"},{e:"🟧",n:"Orange Square"},{e:"🟨",n:"Yellow Square"},
+    {e:"🟩",n:"Green Square"},{e:"🟦",n:"Blue Square"},{e:"🟪",n:"Purple Square"},
+    {e:"⬛",n:"Black Large Square"},{e:"⬜",n:"White Large Square"},
+    {e:"✅",n:"Check Mark Button"},{e:"❌",n:"Cross Mark"},{e:"❓",n:"Question Mark"},
+    {e:"❗",n:"Exclamation Mark"},{e:"💢",n:"Anger Symbol"},{e:"💤",n:"ZZZ"},
+    {e:"🔔",n:"Bell"},{e:"🔕",n:"Bell with Slash"},{e:"🔇",n:"Muted Speaker"},
+    {e:"🔊",n:"Speaker High Volume"},{e:"📢",n:"Loudspeaker"},{e:"📣",n:"Megaphone"},
+    {e:"🚫",n:"Prohibited"},{e:"⛔",n:"No Entry"},{e:"🔞",n:"No One Under Eighteen"},
+    {e:"♻️",n:"Recycling Symbol"},{e:"✔️",n:"Check Mark"},{e:"➕",n:"Plus"},
+    {e:"➖",n:"Minus"},{e:"➗",n:"Division"},{e:"🔢",n:"Input Numbers"},
+    {e:"🔤",n:"Input Latin Letters"},{e:"🅰️",n:"A Button"},{e:"🅱️",n:"B Button"},
+    {e:"🆗",n:"OK Button"},{e:"🆕",n:"New Button"},{e:"🆙",n:"Up Button"},
+    {e:"🔝",n:"Top Arrow"},{e:"🔛",n:"On Arrow"},{e:"🔜",n:"Soon Arrow"}
+  ]
+};
+
+let selectedEmoji = {e:"😊", n:"Smiling Face"};
+let currentCat = 'All';
+let currentSearch = '';
+let favourites = JSON.parse(localStorage.getItem('dt_emoji_favs') || '[]');
+let recents = JSON.parse(localStorage.getItem('dt_emoji_recents') || '[]');
+
+const allEmojis = Object.entries(emojiData).flatMap(([cat, arr]) => arr.map(em => ({...em, cat})));
+
+// ── BUILD CATEGORY TABS ──
+function buildTabs() {
+  const tabs = document.getElementById('catTabs');
+  const cats = ['All', ...Object.keys(emojiData)];
+  tabs.innerHTML = cats.map(c => `
+    <button class="cat-tab${c === 'All' ? ' active' : ''}" onclick="selectCat('${c}', this)">${c}</button>
+  `).join('');
+}
+
+function selectCat(cat, btn) {
+  currentCat = cat;
+  document.querySelectorAll('.cat-tab').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  renderGrid();
+}
+
+// ── RENDER GRID ──
+function renderGrid() {
+  const grid = document.getElementById('emojiGrid');
+  const filtered = allEmojis.filter(em => {
+    const matchCat = currentCat === 'All' || em.cat === currentCat;
+    const matchSearch = !currentSearch || em.n.toLowerCase().includes(currentSearch) || em.e.includes(currentSearch);
+    return matchCat && matchSearch;
+  });
+
+  document.getElementById('emojiCount').textContent = filtered.length;
+
+  if (filtered.length === 0) {
+    grid.innerHTML = '<div class="no-result"><i class="fas fa-face-meh" style="font-size:1.5rem;margin-bottom:0.5rem;display:block;color:var(--gray-200)"></i>No emojis found. Try a different keyword.</div>';
+    return;
+  }
+
+  grid.innerHTML = filtered.map(em => `
+    <button class="emoji-btn${em.e === selectedEmoji.e ? ' selected' : ''}"
+      title="${em.n}"
+      onclick="selectEmoji('${em.e}', '${em.n.replace(/'/g,"&#39;")}')"
+      oncontextmenu="addFavourite('${em.e}', '${em.n.replace(/'/g,"&#39;")}', event)"
+      aria-label="${em.n}">${em.e}</button>
+  `).join('');
+}
+
+// ── SELECT EMOJI ──
+function selectEmoji(e, n) {
+  selectedEmoji = {e, n};
+  document.getElementById('previewEmoji').textContent = e;
+  document.getElementById('selName').textContent = n;
+  document.getElementById('selCode').textContent = [...e].map(c => 'U+' + c.codePointAt(0).toString(16).toUpperCase()).join(' ');
+  document.getElementById('selectedInput').value = e;
+  document.getElementById('copyBtn').classList.remove('copied');
+  document.getElementById('copyBtn').innerHTML = '<i class="fas fa-copy"></i> Copy';
+  addRecent(e, n);
+  // Refresh selected state
+  document.querySelectorAll('.emoji-btn').forEach(btn => {
+    btn.classList.toggle('selected', btn.textContent === e);
+  });
+}
+
+// ── COPY ──
+async function copyEmoji() {
+  const val = selectedEmoji.e;
+  const btn = document.getElementById('copyBtn');
+  try {
+    await navigator.clipboard.writeText(val);
+    btn.classList.add('copied');
+    btn.innerHTML = '<i class="fas fa-check"></i> Copied!';
+    showToast(`${val} Copied to clipboard!`);
+    setTimeout(() => {
+      btn.classList.remove('copied');
+      btn.innerHTML = '<i class="fas fa-copy"></i> Copy';
+    }, 2000);
+  } catch {
+    // Fallback
+    const ta = document.createElement('textarea');
+    ta.value = val; ta.style.position = 'fixed'; ta.style.opacity = '0';
+    document.body.appendChild(ta); ta.focus(); ta.select();
+    document.execCommand('copy');
+    document.body.removeChild(ta);
+    showToast(`${val} Copied!`);
+  }
+}
+
+// ── SEARCH ──
+function searchEmojis(val) {
+  currentSearch = val.toLowerCase().trim();
+  renderGrid();
+}
+
+// ── TOAST ──
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  document.getElementById('toastMsg').textContent = msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 2200);
+}
+
+// ── RECENT ──
+function addRecent(e, n) {
+  recents = recents.filter(r => r.e !== e);
+  recents.unshift({e, n});
+  recents = recents.slice(0, 12);
+  try { localStorage.setItem('dt_emoji_recents', JSON.stringify(recents)); } catch {}
+  renderRecents();
+}
+
+function renderRecents() {
+  const row = document.getElementById('recentRow');
+  if (recents.length === 0) {
+    row.innerHTML = '<span class="mini-empty">No recent emojis yet</span>';
+    return;
+  }
+  row.innerHTML = recents.map(r =>
+    `<button class="mini-emoji-btn" title="${r.n}" onclick="selectEmoji('${r.e}','${r.n.replace(/'/g,"&#39;")}')" aria-label="${r.n}">${r.e}</button>`
+  ).join('');
+}
+
+// ── FAVOURITES ──
+function addFavourite(e, n, ev) {
+  ev.preventDefault();
+  if (!favourites.find(f => f.e === e)) {
+    favourites.unshift({e, n});
+    favourites = favourites.slice(0, 20);
+    try { localStorage.setItem('dt_emoji_favs', JSON.stringify(favourites)); } catch {}
+    showToast(`${e} Added to Favourites`);
+    renderFavourites();
+  } else {
+    showToast(`${e} Already in Favourites`);
+  }
+}
+
+function clearFavourites() {
+  favourites = [];
+  try { localStorage.removeItem('dt_emoji_favs'); } catch {}
+  renderFavourites();
+}
+
+function renderFavourites() {
+  const row = document.getElementById('favRow');
+  if (favourites.length === 0) {
+    row.innerHTML = '<span class="mini-empty">Right-click an emoji to favourite</span>';
+    return;
+  }
+  row.innerHTML = favourites.map(f =>
+    `<button class="mini-emoji-btn" title="${f.n}" onclick="selectEmoji('${f.e}','${f.n.replace(/'/g,"&#39;")}')" aria-label="${f.n}">${f.e}</button>`
+  ).join('');
+}
+
+// ── NAVBAR ──
+window.addEventListener('scroll', () => {
+  document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 60);
+  document.getElementById('backTop').classList.toggle('show', window.scrollY > 300);
+});
+
+function toggleMenu() {
+  document.getElementById('mobileMenu').classList.toggle('open');
+}
+
+// ── SCROLL REVEAL ──
+const observer = new IntersectionObserver(entries => {
+  entries.forEach((e, i) => {
+    if (e.isIntersecting) setTimeout(() => e.target.classList.add('visible'), i * 80);
+  });
+}, { threshold: 0.08 });
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+// ── INIT ──
+document.addEventListener('DOMContentLoaded', () => {
+  buildTabs();
+  renderGrid();
+  renderRecents();
+  renderFavourites();
+});
+</script>
 </body>
 </html>
