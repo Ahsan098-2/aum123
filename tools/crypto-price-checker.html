@@ -21,6 +21,12 @@ cat > /mnt/user-data/outputs/crypto-price-checker.html << 'HTMLEOF'
     gtag('config', 'G-XSNWLXJKBZ');
   </script>
 
+  <!-- Vercel Speed Insights -->
+  <script type="module">
+    import { injectSpeedInsights } from 'https://cdn.jsdelivr.net/npm/@vercel/speed-insights@2.0.0/dist/index.mjs';
+    injectSpeedInsights();
+  </script>
+
   <!-- SEO -->
   <meta name="description" content="Live crypto price checker — check real-time prices for 100+ cryptocurrencies including Bitcoin, Ethereum, Solana. Free, no signup needed.">
   <meta name="keywords" content="crypto price checker, bitcoin price, ethereum price, live crypto, cryptocurrency tracker, daily toolkit">
