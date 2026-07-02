@@ -1,0 +1,465 @@
+/* Dark Mode Styles */
+html[data-theme="dark"] {
+  --black: #FFFFFF;
+  --white: #0A0A0A;
+  --gray-100: #1A1A1A;
+  --gray-200: #2A2A2A;
+  --gray-400: #5A5A5A;
+  --gray-600: #9A9A9A;
+}
+
+html[data-theme="dark"] body {
+  background: var(--white);
+  color: var(--black);
+}
+
+html[data-theme="dark"] nav {
+  background: rgba(10, 10, 10, 0.96);
+  border-bottom-color: var(--gray-200);
+}
+
+html[data-theme="dark"] .nav-logo {
+  color: var(--white);
+}
+
+html[data-theme="dark"] .nav-links a {
+  color: var(--gray-600);
+}
+
+html[data-theme="dark"] .nav-links a:hover,
+html[data-theme="dark"] .nav-links a.active {
+  color: var(--white);
+}
+
+html[data-theme="dark"] .nav-search {
+  background: var(--gray-100);
+  border-color: var(--gray-200);
+}
+
+html[data-theme="dark"] .nav-search input {
+  color: var(--black);
+}
+
+html[data-theme="dark"] .nav-search button {
+  background: var(--white);
+  color: var(--black);
+}
+
+html[data-theme="dark"] .nav-search button:hover {
+  background: var(--gold);
+}
+
+html[data-theme="dark"] .hamburger span {
+  background: var(--black);
+}
+
+html[data-theme="dark"] .mobile-menu {
+  background: var(--white);
+  border-bottom-color: var(--gray-200);
+}
+
+html[data-theme="dark"] .mobile-menu a {
+  color: var(--gray-600);
+}
+
+html[data-theme="dark"] .mobile-menu a:hover {
+  color: var(--gold);
+}
+
+html[data-theme="dark"] .mobile-search {
+  border-color: var(--gray-200);
+}
+
+html[data-theme="dark"] .mobile-search input {
+  background: var(--gray-100);
+  color: var(--black);
+}
+
+html[data-theme="dark"] .mobile-search button {
+  background: var(--white);
+  color: var(--black);
+}
+
+html[data-theme="dark"] .hero {
+  background: var(--white);
+}
+
+html[data-theme="dark"] .hero-bg-text {
+  color: transparent;
+  -webkit-text-stroke: 1px var(--gray-200);
+}
+
+html[data-theme="dark"] .hero h1 {
+  color: var(--black);
+}
+
+html[data-theme="dark"] .hero-desc {
+  color: var(--gray-600);
+}
+
+html[data-theme="dark"] .btn-primary {
+  background: var(--black);
+  color: var(--white);
+}
+
+html[data-theme="dark"] .btn-primary:hover {
+  background: var(--gold);
+  color: var(--black);
+}
+
+html[data-theme="dark"] .btn-secondary {
+  color: var(--black);
+  border-color: var(--gray-200);
+}
+
+html[data-theme="dark"] .btn-secondary:hover {
+  border-color: var(--black);
+}
+
+html[data-theme="dark"] .hero-stats {
+  border-top-color: var(--gray-200);
+}
+
+html[data-theme="dark"] .stat-number {
+  color: var(--black);
+}
+
+html[data-theme="dark"] .stat-label {
+  color: var(--gray-400);
+}
+
+html[data-theme="dark"] .search-box {
+  background: var(--gray-100);
+  border-color: var(--gray-200);
+}
+
+html[data-theme="dark"] .search-box:focus-within {
+  background: var(--white);
+  border-color: var(--black);
+  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.05);
+}
+
+html[data-theme="dark"] .search-box input {
+  color: var(--black);
+}
+
+html[data-theme="dark"] .search-box .search-btn {
+  background: var(--black);
+  color: var(--white);
+}
+
+html[data-theme="dark"] .search-box .search-btn:hover {
+  background: var(--gold);
+  color: var(--black);
+}
+
+html[data-theme="dark"] .quick-tool {
+  background: var(--gray-100);
+  color: var(--black);
+  border-color: transparent;
+}
+
+html[data-theme="dark"] .quick-tool:hover {
+  background: var(--gray-200);
+  border-color: var(--gold);
+}
+
+html[data-theme="dark"] .quick-tool .tool-icon {
+  background: var(--gray-100);
+  box-shadow: 0 1px 4px rgba(255, 255, 255, 0.08);
+}
+
+html[data-theme="dark"] .quick-tool .tool-name {
+  color: var(--black);
+}
+
+html[data-theme="dark"] .quick-tool .tool-desc {
+  color: var(--gray-400);
+}
+
+html[data-theme="dark"] .why-card {
+  background: var(--gray-100);
+  border-color: var(--gray-200);
+}
+
+html[data-theme="dark"] .why-card h3 {
+  color: var(--black);
+}
+
+html[data-theme="dark"] .why-card p {
+  color: var(--gray-600);
+}
+
+html[data-theme="dark"] .why-card li {
+  color: var(--gray-600);
+}
+
+html[data-theme="dark"] .sec-categories {
+  background: var(--gray-100);
+}
+
+html[data-theme="dark"] .cat-card {
+  background: var(--white);
+  border-color: var(--gray-200);
+  color: var(--black);
+}
+
+html[data-theme="dark"] .cat-card:hover {
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.3);
+}
+
+html[data-theme="dark"] .sec-tools {
+  background: var(--white);
+}
+
+html[data-theme="dark"] .filter-tab {
+  border-color: var(--gray-200);
+  color: var(--gray-600);
+  background: transparent;
+}
+
+html[data-theme="dark"] .filter-tab.active,
+html[data-theme="dark"] .filter-tab:hover {
+  background: var(--black);
+  color: var(--white);
+  border-color: var(--black);
+}
+
+html[data-theme="dark"] .tools-grid-wrap {
+  background: var(--gray-200);
+  border-color: var(--gray-200);
+}
+
+html[data-theme="dark"] .tool-card-item {
+  background: var(--white);
+  color: var(--black);
+}
+
+html[data-theme="dark"] .tool-card-item:hover {
+  background: var(--gray-100);
+}
+
+html[data-theme="dark"] .tool-card-item .tc-name {
+  color: var(--black);
+}
+
+html[data-theme="dark"] .tool-card-item .tc-desc {
+  color: var(--gray-400);
+}
+
+html[data-theme="dark"] #noSearchResult {
+  color: var(--gray-400);
+}
+
+html[data-theme="dark"] .sec-features {
+  background: var(--black);
+  color: var(--white);
+}
+
+html[data-theme="dark"] .sec-features .sec-title {
+  color: var(--white);
+}
+
+html[data-theme="dark"] .sec-features .sec-subtitle {
+  color: var(--gray-400);
+}
+
+html[data-theme="dark"] .feat-item {
+  border-color: rgba(255, 255, 255, 0.08);
+}
+
+html[data-theme="dark"] .feat-item:hover {
+  border-color: var(--gold);
+}
+
+html[data-theme="dark"] .feat-desc {
+  color: var(--gray-400);
+}
+
+html[data-theme="dark"] .sec-about {
+  background: var(--gray-100);
+}
+
+html[data-theme="dark"] .about-box {
+  background: var(--white);
+  border-color: var(--gray-200);
+}
+
+html[data-theme="dark"] .about-box p {
+  color: var(--gray-600);
+}
+
+html[data-theme="dark"] .sec-testi {
+  background: var(--white);
+}
+
+html[data-theme="dark"] .testi-card {
+  background: var(--gray-100);
+  border-color: var(--gray-200);
+}
+
+html[data-theme="dark"] .testi-text {
+  color: var(--gray-600);
+}
+
+html[data-theme="dark"] .testi-name {
+  color: var(--black);
+}
+
+html[data-theme="dark"] .testi-role {
+  color: var(--gray-400);
+}
+
+html[data-theme="dark"] .sec-faq {
+  background: var(--gray-100);
+}
+
+html[data-theme="dark"] .faq-item {
+  background: var(--white);
+  border-color: var(--gray-200);
+}
+
+html[data-theme="dark"] .faq-item:hover {
+  background: var(--gray-100);
+}
+
+html[data-theme="dark"] .faq-q {
+  color: var(--black);
+}
+
+html[data-theme="dark"] .faq-toggle {
+  border-color: var(--gray-200);
+  color: var(--gray-600);
+}
+
+html[data-theme="dark"] .faq-item.open .faq-toggle {
+  background: var(--black);
+  color: var(--white);
+  border-color: var(--black);
+}
+
+html[data-theme="dark"] .faq-a {
+  color: var(--gray-600);
+}
+
+html[data-theme="dark"] .sec-newsletter {
+  background: var(--white);
+}
+
+html[data-theme="dark"] .newsletter-inner h2 {
+  color: var(--black);
+}
+
+html[data-theme="dark"] .newsletter-inner p {
+  color: var(--gray-600);
+}
+
+html[data-theme="dark"] .newsletter-form input {
+  border-color: var(--gray-200);
+  background: var(--white);
+  color: var(--black);
+}
+
+html[data-theme="dark"] .newsletter-form input:focus {
+  border-color: var(--black);
+}
+
+html[data-theme="dark"] .newsletter-form button {
+  background: var(--black);
+  color: var(--white);
+}
+
+html[data-theme="dark"] .newsletter-form button:hover {
+  background: var(--gold);
+  color: var(--black);
+}
+
+html[data-theme="dark"] footer {
+  background: var(--black);
+  color: var(--gray-400);
+}
+
+html[data-theme="dark"] .footer-brand .nav-logo {
+  color: var(--white);
+}
+
+html[data-theme="dark"] .footer-col h4 {
+  color: var(--white);
+}
+
+html[data-theme="dark"] .footer-col ul a {
+  color: var(--gray-400);
+}
+
+html[data-theme="dark"] .footer-col ul a:hover {
+  color: var(--gold);
+}
+
+html[data-theme="dark"] .footer-bottom {
+  border-top-color: rgba(255, 255, 255, 0.06);
+}
+
+html[data-theme="dark"] .back-top {
+  background: var(--black);
+  color: var(--white);
+}
+
+html[data-theme="dark"] .back-top:hover {
+  background: var(--gold);
+  color: var(--black);
+}
+
+html[data-theme="dark"] .social-link {
+  border-color: rgba(255, 255, 255, 0.1);
+  color: var(--gray-400);
+}
+
+html[data-theme="dark"] .social-link:hover {
+  border-color: var(--gold);
+  color: var(--gold);
+}
+
+html[data-theme="dark"] ::-webkit-scrollbar-track {
+  background: var(--gray-100);
+}
+
+html[data-theme="dark"] ::-webkit-scrollbar-thumb {
+  background: var(--gold);
+}
+
+/* Dark Mode Toggle Button Styling */
+#darkModeToggle {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  width: 40px;
+  height: 40px;
+  background: var(--black);
+  color: var(--white);
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  z-index: 999;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+#darkModeToggle:hover {
+  background: var(--gold);
+  color: var(--black);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+}
+
+html[data-theme="dark"] #darkModeToggle {
+  background: var(--white);
+  color: var(--black);
+}
+
+html[data-theme="dark"] #darkModeToggle:hover {
+  background: var(--gold);
+  color: var(--black);
+}
