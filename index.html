@@ -31,7 +31,7 @@
 
     'analytics_storage': 'denied',
 
-   'regions':[<list of ISO 3166-2 region codes>]
+   'regions':['PK','EU']
 
   });
 
@@ -54,11 +54,11 @@
 
   <!--Banner script here!--> 
   <!-- Google AdSense -->
-  <script src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6737111642010842" crossorigin="anonymous"defer></script>
+  <script src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6737111642010842" crossorigin="anonymous" async defer></script>
 
   <!-- Google Analytics -->
   <!-- Google tag (gtag.js) -->
-  <script src="https://www.googletagmanager.com/gtag/js?id=G-3K7RBN1QSL"defer></script>
+  <script src="https://www.googletagmanager.com/gtag/js?id=G-3K7RBN1QSL" defer></script>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
@@ -109,19 +109,25 @@
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <!-- Performance: early connection to third-party domains -->
+  <link rel="preconnect" href="https://pagead2.googlesyndication.com">
+  <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+  <link rel="preconnect" href="https://www.googletagmanager.com">
+  <link rel="dns-prefetch" href="https://www.googletagmanager.com">
+  <link rel="dns-prefetch" href="https://www.google-analytics.com">
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 
-  <!-- Font Awesome -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <!-- Font Awesome (loaded non-render-blocking) -->
+  <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"></noscript>
 
   <!-- Main JS (original) -->
   <script src="js/main.js" defer></script>
   <script src="tools/app.js" defer></script>
-  
-  <link rel="stylesheet" href="css/style.css">
-  
+
   <style>
-     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
       --black: #0A0A0A;
@@ -335,7 +341,7 @@
       font-family: var(--font-display);
       font-size: 1.7rem; font-weight: 700; color: var(--black);
     }
-    .stat-label { font-size: 0.72rem; color: var(--gray-400); letter-spacing: 0.06em; text-transform: uppercase; }
+    .stat-label { font-size: 0.72rem; color: var(--gray-600); letter-spacing: 0.06em; text-transform: uppercase; }
 
     /* Hero Right */
     .hero-right { display: flex; flex-direction: column; gap: 1.2rem; }
@@ -356,7 +362,7 @@
       font-family: var(--font-body); font-size: 0.92rem;
       color: var(--black); outline: none;
     }
-    .search-box input::placeholder { color: var(--gray-400); }
+    .search-box input::placeholder { color: var(--gray-600); }
     .search-box .search-btn {
       background: var(--black); color: var(--white);
       border: none; padding: 0.42rem 0.9rem;
@@ -385,7 +391,7 @@
       font-size: 1rem; box-shadow: 0 1px 4px rgba(0,0,0,0.08);
     }
     .quick-tool .tool-name { font-size: 0.76rem; font-weight: 600; line-height: 1.3; }
-    .quick-tool .tool-desc { font-size: 0.68rem; color: var(--gray-400); }
+    .quick-tool .tool-desc { font-size: 0.68rem; color: var(--gray-600); }
 
     /* Why card */
     .why-card {
@@ -462,7 +468,7 @@
     .cat-card:hover::after { transform: scaleX(1); }
     .cat-icon { font-size: 1.8rem; margin-bottom: 0.9rem; display: block; color: var(--gold); }
     .cat-name { font-weight: 700; font-size: 0.95rem; margin-bottom: 0.25rem; }
-    .cat-count { font-size: 0.75rem; color: var(--gray-400); }
+    .cat-count { font-size: 0.75rem; color: var(--gray-600); }
     .cat-desc { font-size: 0.78rem; color: var(--gray-600); margin-top: 0.5rem; line-height: 1.5; }
 
     /* ── TOOLS GRID ── */
@@ -496,7 +502,7 @@
     .tool-card-item:hover { background: var(--gray-100); z-index: 1; }
     .tool-card-item .tc-icon { font-size: 1.3rem; color: var(--gold); }
     .tool-card-item .tc-name { font-size: 0.84rem; font-weight: 600; }
-    .tool-card-item .tc-desc { font-size: 0.73rem; color: var(--gray-400); line-height: 1.5; }
+    .tool-card-item .tc-desc { font-size: 0.73rem; color: var(--gray-600); line-height: 1.5; }
     .tool-card-item .tc-arrow {
       margin-top: auto; font-size: 0.7rem; color: var(--gold);
       font-weight: 600; letter-spacing: 0.06em;
@@ -506,7 +512,7 @@
 
     #noSearchResult {
       text-align: center; margin-top: 1.5rem;
-      font-size: 0.9rem; color: var(--gray-400);
+      font-size: 0.9rem; color: var(--gray-600);
     }
 
     /* ── FEATURES / ABOUT ── */
@@ -560,7 +566,7 @@
       font-size: 0.85rem; color: var(--white); font-weight: 700; flex-shrink: 0;
     }
     .testi-name { font-size: 0.82rem; font-weight: 600; }
-    .testi-role { font-size: 0.72rem; color: var(--gray-400); }
+    .testi-role { font-size: 0.72rem; color: var(--gray-600); }
 
     /* ── FAQ ── */
     .sec-faq { background: var(--gray-100); }
@@ -710,7 +716,7 @@
 <!-- ── NAVBAR ── -->
 <nav id="navbar" role="banner">
   <a href="index.html" class="nav-logo" aria-label="Daily Toolkit Home">
-    <i class="fas fa-tools"></i> Daily<span>Toolkit</span>
+    <i class="fas fa-tools" aria-hidden="true"></i> Daily<span>Toolkit</span>
   </a>
 
   <ul class="nav-links" role="navigation" aria-label="Main navigation">
@@ -760,8 +766,8 @@
           Daily Toolkit helps you complete everyday tasks faster with simple online tools for calculators, converters, PDFs, images, text editing, and productivity. No signup, no complicated setup — just tools that work.
         </p>
         <div class="hero-actions">
-          <a href="#tools" class="btn-primary"><i class="fas fa-rocket"></i> Explore Tools</a>
-          <a href="about.html" class="btn-secondary"><i class="fas fa-circle-info"></i> Learn More</a>
+          <a href="#tools" class="btn-primary"><i class="fas fa-rocket" aria-hidden="true"></i> Explore Tools</a>
+          <a href="about.html" class="btn-secondary"><i class="fas fa-circle-info" aria-hidden="true"></i> Learn More</a>
         </div>
         <div class="hero-stats">
           <div class="stat-item">
@@ -779,27 +785,27 @@
         </div>
       </div>
 
-      <div class="hero-right" aria-hidden="true">
-        <div class="search-box">
-          <i class="fas fa-search"></i>
-          <input type="text" placeholder="Search tools like PDF, image, calculator..." oninput="liveSearch(this.value)" aria-label="Search tools hero">
-          <button class="search-btn" onclick="scrollToTools()">Search</button>
+      <div class="hero-right">
+        <div class="search-box" role="search">
+          <i class="fas fa-search" aria-hidden="true"></i>
+          <input type="text" placeholder="Search tools like PDF, image, calculator..." oninput="liveSearch(this.value)" aria-label="Search tools">
+          <button class="search-btn" onclick="scrollToTools()" aria-label="Go to tools section">Search</button>
         </div>
         <div class="quick-tools">
-          <a href="tools/age-calculator.html" class="quick-tool"><div class="tool-icon"><i class="fas fa-birthday-cake"></i></div><div class="tool-name">Age Calculator</div><div class="tool-desc">Birth to today</div></a>
-          <a href="tools/password-gen.html" class="quick-tool"><div class="tool-icon"><i class="fas fa-key"></i></div><div class="tool-name">Password Gen</div><div class="tool-desc">Strong & secure</div></a>
-          <a href="tools/background-remover.html" class="quick-tool"><div class="tool-icon"><i class="fas fa-image"></i></div><div class="tool-name">BG Remover</div><div class="tool-desc">Clean cutouts</div></a>
-          <a href="tools/qr-generator.html" class="quick-tool"><div class="tool-icon"><i class="fas fa-qrcode"></i></div><div class="tool-name">QR Generator</div><div class="tool-desc">URL to QR code</div></a>
-          <a href="tools/bmi-calculator.html" class="quick-tool"><div class="tool-icon"><i class="fas fa-weight"></i></div><div class="tool-name">BMI Calculator</div><div class="tool-desc">Health check</div></a>
-          <a href="tools/compress-pdf.html" class="quick-tool"><div class="tool-icon"><i class="fas fa-file-pdf"></i></div><div class="tool-name">Compress PDF</div><div class="tool-desc">Smaller files</div></a>
+          <a href="tools/age-calculator.html" class="quick-tool"><div class="tool-icon"><i class="fas fa-birthday-cake" aria-hidden="true"></i></div><div class="tool-name">Age Calculator</div><div class="tool-desc">Birth to today</div></a>
+          <a href="tools/password-gen.html" class="quick-tool"><div class="tool-icon"><i class="fas fa-key" aria-hidden="true"></i></div><div class="tool-name">Password Gen</div><div class="tool-desc">Strong & secure</div></a>
+          <a href="tools/background-remover.html" class="quick-tool"><div class="tool-icon"><i class="fas fa-image" aria-hidden="true"></i></div><div class="tool-name">BG Remover</div><div class="tool-desc">Clean cutouts</div></a>
+          <a href="tools/qr-generator.html" class="quick-tool"><div class="tool-icon"><i class="fas fa-qrcode" aria-hidden="true"></i></div><div class="tool-name">QR Generator</div><div class="tool-desc">URL to QR code</div></a>
+          <a href="tools/bmi-calculator.html" class="quick-tool"><div class="tool-icon"><i class="fas fa-weight" aria-hidden="true"></i></div><div class="tool-name">BMI Calculator</div><div class="tool-desc">Health check</div></a>
+          <a href="tools/compress-pdf.html" class="quick-tool"><div class="tool-icon"><i class="fas fa-file-pdf" aria-hidden="true"></i></div><div class="tool-name">Compress PDF</div><div class="tool-desc">Smaller files</div></a>
         </div>
         <div class="why-card">
           <h3>Why people use Daily Toolkit</h3>
           <p>Built for quick daily tasks and a cleaner user experience.</p>
           <ul>
-            <li><i class="fas fa-check-circle"></i><span>Easy access to calculators, converters, and utility tools</span></li>
-            <li><i class="fas fa-check-circle"></i><span>Simple layout with fast navigation and responsive design</span></li>
-            <li><i class="fas fa-check-circle"></i><span>Pages like Privacy, Contact & Terms for better trust</span></li>
+            <li><i class="fas fa-check-circle" aria-hidden="true"></i><span>Easy access to calculators, converters, and utility tools</span></li>
+            <li><i class="fas fa-check-circle" aria-hidden="true"></i><span>Simple layout with fast navigation and responsive design</span></li>
+            <li><i class="fas fa-check-circle" aria-hidden="true"></i><span>Pages like Privacy, Contact & Terms for better trust</span></li>
           </ul>
         </div>
       </div>
@@ -819,26 +825,26 @@
         </div>
       </div>
       <div class="cat-grid reveal">
-        <div class="cat-card" onclick="setFilter('calculator',null)">
-          <span class="cat-icon"><i class="fas fa-calculator"></i></span>
+        <div class="cat-card" role="button" tabindex="0" onclick="setFilter('calculator',null)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();setFilter('calculator',null);}" aria-label="View Calculator tools">
+          <span class="cat-icon"><i class="fas fa-calculator" aria-hidden="true"></i></span>
           <div class="cat-name">Calculators</div>
           <div class="cat-count">7 tools</div>
           <div class="cat-desc">Age, BMI, Loan, Crypto, Gold, Fuel, Stock — daily calculators.</div>
         </div>
-        <div class="cat-card" onclick="setFilter('pdf',null)">
-          <span class="cat-icon"><i class="fas fa-file-pdf"></i></span>
+        <div class="cat-card" role="button" tabindex="0" onclick="setFilter('pdf',null)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();setFilter('pdf',null);}" aria-label="View PDF tools">
+          <span class="cat-icon"><i class="fas fa-file-pdf" aria-hidden="true"></i></span>
           <div class="cat-name">PDF Tools</div>
           <div class="cat-count">5 tools</div>
           <div class="cat-desc">Compress, merge, split, convert and manage your PDF files.</div>
         </div>
-        <div class="cat-card" onclick="setFilter('image',null)">
-          <span class="cat-icon"><i class="fas fa-image"></i></span>
+        <div class="cat-card" role="button" tabindex="0" onclick="setFilter('image',null)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();setFilter('image',null);}" aria-label="View Image tools">
+          <span class="cat-icon"><i class="fas fa-image" aria-hidden="true"></i></span>
           <div class="cat-name">Image Tools</div>
           <div class="cat-count">5 tools</div>
           <div class="cat-desc">Resize, compress, remove backgrounds, convert images easily.</div>
         </div>
-        <div class="cat-card" onclick="setFilter('text',null)">
-          <span class="cat-icon"><i class="fas fa-font"></i></span>
+        <div class="cat-card" role="button" tabindex="0" onclick="setFilter('text',null)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();setFilter('text',null);}" aria-label="View Text Utilities tools">
+          <span class="cat-icon"><i class="fas fa-font" aria-hidden="true"></i></span>
           <div class="cat-name">Text Utilities</div>
           <div class="cat-count">4 tools</div>
           <div class="cat-desc">Word count, text case, captions, hashtags and more.</div>
@@ -880,17 +886,17 @@
       </div>
       <div class="features-grid reveal">
         <div class="feat-item">
-          <div class="feat-icon"><i class="fas fa-bolt"></i></div>
+          <div class="feat-icon"><i class="fas fa-bolt" aria-hidden="true"></i></div>
           <div class="feat-title">Fast and Simple</div>
           <div class="feat-desc">Use tools quickly without complicated steps. The interface is built to save time and reduce friction.</div>
         </div>
         <div class="feat-item">
-          <div class="feat-icon"><i class="fas fa-mobile-screen-button"></i></div>
+          <div class="feat-icon"><i class="fas fa-mobile-screen-button" aria-hidden="true"></i></div>
           <div class="feat-title">Works on Mobile</div>
           <div class="feat-desc">Responsive design helps users access tools comfortably on phones, tablets, and desktops.</div>
         </div>
         <div class="feat-item">
-          <div class="feat-icon"><i class="fas fa-shield-heart"></i></div>
+          <div class="feat-icon"><i class="fas fa-shield-heart" aria-hidden="true"></i></div>
           <div class="feat-title">Trust-Focused Pages</div>
           <div class="feat-desc">Important pages like About, Privacy, Terms, and Contact help build a stronger and more transparent website.</div>
         </div>
@@ -924,7 +930,8 @@
       </div>
       <div class="testi-grid reveal">
         <div class="testi-card">
-          <div class="testi-stars">★★★★★</div>
+          <div class="testi-stars" aria-hidden="true">★★★★★</div>
+          <span class="sr-only">5 out of 5 stars</span>
           <p class="testi-text">"The PDF tools here saved me so much time. I used to switch between 3 different apps — now it's all in one place. Absolutely love it."</p>
           <div class="testi-author">
             <div class="testi-avatar">S</div>
@@ -932,7 +939,8 @@
           </div>
         </div>
         <div class="testi-card">
-          <div class="testi-stars">★★★★★</div>
+          <div class="testi-stars" aria-hidden="true">★★★★★</div>
+          <span class="sr-only">5 out of 5 stars</span>
           <p class="testi-text">"Simple, clean, and fast. The image compressor works perfectly and I didn't have to sign up for anything. This is what the web should be."</p>
           <div class="testi-author">
             <div class="testi-avatar">A</div>
@@ -940,7 +948,8 @@
           </div>
         </div>
         <div class="testi-card">
-          <div class="testi-stars">★★★★★</div>
+          <div class="testi-stars" aria-hidden="true">★★★★★</div>
+          <span class="sr-only">5 out of 5 stars</span>
           <p class="testi-text">"I use the loan calculator every week for my clients. It's accurate, fast, and works perfectly on mobile. Highly recommended."</p>
           <div class="testi-author">
             <div class="testi-avatar">M</div>
@@ -960,28 +969,28 @@
         <p class="sec-subtitle">Common questions users may have before using the tools.</p>
       </div>
       <div class="faq-grid reveal">
-        <div class="faq-item" onclick="toggleFaq(this)">
-          <div class="faq-q">Are these tools free to use?<span class="faq-toggle">+</span></div>
+        <div class="faq-item" role="button" tabindex="0" onclick="toggleFaq(this)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();toggleFaq(this);}" aria-expanded="false">
+          <div class="faq-q">Are these tools free to use?<span class="faq-toggle" aria-hidden="true">+</span></div>
           <div class="faq-a">Yes, Daily Toolkit is built around free online utilities for common tasks. No hidden charges, ever.</div>
         </div>
-        <div class="faq-item" onclick="toggleFaq(this)">
-          <div class="faq-q">Do I need to create an account?<span class="faq-toggle">+</span></div>
+        <div class="faq-item" role="button" tabindex="0" onclick="toggleFaq(this)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();toggleFaq(this);}" aria-expanded="false">
+          <div class="faq-q">Do I need to create an account?<span class="faq-toggle" aria-hidden="true">+</span></div>
           <div class="faq-a">No, the website is designed to let users access tools quickly without a signup process.</div>
         </div>
-        <div class="faq-item" onclick="toggleFaq(this)">
-          <div class="faq-q">Can I use Daily Toolkit on mobile devices?<span class="faq-toggle">+</span></div>
+        <div class="faq-item" role="button" tabindex="0" onclick="toggleFaq(this)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();toggleFaq(this);}" aria-expanded="false">
+          <div class="faq-q">Can I use Daily Toolkit on mobile devices?<span class="faq-toggle" aria-hidden="true">+</span></div>
           <div class="faq-a">Yes, the layout is responsive and intended to work across desktop, tablet, and mobile screens.</div>
         </div>
-        <div class="faq-item" onclick="toggleFaq(this)">
-          <div class="faq-q">What kind of tools are available?<span class="faq-toggle">+</span></div>
+        <div class="faq-item" role="button" tabindex="0" onclick="toggleFaq(this)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();toggleFaq(this);}" aria-expanded="false">
+          <div class="faq-q">What kind of tools are available?<span class="faq-toggle" aria-hidden="true">+</span></div>
           <div class="faq-a">The website includes calculators, PDF tools, image tools, text tools, generators, and utility tools for daily use.</div>
         </div>
-        <div class="faq-item" onclick="toggleFaq(this)">
-          <div class="faq-q">Is my data safe when I upload files?<span class="faq-toggle">+</span></div>
+        <div class="faq-item" role="button" tabindex="0" onclick="toggleFaq(this)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();toggleFaq(this);}" aria-expanded="false">
+          <div class="faq-q">Is my data safe when I upload files?<span class="faq-toggle" aria-hidden="true">+</span></div>
           <div class="faq-a">Most tools process files directly in your browser. Your files are never stored on our servers unless explicitly required.</div>
         </div>
-        <div class="faq-item" onclick="toggleFaq(this)">
-          <div class="faq-q">How can I contact the website owner?<span class="faq-toggle">+</span></div>
+        <div class="faq-item" role="button" tabindex="0" onclick="toggleFaq(this)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();toggleFaq(this);}" aria-expanded="false">
+          <div class="faq-q">How can I contact the website owner?<span class="faq-toggle" aria-hidden="true">+</span></div>
           <div class="faq-a">You can use the Contact page to get in touch for feedback, suggestions, or website-related questions.</div>
         </div>
       </div>
@@ -1020,10 +1029,10 @@
         <a href="index.html" class="nav-logo"><i class="fas fa-tools"></i> Daily<span>Toolkit</span></a>
         <p class="footer-desc">Free online tools for everyday digital tasks. No signup, no ads disruption, just useful utilities that work.</p>
         <div class="social-links" style="margin-top:1.3rem;">
-          <a href="https://www.facebook.com/Ahsanullah7116/" class="social-link" target="_blank" rel="noopener" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-          <a href="https://twitter.com/yourprofile" class="social-link" target="_blank" rel="noopener" aria-label="Twitter"><i class="fab fa-x-twitter"></i></a>
-          <a href="https://www.instagram.com/ahsan_ontop01/" class="social-link" target="_blank" rel="noopener" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-          <a href="https://pk.linkedin.com/in/ahsanullah-mahar-b1b177285" class="social-link" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+          <a href="https://www.facebook.com/Ahsanullah7116/" class="social-link" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i class="fab fa-facebook-f" aria-hidden="true"></i></a>
+          <a href="https://twitter.com/yourprofile" class="social-link" target="_blank" rel="noopener noreferrer" aria-label="Twitter"><i class="fab fa-x-twitter" aria-hidden="true"></i></a>
+          <a href="https://www.instagram.com/ahsan_ontop01/" class="social-link" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fab fa-instagram" aria-hidden="true"></i></a>
+          <a href="https://pk.linkedin.com/in/ahsanullah-mahar-b1b177285" class="social-link" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fab fa-linkedin-in" aria-hidden="true"></i></a>
         </div>
       </div>
       <div class="footer-col">
@@ -1072,7 +1081,7 @@
 </footer>
 
 <button class="back-top" id="backTop" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Back to top">
-  <i class="fas fa-arrow-up"></i>
+  <i class="fas fa-arrow-up" aria-hidden="true"></i>
 </button>
 
 <script>
@@ -1086,6 +1095,7 @@ const allTools = [
   { name:"Gold Price Checker", desc:"Gold prices by weight units", icon:"fas fa-coins", cat:"calculator", url:"tools/gold-price-checker.html" },
   { name:"Fuel Price Checker", desc:"Quick fuel price information", icon:"fas fa-gas-pump", cat:"calculator", url:"tools/fuel-price-checker.html" },
   { name:"Stock Price Tracker", desc:"Track stock symbol prices", icon:"fas fa-chart-line", cat:"calculator", url:"tools/stock-price-tracker.html" },
+  { name:"Pension Calculator", desc:"Estimate retirement pension & gratuity", icon:"fas fa-piggy-bank", cat:"calculator", url:"tools/Pension calculator.html" },
   { name:"Compress PDF", desc:"Reduce PDF file size", icon:"fas fa-file-pdf", cat:"pdf", url:"tools/compress-pdf.html" },
   { name:"PDF Merger", desc:"Combine multiple PDFs into one", icon:"fas fa-file-circle-plus", cat:"pdf", url:"tools/pdf-merger.html" },
   { name:"PDF Splitter", desc:"Split PDF pages into files", icon:"fas fa-file-circle-minus", cat:"pdf", url:"tools/pdf-splitter.html" },
@@ -1125,11 +1135,11 @@ function renderTools() {
   } else {
     noResult.style.display = 'none';
     grid.innerHTML = filtered.map(t => `
-      <a href="${t.url}" class="tool-card-item" data-tool="${t.name.toLowerCase()}">
-        <div class="tc-icon"><i class="${t.icon}"></i></div>
+      <a href="${t.url}" class="tool-card-item" data-tool="${t.name.toLowerCase()}" aria-label="${t.name} - ${t.desc}">
+        <div class="tc-icon"><i class="${t.icon}" aria-hidden="true"></i></div>
         <div class="tc-name">${t.name}</div>
         <div class="tc-desc">${t.desc}</div>
-        <div class="tc-arrow">Use Tool →</div>
+        <div class="tc-arrow" aria-hidden="true">Use Tool →</div>
       </a>
     `).join('');
   }
@@ -1195,7 +1205,7 @@ document.addEventListener('DOMContentLoaded', function() {
 window.addEventListener('scroll', () => {
   document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 60);
   document.getElementById('backTop').classList.toggle('show', window.scrollY > 300);
-});
+}, { passive: true });
 
 // Mobile menu
 function toggleMenu() {
@@ -1208,7 +1218,9 @@ function toggleMenu() {
 // FAQ
 function toggleFaq(el) {
   el.classList.toggle('open');
-  el.querySelector('.faq-toggle').textContent = el.classList.contains('open') ? '−' : '+';
+  const isOpen = el.classList.contains('open');
+  el.querySelector('.faq-toggle').textContent = isOpen ? '−' : '+';
+  el.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
 }
 
 // Newsletter
