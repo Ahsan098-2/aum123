@@ -1,146 +1,843 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gold Price Checker Tool</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #fffacd; /* Lemon Chiffon for a golden feel */
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            margin: 0;
-            padding: 20px;
-            box-sizing: border-box;
-        }
-        .tool-container {
-            background-color: #ffffff;
-            border-radius: 12px;
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
-            padding: 40px;
-            max-width: 500px;
-            width: 100%;
-            text-align: center;
-            border: 1px solid #ffeb82; /* Light gold border */
-        }
-        h1 {
-            color: #daa520; /* Goldenrod for heading */
-            margin-bottom: 30px;
-            font-size: 2.2em;
-        }
-        select {
-            padding: 12px 15px;
-            border: 1px solid #daa520;
-            border-radius: 8px;
-            font-size: 1em;
-            width: calc(100% - 20px);
-            max-width: 250px;
-            margin-bottom: 20px;
-            background-color: #fffef2;
-            color: #333;
-            appearance: none;
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23daa520'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
-            background-repeat: no-repeat;
-            background-position: right 10px center;
-            background-size: 20px;
-            cursor: pointer;
-        }
-        button {
-            background-color: #daa520; /* Goldenrod button */
-            color: white;
-            border: none;
-            padding: 15px 30px;
-            border-radius: 8px;
-            cursor: pointer;
-            font-size: 1.1em;
-            transition: background-color 0.3s ease, transform 0.2s ease;
-            margin-top: 10px;
-            width: auto;
-        }
-        button:hover {
-            background-color: #b8860b; /* Darker goldenrod */
-            transform: translateY(-2px);
-        }
-        button:active {
-            transform: translateY(0);
-        }
-        #goldPriceResult {
-            margin-top: 30px;
-            font-size: 1.4em;
-            color: #333;
-            font-weight: bold;
-            min-height: 30px;
-            line-height: 1.5;
-        }
-        .result-loading {
-            color: #555;
-            font-style: italic;
-        }
-        .result-error {
-            color: #f44336;
-        }
-        .price-value {
-            color: #b8860b; /* Dark goldenrod for price */
-            font-size: 1.1em;
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- ══════════ SEO ══════════ -->
+<title>Live Gold Price Checker – 24K, 22K, 21K, 18K Gold Rate Today | Daily Toolkit</title>
+<meta name="description" content="Check live gold price per gram, tola, and ounce in 24K, 22K, 21K, 18K, 14K & 10K. Real-time rates in USD, PKR, INR, AED, SAR & more. Free gold price calculator with live chart.">
+<meta name="keywords" content="gold price checker, live gold price, gold rate today, 24k gold price, 22k gold price, gold price per gram, gold price per tola, gold price calculator, gold price pkr, gold price usd">
+<meta name="robots" content="index, follow">
+<meta name="author" content="Ahsanullah Mahar">
+<link rel="canonical" href="https://dailytoolkit.xyz/tools/gold-price-checker.html">
+
+<meta property="og:title" content="Live Gold Price Checker – Real-Time Gold Rate | Daily Toolkit">
+<meta property="og:description" content="Live gold prices in every karat, currency, and weight unit — with a real-time session chart. Free, accurate, no signup.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://dailytoolkit.xyz/tools/gold-price-checker.html">
+<meta property="og:image" content="https://dailytoolkit.xyz/assets/preview.png">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Live Gold Price Checker | Daily Toolkit">
+<meta name="twitter:description" content="Real-time gold rates by karat, currency, and weight unit — with a live session chart.">
+<meta name="twitter:image" content="https://dailytoolkit.xyz/assets/preview.png">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Gold Price Checker",
+  "url": "https://dailytoolkit.xyz/tools/gold-price-checker.html",
+  "applicationCategory": "FinanceApplication",
+  "operatingSystem": "Any",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+  "description": "Free live gold price checker covering multiple karats, currencies, and weight units with a real-time session chart.",
+  "publisher": { "@type": "Organization", "name": "Daily Toolkit" }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://dailytoolkit.xyz/index.html" },
+    { "@type": "ListItem", "position": 2, "name": "Tools", "item": "https://dailytoolkit.xyz/tools.html" },
+    { "@type": "ListItem", "position": 3, "name": "Gold Price Checker", "item": "https://dailytoolkit.xyz/tools/gold-price-checker.html" }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    { "@type": "Question", "name": "How often does the gold price update?", "acceptedAnswer": { "@type": "Answer", "text": "This tool refreshes live spot prices automatically about every 45 seconds using a real-time gold price feed, and you can also refresh manually at any time." } },
+    { "@type": "Question", "name": "What is the difference between 24K, 22K, 21K, and 18K gold?", "acceptedAnswer": { "@type": "Answer", "text": "The karat number indicates gold purity out of 24 parts. 24K is 99.9% pure gold, 22K is about 91.6% pure, 21K is about 87.5% pure, and 18K is 75% pure, with the remainder made up of other metals for durability." } },
+    { "@type": "Question", "name": "What is a tola in gold measurement?", "acceptedAnswer": { "@type": "Answer", "text": "A tola is a traditional South Asian unit of mass equal to approximately 11.6638 grams, commonly used for pricing gold in Pakistan, India, and neighboring countries." } },
+    { "@type": "Question", "name": "Why does the gold price differ by country?", "acceptedAnswer": { "@type": "Answer", "text": "The global spot price of gold is the same, but local prices vary due to currency exchange rates, import duties, taxes, and making charges added by local jewelers and dealers." } },
+    { "@type": "Question", "name": "Is this gold price checker accurate?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. Prices are pulled from a live spot price feed sourced from real market data providers, converted using live currency exchange rates. Local retail prices may vary slightly due to dealer markups." } }
+  ]
+}
+</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"></noscript>
+
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --black: #0A0A0A; --white: #FFFFFF; --gray-100: #F7F7F7; --gray-200: #EFEFEF;
+    --gray-400: #ABABAB; --gray-600: #6B6B6B; --gold: #C9A84C; --gold-light: #E8D28A;
+    --up: #22c55e; --down: #ef4444;
+    --font-display: 'Playfair Display', Georgia, serif; --font-body: 'Inter', system-ui, sans-serif;
+    --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  html { scroll-behavior: smooth; }
+  body { font-family: var(--font-body); background: var(--white); color: var(--black); line-height: 1.6; overflow-x: hidden; display: flex; flex-direction: column; min-height: 100vh; }
+  a { text-decoration: none; color: inherit; }
+  ::-webkit-scrollbar { width: 4px; }
+  ::-webkit-scrollbar-track { background: var(--gray-100); }
+  ::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 2px; }
+
+  /* NAVBAR */
+  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; display: flex; align-items: center; justify-content: space-between; padding: 0 4%; height: 68px; background: rgba(255,255,255,0.96); backdrop-filter: blur(14px); border-bottom: 1px solid var(--gray-200); transition: box-shadow var(--transition); gap: 1rem; }
+  nav.scrolled { box-shadow: 0 2px 24px rgba(0,0,0,0.07); }
+  .nav-logo { font-family: var(--font-display); font-size: 1.3rem; font-weight: 700; color: var(--black); white-space: nowrap; display: flex; align-items: center; gap: 0.4rem; }
+  .nav-logo span { color: var(--gold); }
+  .nav-links { display: flex; gap: 1.6rem; list-style: none; align-items: center; }
+  .nav-links a { font-size: 0.82rem; font-weight: 500; color: var(--gray-600); letter-spacing: 0.04em; text-transform: uppercase; transition: color var(--transition); padding: 4px 0; position: relative; }
+  .nav-links a::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 1px; background: var(--gold); transform: scaleX(0); transform-origin: left; transition: transform var(--transition); }
+  .nav-links a:hover, .nav-links a.active { color: var(--black); }
+  .nav-links a:hover::after, .nav-links a.active::after { transform: scaleX(1); }
+  .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; background: none; border: none; }
+  .hamburger span { display: block; width: 22px; height: 1.5px; background: var(--black); }
+  .mobile-menu { display: none; position: fixed; top: 68px; left: 0; right: 0; background: var(--white); border-bottom: 1px solid var(--gray-200); padding: 1.2rem 4%; flex-direction: column; gap: 1rem; z-index: 999; }
+  .mobile-menu.open { display: flex; }
+  .mobile-menu a { font-size: 0.88rem; font-weight: 500; color: var(--gray-600); letter-spacing: 0.04em; text-transform: uppercase; }
+
+  .breadcrumb-bar { padding: 96px 4% 0; }
+  .breadcrumb { max-width: 1150px; margin: 0 auto; display: flex; gap: 0.5rem; font-size: 0.76rem; color: var(--gray-600); }
+  .breadcrumb a:hover { color: var(--gold); }
+  .breadcrumb span.sep { color: var(--gray-400); }
+  .breadcrumb span.current { color: var(--black); font-weight: 600; }
+
+  main { flex: 1; }
+
+  .tool-hero { padding: 28px 4% 10px; }
+  .tool-hero-inner { max-width: 1150px; margin: 0 auto; text-align: center; }
+  .tool-eyebrow { display: inline-flex; align-items: center; gap: 0.5rem; font-size: 0.7rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.7rem; }
+  .tool-eyebrow::before { content:''; width: 18px; height: 1px; background: var(--gold); }
+  .tool-hero h1 { font-family: var(--font-display); font-size: clamp(1.9rem, 4vw, 3rem); font-weight: 700; letter-spacing: -0.02em; margin-bottom: 0.8rem; }
+  .tool-hero h1 em { font-style: italic; color: var(--gold); }
+  .tool-hero p { font-size: 0.98rem; color: var(--gray-600); max-width: 620px; margin: 0 auto; line-height: 1.8; }
+
+  /* METAL TABS */
+  .metal-tabs { display: flex; justify-content: center; gap: 0.6rem; margin: 1.8rem 0 0; flex-wrap: wrap; }
+  .metal-tab { display: flex; align-items: center; gap: 0.5rem; border: 1px solid var(--gray-200); background: var(--white); padding: 0.6rem 1.2rem; border-radius: 999px; cursor: pointer; font-family: var(--font-body); font-size: 0.8rem; font-weight: 600; color: var(--gray-600); transition: var(--transition); }
+  .metal-tab i { font-size: 0.8rem; }
+  .metal-tab.active { background: var(--black); color: var(--white); border-color: var(--black); }
+  .metal-tab.active .dotm { background: var(--gold); }
+  .metal-tab .dotm { width: 8px; height: 8px; border-radius: 50%; background: var(--gray-400); display: inline-block; }
+
+  /* LIVE TICKER */
+  .ticker-section { padding: 30px 4% 10px; }
+  .ticker-wrap { max-width: 1150px; margin: 0 auto; }
+  .ticker-card { background: var(--black); color: var(--white); border-radius: 10px; padding: 2.2rem 2rem; text-align: center; position: relative; overflow: hidden; }
+  .ticker-card::before { content:''; position:absolute; top:-50%; left:-10%; width:120%; height:200%; background: radial-gradient(circle, rgba(201,168,76,0.12), transparent 60%); pointer-events:none; }
+  .ticker-status { display: inline-flex; align-items: center; gap: 0.5rem; font-size: 0.68rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gray-400); margin-bottom: 1rem; }
+  .live-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--up); animation: pulse 1.6s infinite; }
+  @keyframes pulse { 0%,100%{opacity:1;} 50%{opacity:0.35;} }
+  .ticker-price-row { display: flex; align-items: baseline; justify-content: center; gap: 0.8rem; flex-wrap: wrap; }
+  .ticker-price { font-family: var(--font-display); font-size: clamp(2.4rem, 6vw, 4rem); font-weight: 700; transition: color 0.4s; }
+  .ticker-unit { font-size: 0.95rem; color: var(--gray-400); }
+  .ticker-change { display: inline-flex; align-items: center; gap: 0.35rem; font-size: 0.85rem; font-weight: 700; padding: 0.3rem 0.8rem; border-radius: 999px; margin-top: 0.8rem; }
+  .ticker-change.up { background: rgba(34,197,94,0.15); color: #86efac; }
+  .ticker-change.down { background: rgba(239,68,68,0.15); color: #fca5a5; }
+  .ticker-change.flat { background: rgba(255,255,255,0.08); color: var(--gray-400); }
+  .ticker-meta { margin-top: 1rem; font-size: 0.75rem; color: var(--gray-400); }
+  .ticker-controls { display: flex; justify-content: center; gap: 0.8rem; margin-top: 1.6rem; flex-wrap: wrap; }
+  .ctrl-select { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.15); color: var(--white); padding: 0.55rem 1rem; border-radius: 6px; font-family: var(--font-body); font-size: 0.8rem; cursor: pointer; }
+  .ctrl-select option { color: var(--black); }
+  .btn-refresh { background: var(--gold); color: var(--black); border: none; padding: 0.55rem 1.2rem; border-radius: 6px; font-weight: 700; font-size: 0.8rem; cursor: pointer; display: flex; align-items: center; gap: 0.5rem; transition: var(--transition); }
+  .btn-refresh:hover { background: var(--gold-light); }
+  .btn-refresh i.spin { animation: spin 0.8s linear infinite; }
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  /* SESSION CHART */
+  .chart-card { background: var(--gray-100); border: 1px solid var(--gray-200); border-radius: 10px; padding: 1.6rem 1.8rem; margin-top: 1.2rem; }
+  .chart-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; flex-wrap: wrap; gap: 0.6rem; }
+  .chart-head h3 { font-size: 0.88rem; font-weight: 700; display: flex; align-items: center; gap: 0.5rem; }
+  .chart-head h3 i { color: var(--gold); }
+  .chart-head span.note { font-size: 0.7rem; color: var(--gray-600); }
+  #sparkline { width: 100%; height: 140px; display: block; }
+
+  /* KARAT GRID */
+  .sec { padding: 60px 4%; }
+  .sec-inner { max-width: 1150px; margin: 0 auto; }
+  .sec-eyebrow { display: inline-flex; align-items: center; gap: 0.5rem; font-size: 0.7rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.6rem; }
+  .sec-eyebrow::before { content:''; width: 18px; height: 1px; background: var(--gold); }
+  .sec-title { font-family: var(--font-display); font-size: clamp(1.5rem, 2.6vw, 2.2rem); font-weight: 700; letter-spacing: -0.02em; margin-bottom: 0.6rem; }
+  .sec-subtitle { font-size: 0.92rem; color: var(--gray-600); max-width: 620px; line-height: 1.75; }
+  .sec-header { margin-bottom: 2rem; }
+  .sec-header.center { text-align: center; }
+  .sec-header.center .sec-eyebrow { justify-content: center; }
+  .sec-header.center .sec-eyebrow::before { display: none; }
+  .sec-header.center .sec-subtitle { margin: 0 auto; }
+
+  .sec-karat { background: var(--gray-100); }
+  .karat-grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 1px; background: var(--gray-200); border: 1px solid var(--gray-200); border-radius: 8px; overflow: hidden; margin-top: 2rem; }
+  .karat-card { background: var(--white); padding: 1.4rem 1.1rem; text-align: center; transition: var(--transition); }
+  .karat-card:hover { background: var(--gray-100); }
+  .karat-card .kc-badge { display: inline-block; background: var(--black); color: var(--gold-light); font-family: var(--font-display); font-weight: 700; font-size: 1rem; padding: 0.3rem 0.8rem; border-radius: 999px; margin-bottom: 0.8rem; }
+  .karat-card .kc-purity { font-size: 0.66rem; color: var(--gray-600); margin-bottom: 0.6rem; }
+  .karat-card .kc-price { font-size: 1.05rem; font-weight: 700; }
+  @media (max-width: 900px) { .karat-grid { grid-template-columns: repeat(3, 1fr); } }
+  @media (max-width: 560px) { .karat-grid { grid-template-columns: repeat(2, 1fr); } }
+
+  /* CALCULATOR */
+  .sec-calc { background: var(--white); }
+  .calc-panel { max-width: 720px; margin: 2rem auto 0; background: var(--gray-100); border: 1px solid var(--gray-200); border-radius: 10px; padding: 2rem; }
+  .calc-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1rem; margin-bottom: 1.4rem; }
+  .calc-field label { display: block; font-size: 0.72rem; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase; color: var(--gray-600); margin-bottom: 0.5rem; }
+  .calc-field input, .calc-field select { width: 100%; padding: 0.8rem 0.9rem; border: 1px solid var(--gray-200); border-radius: 4px; background: var(--white); font-family: var(--font-body); font-size: 0.92rem; color: var(--black); outline: none; }
+  .calc-field input:focus, .calc-field select:focus { border-color: var(--gold); box-shadow: 0 0 0 3px rgba(201,168,76,0.12); }
+  .calc-result { background: var(--black); color: var(--white); border-radius: 8px; padding: 1.4rem; text-align: center; }
+  .calc-result .cr-label { font-size: 0.68rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.4rem; }
+  .calc-result .cr-value { font-family: var(--font-display); font-size: 1.9rem; font-weight: 700; }
+  @media (max-width: 640px) { .calc-grid { grid-template-columns: 1fr; } }
+
+  /* GOLD DIVIDER */
+  .gold-divider { width: 100%; height: 1px; background: linear-gradient(90deg, transparent, var(--gold), transparent); }
+
+  /* ARTICLE */
+  .sec-article { background: var(--white); }
+  .article-grid { display: grid; grid-template-columns: 1.4fr 1fr; gap: 2.5rem; }
+  .article-body h3 { font-family: var(--font-display); font-size: 1.3rem; font-weight: 700; margin: 1.8rem 0 0.7rem; }
+  .article-body h3:first-child { margin-top: 0; }
+  .article-body p { font-size: 0.92rem; color: var(--gray-600); line-height: 1.85; margin-bottom: 0.9rem; }
+  .article-body ul { margin: 0.5rem 0 1rem 1.2rem; }
+  .article-body li { font-size: 0.92rem; color: var(--gray-600); line-height: 1.85; margin-bottom: 0.4rem; }
+  .purity-table { width: 100%; border-collapse: collapse; margin: 1rem 0; }
+  .purity-table th, .purity-table td { padding: 0.65rem 0.8rem; text-align: left; font-size: 0.82rem; border-bottom: 1px solid var(--gray-200); }
+  .purity-table th { background: var(--black); color: var(--white); font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.04em; }
+  .side-tips { background: var(--gray-100); border: 1px solid var(--gray-200); border-radius: 8px; padding: 1.6rem; height: fit-content; }
+  .side-tips h4 { font-size: 0.95rem; font-weight: 700; margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem; }
+  .side-tips h4 i { color: var(--gold); }
+  .tip-item { display: flex; gap: 0.7rem; margin-bottom: 1rem; align-items: flex-start; }
+  .tip-item i { color: var(--gold); margin-top: 3px; font-size: 0.8rem; flex-shrink: 0; }
+  .tip-item span { font-size: 0.82rem; color: var(--gray-600); line-height: 1.6; }
+  @media (max-width: 900px) { .article-grid { grid-template-columns: 1fr; } }
+
+  /* FEATURES */
+  .sec-features { background: var(--black); color: var(--white); }
+  .sec-features .sec-title { color: var(--white); }
+  .sec-features .sec-subtitle { color: var(--gray-400); }
+  .features-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.3rem; margin-top: 2.2rem; }
+  .feat-item { padding: 1.6rem; border: 1px solid rgba(255,255,255,0.08); border-radius: 6px; transition: var(--transition); }
+  .feat-item:hover { border-color: var(--gold); }
+  .feat-icon { font-size: 1.3rem; color: var(--gold); margin-bottom: 0.9rem; }
+  .feat-title { font-weight: 600; font-size: 0.92rem; margin-bottom: 0.5rem; }
+  .feat-desc { font-size: 0.78rem; color: var(--gray-400); line-height: 1.7; }
+  @media (max-width: 900px) { .features-grid { grid-template-columns: 1fr 1fr; } }
+
+  /* RELATED */
+  .sec-related { background: var(--white); }
+  .related-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--gray-200); border: 1px solid var(--gray-200); border-radius: 6px; overflow: hidden; margin-top: 2rem; }
+  .related-item { background: var(--white); padding: 1.2rem; display: flex; flex-direction: column; gap: 0.4rem; transition: var(--transition); }
+  .related-item:hover { background: var(--gray-100); }
+  .related-item i { color: var(--gold); font-size: 1.2rem; }
+  .related-item .rt-name { font-size: 0.84rem; font-weight: 600; }
+  .related-item .rt-desc { font-size: 0.72rem; color: var(--gray-600); }
+  @media (max-width: 900px) { .related-grid { grid-template-columns: 1fr 1fr; } }
+
+  /* FAQ */
+  .sec-faq { background: var(--gray-100); }
+  .faq-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; margin-top: 2rem; }
+  .faq-item { padding: 1.5rem 1.7rem; background: var(--white); border: 1px solid var(--gray-200); cursor: pointer; transition: var(--transition); }
+  .faq-item:hover { background: var(--gray-100); }
+  .faq-q { font-weight: 600; font-size: 0.86rem; display: flex; justify-content: space-between; align-items: flex-start; gap: 1rem; }
+  .faq-toggle { flex-shrink: 0; width: 20px; height: 20px; border: 1px solid var(--gray-200); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.8rem; color: var(--gray-600); transition: var(--transition); }
+  .faq-item.open .faq-toggle { background: var(--black); color: var(--white); border-color: var(--black); }
+  .faq-a { font-size: 0.82rem; color: var(--gray-600); line-height: 1.75; display: none; margin-top: 0.7rem; }
+  .faq-item.open .faq-a { display: block; }
+  @media (max-width: 768px) { .faq-grid { grid-template-columns: 1fr; } }
+
+  .disclaimer { background: var(--gray-100); border: 1px solid var(--gray-200); border-radius: 8px; padding: 1.2rem 1.5rem; display: flex; gap: 1rem; align-items: flex-start; margin-top: 1.6rem; max-width: 1150px; margin-left:auto; margin-right:auto; }
+  .disclaimer i { color: var(--gold); font-size: 1.1rem; margin-top: 2px; }
+  .disclaimer p { font-size: 0.78rem; color: var(--gray-600); line-height: 1.7; }
+
+  /* FOOTER */
+  footer { background: var(--black); color: var(--gray-400); padding: 56px 4% 28px; margin-top: auto; }
+  .footer-inner { max-width: 1200px; margin: 0 auto; }
+  .footer-top { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 2.5rem; margin-bottom: 2.5rem; }
+  .footer-brand .nav-logo { color: var(--white); margin-bottom: 0.9rem; }
+  .footer-desc { font-size: 0.82rem; line-height: 1.7; max-width: 240px; }
+  .footer-col h4 { font-size: 0.7rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--white); margin-bottom: 1.1rem; }
+  .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 0.65rem; }
+  .footer-col ul a { font-size: 0.8rem; color: var(--gray-400); transition: color var(--transition); }
+  .footer-col ul a:hover { color: var(--gold); }
+  .footer-bottom { padding-top: 1.8rem; border-top: 1px solid rgba(255,255,255,0.06); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
+  .footer-bottom p { font-size: 0.78rem; }
+  .social-links { display: flex; gap: 0.8rem; }
+  .social-link { width: 34px; height: 34px; border: 1px solid rgba(255,255,255,0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--gray-400); font-size: 0.8rem; transition: var(--transition); }
+  .social-link:hover { border-color: var(--gold); color: var(--gold); }
+  @media (max-width: 1024px) { .footer-top { grid-template-columns: 1fr 1fr; gap: 2rem; } }
+  @media (max-width: 768px) { .footer-top { grid-template-columns: 1fr; } .nav-links { display: none; } .hamburger { display: flex; } }
+
+  .reveal { opacity: 0; transform: translateY(18px); transition: opacity 0.5s ease, transform 0.5s ease; }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  .back-top { position: fixed; bottom: 1.8rem; right: 1.8rem; width: 40px; height: 40px; background: var(--black); color: var(--white); border: none; border-radius: 2px; cursor: pointer; display: flex; align-items: center; justify-content: center; opacity: 0; transform: translateY(8px); transition: var(--transition); z-index: 50; font-size: 1rem; }
+  .back-top.show { opacity: 1; transform: translateY(0); }
+  .back-top:hover { background: var(--gold); color: var(--black); }
+</style>
 </head>
 <body>
-    <div class="tool-container">
-        <h1>Gold Price Checker</h1>
-        <select id="goldUnit">
-            <option value="24k">24K Gold</option>
-            <option value="22k">22K Gold</option>
-        </select>
-        <button onclick="checkGoldPrice()">Check Price</button>
-        <p id="goldPriceResult"></p>
+
+<nav id="navbar" role="banner">
+  <a href="../index.html" class="nav-logo" aria-label="Daily Toolkit Home"><i class="fas fa-tools" aria-hidden="true"></i> Daily<span>Toolkit</span></a>
+  <ul class="nav-links" role="navigation" aria-label="Main navigation">
+    <li><a href="../index.html" class="nav-link">Home</a></li>
+    <li><a href="../tools.html" class="nav-link active">Tools</a></li>
+    <li><a href="../about.html" class="nav-link">About</a></li>
+    <li><a href="../privacy.html" class="nav-link">Privacy</a></li>
+    <li><a href="../contact.html" class="nav-link">Contact</a></li>
+    <li><a href="../terms.html" class="nav-link">Terms</a></li>
+    <li><a href="../blog.html" class="nav-link">Blog</a></li>
+  </ul>
+  <button class="hamburger" id="hamburger" onclick="toggleMenu()" aria-label="Toggle menu" aria-expanded="false"><span></span><span></span><span></span></button>
+</nav>
+<div class="mobile-menu" id="mobileMenu" role="navigation" aria-label="Mobile navigation">
+  <a href="../index.html">Home</a><a href="../tools.html">Tools</a><a href="../about.html">About</a>
+  <a href="../privacy.html">Privacy</a><a href="../contact.html">Contact</a><a href="../terms.html">Terms</a><a href="../blog.html">Blog</a>
+</div>
+
+<div class="breadcrumb-bar">
+  <nav class="breadcrumb" aria-label="Breadcrumb">
+    <a href="../index.html">Home</a><span class="sep">/</span>
+    <a href="../tools.html">Tools</a><span class="sep">/</span>
+    <span class="current">Gold Price Checker</span>
+  </nav>
+</div>
+
+<main id="mainContent">
+
+  <section class="tool-hero">
+    <div class="tool-hero-inner">
+      <span class="tool-eyebrow">Live Precious Metal Rates</span>
+      <h1>Real-Time Gold Price, <em>Every Karat.</em></h1>
+      <p>Live spot gold prices by karat, weight unit, and currency — powered by a real-time market data feed. Auto-refreshing, with a live session trend chart.</p>
     </div>
 
-    <script>
-        async function checkGoldPrice() {
-            const goldUnit = document.getElementById('goldUnit').value;
-            const resultElement = document.getElementById('goldPriceResult');
-            resultElement.className = 'result-loading';
-            resultElement.textContent = 'Fetching gold price...';
+    <div class="metal-tabs" role="tablist" aria-label="Metal selection">
+      <button class="metal-tab active" data-symbol="XAU" onclick="setMetal('XAU', this)"><span class="dotm"></span> Gold</button>
+      <button class="metal-tab" data-symbol="XAG" onclick="setMetal('XAG', this)"><span class="dotm"></span> Silver</button>
+      <button class="metal-tab" data-symbol="XPT" onclick="setMetal('XPT', this)"><span class="dotm"></span> Platinum</button>
+      <button class="metal-tab" data-symbol="XPD" onclick="setMetal('XPD', this)"><span class="dotm"></span> Palladium</button>
+    </div>
+  </section>
 
-            // This is a placeholder. Real-time gold price APIs are typically paid and require an API key.
-            // For a real application, you'd integrate with a service like Gold API (e.g., goldapi.io, Finnhub for metals, etc.)
-            // using your own API key.
-            try {
-                // Simulate fetching data
-                await new Promise(resolve => setTimeout(resolve, 1500)); // Simulate API delay
+  <section class="ticker-section">
+    <div class="ticker-wrap">
+      <div class="ticker-card reveal">
+        <div class="ticker-status"><span class="live-dot"></span> <span id="statusText">Connecting to live feed…</span></div>
+        <div class="ticker-price-row">
+          <span class="ticker-price" id="tickerPrice">--</span>
+        </div>
+        <div class="ticker-unit" id="tickerUnitLabel">per gram · 24K</div>
+        <div><span class="ticker-change flat" id="tickerChange"><i class="fas fa-minus" aria-hidden="true"></i> --</span></div>
+        <div class="ticker-meta" id="tickerMeta">Last updated: --</div>
 
-                const dummyData = {
-                    '24k': { usd_per_gram: 65.23, inr_per_10_gram: 65230, last_updated: '2023-10-27 10:00 AM' },
-                    '22k': { usd_per_gram: 59.80, inr_per_10_gram: 59800, last_updated: '2023-10-27 10:00 AM' }
-                };
+        <div class="ticker-controls">
+          <select class="ctrl-select" id="currencySelect" onchange="onCurrencyChange()">
+            <option value="USD">USD – US Dollar</option>
+            <option value="PKR">PKR – Pakistani Rupee</option>
+            <option value="INR">INR – Indian Rupee</option>
+            <option value="AED">AED – UAE Dirham</option>
+            <option value="SAR">SAR – Saudi Riyal</option>
+            <option value="GBP">GBP – British Pound</option>
+            <option value="EUR">EUR – Euro</option>
+            <option value="CAD">CAD – Canadian Dollar</option>
+            <option value="AUD">AUD – Australian Dollar</option>
+          </select>
+          <select class="ctrl-select" id="weightSelect" onchange="renderAll()">
+            <option value="gram">Per Gram</option>
+            <option value="tola">Per Tola</option>
+            <option value="ounce">Per Troy Ounce</option>
+            <option value="kg">Per Kilogram</option>
+          </select>
+          <button class="btn-refresh" id="refreshBtn" onclick="manualRefresh()"><i class="fas fa-rotate" aria-hidden="true"></i> Refresh</button>
+        </div>
+      </div>
 
-                const priceData = dummyData[goldUnit];
-                if (priceData) {
-                    resultElement.className = '';
-                    resultElement.innerHTML = `
-                        Current <strong>${goldUnit} Gold Price</strong>:<br>
-                        USD: <span class="price-value">$${priceData.usd_per_gram.toFixed(2)}</span> / gram<br>
-                        INR: <span class="price-value">₹${priceData.inr_per_10_gram.toFixed(2)}</span> / 10 gram<br>
-                        <small>Last updated: ${priceData.last_updated}</small>
-                    `;
-                } else {
-                    resultElement.className = 'result-error';
-                    resultElement.textContent = 'Could not fetch gold price. Please try again.';
-                }
+      <div class="chart-card reveal">
+        <div class="chart-head">
+          <h3><i class="fas fa-chart-line" aria-hidden="true"></i> Live Session Trend</h3>
+          <span class="note">Builds in real time while this page stays open — auto-updates ~every 45s</span>
+        </div>
+        <svg id="sparkline" viewBox="0 0 1000 140" preserveAspectRatio="none"></svg>
+      </div>
+    </div>
+  </section>
 
-            } catch (error) {
-                console.error('Error fetching gold price:', error);
-                resultElement.className = 'result-error';
-                resultElement.textContent = 'Error fetching price. Please check your internet connection or try again later.';
-            }
-        }
+  <div class="disclaimer">
+    <i class="fas fa-circle-info" aria-hidden="true"></i>
+    <p>Prices reflect the international spot rate converted to your selected currency and are for reference only. Local jewelers and dealers add making charges, taxes, and premiums — actual retail prices will differ.</p>
+  </div>
 
-        // Optional: Load initial price when the page loads
-        document.addEventListener('DOMContentLoaded', checkGoldPrice);
-    </script>
+  <div class="gold-divider" style="margin-top:2.5rem;"></div>
+
+  <!-- KARAT GRID -->
+  <section class="sec sec-karat" id="karats">
+    <div class="sec-inner">
+      <div class="sec-header center reveal">
+        <span class="sec-eyebrow">By Purity</span>
+        <h2 class="sec-title" id="karatSectionTitle">Gold Price by Karat</h2>
+        <p class="sec-subtitle">Live prices calculated from the current spot rate across every common purity level.</p>
+      </div>
+      <div class="karat-grid reveal" id="karatGrid"></div>
+    </div>
+  </section>
+
+  <!-- CALCULATOR -->
+  <section class="sec sec-calc" id="calculator">
+    <div class="sec-inner">
+      <div class="sec-header center reveal">
+        <span class="sec-eyebrow">Calculator</span>
+        <h2 class="sec-title">Gold Value Calculator</h2>
+        <p class="sec-subtitle">Enter a weight and purity to instantly estimate its value at today's live rate.</p>
+      </div>
+      <div class="calc-panel reveal">
+        <div class="calc-grid">
+          <div class="calc-field">
+            <label for="calcWeight">Weight</label>
+            <input type="number" id="calcWeight" value="1" min="0" step="any" oninput="renderAll()">
+          </div>
+          <div class="calc-field">
+            <label for="calcUnit">Unit</label>
+            <select id="calcUnit" onchange="renderAll()">
+              <option value="gram">Grams</option>
+              <option value="tola" selected>Tola</option>
+              <option value="ounce">Troy Ounce</option>
+              <option value="kg">Kilogram</option>
+            </select>
+          </div>
+          <div class="calc-field">
+            <label for="calcKarat">Purity</label>
+            <select id="calcKarat" onchange="renderAll()">
+              <option value="24">24K (99.9%)</option>
+              <option value="22" selected>22K (91.6%)</option>
+              <option value="21">21K (87.5%)</option>
+              <option value="18">18K (75.0%)</option>
+              <option value="14">14K (58.3%)</option>
+              <option value="10">10K (41.7%)</option>
+            </select>
+          </div>
+        </div>
+        <div class="calc-result">
+          <div class="cr-label">Estimated Value</div>
+          <div class="cr-value" id="calcResultValue">--</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="gold-divider"></div>
+
+  <!-- ARTICLE -->
+  <section class="sec sec-article">
+    <div class="sec-inner article-grid">
+      <div class="article-body reveal">
+        <span class="sec-eyebrow">Guide</span>
+        <h2 class="sec-title" style="margin-bottom:1.2rem;">Understanding Gold Pricing</h2>
+
+        <h3>What is the "spot price"?</h3>
+        <p>The spot price is the current market price for one troy ounce of pure (999) gold, set by global trading on exchanges like COMEX and the London Bullion Market. It's the reference price this tool converts into grams, tolas, and kilograms across different purities and currencies.</p>
+
+        <h3>Karat purity explained</h3>
+        <p>Pure gold (24K) is soft, so it's alloyed with metals like copper and silver for durability. The karat number tells you how many parts out of 24 are gold:</p>
+        <table class="purity-table">
+          <thead><tr><th>Karat</th><th>Purity</th><th>Common Use</th></tr></thead>
+          <tbody>
+            <tr><td>24K</td><td>99.9%</td><td>Investment bars, coins</td></tr>
+            <tr><td>22K</td><td>91.6%</td><td>Traditional jewelry (South Asia, Middle East)</td></tr>
+            <tr><td>21K</td><td>87.5%</td><td>Middle Eastern jewelry</td></tr>
+            <tr><td>18K</td><td>75.0%</td><td>Fine Western jewelry</td></tr>
+            <tr><td>14K</td><td>58.3%</td><td>Everyday jewelry, durability-focused</td></tr>
+            <tr><td>10K</td><td>41.7%</td><td>Budget jewelry (US minimum standard)</td></tr>
+          </tbody>
+        </table>
+
+        <h3>Grams, tola, and troy ounce</h3>
+        <p>Different regions use different weight units for gold. A <strong>tola</strong> (≈11.6638 g) is the standard unit across Pakistan, India, and the wider South Asian and Gulf markets. A <strong>troy ounce</strong> (≈31.1035 g) is the international standard used for spot pricing worldwide.</p>
+
+        <h3>What affects the price you pay</h3>
+        <ul>
+          <li><strong>Spot price:</strong> the base global market rate, driven by supply, demand, and currency strength.</li>
+          <li><strong>Making charges:</strong> labor cost added by jewelers for crafting jewelry, usually a percentage or flat fee.</li>
+          <li><strong>Import duties &amp; taxes:</strong> vary significantly by country and affect the final retail rate.</li>
+          <li><strong>Purity:</strong> lower karat gold costs less per gram than 24K, since it contains less actual gold.</li>
+        </ul>
+      </div>
+
+      <aside class="side-tips reveal">
+        <h4><i class="fas fa-lightbulb" aria-hidden="true"></i> Smart Buying Tips</h4>
+        <div class="tip-item"><i class="fas fa-check" aria-hidden="true"></i><span>Always ask for a hallmark or purity certificate before buying jewelry.</span></div>
+        <div class="tip-item"><i class="fas fa-check" aria-hidden="true"></i><span>Compare the spot price shown here against your dealer's quoted rate to spot excessive markups.</span></div>
+        <div class="tip-item"><i class="fas fa-check" aria-hidden="true"></i><span>Making charges are negotiable in most markets — don't hesitate to ask.</span></div>
+        <div class="tip-item"><i class="fas fa-check" aria-hidden="true"></i><span>For investment, 24K bars or coins carry the least premium over spot price.</span></div>
+        <div class="tip-item"><i class="fas fa-check" aria-hidden="true"></i><span>Gold prices can move throughout the trading day — check before large purchases.</span></div>
+      </aside>
+    </div>
+  </section>
+
+  <div class="gold-divider"></div>
+
+  <!-- FEATURES -->
+  <section class="sec sec-features">
+    <div class="sec-inner">
+      <div class="sec-header center reveal">
+        <span class="sec-eyebrow" style="color:var(--gold);">Why This Tool</span>
+        <h2 class="sec-title">Live Data, Zero Signup</h2>
+      </div>
+      <div class="features-grid reveal">
+        <div class="feat-item"><div class="feat-icon"><i class="fas fa-satellite-dish" aria-hidden="true"></i></div><div class="feat-title">Real-Time Feed</div><div class="feat-desc">Prices pulled from a live market data source, not simulated numbers.</div></div>
+        <div class="feat-item"><div class="feat-icon"><i class="fas fa-coins" aria-hidden="true"></i></div><div class="feat-title">6 Karat Levels</div><div class="feat-desc">From 24K investment gold down to 10K everyday jewelry.</div></div>
+        <div class="feat-item"><div class="feat-icon"><i class="fas fa-globe" aria-hidden="true"></i></div><div class="feat-title">9 Currencies</div><div class="feat-desc">USD, PKR, INR, AED, SAR, GBP, EUR, CAD, AUD — live converted.</div></div>
+        <div class="feat-item"><div class="feat-icon"><i class="fas fa-chart-line" aria-hidden="true"></i></div><div class="feat-title">Live Session Chart</div><div class="feat-desc">Watch the trend build in real time while you keep the page open.</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- RELATED -->
+  <section class="sec sec-related">
+    <div class="sec-inner">
+      <div class="sec-header reveal">
+        <span class="sec-eyebrow">Keep Going</span>
+        <h2 class="sec-title">Related Calculator Tools</h2>
+      </div>
+      <div class="related-grid reveal">
+        <a href="unit-converter.html" class="related-item"><i class="fas fa-ruler-combined" aria-hidden="true"></i><span class="rt-name">Unit Converter</span><span class="rt-desc">Convert any unit</span></a>
+        <a href="crypto-price-checker.html" class="related-item"><i class="fas fa-bitcoin-sign" aria-hidden="true"></i><span class="rt-name">Crypto Price Checker</span><span class="rt-desc">Live crypto prices</span></a>
+        <a href="loan-calculator.html" class="related-item"><i class="fas fa-calculator" aria-hidden="true"></i><span class="rt-name">Loan Calculator</span><span class="rt-desc">EMI & interest</span></a>
+        <a href="bmi-calculator.html" class="related-item"><i class="fas fa-weight" aria-hidden="true"></i><span class="rt-name">BMI Calculator</span><span class="rt-desc">Health check</span></a>
+      </div>
+    </div>
+  </section>
+
+  <div class="gold-divider"></div>
+
+  <!-- FAQ -->
+  <section class="sec sec-faq" id="faq">
+    <div class="sec-inner">
+      <div class="sec-header center reveal">
+        <span class="sec-eyebrow">FAQ</span>
+        <h2 class="sec-title">Frequently Asked Questions</h2>
+      </div>
+      <div class="faq-grid reveal">
+        <div class="faq-item" role="button" tabindex="0" onclick="toggleFaq(this)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();toggleFaq(this);}" aria-expanded="false">
+          <div class="faq-q">How often does the gold price update?<span class="faq-toggle" aria-hidden="true">+</span></div>
+          <div class="faq-a">This tool refreshes live spot prices automatically about every 45 seconds using a real-time gold price feed, and you can also refresh manually at any time.</div>
+        </div>
+        <div class="faq-item" role="button" tabindex="0" onclick="toggleFaq(this)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();toggleFaq(this);}" aria-expanded="false">
+          <div class="faq-q">What's the difference between 24K, 22K, 21K, and 18K gold?<span class="faq-toggle" aria-hidden="true">+</span></div>
+          <div class="faq-a">The karat number indicates gold purity out of 24 parts. 24K is 99.9% pure gold, 22K is about 91.6% pure, 21K is about 87.5% pure, and 18K is 75% pure, with the remainder made up of other metals for durability.</div>
+        </div>
+        <div class="faq-item" role="button" tabindex="0" onclick="toggleFaq(this)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();toggleFaq(this);}" aria-expanded="false">
+          <div class="faq-q">What is a tola?<span class="faq-toggle" aria-hidden="true">+</span></div>
+          <div class="faq-a">A tola is a traditional South Asian unit of mass equal to approximately 11.6638 grams, commonly used for pricing gold in Pakistan, India, and neighboring countries.</div>
+        </div>
+        <div class="faq-item" role="button" tabindex="0" onclick="toggleFaq(this)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();toggleFaq(this);}" aria-expanded="false">
+          <div class="faq-q">Why does gold price differ by country?<span class="faq-toggle" aria-hidden="true">+</span></div>
+          <div class="faq-a">The global spot price of gold is the same, but local prices vary due to currency exchange rates, import duties, taxes, and making charges added by local jewelers and dealers.</div>
+        </div>
+        <div class="faq-item" role="button" tabindex="0" onclick="toggleFaq(this)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();toggleFaq(this);}" aria-expanded="false">
+          <div class="faq-q">Is this gold price checker accurate?<span class="faq-toggle" aria-hidden="true">+</span></div>
+          <div class="faq-a">Yes. Prices are pulled from a live spot price feed sourced from real market data providers, converted using live currency exchange rates. Local retail prices may vary slightly due to dealer markups.</div>
+        </div>
+        <div class="faq-item" role="button" tabindex="0" onclick="toggleFaq(this)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();toggleFaq(this);}" aria-expanded="false">
+          <div class="faq-q">Can I check silver and platinum too?<span class="faq-toggle" aria-hidden="true">+</span></div>
+          <div class="faq-a">Yes — use the metal tabs above the live price card to switch between Gold, Silver, Platinum, and Palladium.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <a href="../index.html" class="nav-logo"><i class="fas fa-tools"></i> Daily<span>Toolkit</span></a>
+        <p class="footer-desc">Free online tools for everyday digital tasks. No signup, no ads disruption, just useful utilities that work.</p>
+        <div class="social-links" style="margin-top:1.3rem;">
+          <a href="https://www.facebook.com/Ahsanullah7116/" class="social-link" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i class="fab fa-facebook-f" aria-hidden="true"></i></a>
+          <a href="https://twitter.com/yourprofile" class="social-link" target="_blank" rel="noopener noreferrer" aria-label="Twitter"><i class="fab fa-x-twitter" aria-hidden="true"></i></a>
+          <a href="https://www.instagram.com/ahsan_ontop01/" class="social-link" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fab fa-instagram" aria-hidden="true"></i></a>
+          <a href="https://pk.linkedin.com/in/ahsanullah-mahar-b1b177285" class="social-link" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fab fa-linkedin-in" aria-hidden="true"></i></a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Quick Tools</h4>
+        <ul>
+          <li><a href="age-calculator.html">Age Calculator</a></li>
+          <li><a href="bmi-calculator.html">BMI Calculator</a></li>
+          <li><a href="unit-converter.html">Unit Converter</a></li>
+          <li><a href="compress-pdf.html">Compress PDF</a></li>
+          <li><a href="qr-generator.html">QR Generator</a></li>
+          <li><a href="password-gen.html">Password Generator</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Pages</h4>
+        <ul>
+          <li><a href="../about.html">About</a></li>
+          <li><a href="../blog.html">Blog</a></li>
+          <li><a href="../privacy.html">Privacy Policy</a></li>
+          <li><a href="../terms.html">Terms of Service</a></li>
+          <li><a href="../contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Categories</h4>
+        <ul>
+          <li><a href="../tools.html">Calculators</a></li>
+          <li><a href="../tools.html">PDF Tools</a></li>
+          <li><a href="../tools.html">Image Tools</a></li>
+          <li><a href="../tools.html">Text Utilities</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025 Daily Toolkit. All rights reserved.</p>
+      <nav class="footer-links" aria-label="Footer links" style="display:flex;gap:1.2rem;flex-wrap:wrap;">
+        <a href="../about.html" style="font-size:0.78rem;color:var(--gray-400);">About</a>
+        <a href="../privacy.html" style="font-size:0.78rem;color:var(--gray-400);">Privacy Policy</a>
+        <a href="../terms.html" style="font-size:0.78rem;color:var(--gray-400);">Terms of Service</a>
+        <a href="../contact.html" style="font-size:0.78rem;color:var(--gray-400);">Contact</a>
+        <a href="../blog.html" style="font-size:0.78rem;color:var(--gray-400);">Blog</a>
+      </nav>
+    </div>
+  </div>
+</footer>
+
+<button class="back-top" id="backTop" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Back to top"><i class="fas fa-arrow-up" aria-hidden="true"></i></button>
+
+<script>
+/* ═══════════ CONFIG ═══════════ */
+const GOLD_API_BASE = 'https://api.gold-api.com';
+const FX_API = 'https://open.er-api.com/v6/latest/USD';
+const GRAMS = { gram: 1, tola: 11.6638038, ounce: 31.1034768, kg: 1000 };
+const KARAT_PURITY = { 24: 1, 22: 0.9166, 21: 0.875, 18: 0.75, 14: 0.5833, 10: 0.4167 };
+const METAL_NAMES = { XAU: 'Gold', XAG: 'Silver', XPT: 'Platinum', XPD: 'Palladium' };
+const CURRENCY_SYMBOLS = { USD:'$', PKR:'Rs', INR:'₹', AED:'AED', SAR:'SAR', GBP:'£', EUR:'€', CAD:'CA$', AUD:'A$' };
+
+let currentMetal = 'XAU';
+let currentCurrency = 'USD';
+let spotUsdPerOz = null;   // latest fetched spot price in USD per troy oz
+let previousSpot = null;   // for change indicator
+let fxRates = null;        // { PKR: 280, INR: 84, ... } relative to USD
+let sessionPoints = [];    // [{t, price}] for live chart
+let pollTimer = null;
+
+/* ═══════════ FETCHING ═══════════ */
+async function fetchSpotPrice(symbol){
+  const res = await fetch(`${GOLD_API_BASE}/price/${symbol}`);
+  if(!res.ok) throw new Error('Price fetch failed');
+  return res.json(); // { price, currency: 'USD', symbol, updatedAt, ... }
+}
+
+async function fetchFxRates(){
+  if(fxRates) return fxRates; // cache for session (rates update daily anyway)
+  const res = await fetch(FX_API);
+  if(!res.ok) throw new Error('FX fetch failed');
+  const data = await res.json();
+  fxRates = data.rates;
+  return fxRates;
+}
+
+async function loadData(isManual){
+  const statusEl = document.getElementById('statusText');
+  const refreshBtn = document.getElementById('refreshBtn');
+  if(isManual){ refreshBtn.querySelector('i').classList.add('spin'); }
+  statusEl.textContent = 'Updating…';
+
+  try{
+    const [priceData] = await Promise.all([ fetchSpotPrice(currentMetal), fetchFxRates() ]);
+    previousSpot = spotUsdPerOz;
+    spotUsdPerOz = priceData.price;
+
+    sessionPoints.push({ t: Date.now(), price: spotUsdPerOz });
+    if(sessionPoints.length > 40) sessionPoints.shift();
+
+    statusEl.textContent = 'Live';
+    document.getElementById('tickerMeta').textContent = 'Last updated: ' + new Date().toLocaleTimeString();
+    renderAll();
+    drawSparkline();
+  }catch(err){
+    console.error(err);
+    statusEl.textContent = spotUsdPerOz ? 'Showing last known price (feed unavailable)' : 'Unable to load live price — please retry';
+  }finally{
+    if(isManual) setTimeout(()=> refreshBtn.querySelector('i').classList.remove('spin'), 500);
+  }
+}
+
+function manualRefresh(){ loadData(true); }
+
+function startPolling(){
+  if(pollTimer) clearInterval(pollTimer);
+  pollTimer = setInterval(()=> loadData(false), 45000);
+}
+
+/* ═══════════ METAL / CURRENCY SWITCH ═══════════ */
+function setMetal(symbol, btn){
+  currentMetal = symbol;
+  document.querySelectorAll('.metal-tab').forEach(t => t.classList.remove('active'));
+  btn.classList.add('active');
+  sessionPoints = [];
+  spotUsdPerOz = null;
+  previousSpot = null;
+
+  const karatSection = document.getElementById('karatSectionTitle');
+  const isGold = symbol === 'XAU';
+  document.getElementById('karats').style.display = isGold ? 'block' : 'none';
+  document.getElementById('calculator').style.display = isGold ? 'block' : 'none';
+  karatSection.textContent = `${METAL_NAMES[symbol]} Price by Karat`;
+
+  loadData(false);
+}
+
+function onCurrencyChange(){
+  currentCurrency = document.getElementById('currencySelect').value;
+  renderAll();
+}
+
+/* ═══════════ CONVERSION HELPERS ═══════════ */
+function priceInCurrencyPerGram(purityFactor){
+  if(spotUsdPerOz === null) return null;
+  const usdPerGram = spotUsdPerOz / GRAMS.ounce;
+  const rate = currentCurrency === 'USD' ? 1 : (fxRates ? fxRates[currentCurrency] : null);
+  if(rate === null || rate === undefined) return null;
+  return usdPerGram * rate * purityFactor;
+}
+
+function formatMoney(value){
+  if(value === null || isNaN(value)) return '--';
+  const sym = CURRENCY_SYMBOLS[currentCurrency] || currentCurrency;
+  return `${sym} ${value.toLocaleString(undefined, { maximumFractionDigits: value >= 1000 ? 0 : 2, minimumFractionDigits: 2 })}`;
+}
+
+/* ═══════════ RENDER ═══════════ */
+function renderAll(){
+  if(spotUsdPerOz === null) return;
+
+  const weightUnit = document.getElementById('weightSelect').value;
+  const purity = currentMetal === 'XAU' ? 1 : 1; // ticker always shows 24K-equivalent / pure spot for non-gold metals
+  const pricePerGram = priceInCurrencyPerGram(purity);
+  const pricePerUnit = pricePerGram !== null ? pricePerGram * GRAMS[weightUnit] : null;
+
+  const priceEl = document.getElementById('tickerPrice');
+  const oldText = priceEl.textContent;
+  const newText = formatMoney(pricePerUnit);
+  priceEl.textContent = newText;
+  if(oldText !== newText && oldText !== '--'){
+    priceEl.style.color = 'var(--gold)';
+    setTimeout(()=> priceEl.style.color = '', 600);
+  }
+
+  const unitLabel = { gram:'gram', tola:'tola', ounce:'troy oz', kg:'kilogram' }[weightUnit];
+  document.getElementById('tickerUnitLabel').textContent =
+    `per ${unitLabel} · ${METAL_NAMES[currentMetal]}${currentMetal==='XAU' ? ' (24K spot)' : ''}`;
+
+  // Change indicator
+  const changeEl = document.getElementById('tickerChange');
+  if(previousSpot !== null && previousSpot !== spotUsdPerOz){
+    const pct = ((spotUsdPerOz - previousSpot) / previousSpot) * 100;
+    const up = pct > 0;
+    changeEl.className = 'ticker-change ' + (up ? 'up' : (pct < 0 ? 'down' : 'flat'));
+    changeEl.innerHTML = `<i class="fas fa-arrow-${up ? 'up' : 'down'}" aria-hidden="true"></i> ${Math.abs(pct).toFixed(3)}% this session`;
+  } else if(sessionPoints.length <= 1){
+    changeEl.className = 'ticker-change flat';
+    changeEl.innerHTML = `<i class="fas fa-minus" aria-hidden="true"></i> Baseline set — tracking from now`;
+  }
+
+  if(currentMetal === 'XAU'){
+    renderKaratGrid(weightUnit);
+    renderCalculator();
+  }
+}
+
+function renderKaratGrid(weightUnit){
+  const grid = document.getElementById('karatGrid');
+  grid.innerHTML = '';
+  Object.keys(KARAT_PURITY).sort((a,b)=>b-a).forEach(k => {
+    const pricePerGram = priceInCurrencyPerGram(KARAT_PURITY[k]);
+    const pricePerUnit = pricePerGram !== null ? pricePerGram * GRAMS[weightUnit] : null;
+    const card = document.createElement('div');
+    card.className = 'karat-card';
+    card.innerHTML = `
+      <div class="kc-badge">${k}K</div>
+      <div class="kc-purity">${(KARAT_PURITY[k]*100).toFixed(1)}% pure</div>
+      <div class="kc-price">${formatMoney(pricePerUnit)}</div>
+    `;
+    grid.appendChild(card);
+  });
+}
+
+function renderCalculator(){
+  const weight = parseFloat(document.getElementById('calcWeight').value) || 0;
+  const unit = document.getElementById('calcUnit').value;
+  const karat = document.getElementById('calcKarat').value;
+  const pricePerGram = priceInCurrencyPerGram(KARAT_PURITY[karat]);
+  const total = pricePerGram !== null ? pricePerGram * GRAMS[unit] * weight : null;
+  document.getElementById('calcResultValue').textContent = formatMoney(total);
+}
+
+/* ═══════════ LIVE SESSION SPARKLINE ═══════════ */
+function drawSparkline(){
+  const svg = document.getElementById('sparkline');
+  if(sessionPoints.length < 2){
+    svg.innerHTML = `<text x="500" y="70" fill="#ABABAB" font-size="13" text-anchor="middle" font-family="Inter, sans-serif">Collecting live data points…</text>`;
+    return;
+  }
+  const prices = sessionPoints.map(p => p.price);
+  const min = Math.min(...prices), max = Math.max(...prices);
+  const range = (max - min) || 1;
+  const w = 1000, h = 140, pad = 10;
+
+  const pts = sessionPoints.map((p, i) => {
+    const x = pad + (i / (sessionPoints.length - 1)) * (w - pad*2);
+    const y = h - pad - ((p.price - min) / range) * (h - pad*2);
+    return [x, y];
+  });
+
+  const linePath = pts.map((pt, i) => (i === 0 ? 'M' : 'L') + pt[0].toFixed(1) + ',' + pt[1].toFixed(1)).join(' ');
+  const areaPath = linePath + ` L${pts[pts.length-1][0].toFixed(1)},${h} L${pts[0][0].toFixed(1)},${h} Z`;
+
+  svg.innerHTML = `
+    <defs>
+      <linearGradient id="areaGrad" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#C9A84C" stop-opacity="0.35"/>
+        <stop offset="100%" stop-color="#C9A84C" stop-opacity="0"/>
+      </linearGradient>
+    </defs>
+    <path d="${areaPath}" fill="url(#areaGrad)"/>
+    <path d="${linePath}" fill="none" stroke="#C9A84C" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+    <circle cx="${pts[pts.length-1][0].toFixed(1)}" cy="${pts[pts.length-1][1].toFixed(1)}" r="4.5" fill="#0A0A0A" stroke="#C9A84C" stroke-width="2"/>
+  `;
+}
+
+/* ═══════════ UI HELPERS ═══════════ */
+function toggleFaq(el){
+  el.classList.toggle('open');
+  const isOpen = el.classList.contains('open');
+  el.querySelector('.faq-toggle').textContent = isOpen ? '−' : '+';
+  el.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+}
+function toggleMenu(){
+  const menu = document.getElementById('mobileMenu');
+  const burger = document.getElementById('hamburger');
+  const open = menu.classList.toggle('open');
+  burger.setAttribute('aria-expanded', open);
+}
+window.addEventListener('scroll', () => {
+  document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 60);
+  document.getElementById('backTop').classList.toggle('show', window.scrollY > 300);
+}, { passive: true });
+
+const observer = new IntersectionObserver(entries => {
+  entries.forEach((e, i) => { if (e.isIntersecting) setTimeout(() => e.target.classList.add('visible'), i * 70); });
+}, { threshold: 0.08 });
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+/* ═══════════ INIT ═══════════ */
+loadData(false);
+startPolling();
+</script>
 </body>
 </html>
