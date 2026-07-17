@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Image Compressor Free Online - Reduce JPG/PNG File Size | Daily Toolkit</title>
+<meta name="description" content="Compress JPG, PNG, and WEBP images online for free without losing visible quality. Reduce file size for faster websites and easier sharing, with a live before/after preview, entirely in your browser.">
+<meta name="keywords" content="image compressor, compress jpg free, compress png online, reduce image file size, jpeg compressor free, photo compressor online, compress image without losing quality, bulk image compressor">
+<meta name="robots" content="index, follow">
+<meta name="author" content="Ahsanullah Mahar">
+<link rel="canonical" href="https://dailytoolkit.xyz/tools/image-compressor.html">
+
+<meta property="og:title" content="Image Compressor – Free & Private | Daily Toolkit">
+<meta property="og:description" content="Shrink JPG, PNG, and WEBP file sizes with a live before/after comparison, right in your browser.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://dailytoolkit.xyz/tools/image-compressor.html">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Image Compressor – Free & Private | Daily Toolkit">
+<meta name="twitter:description" content="Shrink JPG, PNG, and WEBP file sizes instantly, right in your browser.">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Image Compressor",
+  "url": "https://dailytoolkit.xyz/tools/image-compressor.html",
+  "applicationCategory": "UtilitiesApplication",
+  "operatingSystem": "Any",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+  "description": "Compress JPG, PNG, and WEBP images to reduce file size for free, directly in your browser."
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    { "@type": "Question", "name": "Will compressing reduce the visible quality of my image?", "acceptedAnswer": { "@type": "Answer", "text": "At the default quality setting, most images look nearly identical while being significantly smaller. You can fine-tune the quality slider and compare the before and after side by side before downloading." } },
+    { "@type": "Question", "name": "Are my images uploaded to a server?", "acceptedAnswer": { "@type": "Answer", "text": "No. Compression happens locally in your browser using the Canvas API, so your images never leave your device." } },
+    { "@type": "Question", "name": "Can I compress multiple images at once?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. Add several images at once and each one is compressed individually, with its own before/after size shown, and a ZIP download for all of them together." } },
+    { "@type": "Question", "name": "What is the difference between compressing and resizing?", "acceptedAnswer": { "@type": "Answer", "text": "Compressing reduces file size mainly by adjusting image quality while keeping the same dimensions. Resizing changes the pixel dimensions of the image. This tool focuses on compression; use the Image Resizer tool if you need to change dimensions." } }
+  ]
+}
+</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --black: #0A0A0A; --white: #FFFFFF;
+    --gray-100: #F7F7F7; --gray-200: #EFEFEF; --gray-400: #ABABAB; --gray-600: #6B6B6B;
+    --gold: #C9A84C; --gold-light: #E8D28A; --gold-text: #7A5C18;
+    --green: #2E7D32;
+    --font-display: 'Playfair Display', Georgia, serif;
+    --font-body: 'Inter', system-ui, sans-serif;
+    --transition: 0.3s cubic-bezier(0.4,0,0.2,1);
+  }
+  html { scroll-behavior: smooth; }
+  body { font-family: var(--font-body); color: var(--black); background: var(--white); line-height: 1.6; }
+  a { text-decoration: none; color: inherit; }
+
+  nav { position: fixed; top:0; left:0; right:0; z-index: 1000; display:flex; align-items:center; justify-content:space-between; padding: 0 4%; height: 68px; background: rgba(255,255,255,0.96); backdrop-filter: blur(14px); border-bottom: 1px solid var(--gray-200); }
+  .nav-logo { font-family: var(--font-display); font-size: 1.3rem; font-weight: 700; }
+  .nav-logo span { color: var(--gold-text); }
+  .nav-links { display:flex; gap: 1.6rem; list-style:none; }
+  .nav-links a { font-size:0.8rem; font-weight:500; color: var(--gray-600); text-transform: uppercase; letter-spacing:0.04em; }
+  .nav-links a:hover { color: var(--black); }
+  .breadcrumb-bar { background: var(--gray-100); padding: 0.6rem 4%; margin-top: 68px; font-size: 0.78rem; color: var(--gray-600); border-bottom: 1px solid var(--gray-200); }
+  .breadcrumb-bar a:hover { color: var(--gold-text); }
+
+  main { max-width: 1100px; margin: 0 auto; padding: 0 4%; }
+
+  .tool-hero { padding: 48px 0 24px; text-align:center; }
+  .eyebrow { display:inline-flex; align-items:center; gap:0.5rem; font-size:0.72rem; font-weight:600; letter-spacing:0.14em; text-transform:uppercase; color: var(--gold-text); margin-bottom: 0.8rem; }
+  .tool-hero h1 { font-family: var(--font-display); font-size: clamp(1.8rem, 4vw, 2.8rem); font-weight:700; letter-spacing:-0.02em; margin-bottom: 0.8rem; }
+  .tool-hero h1 em { color: var(--gold-text); font-style: italic; }
+  .tool-hero p { color: var(--gray-600); max-width: 620px; margin: 0 auto; font-size: 0.98rem; }
+
+  .tool-card { background: var(--gray-100); border: 1px solid var(--gray-200); border-radius: 8px; padding: 2rem; margin: 2rem 0; }
+  .dropzone { border: 2px dashed var(--gray-400); border-radius: 6px; background: var(--white); padding: 3rem 1.5rem; text-align: center; cursor: pointer; transition: var(--transition); }
+  .dropzone.dragover { border-color: var(--gold); background: #FBF8F0; }
+  .dropzone .dz-icon { font-size: 2.4rem; color: var(--gold); margin-bottom: 0.8rem; }
+  .dropzone h3 { font-size: 1.05rem; margin-bottom: 0.4rem; }
+  .dropzone p { color: var(--gray-600); font-size: 0.85rem; }
+  #fileInput { display:none; }
+
+  .controls-row { display:flex; flex-wrap:wrap; gap: 1.2rem; align-items:flex-end; margin-top: 1.5rem; }
+  .control-group { display:flex; flex-direction:column; gap:0.35rem; min-width: 160px; }
+  .control-group label { font-size: 0.72rem; font-weight:600; text-transform:uppercase; letter-spacing:0.05em; color: var(--gray-600); }
+  select, input[type=range] { font-family: var(--font-body); padding: 0.5rem 0.7rem; border: 1px solid var(--gray-200); border-radius: 4px; background: var(--white); font-size: 0.85rem; }
+  input[type=range] { padding: 0; }
+
+  .btn-primary { display:inline-flex; align-items:center; gap:0.5rem; background: var(--black); color: var(--white); padding: 0.75rem 1.5rem; font-size: 0.8rem; font-weight:600; letter-spacing:0.05em; text-transform:uppercase; border-radius:4px; border:none; cursor:pointer; transition: var(--transition); }
+  .btn-primary:hover { background: var(--gold); color: var(--black); }
+  .btn-primary:disabled { opacity: 0.5; cursor: not-allowed; }
+  .btn-secondary { display:inline-flex; align-items:center; gap:0.5rem; background: transparent; color: var(--black); padding: 0.7rem 1.4rem; font-size: 0.8rem; font-weight:600; letter-spacing:0.05em; text-transform:uppercase; border-radius:4px; border:1px solid var(--gray-200); cursor:pointer; transition: var(--transition); }
+  .btn-secondary:hover { border-color: var(--black); }
+
+  #status { font-size: 0.85rem; color: var(--gray-600); margin-top: 1rem; min-height: 1.2em; }
+
+  .results-list { display:flex; flex-direction:column; gap: 0.8rem; margin-top: 1.6rem; }
+  .result-row { display:grid; grid-template-columns: 60px 1fr auto auto; gap: 1rem; align-items:center; background: var(--white); border: 1px solid var(--gray-200); border-radius: 6px; padding: 0.7rem 1rem; }
+  .result-row img { width: 52px; height: 52px; object-fit: cover; border-radius: 4px; border: 1px solid var(--gray-200); }
+  .result-info .r-name { font-size: 0.85rem; font-weight:500; margin-bottom:0.2rem; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+  .result-info .r-size { font-size: 0.76rem; color: var(--gray-600); }
+  .result-info .r-size .saved { color: var(--green); font-weight:600; }
+  .result-dl { font-size: 0.76rem; font-weight:600; text-transform:uppercase; letter-spacing:0.04em; color: var(--gold-text); border: 1px solid var(--gray-200); padding: 0.4rem 0.8rem; border-radius:4px; }
+  .result-dl:hover { background: var(--gray-100); }
+
+  .download-row { display:flex; gap: 0.8rem; margin-top: 1.6rem; flex-wrap: wrap; }
+
+  section.sec { padding: 56px 0; border-top: 1px solid var(--gray-200); }
+  .sec h2 { font-family: var(--font-display); font-size: clamp(1.4rem, 2.5vw, 2rem); margin-bottom: 1rem; letter-spacing: -0.02em; }
+  .sec p { color: var(--gray-600); font-size: 0.95rem; margin-bottom: 0.9rem; max-width: 760px; }
+  .steps-list { counter-reset: step; list-style:none; display:grid; grid-template-columns: repeat(auto-fit, minmax(220px,1fr)); gap: 1.2rem; margin-top: 1.2rem; }
+  .steps-list li { background: var(--gray-100); border-radius: 6px; padding: 1.2rem; position:relative; padding-top: 2.2rem; }
+  .steps-list li::before { counter-increment: step; content: counter(step); position:absolute; top: 0.8rem; left: 1.2rem; font-family: var(--font-display); font-weight:700; color: var(--gold); font-size: 1.3rem; }
+  .steps-list li h3 { font-size: 0.95rem; margin-bottom: 0.3rem; }
+  .steps-list li p { font-size: 0.82rem; margin: 0; }
+
+  .features-grid { display:grid; grid-template-columns: repeat(auto-fit, minmax(220px,1fr)); gap: 1.2rem; margin-top: 1.2rem; }
+  .feature-item { display:flex; gap: 0.8rem; }
+  .feature-item .f-icon { color: var(--gold); font-size: 1.1rem; flex-shrink:0; }
+  .feature-item h3 { font-size: 0.92rem; margin-bottom: 0.2rem; }
+  .feature-item p { font-size: 0.82rem; margin:0; }
+
+  .faq-item { border-bottom: 1px solid var(--gray-200); padding: 1.1rem 0; }
+  .faq-item summary { cursor:pointer; font-weight:600; font-size: 0.95rem; list-style: none; display:flex; justify-content:space-between; align-items:center; }
+  .faq-item summary::-webkit-details-marker { display:none; }
+  .faq-item summary::after { content: '+'; color: var(--gold-text); font-size: 1.2rem; }
+  .faq-item[open] summary::after { content: '−'; }
+  .faq-item p { color: var(--gray-600); font-size: 0.88rem; margin-top: 0.6rem; max-width: 700px; }
+
+  .related-tools { display:flex; gap: 0.9rem; flex-wrap:wrap; margin-top: 1.2rem; }
+  .related-tools a { background: var(--gray-100); border: 1px solid var(--gray-200); border-radius: 4px; padding: 0.6rem 1rem; font-size: 0.8rem; font-weight:500; }
+  .related-tools a:hover { border-color: var(--gold); color: var(--gold-text); }
+
+  footer { background: var(--black); color: var(--gray-400); padding: 2.2rem 4%; text-align:center; font-size: 0.78rem; margin-top: 2rem; }
+  footer a { color: var(--gold-light); }
+
+  @media (max-width: 720px) { .nav-links { display:none; } .result-row { grid-template-columns: 44px 1fr; } .result-dl { grid-column: 1 / -1; text-align:center; } }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="https://dailytoolkit.xyz" class="nav-logo">Daily<span>Toolkit</span></a>
+  <ul class="nav-links">
+    <li><a href="https://dailytoolkit.xyz/#pdf-tools">PDF Tools</a></li>
+    <li><a href="https://dailytoolkit.xyz/#image-tools">Image Tools</a></li>
+    <li><a href="https://dailytoolkit.xyz/#text-tools">Text Tools</a></li>
+    <li><a href="https://dailytoolkit.xyz">All Tools</a></li>
+  </ul>
+</nav>
+
+<div class="breadcrumb-bar">
+  <a href="https://dailytoolkit.xyz">Home</a> / <a href="https://dailytoolkit.xyz/#image-tools">Image Tools</a> / Image Compressor
+</div>
+
+<main>
+  <div class="tool-hero">
+    <div class="eyebrow">Free · No Signup · Private</div>
+    <h1>Image <em>Compressor</em></h1>
+    <p>Shrink JPG, PNG, and WEBP file sizes without a visible drop in quality. Compare before and after, then download — all processed locally in your browser.</p>
+  </div>
+
+  <div class="tool-card">
+    <div class="dropzone" id="dropzone">
+      <div class="dz-icon">⇪</div>
+      <h3>Drop images here, or click to browse</h3>
+      <p>Supports JPG, PNG, and WEBP · Add multiple images at once</p>
+      <input type="file" id="fileInput" accept="image/*" multiple>
+    </div>
+
+    <div class="controls-row">
+      <div class="control-group">
+        <label for="qualityRange">Quality: <span id="qualityVal">70%</span></label>
+        <input type="range" id="qualityRange" min="10" max="100" value="70">
+      </div>
+      <div class="control-group">
+        <label for="formatSelect">Output format</label>
+        <select id="formatSelect">
+          <option value="auto">Keep original</option>
+          <option value="jpeg">JPG</option>
+          <option value="webp">WEBP</option>
+          <option value="png">PNG</option>
+        </select>
+      </div>
+      <div class="control-group">
+        <button class="btn-primary" id="compressBtn" disabled>Compress Images</button>
+      </div>
+    </div>
+
+    <div id="status">Add images to get started.</div>
+
+    <div class="results-list" id="resultsList"></div>
+
+    <div class="download-row" id="downloadRow" style="display:none;">
+      <button class="btn-primary" id="downloadZipBtn">Download All as ZIP</button>
+      <button class="btn-secondary" id="resetBtn">Compress More</button>
+    </div>
+  </div>
+
+  <section class="sec">
+    <h2>Why compress your images?</h2>
+    <p>Smaller images mean faster-loading websites, quicker email attachments, and less storage used — without anyone noticing a difference in quality at a normal viewing size.</p>
+    <div class="features-grid">
+      <div class="feature-item"><span class="f-icon">●</span><div><h3>100% private</h3><p>Compression happens in your browser using the Canvas API. Your images are never uploaded.</p></div></div>
+      <div class="feature-item"><span class="f-icon">●</span><div><h3>Bulk compression</h3><p>Add several images at once and compress them all together, with a ZIP download.</p></div></div>
+      <div class="feature-item"><span class="f-icon">●</span><div><h3>Adjustable quality</h3><p>Fine-tune the quality slider and see the estimated size before you download.</p></div></div>
+      <div class="feature-item"><span class="f-icon">●</span><div><h3>Format conversion</h3><p>Optionally convert to JPG or WEBP while compressing for even smaller results.</p></div></div>
+      <div class="feature-item"><span class="f-icon">●</span><div><h3>Before / after sizes</h3><p>See the original and compressed file size, plus the percentage saved, for every image.</p></div></div>
+      <div class="feature-item"><span class="f-icon">●</span><div><h3>No watermark</h3><p>Your compressed images are clean, with no branding added.</p></div></div>
+    </div>
+  </section>
+
+  <section class="sec">
+    <h2>How to compress an image</h2>
+    <ul class="steps-list">
+      <li><h3>Upload your images</h3><p>Drag and drop, or click to select one or more JPG, PNG, or WEBP files.</p></li>
+      <li><h3>Set quality</h3><p>Adjust the quality slider — lower values give smaller files.</p></li>
+      <li><h3>Compress</h3><p>Click "Compress Images" to process every file instantly.</p></li>
+      <li><h3>Download</h3><p>Save individual images or all of them together as a ZIP file.</p></li>
+    </ul>
+  </section>
+
+  <section class="sec">
+    <h2>Frequently asked questions</h2>
+    <details class="faq-item" open>
+      <summary>Will compressing reduce the visible quality of my image?</summary>
+      <p>At the default quality setting, most images look nearly identical while being significantly smaller. You can fine-tune the quality slider and compare sizes before downloading.</p>
+    </details>
+    <details class="faq-item">
+      <summary>Are my images uploaded to a server?</summary>
+      <p>No. Compression happens locally in your browser using the Canvas API, so your images never leave your device.</p>
+    </details>
+    <details class="faq-item">
+      <summary>Can I compress multiple images at once?</summary>
+      <p>Yes. Add several images at once, and each one is compressed individually with its own before/after size, plus a ZIP download for all of them together.</p>
+    </details>
+    <details class="faq-item">
+      <summary>What's the difference between compressing and resizing?</summary>
+      <p>Compressing reduces file size mainly by adjusting image quality while keeping the same dimensions. Resizing changes the pixel dimensions. Use the Image Resizer tool if you need to change dimensions.</p>
+    </details>
+  </section>
+
+  <section class="sec">
+    <h2>Related tools</h2>
+    <div class="related-tools">
+      <a href="https://dailytoolkit.xyz/tools/image-resizer.html">Image Resizer</a>
+      <a href="https://dailytoolkit.xyz/tools/image-to-pdf.html">Image to PDF</a>
+      <a href="https://dailytoolkit.xyz/tools/pdf-to-image.html">PDF to Image</a>
+      <a href="https://dailytoolkit.xyz/#image-tools">All Image Tools</a>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <p>© 2026 <a href="https://dailytoolkit.xyz">Daily Toolkit</a>. All tools run in your browser — nothing is stored on our servers.</p>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+<script>
+  const dropzone = document.getElementById('dropzone');
+  const fileInput = document.getElementById('fileInput');
+  const compressBtn = document.getElementById('compressBtn');
+  const statusEl = document.getElementById('status');
+  const resultsList = document.getElementById('resultsList');
+  const downloadRow = document.getElementById('downloadRow');
+  const downloadZipBtn = document.getElementById('downloadZipBtn');
+  const resetBtn = document.getElementById('resetBtn');
+  const qualityRange = document.getElementById('qualityRange');
+  const qualityVal = document.getElementById('qualityVal');
+
+  let sourceFiles = [];
+  let compressedResults = [];
+
+  qualityRange.addEventListener('input', () => qualityVal.textContent = qualityRange.value + '%');
+
+  dropzone.addEventListener('click', () => fileInput.click());
+  dropzone.addEventListener('dragover', e => { e.preventDefault(); dropzone.classList.add('dragover'); });
+  dropzone.addEventListener('dragleave', () => dropzone.classList.remove('dragover'));
+  dropzone.addEventListener('drop', e => {
+    e.preventDefault();
+    dropzone.classList.remove('dragover');
+    handleFiles(e.dataTransfer.files);
+  });
+  fileInput.addEventListener('change', e => handleFiles(e.target.files));
+
+  function handleFiles(fileList) {
+    const files = Array.from(fileList).filter(f => f.type.startsWith('image/'));
+    if (!files.length) return;
+    sourceFiles = sourceFiles.concat(files);
+    compressBtn.disabled = sourceFiles.length === 0;
+    statusEl.textContent = `${sourceFiles.length} image${sourceFiles.length>1?'s':''} ready. Adjust quality, then click "Compress Images".`;
+  }
+
+  function formatBytes(bytes) {
+    if (bytes < 1024) return bytes + ' B';
+    if (bytes < 1024*1024) return (bytes/1024).toFixed(1) + ' KB';
+    return (bytes/1024/1024).toFixed(2) + ' MB';
+  }
+
+  function loadImage(url) {
+    return new Promise((resolve, reject) => {
+      const img = new Image();
+      img.onload = () => resolve(img);
+      img.onerror = reject;
+      img.src = url;
+    });
+  }
+
+  compressBtn.addEventListener('click', async () => {
+    if (!sourceFiles.length) return;
+    compressBtn.disabled = true;
+    resultsList.innerHTML = '';
+    compressedResults = [];
+    downloadRow.style.display = 'none';
+    statusEl.textContent = 'Compressing...';
+
+    const quality = parseInt(qualityRange.value) / 100;
+    const formatChoice = document.getElementById('formatSelect').value;
+
+    for (let i = 0; i < sourceFiles.length; i++) {
+      const file = sourceFiles[i];
+      const url = URL.createObjectURL(file);
+      try {
+        const img = await loadImage(url);
+        const canvas = document.createElement('canvas');
+        canvas.width = img.naturalWidth;
+        canvas.height = img.naturalHeight;
+        const ctx = canvas.getContext('2d');
+        ctx.drawImage(img, 0, 0);
+
+        let mime = file.type;
+        if (formatChoice === 'jpeg') mime = 'image/jpeg';
+        else if (formatChoice === 'webp') mime = 'image/webp';
+        else if (formatChoice === 'png') mime = 'image/png';
+
+        const blob = await new Promise(res => canvas.toBlob(res, mime, quality));
+        const outUrl = URL.createObjectURL(blob);
+        const ext = mime.split('/')[1] === 'jpeg' ? 'jpg' : mime.split('/')[1];
+        const baseName = file.name.replace(/\.[^/.]+$/, '');
+        const outName = `${baseName}-compressed.${ext}`;
+
+        const savedPct = Math.max(0, Math.round((1 - blob.size / file.size) * 100));
+
+        compressedResults.push({ blob, outName, outUrl });
+
+        const row = document.createElement('div');
+        row.className = 'result-row';
+        row.innerHTML = `
+          <img src="${outUrl}" alt="${outName}">
+          <div class="result-info">
+            <div class="r-name">${file.name}</div>
+            <div class="r-size">${formatBytes(file.size)} → ${formatBytes(blob.size)} <span class="saved">(-${savedPct}%)</span></div>
+          </div>
+          <a class="result-dl" href="${outUrl}" download="${outName}">Download</a>`;
+        resultsList.appendChild(row);
+
+        statusEl.textContent = `Compressed ${i+1} of ${sourceFiles.length}...`;
+      } catch (err) {
+        console.error(err);
+      }
+    }
+
+    statusEl.textContent = `Done! Compressed ${compressedResults.length} image${compressedResults.length>1?'s':''}.`;
+    if (compressedResults.length) downloadRow.style.display = 'flex';
+    compressBtn.disabled = false;
+  });
+
+  downloadZipBtn.addEventListener('click', async () => {
+    if (!compressedResults.length) return;
+    downloadZipBtn.disabled = true;
+    downloadZipBtn.textContent = 'Zipping...';
+    const zip = new JSZip();
+    for (const r of compressedResults) {
+      zip.file(r.outName, r.blob);
+    }
+    const zipBlob = await zip.generateAsync({ type: 'blob' });
+    const url = URL.createObjectURL(zipBlob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'compressed-images.zip';
+    a.click();
+    URL.revokeObjectURL(url);
+    downloadZipBtn.disabled = false;
+    downloadZipBtn.textContent = 'Download All as ZIP';
+  });
+
+  resetBtn.addEventListener('click', () => {
+    sourceFiles = [];
+    compressedResults = [];
+    resultsList.innerHTML = '';
+    downloadRow.style.display = 'none';
+    compressBtn.disabled = true;
+    fileInput.value = '';
+    statusEl.textContent = 'Add images to get started.';
+  });
+</script>
+</body>
+</html>
