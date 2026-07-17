@@ -1,206 +1,468 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Image Resizer Tool</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f7f9fc; /* Light blue-grey background */
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            margin: 0;
-            padding: 20px;
-            box-sizing: border-box;
-        }
-        .tool-container {
-            background-color: #ffffff;
-            border-radius: 12px;
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
-            padding: 40px;
-            max-width: 600px;
-            width: 100%;
-            text-align: center;
-            border: 1px solid #e0e6ed;
-        }
-        h1 {
-            color: #4CAF50; /* Green for heading */
-            margin-bottom: 30px;
-            font-size: 2.2em;
-        }
-        input[type="file"] {
-            display: block;
-            margin: 20px auto;
-            padding: 12px;
-            border: 2px dashed #4CAF50;
-            border-radius: 8px;
-            width: calc(100% - 40px);
-            background-color: #f0fff0; /* Light green background */
-            color: #4CAF50;
-            cursor: pointer;
-            font-size: 1em;
-        }
-        input[type="file"]::file-selector-button {
-            border: none;
-            padding: 10px 20px;
-            border-radius: 6px;
-            background-color: #4CAF50;
-            color: white;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-            margin-right: 15px;
-        }
-        input[type="file"]::file-selector-button:hover {
-            background-color: #45a049;
-        }
-        .dimensions-group {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 15px;
-            margin-bottom: 25px;
-        }
-        .dimensions-group label {
-            font-size: 1.1em;
-            color: #555;
-            white-space: nowrap;
-        }
-        input[type="number"] {
-            width: 80px;
-            padding: 10px 12px;
-            border: 1px solid #ccc;
-            border-radius: 6px;
-            font-size: 1em;
-            text-align: center;
-            outline: none;
-            appearance: textfield; /* Standard property for compatibility */
-            -moz-appearance: textfield; /* Remove spinner for Firefox */
-        }
-        input[type="number"]::-webkit-outer-spin-button,
-        input[type="number"]::-webkit-inner-spin-button {
-            -webkit-appearance: none;
-            margin: 0;
-        }
-        button {
-            background-color: #2196F3; /* Blue button */
-            color: white;
-            border: none;
-            padding: 15px 30px;
-            border-radius: 8px;
-            cursor: pointer;
-            font-size: 1.1em;
-            transition: background-color 0.3s ease, transform 0.2s ease;
-            margin-top: 10px;
-            width: auto;
-        }
-        button:hover {
-            background-color: #1976D2;
-            transform: translateY(-2px);
-        }
-        button:active {
-            transform: translateY(0);
-        }
-        #downloadResizedImage {
-            display: none;
-            margin-top: 30px;
-            padding: 12px 25px;
-            background-color: #4CAF50;
-            color: white;
-            text-decoration: none;
-            border-radius: 8px;
-            font-size: 1.1em;
-            transition: background-color 0.3s ease;
-            display: inline-block;
-        }
-        #downloadResizedImage:hover {
-            background-color: #45a049;
-        }
-        #imageCanvas {
-            display: none;
-            border: 1px solid #e0e0e0;
-            max-width: 100%;
-            height: auto;
-            margin-top: 25px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-            border-radius: 8px;
-        }
-        .result-message {
-            margin-top: 20px;
-            font-size: 1em;
-            color: #555;
-            min-height: 20px;
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Image Resizer Free Online - Resize JPG/PNG by Pixels or Percent | Daily Toolkit</title>
+<meta name="description" content="Resize JPG, PNG, and WEBP images online for free. Set an exact width and height in pixels, resize by percentage, or pick a social media preset — with a live preview, entirely in your browser.">
+<meta name="keywords" content="image resizer, resize image online free, resize jpg, resize png, image resizer pixels, resize photo online, bulk image resizer, resize image for instagram">
+<meta name="robots" content="index, follow">
+<meta name="author" content="Ahsanullah Mahar">
+<link rel="canonical" href="https://dailytoolkit.xyz/tools/image-resizer.html">
+
+<meta property="og:title" content="Image Resizer – Free & Private | Daily Toolkit">
+<meta property="og:description" content="Resize JPG, PNG, and WEBP images by exact pixels, percentage, or social media preset, right in your browser.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://dailytoolkit.xyz/tools/image-resizer.html">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Image Resizer – Free & Private | Daily Toolkit">
+<meta name="twitter:description" content="Resize images by exact pixels, percentage, or preset, right in your browser.">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Image Resizer",
+  "url": "https://dailytoolkit.xyz/tools/image-resizer.html",
+  "applicationCategory": "UtilitiesApplication",
+  "operatingSystem": "Any",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+  "description": "Resize JPG, PNG, and WEBP images by pixels, percentage, or preset, for free, directly in your browser."
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    { "@type": "Question", "name": "Can I resize an image to an exact pixel size?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. Enter an exact width and height in pixels, and optionally lock the aspect ratio so the image doesn't stretch or distort." } },
+    { "@type": "Question", "name": "Are there presets for social media?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. Common presets are included for Instagram post, Instagram story, Facebook cover, YouTube thumbnail, and Twitter/X post, so you don't need to look up the exact pixel dimensions." } },
+    { "@type": "Question", "name": "Are my images uploaded to a server?", "acceptedAnswer": { "@type": "Answer", "text": "No. Resizing happens locally in your browser using the Canvas API, so your images never leave your device." } },
+    { "@type": "Question", "name": "Will resizing make my image blurry?", "acceptedAnswer": { "@type": "Answer", "text": "Enlarging an image beyond its original resolution can make it look softer, since no new detail is created. Reducing the size generally stays sharp." } }
+  ]
+}
+</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --black: #0A0A0A; --white: #FFFFFF;
+    --gray-100: #F7F7F7; --gray-200: #EFEFEF; --gray-400: #ABABAB; --gray-600: #6B6B6B;
+    --gold: #C9A84C; --gold-light: #E8D28A; --gold-text: #7A5C18;
+    --font-display: 'Playfair Display', Georgia, serif;
+    --font-body: 'Inter', system-ui, sans-serif;
+    --transition: 0.3s cubic-bezier(0.4,0,0.2,1);
+  }
+  html { scroll-behavior: smooth; }
+  body { font-family: var(--font-body); color: var(--black); background: var(--white); line-height: 1.6; }
+  a { text-decoration: none; color: inherit; }
+
+  nav { position: fixed; top:0; left:0; right:0; z-index: 1000; display:flex; align-items:center; justify-content:space-between; padding: 0 4%; height: 68px; background: rgba(255,255,255,0.96); backdrop-filter: blur(14px); border-bottom: 1px solid var(--gray-200); }
+  .nav-logo { font-family: var(--font-display); font-size: 1.3rem; font-weight: 700; }
+  .nav-logo span { color: var(--gold-text); }
+  .nav-links { display:flex; gap: 1.6rem; list-style:none; }
+  .nav-links a { font-size:0.8rem; font-weight:500; color: var(--gray-600); text-transform: uppercase; letter-spacing:0.04em; }
+  .nav-links a:hover { color: var(--black); }
+  .breadcrumb-bar { background: var(--gray-100); padding: 0.6rem 4%; margin-top: 68px; font-size: 0.78rem; color: var(--gray-600); border-bottom: 1px solid var(--gray-200); }
+  .breadcrumb-bar a:hover { color: var(--gold-text); }
+
+  main { max-width: 1100px; margin: 0 auto; padding: 0 4%; }
+
+  .tool-hero { padding: 48px 0 24px; text-align:center; }
+  .eyebrow { display:inline-flex; align-items:center; gap:0.5rem; font-size:0.72rem; font-weight:600; letter-spacing:0.14em; text-transform:uppercase; color: var(--gold-text); margin-bottom: 0.8rem; }
+  .tool-hero h1 { font-family: var(--font-display); font-size: clamp(1.8rem, 4vw, 2.8rem); font-weight:700; letter-spacing:-0.02em; margin-bottom: 0.8rem; }
+  .tool-hero h1 em { color: var(--gold-text); font-style: italic; }
+  .tool-hero p { color: var(--gray-600); max-width: 620px; margin: 0 auto; font-size: 0.98rem; }
+
+  .tool-card { background: var(--gray-100); border: 1px solid var(--gray-200); border-radius: 8px; padding: 2rem; margin: 2rem 0; }
+  .dropzone { border: 2px dashed var(--gray-400); border-radius: 6px; background: var(--white); padding: 3rem 1.5rem; text-align: center; cursor: pointer; transition: var(--transition); }
+  .dropzone.dragover { border-color: var(--gold); background: #FBF8F0; }
+  .dropzone .dz-icon { font-size: 2.4rem; color: var(--gold); margin-bottom: 0.8rem; }
+  .dropzone h3 { font-size: 1.05rem; margin-bottom: 0.4rem; }
+  .dropzone p { color: var(--gray-600); font-size: 0.85rem; }
+  #fileInput { display:none; }
+
+  .resize-layout { display:grid; grid-template-columns: 1fr 260px; gap: 1.6rem; margin-top: 1.6rem; }
+  .preview-box { background: var(--white); border: 1px solid var(--gray-200); border-radius: 6px; padding: 1rem; display:flex; align-items:center; justify-content:center; min-height: 260px; }
+  .preview-box img { max-width: 100%; max-height: 340px; border-radius: 4px; }
+
+  .options-panel { display:flex; flex-direction:column; gap: 1rem; }
+  .mode-tabs { display:flex; gap: 0.4rem; }
+  .mode-tab { flex:1; text-align:center; padding: 0.5rem; font-size: 0.75rem; font-weight:600; text-transform:uppercase; letter-spacing:0.03em; background: var(--white); border: 1px solid var(--gray-200); border-radius: 4px; cursor:pointer; }
+  .mode-tab.active { background: var(--black); color: var(--white); border-color: var(--black); }
+
+  .control-group { display:flex; flex-direction:column; gap:0.35rem; }
+  .control-group label { font-size: 0.72rem; font-weight:600; text-transform:uppercase; letter-spacing:0.05em; color: var(--gray-600); }
+  select, input[type=number], input[type=range] { font-family: var(--font-body); padding: 0.5rem 0.7rem; border: 1px solid var(--gray-200); border-radius: 4px; background: var(--white); font-size: 0.85rem; width: 100%; }
+
+  .dims-row { display:flex; gap: 0.6rem; align-items:flex-end; }
+  .lock-toggle { display:flex; align-items:center; gap: 0.4rem; font-size: 0.78rem; color: var(--gray-600); }
+
+  .btn-primary { display:inline-flex; align-items:center; justify-content:center; gap:0.5rem; width:100%; background: var(--black); color: var(--white); padding: 0.75rem 1.5rem; font-size: 0.8rem; font-weight:600; letter-spacing:0.05em; text-transform:uppercase; border-radius:4px; border:none; cursor:pointer; transition: var(--transition); }
+  .btn-primary:hover { background: var(--gold); color: var(--black); }
+  .btn-primary:disabled { opacity: 0.5; cursor: not-allowed; }
+  .btn-secondary { display:inline-flex; align-items:center; justify-content:center; gap:0.5rem; width:100%; background: transparent; color: var(--black); padding: 0.7rem 1.4rem; font-size: 0.8rem; font-weight:600; letter-spacing:0.05em; text-transform:uppercase; border-radius:4px; border:1px solid var(--gray-200); cursor:pointer; transition: var(--transition); }
+  .btn-secondary:hover { border-color: var(--black); }
+
+  #status { font-size: 0.85rem; color: var(--gray-600); margin-top: 1rem; min-height: 1.2em; }
+  .dims-readout { font-size: 0.8rem; color: var(--gray-600); }
+  .dims-readout strong { color: var(--black); }
+
+  section.sec { padding: 56px 0; border-top: 1px solid var(--gray-200); }
+  .sec h2 { font-family: var(--font-display); font-size: clamp(1.4rem, 2.5vw, 2rem); margin-bottom: 1rem; letter-spacing: -0.02em; }
+  .sec p { color: var(--gray-600); font-size: 0.95rem; margin-bottom: 0.9rem; max-width: 760px; }
+  .steps-list { counter-reset: step; list-style:none; display:grid; grid-template-columns: repeat(auto-fit, minmax(220px,1fr)); gap: 1.2rem; margin-top: 1.2rem; }
+  .steps-list li { background: var(--gray-100); border-radius: 6px; padding: 1.2rem; position:relative; padding-top: 2.2rem; }
+  .steps-list li::before { counter-increment: step; content: counter(step); position:absolute; top: 0.8rem; left: 1.2rem; font-family: var(--font-display); font-weight:700; color: var(--gold); font-size: 1.3rem; }
+  .steps-list li h3 { font-size: 0.95rem; margin-bottom: 0.3rem; }
+  .steps-list li p { font-size: 0.82rem; margin: 0; }
+
+  .features-grid { display:grid; grid-template-columns: repeat(auto-fit, minmax(220px,1fr)); gap: 1.2rem; margin-top: 1.2rem; }
+  .feature-item { display:flex; gap: 0.8rem; }
+  .feature-item .f-icon { color: var(--gold); font-size: 1.1rem; flex-shrink:0; }
+  .feature-item h3 { font-size: 0.92rem; margin-bottom: 0.2rem; }
+  .feature-item p { font-size: 0.82rem; margin:0; }
+
+  .faq-item { border-bottom: 1px solid var(--gray-200); padding: 1.1rem 0; }
+  .faq-item summary { cursor:pointer; font-weight:600; font-size: 0.95rem; list-style: none; display:flex; justify-content:space-between; align-items:center; }
+  .faq-item summary::-webkit-details-marker { display:none; }
+  .faq-item summary::after { content: '+'; color: var(--gold-text); font-size: 1.2rem; }
+  .faq-item[open] summary::after { content: '−'; }
+  .faq-item p { color: var(--gray-600); font-size: 0.88rem; margin-top: 0.6rem; max-width: 700px; }
+
+  .related-tools { display:flex; gap: 0.9rem; flex-wrap:wrap; margin-top: 1.2rem; }
+  .related-tools a { background: var(--gray-100); border: 1px solid var(--gray-200); border-radius: 4px; padding: 0.6rem 1rem; font-size: 0.8rem; font-weight:500; }
+  .related-tools a:hover { border-color: var(--gold); color: var(--gold-text); }
+
+  footer { background: var(--black); color: var(--gray-400); padding: 2.2rem 4%; text-align:center; font-size: 0.78rem; margin-top: 2rem; }
+  footer a { color: var(--gold-light); }
+
+  @media (max-width: 780px) {
+    .nav-links { display:none; }
+    .resize-layout { grid-template-columns: 1fr; }
+  }
+</style>
 </head>
 <body>
-    <div class="tool-container">
-        <h1>Image Resizer</h1>
-        <input type="file" id="imageResizerInput" accept="image/*">
-        <div class="dimensions-group">
-            <label for="resizeWidth">Width:</label>
-            <input type="number" id="resizeWidth" value="300" min="1">px
-            <label for="resizeHeight">Height:</label>
-            <input type="number" id="resizeHeight" value="200" min="1">px
-        </div>
-        <button onclick="resizeImage()">Resize Image</button>
-        <p class="result-message" id="resizeResultMessage"></p>
-        <canvas id="imageCanvas"></canvas>
-        <a id="downloadResizedImage" style="display:none;" download="resized_image.png">Download Resized Image</a>
+
+<nav>
+  <a href="https://dailytoolkit.xyz" class="nav-logo">Daily<span>Toolkit</span></a>
+  <ul class="nav-links">
+    <li><a href="https://dailytoolkit.xyz/#pdf-tools">PDF Tools</a></li>
+    <li><a href="https://dailytoolkit.xyz/#image-tools">Image Tools</a></li>
+    <li><a href="https://dailytoolkit.xyz/#text-tools">Text Tools</a></li>
+    <li><a href="https://dailytoolkit.xyz">All Tools</a></li>
+  </ul>
+</nav>
+
+<div class="breadcrumb-bar">
+  <a href="https://dailytoolkit.xyz">Home</a> / <a href="https://dailytoolkit.xyz/#image-tools">Image Tools</a> / Image Resizer
+</div>
+
+<main>
+  <div class="tool-hero">
+    <div class="eyebrow">Free · No Signup · Private</div>
+    <h1>Image <em>Resizer</em></h1>
+    <p>Resize any JPG, PNG, or WEBP to an exact pixel size, a percentage of the original, or a ready-made social media preset — with a live preview before you download.</p>
+  </div>
+
+  <div class="tool-card">
+    <div class="dropzone" id="dropzone">
+      <div class="dz-icon">⇪</div>
+      <h3>Drop an image here, or click to browse</h3>
+      <p>Supports JPG, PNG, and WEBP</p>
+      <input type="file" id="fileInput" accept="image/*">
     </div>
 
-    <script>
-        function resizeImage() {
-            const input = document.getElementById('imageResizerInput');
-            const width = parseInt(document.getElementById('resizeWidth').value);
-            const height = parseInt(document.getElementById('resizeHeight').value);
-            const downloadLink = document.getElementById('downloadResizedImage');
-            const canvas = document.getElementById('imageCanvas');
-            const ctx = canvas.getContext('2d');
-            const resultMessage = document.getElementById('resizeResultMessage');
+    <div class="resize-layout" id="resizeLayout" style="display:none;">
+      <div class="preview-box">
+        <img id="previewImg" alt="Image preview">
+      </div>
+      <div class="options-panel">
+        <div class="mode-tabs">
+          <div class="mode-tab active" data-mode="pixels">Pixels</div>
+          <div class="mode-tab" data-mode="percent">Percent</div>
+          <div class="mode-tab" data-mode="preset">Preset</div>
+        </div>
 
-            downloadLink.style.display = 'none';
-            canvas.style.display = 'none';
-            resultMessage.textContent = '';
+        <div id="pixelsControls">
+          <div class="dims-row">
+            <div class="control-group">
+              <label for="widthInput">Width (px)</label>
+              <input type="number" id="widthInput" min="1">
+            </div>
+            <div class="control-group">
+              <label for="heightInput">Height (px)</label>
+              <input type="number" id="heightInput" min="1">
+            </div>
+          </div>
+          <label class="lock-toggle" style="margin-top:0.6rem;">
+            <input type="checkbox" id="lockAspect" checked> Lock aspect ratio
+          </label>
+        </div>
 
-            if (!input.files.length) {
-                resultMessage.textContent = 'Please select an image file.';
-                return;
-            }
-            if (isNaN(width) || isNaN(height) || width <= 0 || height <= 0) {
-                resultMessage.textContent = 'Please enter valid positive width and height.';
-                return;
-            }
+        <div id="percentControls" style="display:none;">
+          <div class="control-group">
+            <label for="percentRange">Scale: <span id="percentVal">100%</span></label>
+            <input type="range" id="percentRange" min="1" max="200" value="100">
+          </div>
+        </div>
 
-            const file = input.files[0];
-            const reader = new FileReader();
+        <div id="presetControls" style="display:none;">
+          <div class="control-group">
+            <label for="presetSelect">Preset</label>
+            <select id="presetSelect">
+              <option value="1080x1080">Instagram Post (1080×1080)</option>
+              <option value="1080x1920">Instagram Story (1080×1920)</option>
+              <option value="820x312">Facebook Cover (820×312)</option>
+              <option value="1280x720">YouTube Thumbnail (1280×720)</option>
+              <option value="1600x900">Twitter / X Post (1600×900)</option>
+              <option value="800x800">Square (800×800)</option>
+            </select>
+          </div>
+        </div>
 
-            reader.onload = function(event) {
-                const img = new Image();
-                img.onload = function() {
-                    canvas.width = width;
-                    canvas.height = height;
-                    ctx.drawImage(img, 0, 0, width, height);
-                    canvas.style.display = 'block';
+        <div class="dims-readout">Output size: <strong id="dimsReadout">–</strong></div>
 
-                    const dataURL = canvas.toDataURL(file.type); // Use original file type
-                    downloadLink.href = dataURL;
-                    downloadLink.style.display = 'inline-block';
-                    downloadLink.textContent = `Download Resized ${file.type.split('/')[1].toUpperCase()}`;
-                    resultMessage.textContent = `Image resized to ${width}x${height} pixels.`;
-                };
-                img.onerror = () => {
-                    resultMessage.textContent = 'Could not load image. Please try a different file.';
-                };
-                img.src = event.target.result;
-            };
-            reader.onerror = () => {
-                resultMessage.textContent = 'Error reading file.';
-            };
-            reader.readAsDataURL(file);
-        }
-    </script>
+        <div class="control-group">
+          <label for="fitSelect">Fit mode</label>
+          <select id="fitSelect">
+            <option value="stretch">Exact (stretch)</option>
+            <option value="contain" selected>Contain (no crop)</option>
+            <option value="cover">Cover (crop to fill)</option>
+          </select>
+        </div>
+
+        <button class="btn-primary" id="resizeBtn">Resize Image</button>
+        <button class="btn-secondary" id="resetBtn">Choose Another Image</button>
+      </div>
+    </div>
+
+    <div id="status">Add an image to get started.</div>
+
+    <div class="download-row" id="downloadRow" style="display:none; margin-top:1rem;">
+      <a class="btn-primary" id="downloadBtn" style="width:auto; display:inline-flex;" download>Download Resized Image</a>
+    </div>
+  </div>
+
+  <section class="sec">
+    <h2>Why use this image resizer?</h2>
+    <p>Fit an image to a website layout, meet a platform's exact upload dimensions, or shrink a huge photo down to a usable size — all without design software.</p>
+    <div class="features-grid">
+      <div class="feature-item"><span class="f-icon">●</span><div><h3>100% private</h3><p>Resizing happens locally in your browser using the Canvas API. Nothing is uploaded.</p></div></div>
+      <div class="feature-item"><span class="f-icon">●</span><div><h3>Exact pixels or percent</h3><p>Type an exact width and height, or scale by a percentage of the original size.</p></div></div>
+      <div class="feature-item"><span class="f-icon">●</span><div><h3>Social media presets</h3><p>Instagram, Facebook, YouTube, and Twitter/X dimensions built right in.</p></div></div>
+      <div class="feature-item"><span class="f-icon">●</span><div><h3>Aspect ratio lock</h3><p>Keep proportions correct automatically so images never look stretched.</p></div></div>
+      <div class="feature-item"><span class="f-icon">●</span><div><h3>Three fit modes</h3><p>Stretch to exact size, fit the whole image in, or crop to fill the frame.</p></div></div>
+      <div class="feature-item"><span class="f-icon">●</span><div><h3>Live preview</h3><p>See exactly how the resized image will look before downloading.</p></div></div>
+    </div>
+  </section>
+
+  <section class="sec">
+    <h2>How to resize an image</h2>
+    <ul class="steps-list">
+      <li><h3>Upload your image</h3><p>Drag and drop, or click to select a JPG, PNG, or WEBP file.</p></li>
+      <li><h3>Choose a mode</h3><p>Pick exact pixels, a percentage scale, or a ready-made preset.</p></li>
+      <li><h3>Pick a fit mode</h3><p>Stretch, contain, or cover — depending on how you want the image framed.</p></li>
+      <li><h3>Download</h3><p>Click "Resize Image" then download the result instantly.</p></li>
+    </ul>
+  </section>
+
+  <section class="sec">
+    <h2>Frequently asked questions</h2>
+    <details class="faq-item" open>
+      <summary>Can I resize an image to an exact pixel size?</summary>
+      <p>Yes. Enter an exact width and height in pixels, and optionally lock the aspect ratio so the image doesn't stretch or distort.</p>
+    </details>
+    <details class="faq-item">
+      <summary>Are there presets for social media?</summary>
+      <p>Yes. Presets are included for Instagram post, Instagram story, Facebook cover, YouTube thumbnail, and Twitter/X post, so you don't need to look up exact dimensions.</p>
+    </details>
+    <details class="faq-item">
+      <summary>Are my images uploaded to a server?</summary>
+      <p>No. Resizing happens locally in your browser using the Canvas API, so your images never leave your device.</p>
+    </details>
+    <details class="faq-item">
+      <summary>Will resizing make my image blurry?</summary>
+      <p>Enlarging an image beyond its original resolution can make it look softer, since no new detail is created. Reducing the size generally stays sharp.</p>
+    </details>
+  </section>
+
+  <section class="sec">
+    <h2>Related tools</h2>
+    <div class="related-tools">
+      <a href="https://dailytoolkit.xyz/tools/image-compressor.html">Image Compressor</a>
+      <a href="https://dailytoolkit.xyz/tools/image-to-pdf.html">Image to PDF</a>
+      <a href="https://dailytoolkit.xyz/tools/pdf-to-image.html">PDF to Image</a>
+      <a href="https://dailytoolkit.xyz/#image-tools">All Image Tools</a>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <p>© 2026 <a href="https://dailytoolkit.xyz">Daily Toolkit</a>. All tools run in your browser — nothing is stored on our servers.</p>
+</footer>
+
+<script>
+  const dropzone = document.getElementById('dropzone');
+  const fileInput = document.getElementById('fileInput');
+  const resizeLayout = document.getElementById('resizeLayout');
+  const previewImg = document.getElementById('previewImg');
+  const statusEl = document.getElementById('status');
+  const widthInput = document.getElementById('widthInput');
+  const heightInput = document.getElementById('heightInput');
+  const lockAspect = document.getElementById('lockAspect');
+  const percentRange = document.getElementById('percentRange');
+  const percentVal = document.getElementById('percentVal');
+  const presetSelect = document.getElementById('presetSelect');
+  const fitSelect = document.getElementById('fitSelect');
+  const dimsReadout = document.getElementById('dimsReadout');
+  const resizeBtn = document.getElementById('resizeBtn');
+  const resetBtn = document.getElementById('resetBtn');
+  const downloadRow = document.getElementById('downloadRow');
+  const downloadBtn = document.getElementById('downloadBtn');
+  const modeTabs = document.querySelectorAll('.mode-tab');
+  const pixelsControls = document.getElementById('pixelsControls');
+  const percentControls = document.getElementById('percentControls');
+  const presetControls = document.getElementById('presetControls');
+
+  let originalImg = null;
+  let originalFile = null;
+  let currentMode = 'pixels';
+  let aspectRatio = 1;
+
+  dropzone.addEventListener('click', () => fileInput.click());
+  dropzone.addEventListener('dragover', e => { e.preventDefault(); dropzone.classList.add('dragover'); });
+  dropzone.addEventListener('dragleave', () => dropzone.classList.remove('dragover'));
+  dropzone.addEventListener('drop', e => {
+    e.preventDefault();
+    dropzone.classList.remove('dragover');
+    if (e.dataTransfer.files.length) handleFile(e.dataTransfer.files[0]);
+  });
+  fileInput.addEventListener('change', e => { if (e.target.files.length) handleFile(e.target.files[0]); });
+
+  function handleFile(file) {
+    if (!file.type.startsWith('image/')) {
+      statusEl.textContent = 'Please choose a valid image file.';
+      return;
+    }
+    originalFile = file;
+    const url = URL.createObjectURL(file);
+    const img = new Image();
+    img.onload = () => {
+      originalImg = img;
+      aspectRatio = img.naturalWidth / img.naturalHeight;
+      previewImg.src = url;
+      widthInput.value = img.naturalWidth;
+      heightInput.value = img.naturalHeight;
+      resizeLayout.style.display = 'grid';
+      updateReadout();
+      statusEl.textContent = `Loaded: ${file.name} (${img.naturalWidth}×${img.naturalHeight}px). Choose your resize options.`;
+      downloadRow.style.display = 'none';
+    };
+    img.src = url;
+  }
+
+  modeTabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      modeTabs.forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
+      currentMode = tab.dataset.mode;
+      pixelsControls.style.display = currentMode === 'pixels' ? 'block' : 'none';
+      percentControls.style.display = currentMode === 'percent' ? 'block' : 'none';
+      presetControls.style.display = currentMode === 'preset' ? 'block' : 'none';
+      updateReadout();
+    });
+  });
+
+  widthInput.addEventListener('input', () => {
+    if (lockAspect.checked && originalImg) {
+      heightInput.value = Math.round(widthInput.value / aspectRatio);
+    }
+    updateReadout();
+  });
+  heightInput.addEventListener('input', () => {
+    if (lockAspect.checked && originalImg) {
+      widthInput.value = Math.round(heightInput.value * aspectRatio);
+    }
+    updateReadout();
+  });
+  percentRange.addEventListener('input', () => {
+    percentVal.textContent = percentRange.value + '%';
+    updateReadout();
+  });
+  presetSelect.addEventListener('change', updateReadout);
+
+  function getTargetDims() {
+    if (!originalImg) return { w: 0, h: 0 };
+    if (currentMode === 'pixels') {
+      return { w: parseInt(widthInput.value) || originalImg.naturalWidth, h: parseInt(heightInput.value) || originalImg.naturalHeight };
+    } else if (currentMode === 'percent') {
+      const scale = parseInt(percentRange.value) / 100;
+      return { w: Math.round(originalImg.naturalWidth * scale), h: Math.round(originalImg.naturalHeight * scale) };
+    } else {
+      const [w, h] = presetSelect.value.split('x').map(Number);
+      return { w, h };
+    }
+  }
+
+  function updateReadout() {
+    const { w, h } = getTargetDims();
+    dimsReadout.textContent = w && h ? `${w} × ${h} px` : '–';
+  }
+
+  resizeBtn.addEventListener('click', () => {
+    if (!originalImg) return;
+    const { w, h } = getTargetDims();
+    if (!w || !h) { statusEl.textContent = 'Please enter valid dimensions.'; return; }
+
+    const canvas = document.createElement('canvas');
+    canvas.width = w;
+    canvas.height = h;
+    const ctx = canvas.getContext('2d');
+    const fitMode = fitSelect.value;
+    const srcW = originalImg.naturalWidth, srcH = originalImg.naturalHeight;
+
+    if (fitMode === 'stretch') {
+      ctx.drawImage(originalImg, 0, 0, w, h);
+    } else if (fitMode === 'contain') {
+      const scale = Math.min(w / srcW, h / srcH);
+      const dw = srcW * scale, dh = srcH * scale;
+      const dx = (w - dw) / 2, dy = (h - dh) / 2;
+      ctx.fillStyle = '#FFFFFF';
+      ctx.fillRect(0, 0, w, h);
+      ctx.drawImage(originalImg, dx, dy, dw, dh);
+    } else {
+      const scale = Math.max(w / srcW, h / srcH);
+      const dw = srcW * scale, dh = srcH * scale;
+      const dx = (w - dw) / 2, dy = (h - dh) / 2;
+      ctx.drawImage(originalImg, dx, dy, dw, dh);
+    }
+
+    const mime = originalFile.type === 'image/png' ? 'image/png' : 'image/jpeg';
+    const dataUrl = canvas.toDataURL(mime, 0.92);
+    const ext = mime === 'image/png' ? 'png' : 'jpg';
+    const baseName = originalFile.name.replace(/\.[^/.]+$/, '');
+
+    downloadBtn.href = dataUrl;
+    downloadBtn.download = `${baseName}-resized-${w}x${h}.${ext}`;
+    downloadRow.style.display = 'flex';
+    statusEl.textContent = `Resized to ${w} × ${h}px. Click below to download.`;
+  });
+
+  resetBtn.addEventListener('click', () => {
+    originalImg = null;
+    originalFile = null;
+    resizeLayout.style.display = 'none';
+    downloadRow.style.display = 'none';
+    fileInput.value = '';
+    statusEl.textContent = 'Add an image to get started.';
+  });
+</script>
 </body>
 </html>
