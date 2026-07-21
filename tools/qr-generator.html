@@ -1,164 +1,288 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>QR Code Generator</title>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-    <!-- Include a QR code library (e.g., qrcode.js from CDN) -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcode.js/1.0.0/qrcode.min.js"></script>
-    <style>
-        body {
-            font-family: 'Roboto', sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: flex-start;
-            min-height: 100vh;
-            background: linear-gradient(to right, #ee0979 0%, #ff6a00 100%);
-            margin: 0;
-            padding: 40px 20px;
-            box-sizing: border-box;
-        }
-        .container {
-            background: white;
-            padding: 40px;
-            border-radius: 12px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
-            text-align: center;
-            max-width: 500px;
-            width: 100%;
-            animation: slideUp 0.8s ease-out;
-        }
-        @keyframes slideUp {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        h1 {
-            color: #333;
-            margin-bottom: 25px;
-            font-size: 2.2em;
-            font-weight: 700;
-        }
-        p {
-            color: #666;
-            margin-bottom: 20px;
-            font-size: 1.1em;
-        }
-        textarea {
-            width: calc(100% - 24px);
-            height: 100px;
-            padding: 12px;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            font-size: 1em;
-            resize: vertical;
-            margin-bottom: 20px;
-            box-shadow: inset 0 1px 3px rgba(0,0,0,0.05);
-            transition: border-color 0.3s ease;
-        }
-        textarea:focus {
-            border-color: #ff6a00;
-            outline: none;
-        }
-        button {
-            background-color: #ee0979;
-            color: white;
-            padding: 12px 25px;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            font-size: 1.1em;
-            font-weight: 700;
-            transition: background-color 0.3s ease, transform 0.2s ease;
-            box-shadow: 0 4px 10px rgba(238, 9, 121, 0.3);
-            margin-top: 15px;
-        }
-        button:hover {
-            background-color: #d8076d;
-            transform: translateY(-2px);
-        }
-        #qrcode {
-            margin-top: 30px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 200px; /* Placeholder for QR code */
-            background-color: #f8f9fa;
-            border: 1px solid #e0e0e0;
-            border-radius: 8px;
-            padding: 10px;
-            box-shadow: inset 0 1px 5px rgba(0,0,0,0.08);
-        }
-        #qrcode img {
-            max-width: 100%;
-            height: auto;
-            border-radius: 5px;
-        }
-        .note {
-            margin-top: 25px;
-            color: #888;
-            font-size: 0.9em;
-        }
-
-        /* Responsive adjustments */
-        @media (max-width: 768px) {
-            .container {
-                padding: 30px;
-                margin: 20px;
-            }
-            h1 {
-                font-size: 1.8em;
-            }
-            button {
-                width: 100%;
-                padding: 15px;
-            }
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>QR Code Generator Online - Create Free Custom QR Codes | Daily Toolkit</title>
+<meta name="description" content="Create QR codes online for free with Daily Toolkit. Generate QR codes for URLs, text, email, phone numbers, WiFi, SMS, contacts and more. Customize size, colors, error correction, margin, download PNG, SVG and print-ready QR codes.">
+<meta name="keywords" content="QR code generator, QR code generator online, free QR code generator, create QR code, make QR code, QR code maker, custom QR code, URL QR code, WiFi QR code, email QR code, phone QR code, SMS QR code, vCard QR code, QR code PNG, QR code SVG, QR code download">
+<meta name="robots" content="index, follow">
+<meta name="author" content="Daily Toolkit">
+<link rel="canonical" href="https://dailytoolkit.xyz/tools/qr-generator.html">
+<meta property="og:title" content="Free QR Code Generator Online">
+<meta property="og:description" content="Generate customizable QR codes for URLs, text, WiFi, email, phone, SMS and contact information. Download or print your QR code.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://dailytoolkit.xyz/tools/qr-generator.html">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="QR Code Generator Online">
+<meta name="twitter:description" content="Create free custom QR codes with Daily Toolkit.">
+<script>
+window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
+gtag('consent','default',{'ad_storage':'denied','ad_user_data':'denied','ad_personalization':'denied','analytics_storage':'denied'});
+</script>
+<script src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6737111642010842" crossorigin="anonymous" async defer></script>
+<script src="https://www.googletagmanager.com/gtag/js?id=G-3K7RBN1QSL" defer></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-3K7RBN1QSL');</script>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.4/build/qrcode.min.js"></script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[
+{"@type":"WebSite","name":"Daily Toolkit","url":"https://dailytoolkit.xyz"},
+{"@type":"WebApplication","name":"QR Code Generator","url":"https://dailytoolkit.xyz/tools/qr-generator.html","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"Free online QR code generator for URLs, text, email, phone, WiFi, SMS and contact details."},
+{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://dailytoolkit.xyz/"},{"@type":"ListItem","position":2,"name":"Tools","item":"https://dailytoolkit.xyz/#tools"},{"@type":"ListItem","position":3,"name":"QR Code Generator","item":"https://dailytoolkit.xyz/tools/qr-generator.html"}]},
+{"@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"What is a QR code?","acceptedAnswer":{"@type":"Answer","text":"A QR code is a two-dimensional barcode that can store information such as a website URL, text, contact details, email address, phone number or WiFi configuration."}},
+{"@type":"Question","name":"Is this QR code generator free?","acceptedAnswer":{"@type":"Answer","text":"Yes. Daily Toolkit's QR code generator is available to use online for free."}},
+{"@type":"Question","name":"Can I create a QR code for WiFi?","acceptedAnswer":{"@type":"Answer","text":"Yes. The WiFi QR mode creates a QR code containing the network name, password and security type so compatible devices can scan and connect."}},
+{"@type":"Question","name":"Can I download my QR code?","acceptedAnswer":{"@type":"Answer","text":"Yes. You can download the generated QR code as PNG or SVG and use the print option for physical materials."}},
+{"@type":"Question","name":"Can I customize QR code colors?","acceptedAnswer":{"@type":"Answer","text":"Yes. You can select foreground and background colors. For reliable scanning, maintain strong contrast between the QR code and its background."}},
+{"@type":"Question","name":"Do QR codes expire?","acceptedAnswer":{"@type":"Answer","text":"A static QR code does not inherently expire. If it contains a URL, the destination can stop working if the website or link changes."}}
+]}
+]}
+</script>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}:root{--black:#0A0A0A;--white:#fff;--gray-100:#F7F7F7;--gray-200:#EFEFEF;--gray-300:#D9D9D9;--gray-400:#A5A5A5;--gray-600:#696969;--gold:#C9A84C;--gold-light:#E8D28A;--gold-text:#7A5C18;--display:'Playfair Display',Georgia,serif;--body:'Inter',system-ui,sans-serif}
+html{scroll-behavior:smooth}body{font-family:var(--body);color:var(--black);background:#fff;line-height:1.6;overflow-x:hidden}a{text-decoration:none;color:inherit}button,input,textarea,select{font:inherit}button{cursor:pointer}
+::-webkit-scrollbar{width:4px}::-webkit-scrollbar-track{background:var(--gray-100)}::-webkit-scrollbar-thumb{background:var(--gold)}
+nav{height:68px;position:fixed;top:0;left:0;right:0;z-index:1000;padding:0 4%;display:flex;align-items:center;justify-content:space-between;gap:1rem;background:rgba(255,255,255,.96);backdrop-filter:blur(14px);border-bottom:1px solid var(--gray-200);transition:.3s}
+nav.scrolled{box-shadow:0 2px 24px rgba(0,0,0,.07)}.logo{font:700 1.3rem var(--display);white-space:nowrap}.logo span{color:var(--gold-text)}
+.nav-links{display:flex;list-style:none;gap:1.5rem}.nav-links a{font-size:.78rem;font-weight:600;color:var(--gray-600);text-transform:uppercase;letter-spacing:.05em}.nav-links a:hover{color:#000}
+.nav-search{display:flex;background:var(--gray-100);border:1px solid var(--gray-200)}.nav-search input{border:0;background:transparent;padding:.5rem .7rem;outline:0;width:150px}.nav-search button{border:0;background:#000;color:#fff;padding:0 .8rem}
+.hamburger{display:none;background:none;border:0;flex-direction:column;gap:5px}.hamburger span{width:22px;height:2px;background:#000}.mobile-menu{display:none;position:fixed;z-index:999;top:68px;left:0;right:0;background:#fff;padding:1rem 4%;border-bottom:1px solid var(--gray-200);flex-direction:column;gap:1rem}.mobile-menu.open{display:flex}.mobile-menu a{font-size:.8rem;text-transform:uppercase;font-weight:600}
+.hero{padding:125px 4% 55px;background:linear-gradient(180deg,#fff,#fafafa);border-bottom:1px solid var(--gray-200)}.container{max-width:1200px;margin:auto}.crumb{font-size:.75rem;color:var(--gray-600);margin-bottom:1.2rem}.eyebrow{display:inline-flex;gap:.5rem;align-items:center;font-size:.7rem;color:var(--gold-text);font-weight:700;letter-spacing:.14em;text-transform:uppercase;margin-bottom:.7rem}.eyebrow:before{content:"";width:22px;height:1px;background:var(--gold)}
+h1{font:700 clamp(2.2rem,5vw,4rem)/1.08 var(--display);letter-spacing:-.03em;margin-bottom:1rem}.hero p{max-width:900px;color:var(--gray-600);line-height:1.85}.divider{height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent)}
+.tool-section{padding:65px 4%}.tool{border:1px solid var(--gray-200);box-shadow:0 16px 45px rgba(0,0,0,.06);background:#fff}.tool-head{padding:1.4rem 1.5rem;border-bottom:1px solid var(--gray-200);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem}.tool-head h2{font:700 1.5rem var(--display)}.status{font-size:.75rem;color:var(--gray-600)}
+.tabs{display:flex;border-bottom:1px solid var(--gray-200);padding:0 1.5rem;overflow:auto}.tab{border:0;background:#fff;padding:.9rem 1rem;font-size:.72rem;font-weight:700;color:var(--gray-600);border-bottom:2px solid transparent;white-space:nowrap}.tab.active{color:#000;border-color:#000}
+.generator{display:grid;grid-template-columns:1fr 1fr}.controls{padding:1.5rem;border-right:1px solid var(--gray-200)}.preview{padding:1.5rem;background:#fafafa}.field{margin-bottom:1rem}.field label{display:block;font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;margin-bottom:.45rem}.field input,.field textarea,.field select{width:100%;border:1px solid var(--gray-300);padding:.7rem;background:#fff;outline:0}.field textarea{min-height:125px;resize:vertical}.field input:focus,.field textarea:focus,.field select:focus{border-color:#000;box-shadow:0 0 0 3px rgba(201,168,76,.13)}
+.type-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:.5rem;margin-bottom:1rem}.type-btn{border:1px solid var(--gray-300);background:#fff;padding:.65rem .4rem;font-size:.65rem;font-weight:700}.type-btn.active{background:#000;color:#fff;border-color:#000}
+.inline{display:grid;grid-template-columns:1fr 1fr;gap:.8rem}.color-row{display:grid;grid-template-columns:1fr 1fr;gap:.8rem}.color-box{display:flex;align-items:center;gap:.5rem;border:1px solid var(--gray-300);padding:.35rem;background:#fff}.color-box input[type=color]{width:45px;height:38px;border:0;padding:0;background:none}.color-box span{font-size:.7rem;font-family:monospace}
+.range-wrap{display:grid;grid-template-columns:1fr 60px;gap:.7rem;align-items:center}.range-wrap input[type=range]{width:100%;accent-color:#000}.number{border:1px solid var(--gray-300);padding:.45rem;text-align:center;width:60px;font-weight:700}
+.checks{display:flex;flex-wrap:wrap;gap:1rem}.check{display:flex;gap:.5rem;align-items:center;font-size:.72rem}.check input{accent-color:#000}
+.action-row{display:flex;gap:.6rem;flex-wrap:wrap;margin-top:1rem}.btn{border:1px solid var(--gray-300);background:#fff;padding:.65rem 1rem;font-size:.7rem;font-weight:700;transition:.2s}.btn:hover{background:#000;color:#fff;border-color:#000}.btn.primary{background:#000;color:#fff;border-color:#000}.btn.primary:hover{background:#333}
+.canvas-wrap{min-height:430px;display:flex;align-items:center;justify-content:center;background:#fff;border:1px solid var(--gray-200);padding:1rem;overflow:auto}.canvas-wrap canvas{max-width:100%;height:auto;image-rendering:auto}.preview-info{display:grid;grid-template-columns:repeat(3,1fr);gap:.6rem;margin-top:.8rem}.info{border:1px solid var(--gray-200);background:#fff;padding:.75rem}.info strong{display:block;font:700 1.1rem var(--display)}.info span{font-size:.6rem;color:var(--gray-600);text-transform:uppercase}
+.preset{display:flex;gap:.5rem;flex-wrap:wrap;margin-top:.5rem}.preset button{border:1px solid var(--gray-300);background:#fff;padding:.45rem .7rem;font-size:.65rem}.preset button:hover{background:#000;color:#fff}
+.template{display:none;padding:1.5rem}.template.active{display:block}.template-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem}.template-note{padding:1rem;background:#fafafa;border:1px solid var(--gray-200);font-size:.75rem;color:var(--gray-600);margin-bottom:1rem}
+.content{padding:72px 4%;background:var(--gray-100)}.content.white{background:#fff}.inner{max-width:1000px;margin:auto}.heading{margin-bottom:2rem}.heading h2{font:700 clamp(1.7rem,3vw,2.5rem) var(--display);margin:.3rem 0 .6rem}.heading p{color:var(--gray-600);max-width:760px}.features{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem}.card{background:#fff;border:1px solid var(--gray-200);padding:1.4rem;transition:.3s}.card:hover{transform:translateY(-3px);box-shadow:0 10px 25px rgba(0,0,0,.06)}.card b{font:1.6rem var(--display);color:var(--gold)}.card h3{font-size:.92rem;margin:.35rem 0}.card p{font-size:.8rem;color:var(--gray-600);line-height:1.7}
+.prose{font-size:.93rem;line-height:1.9;color:#404040}.prose p{margin-bottom:1rem}.prose h3{font:700 1.35rem var(--display);color:#000;margin:2rem 0 .6rem}
+.faq{border-top:1px solid var(--gray-200)}.faq-item{border-bottom:1px solid var(--gray-200)}.faq-q{width:100%;padding:1rem 0;background:none;border:0;text-align:left;font-weight:700;display:flex;justify-content:space-between}.faq-q span{color:var(--gold);font-size:1.2rem}.faq-a{display:none;color:var(--gray-600);font-size:.84rem;padding:0 0 1rem;line-height:1.8}.faq-item.open .faq-a{display:block}
+.related{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem}.related a{border:1px solid var(--gray-200);padding:1.2rem;background:#fff}.related h3{font-size:.88rem}.related p{font-size:.75rem;color:var(--gray-600);margin-top:.3rem}
+footer{background:#0A0A0A;color:#fff;padding:55px 4% 25px}.foot{max-width:1200px;margin:auto}.footgrid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:2rem;padding-bottom:2rem}.footlogo{font:700 1.5rem var(--display)}.footlogo span{color:var(--gold-light)}.foot p,.foot a{font-size:.75rem;color:#aaa}.foot h3{font-size:.72rem;color:var(--gold-light);text-transform:uppercase;margin-bottom:.7rem}.foot ul{list-style:none;display:grid;gap:.4rem}.bottom{border-top:1px solid #292929;padding-top:1rem;color:#777;font-size:.7rem;display:flex;justify-content:space-between}
+.toast{position:fixed;right:20px;bottom:20px;background:#000;color:#fff;padding:.8rem 1rem;font-size:.75rem;transform:translateY(100px);opacity:0;transition:.3s;z-index:2000}.toast.show{transform:none;opacity:1}
+@media(max-width:1000px){.generator{grid-template-columns:1fr}.controls{border-right:0;border-bottom:1px solid var(--gray-200)}.features{grid-template-columns:repeat(2,1fr)}}@media(max-width:900px){.nav-links,.nav-search{display:none}.hamburger{display:flex}.related{grid-template-columns:repeat(2,1fr)}}@media(max-width:650px){.hero,.tool-section,.content{padding-left:5%;padding-right:5%}.features,.related,.template-grid{grid-template-columns:1fr}.type-grid{grid-template-columns:repeat(2,1fr)}.inline,.color-row{grid-template-columns:1fr}.footgrid{grid-template-columns:1fr}.bottom{flex-direction:column;gap:.5rem}.canvas-wrap{min-height:300px}}
+</style>
 </head>
 <body>
-    <div class="container">
-        <h1>✨ QR Code Generator</h1>
-        <p>Enter any text or URL below to generate your custom QR code.</p>
-        <textarea id="qrInput" placeholder="e.g., https://www.example.com or Hello World!"></textarea>
-        <button onclick="generateQRCode()">Generate QR Code</button>
-        <div id="qrcode">
-            <p style="color: #666;">Your QR code will appear here</p>
-        </div>
-        <p class="note"><em>Note: This tool uses a JavaScript library for QR code generation. Ensure JavaScript is enabled.</em></p>
-    </div>
+<nav id="nav">
+<a class="logo" href="../index.html">Daily <span>Toolkit</span></a>
+<ul class="nav-links"><li><a href="../index.html">Home</a></li><li><a href="../index.html#tools">Tools</a></li><li><a href="../about.html">About</a></li><li><a href="../blog.html">Blog</a></li><li><a href="../contact.html">Contact</a></li></ul>
+<form class="nav-search" onsubmit="searchTool(event)"><input placeholder="Search tools..." aria-label="Search tools"><button>Search</button></form>
+<button class="hamburger" id="hamb"><span></span><span></span><span></span></button>
+</nav>
+<div class="mobile-menu" id="mobile"><a href="../index.html">Home</a><a href="../index.html#tools">Tools</a><a href="../about.html">About</a><a href="../blog.html">Blog</a><a href="../contact.html">Contact</a></div>
 
-    <script>
-        let qrCodeInstance; // To store the QRCode.js instance
+<header class="hero"><div class="container">
+<div class="crumb"><a href="../index.html">Home</a> / <a href="../index.html#tools">Tools</a> / QR Code Generator</div>
+<div class="eyebrow">Free QR Utility</div>
+<h1>QR Code Generator Online</h1>
+<p>Create custom QR codes for websites, plain text, email addresses, phone numbers, SMS, WiFi networks and contact cards. Customize the size, colors, margin and error correction level, then download your QR code as PNG or SVG or print it directly.</p>
+</div></header>
+<div class="divider"></div>
 
-        function generateQRCode() {
-            const qrInputText = document.getElementById('qrInput').value;
-            const qrCodeDiv = document.getElementById('qrcode');
+<main>
+<section class="tool-section"><div class="container">
+<div class="tool">
+<div class="tool-head"><h2>Free Custom QR Code Maker</h2><div class="status" id="status">Ready • Enter content to generate</div></div>
+<div class="tabs"><button class="tab active" data-tab="generator">QR Generator</button><button class="tab" data-tab="templates">Quick Templates</button></div>
 
-            // Clear previous QR code if exists
-            qrCodeDiv.innerHTML = '';
+<div id="generatorTab" class="generator">
+<div class="controls">
+<div class="eyebrow">Choose QR Type</div>
+<div class="type-grid">
+<button class="type-btn active" data-type="url">URL</button><button class="type-btn" data-type="text">Text</button><button class="type-btn" data-type="email">Email</button><button class="type-btn" data-type="phone">Phone</button><button class="type-btn" data-type="sms">SMS</button><button class="type-btn" data-type="wifi">WiFi</button><button class="type-btn" data-type="vcard">Contact</button><button class="type-btn" data-type="geo">Location</button>
+</div>
 
-            if (qrInputText.trim() === "") {
-                qrCodeDiv.innerHTML = '<p style="color: #666;">Please enter some text or a URL.</p>';
-                return;
-            }
+<div id="dynamicFields"></div>
 
-            // Generate new QR code
-            qrCodeInstance = new QRCode(qrCodeDiv, {
-                text: qrInputText,
-                width: 250,
-                height: 250,
-                colorDark : "#000000",
-                colorLight : "#ffffff",
-                correctLevel : QRCode.CorrectLevel.H
-            });
-        }
+<div class="field"><label for="size">QR Code Size</label><div class="range-wrap"><input type="range" id="size" min="128" max="1600" value="600"><input class="number" id="sizeNum" type="number" min="128" max="1600" value="600"></div></div>
+<div class="inline">
+<div class="field"><label for="ec">Error Correction</label><select id="ec"><option value="L">Low (L)</option><option value="M" selected>Medium (M)</option><option value="Q">Quartile (Q)</option><option value="H">High (H)</option></select></div>
+<div class="field"><label for="margin">Quiet Zone</label><input id="margin" type="number" min="0" max="20" value="4"></div>
+</div>
+<div class="color-row">
+<div class="field"><label>Foreground</label><div class="color-box"><input type="color" id="dark" value="#000000"><span id="darkHex">#000000</span></div></div>
+<div class="field"><label>Background</label><div class="color-box"><input type="color" id="light" value="#FFFFFF"><span id="lightHex">#FFFFFF</span></div></div>
+</div>
+<div class="preset"><button data-preset="classic">Classic</button><button data-preset="navy">Navy</button><button data-preset="forest">Forest</button><button data-preset="berry">Berry</button><button data-preset="gold">Gold</button></div>
+<div class="checks" style="margin-top:.8rem"><label class="check"><input type="checkbox" id="transparent"> Transparent background</label><label class="check"><input type="checkbox" id="centerLabel"> Add center label</label></div>
+<div class="field" id="labelField" style="display:none;margin-top:.8rem"><label>Center Label</label><input id="labelText" maxlength="12" placeholder="SCAN"></div>
+<div class="action-row"><button class="btn primary" id="generate">Generate QR Code</button><button class="btn" id="downloadPng">Download PNG</button><button class="btn" id="downloadSvg">Download SVG</button><button class="btn" id="print">Print</button><button class="btn" id="clear">Clear</button></div>
+</div>
 
-        // Generate a default QR code on page load
-        document.addEventListener('DOMContentLoaded', () => {
-            document.getElementById('qrInput').value = "https://www.google.com";
-            generateQRCode();
-        });
-    </script>
+<div class="preview">
+<div class="eyebrow">Live Preview</div>
+<div class="canvas-wrap"><canvas id="qrCanvas" width="600" height="600"></canvas></div>
+<div class="preview-info"><div class="info"><strong id="infoSize">600 px</strong><span>Output Size</span></div><div class="info"><strong id="infoType">URL</strong><span>Content Type</span></div><div class="info"><strong id="infoChars">0</strong><span>Characters</span></div></div>
+<p style="font-size:.7rem;color:var(--gray-600);margin-top:.8rem">Tip: Keep strong contrast and leave a clear quiet zone around the QR code for easier scanning.</p>
+</div>
+</div>
+
+<div id="templatesTab" class="template">
+<div class="heading"><div class="eyebrow">Quick Start</div><h2>QR Code Templates</h2><p>Select a template to automatically switch the generator to a common QR code use case.</p></div>
+<div class="template-grid">
+<button class="card" data-template="url"><h3>Website URL</h3><p>Create a scannable QR code that opens your website, landing page, store or social profile.</p></button>
+<button class="card" data-template="wifi"><h3>WiFi Network</h3><p>Share WiFi connection details with guests without manually typing the network password.</p></button>
+<button class="card" data-template="email"><h3>Email</h3><p>Let people scan to open an email composer with a pre-filled recipient and subject.</p></button>
+<button class="card" data-template="phone"><h3>Phone Number</h3><p>Create a QR code that makes a phone number easy to access on a mobile device.</p></button>
+<button class="card" data-template="sms"><h3>SMS Message</h3><p>Generate a QR code that opens a text message with a selected number and message.</p></button>
+<button class="card" data-template="vcard"><h3>Contact Card</h3><p>Share contact details using a vCard QR code for quick saving on compatible devices.</p></button>
+<button class="card" data-template="geo"><h3>Location</h3><p>Share latitude and longitude coordinates through a scannable QR code.</p></button>
+<button class="card" data-template="text"><h3>Plain Text</h3><p>Encode notes, instructions, event details, short messages and other text.</p></button>
+</div></div>
+</div></div></section>
+
+<section class="content"><div class="inner">
+<div class="heading"><div class="eyebrow">Powerful Features</div><h2>Everything You Need to Make QR Codes</h2><p>A flexible QR generator designed for everyday personal, business, marketing and print use.</p></div>
+<div class="features">
+<div class="card"><b>01</b><h3>URL QR Codes</h3><p>Turn any website address into a scannable QR code for menus, posters, business cards and campaigns.</p></div>
+<div class="card"><b>02</b><h3>Text QR Codes</h3><p>Encode plain text for notes, instructions, event information or quick sharing.</p></div>
+<div class="card"><b>03</b><h3>Email QR Codes</h3><p>Pre-fill recipient, subject and message fields for convenient email actions.</p></div>
+<div class="card"><b>04</b><h3>Phone QR Codes</h3><p>Make phone numbers easy to open on mobile devices with a scan.</p></div>
+<div class="card"><b>05</b><h3>SMS QR Codes</h3><p>Prepare a phone number and message for a quick SMS workflow.</p></div>
+<div class="card"><b>06</b><h3>WiFi QR Codes</h3><p>Encode network name, password and security type for compatible WiFi scanners.</p></div>
+<div class="card"><b>07</b><h3>Contact QR Codes</h3><p>Create vCard data with name, organization, phone, email and website details.</p></div>
+<div class="card"><b>08</b><h3>Location QR Codes</h3><p>Share geographic coordinates through a standard geo URI.</p></div>
+<div class="card"><b>09</b><h3>Custom Colors</h3><p>Choose foreground and background colors while maintaining enough contrast for scanning.</p></div>
+<div class="card"><b>10</b><h3>Error Correction</h3><p>Choose L, M, Q or H error correction depending on your intended use and damage tolerance.</p></div>
+<div class="card"><b>11</b><h3>High Resolution</h3><p>Generate large QR images suitable for many digital and print workflows.</p></div>
+<div class="card"><b>12</b><h3>PNG & SVG Export</h3><p>Download raster PNG or scalable SVG files for flexible use across screens and print.</p></div>
+<div class="card"><b>13</b><h3>Print Ready</h3><p>Open a clean print layout with the generated QR code and essential details.</p></div>
+<div class="card"><b>14</b><h3>Quiet Zone Control</h3><p>Adjust the surrounding margin to help scanners distinguish the code from nearby content.</p></div>
+<div class="card"><b>15</b><h3>Browser Based</h3><p>Generate QR codes directly in your browser using a client-side JavaScript library.</p></div>
+</div></div></section>
+
+<section class="content white"><div class="inner prose">
+<div class="heading"><div class="eyebrow">QR Code Guide</div><h2>What Is a QR Code and How Does It Work?</h2></div>
+<p>A QR code, short for Quick Response code, is a two-dimensional barcode that stores information in a pattern of dark and light modules. A compatible camera or QR scanner reads the pattern and converts it into data such as a web address, text, contact information or network configuration.</p>
+<h3>How to Create a QR Code</h3>
+<p>Choose the type of content you want to encode, enter the required information, select your preferred size and error correction level, and then generate the QR code. You can customize the foreground and background colors as long as there is enough contrast for reliable scanning.</p>
+<h3>QR Codes for Websites</h3>
+<p>URL QR codes are useful for posters, menus, packaging, business cards, product displays and event materials. Before publishing a QR code, scan it with multiple devices and confirm that the destination opens correctly.</p>
+<h3>QR Codes for WiFi Sharing</h3>
+<p>A WiFi QR code can make guest network access more convenient. It can contain the network name, security type and password. Only encode network credentials when you understand that anyone who can scan or access the printed code may be able to retrieve the information.</p>
+<h3>Choosing Error Correction</h3>
+<p>QR codes support different levels of error correction. Higher levels can tolerate more damage but may require a denser code. For ordinary digital sharing, a moderate level can be a practical choice. For printed materials that may become dirty or damaged, higher correction may be useful if the resulting QR code remains easy to scan.</p>
+<h3>Why Contrast Matters</h3>
+<p>QR scanners need to distinguish the modules from the background. Dark modules on a light background are a classic choice because they provide strong contrast. Avoid low-contrast combinations and test your QR code under the actual lighting and print conditions where it will be used.</p>
+<h3>Do QR Codes Expire?</h3>
+<p>A static QR code itself does not have an expiration date. However, the information it points to can change. For example, a QR code containing a URL will continue to encode that URL, but the website may later move, be removed or stop responding.</p>
+<h3>Static vs Dynamic QR Codes</h3>
+<p>A static QR code stores its final information directly. A dynamic QR code usually points to a redirect service that can change the destination without replacing the printed code. This page creates static QR codes. If you need campaign analytics or editable destinations, you may need a dedicated dynamic QR platform.</p>
+<h3>Best Practices for Printing QR Codes</h3>
+<p>Use sufficient physical size, strong contrast and an uncluttered quiet zone. Avoid stretching the QR image disproportionately. Test the printed version from the distance and angle your audience will use. For important materials, test multiple phone models and scanning applications.</p>
+<h3>QR Codes and Privacy</h3>
+<p>Remember that a QR code is simply a convenient data container. If you encode personal information, contact details or WiFi credentials, consider who can access the code. For sensitive data, use appropriate security controls rather than treating a QR code as a security mechanism.</p>
+</div></div></section>
+
+<section class="content"><div class="inner">
+<div class="heading"><div class="eyebrow">Frequently Asked Questions</div><h2>QR Code Generator FAQs</h2></div>
+<div class="faq">
+<div class="faq-item"><button class="faq-q">What can I create a QR code for? <span>+</span></button><div class="faq-a">You can create QR codes for URLs, plain text, email addresses, phone numbers, SMS messages, WiFi networks, contact cards and geographic coordinates using the available modes.</div></div>
+<div class="faq-item"><button class="faq-q">Is this QR code generator free? <span>+</span></button><div class="faq-a">Yes. The QR generator is available for free through Daily Toolkit.</div></div>
+<div class="faq-item"><button class="faq-q">Can I download QR codes as PNG? <span>+</span></button><div class="faq-a">Yes. Use the Download PNG button to save the generated QR code as a PNG image.</div></div>
+<div class="faq-item"><button class="faq-q">Can I download an SVG QR code? <span>+</span></button><div class="faq-a">Yes. SVG export is available for scalable graphics that can be useful in design and print workflows.</div></div>
+<div class="faq-item"><button class="faq-q">What is the best QR code size? <span>+</span></button><div class="faq-a">The best physical size depends on scanning distance, content density and printing quality. Larger is generally easier to scan from farther away, but always test the final design.</div></div>
+<div class="faq-item"><button class="faq-q">Can I change QR code colors? <span>+</span></button><div class="faq-a">Yes. You can customize foreground and background colors. Maintain high contrast and test the result before publishing.</div></div>
+<div class="faq-item"><button class="faq-q">Are generated QR codes dynamic? <span>+</span></button><div class="faq-a">No. The QR codes created here are static. If you encode a URL, changing the destination later requires changing the URL itself or using a redirect service.</div></div>
+<div class="faq-item"><button class="faq-q">Why is my QR code not scanning? <span>+</span></button><div class="faq-a">Check contrast, size, quiet zone, image quality and error correction. Also make sure the code is not distorted, cropped or covered by nearby graphics.</div></div>
+</div></div></section>
+
+<section class="content white"><div class="inner">
+<div class="heading"><div class="eyebrow">Explore More</div><h2>More Daily Toolkit Tools</h2></div>
+<div class="related">
+<a href="barcode-generator.html"><h3>Barcode Generator</h3><p>Create common 1D barcodes online.</p></a>
+<a href="password-gen.html"><h3>Password Generator</h3><p>Generate strong random passwords.</p></a>
+<a href="url-encoder-decoder.html"><h3>URL Encoder & Decoder</h3><p>Encode and decode URLs and URI components.</p></a>
+<a href="text-case-converter.html"><h3>Text Case Converter</h3><p>Convert text between capitalization styles.</p></a>
+</div></div></section>
+</main>
+
+<footer><div class="foot"><div class="footgrid">
+<div><div class="footlogo">Daily <span>Toolkit</span></div><p>Free online tools for everyday tasks, including image utilities, calculators, converters, text tools and productivity utilities.</p></div>
+<div><h3>Tools</h3><ul><li><a href="background-remover.html">Background Remover</a></li><li><a href="color-picker.html">Color Picker</a></li><li><a href="word-counter.html">Word Counter</a></li><li><a href="password-gen.html">Password Generator</a></li></ul></div>
+<div><h3>Company</h3><ul><li><a href="../about.html">About</a></li><li><a href="../blog.html">Blog</a></li><li><a href="../contact.html">Contact</a></li></ul></div>
+<div><h3>Legal</h3><ul><li><a href="../privacy.html">Privacy</a></li><li><a href="../terms.html">Terms</a></li></ul></div>
+</div><div class="bottom"><span>© 2026 Daily Toolkit. All rights reserved.</span><span>Free tools for everyday work.</span></div></div></footer>
+<div class="toast" id="toast"></div>
+
+<script>
+const $=s=>document.querySelector(s),$$=s=>document.querySelectorAll(s);
+const nav=$('#nav');window.addEventListener('scroll',()=>nav.classList.toggle('scrolled',scrollY>10));
+$('#hamb').onclick=()=>$('#mobile').classList.toggle('open');
+function searchTool(e){e.preventDefault();let q=e.target.querySelector('input').value.toLowerCase();if(q.includes('password'))location='password-gen.html';else if(q.includes('url'))location='url-encoder-decoder.html';else if(q.includes('barcode'))location='barcode-generator.html';else location='../index.html#tools'}
+let currentType='url', canvas=$('#qrCanvas');
+const fields={
+url:`<div class="field"><label>Website URL</label><input id="url" type="url" placeholder="https://example.com" value="https://dailytoolkit.xyz/"></div>`,
+text:`<div class="field"><label>Text to Encode</label><textarea id="text" placeholder="Enter any text you want to encode..."></textarea></div>`,
+email:`<div class="inline"><div class="field"><label>Email Address</label><input id="email" type="email" placeholder="hello@example.com"></div><div class="field"><label>Subject</label><input id="subject" placeholder="Hello from QR"></div></div><div class="field"><label>Message</label><textarea id="emailMsg" placeholder="Your message..."></textarea></div>`,
+phone:`<div class="field"><label>Phone Number</label><input id="phone" type="tel" placeholder="+1 555 123 4567"></div>`,
+sms:`<div class="inline"><div class="field"><label>Phone Number</label><input id="smsPhone" type="tel" placeholder="+1 555 123 4567"></div><div class="field"><label>Message</label><input id="smsMsg" placeholder="Hello!"></div></div>`,
+wifi:`<div class="inline"><div class="field"><label>Network Name (SSID)</label><input id="ssid" placeholder="My WiFi"></div><div class="field"><label>Password</label><input id="wifiPass" type="text" placeholder="WiFi password"></div></div><div class="inline"><div class="field"><label>Security</label><select id="security"><option value="WPA">WPA/WPA2</option><option value="WEP">WEP</option><option value="nopass">No Password</option></select></div><div class="field"><label>Hidden Network</label><select id="hidden"><option value="false">No</option><option value="true">Yes</option></select></div></div>`,
+vcard:`<div class="inline"><div class="field"><label>Full Name</label><input id="vname" placeholder="John Smith"></div><div class="field"><label>Organization</label><input id="vorg" placeholder="Company"></div></div><div class="inline"><div class="field"><label>Phone</label><input id="vphone" placeholder="+1 555 123 4567"></div><div class="field"><label>Email</label><input id="vemail" placeholder="john@example.com"></div></div><div class="inline"><div class="field"><label>Website</label><input id="vurl" placeholder="https://example.com"></div><div class="field"><label>Address</label><input id="vaddress" placeholder="Street, City, Country"></div></div>`,
+geo:`<div class="inline"><div class="field"><label>Latitude</label><input id="lat" type="number" step="any" placeholder="24.8607"></div><div class="field"><label>Longitude</label><input id="lon" type="number" step="any" placeholder="67.0011"></div></div><div class="field"><label>Location Label (optional)</label><input id="geoLabel" placeholder="My Location"></div>`
+};
+function renderFields(type){currentType=type;$('#dynamicFields').innerHTML=fields[type];$$('.type-btn').forEach(b=>b.classList.toggle('active',b.dataset.type===type));$$('#dynamicFields input,#dynamicFields textarea,#dynamicFields select').forEach(x=>x.addEventListener('input',generate));generate()}
+function esc(s){return String(s||'').replace(/([\\\\;,":])/g,'\\\\$1')}
+function getData(){
+let g=id=>$('#'+id)?.value||'';
+if(currentType==='url')return g('url');
+if(currentType==='text')return g('text');
+if(currentType==='email')return `mailto:${g('email')}?subject=${encodeURIComponent(g('subject'))}&body=${encodeURIComponent(g('emailMsg'))}`;
+if(currentType==='phone')return `tel:${g('phone')}`;
+if(currentType==='sms')return `SMSTO:${g('smsPhone')}:${g('smsMsg')}`;
+if(currentType==='wifi')return `WIFI:T:${g('security')};S:${esc(g('ssid'))};P:${esc(g('wifiPass'))};H:${g('hidden')};;`;
+if(currentType==='vcard')return `BEGIN:VCARD\\nVERSION:3.0\\nFN:${g('vname')}\\nORG:${g('vorg')}\\nTEL:${g('vphone')}\\nEMAIL:${g('vemail')}\\nURL:${g('vurl')}\\nADR:;;${g('vaddress')}\\nEND:VCARD`;
+if(currentType==='geo')return `geo:${g('lat')},${g('lon')}${g('geoLabel')?'?q='+encodeURIComponent(g('lat')+','+g('lon')+' ('+g('geoLabel')+')'):''}`;
+return '';
+}
+function qrOpts(){
+let bg=$('#transparent').checked?'rgba(255,255,255,0)':$('#light').value;
+return {width:+$('#size').value,margin:Math.max(0,Math.min(20,+$('#margin').value||0)),errorCorrectionLevel:$('#ec').value,color:{dark:$('#dark').value,light:bg}};
+}
+function generate(){
+let data=getData(),size=+$('#size').value||600;$('#infoSize').textContent=size+' px';$('#infoType').textContent=currentType.toUpperCase();$('#infoChars').textContent=data.length;
+$('#darkHex').textContent=$('#dark').value.toUpperCase();$('#lightHex').textContent=$('#light').value.toUpperCase();
+if(!data){let c=canvas.getContext('2d');c.clearRect(0,0,canvas.width,canvas.height);$('#status').textContent='Enter content to generate';return}
+QRiousFallback(data);
+}
+function QRiousFallback(data){
+if(typeof QRCode==='undefined'){showToast('QR library is still loading');return}
+let opts=qrOpts();canvas.width=opts.width;canvas.height=opts.width;
+QRCode.toCanvas(canvas,data,opts,err=>{if(err){showToast('Could not generate QR code')}else{$('#status').textContent='Generated • Ready to download or print';addLabel()}})
+}
+function addLabel(){
+if(!$('#centerLabel').checked)return;
+let text=$('#labelText').value.trim();if(!text)return;
+let ctx=canvas.getContext('2d'),s=canvas.width,box=Math.max(50,s*.16);ctx.fillStyle=$('#light').value;ctx.fillRect((s-box)/2,(s-box)/2,box,box);ctx.strokeStyle=$('#dark').value;ctx.lineWidth=Math.max(2,s*.005);ctx.strokeRect((s-box)/2,(s-box)/2,box,box);ctx.fillStyle=$('#dark').value;ctx.font=`700 ${Math.max(12,s*.035)}px Inter,Arial`;ctx.textAlign='center';ctx.textBaseline='middle';ctx.fillText(text,s/2,s/2)
+}
+$$('.type-btn').forEach(b=>b.onclick=()=>renderFields(b.dataset.type));
+$('#generate').onclick=generate;$$('#dynamicFields input,#dynamicFields textarea,#dynamicFields select').forEach(x=>x.addEventListener('input',generate));
+$('#size').oninput=()=>{$('#sizeNum').value=$('#size').value;generate()};$('#sizeNum').oninput=()=>{$let=0;let v=Math.max(128,Math.min(1600,+$('#sizeNum').value||600));$('#size').value=v;generate()};
+$$('#ec,#margin,#dark,#light,#transparent').forEach(x=>x.addEventListener('change',generate));$('#centerLabel').onchange=()=>{$('#labelField').style.display=$('#centerLabel').checked?'block':'none';generate()};$('#labelText').oninput=generate;
+$$('[data-preset]').forEach(b=>b.onclick=()=>{let p={classic:['#000000','#FFFFFF'],navy:['#0B1F3A','#FFFFFF'],forest:['#123524','#F7FFF9'],berry:['#6D173C','#FFF7FA'],gold:['#6B4E00','#FFF9E6']}[b.dataset.preset];$('#dark').value=p[0];$('#light').value=p[1];generate()});
+function download(type){
+let data=getData();if(!data)return showToast('Enter content first');
+if(type==='png'){let a=document.createElement('a');a.download='qr-code.png';a.href=canvas.toDataURL('image/png');a.click();showToast('PNG downloaded')}
+else{let opts=qrOpts();QRCode.toString(data,{type:'svg',width:opts.width,margin:opts.margin,errorCorrectionLevel:opts.errorCorrectionLevel,color:opts.color},(err,svg)=>{if(err)return showToast('SVG export failed');let a=document.createElement('a');a.download='qr-code.svg';a.href=URL.createObjectURL(new Blob([svg],{type:'image/svg+xml'}));a.click();showToast('SVG downloaded')})}
+}
+$('#downloadPng').onclick=()=>download('png');$('#downloadSvg').onclick=()=>download('svg');
+$('#print').onclick=()=>{let src=canvas.toDataURL('image/png'),w=window.open('','_blank');w.document.write(`<html><head><title>Print QR Code</title><style>body{margin:0;display:flex;min-height:100vh;align-items:center;justify-content:center;font-family:Arial}img{max-width:80vw;max-height:80vh}</style></head><body><img src="${src}"></body></html>`);w.document.close();w.focus();setTimeout(()=>w.print(),300)};
+$('#clear').onclick=()=>{renderFields(currentType);$('#status').textContent='Cleared • Enter content to generate'};
+$$('.tab').forEach(t=>t.onclick=()=>{$$('.tab').forEach(x=>x.classList.remove('active'));t.classList.add('active');let id=t.dataset.tab;$('#generatorTab').style.display=id==='generator'?'grid':'none';$('#templatesTab').classList.toggle('active',id==='templates')});
+$$('[data-template]').forEach(b=>b.onclick=()=>{$$('.tab').forEach(x=>x.classList.toggle('active',x.dataset.tab==='generator'));$('#generatorTab').style.display='grid';$('#templatesTab').classList.remove('active');renderFields(b.dataset.template);window.scrollTo({top:document.querySelector('.tool').offsetTop-80,behavior:'smooth'})});
+$$('.faq-q').forEach(x=>x.onclick=()=>x.parentElement.classList.toggle('open'));
+function showToast(t){let x=$('#toast');x.textContent=t;x.classList.add('show');setTimeout(()=>x.classList.remove('show'),2200)}
+renderFields('url');
+</script>
 </body>
 </html>
