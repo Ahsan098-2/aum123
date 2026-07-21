@@ -3,363 +3,222 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<!-- SEO -->
-<title>Advanced Color Picker – HEX & RGB Color Tool Online</title>
-<meta name="description" content="Use this advanced color picker tool to select colors easily using RGB sliders, HEX input, or native color picker. Copy colors instantly in HEX or RGB formats.">
-<meta name="keywords" content="color picker, RGB slider, HEX color tool, advanced color tool, online color picker, color generator, copy color">
-
-<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+<title>Color Picker Online - Pick Colors, HEX, RGB, HSL & More | Daily Toolkit</title>
+<meta name="description" content="Use Daily Toolkit's free online color picker to choose colors, generate HEX, RGB, HSL, HSV and CMYK values, copy color codes, create palettes, adjust shades and explore color combinations.">
+<meta name="keywords" content="color picker, color picker online, online color picker, color picker from image, hex color picker, rgb color picker, hsl color picker, color code picker, html color picker, color palette generator, color converter, hex to rgb, rgb to hex, color shades generator">
+<meta name="robots" content="index, follow">
+<meta name="author" content="Ahsanullah Mahar">
+<link rel="canonical" href="https://dailytoolkit.xyz/tools/color-picker.html">
+<meta property="og:title" content="Free Color Picker Online - HEX, RGB, HSL & More">
+<meta property="og:description" content="Pick and convert colors online with HEX, RGB, HSL, HSV and CMYK values. Generate shades, tints and palettes with Daily Toolkit.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://dailytoolkit.xyz/tools/color-picker.html">
+<meta property="og:image" content="https://ahsan098-2.github.io/aum123/assets/preview.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Free Color Picker Online - Daily Toolkit">
+<meta name="twitter:description" content="Pick colors, copy HEX/RGB/HSL codes, generate shades and create color palettes online for free.">
+<meta name="twitter:image" content="https://ahsan098-2.github.io/aum123/assets/preview.png">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://pagead2.googlesyndication.com https://www.googletagmanager.com; connect-src 'self' https://www.google-analytics.com; img-src 'self' data: blob: https:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; object-src 'none'; base-uri 'self';">
+<script>
+window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
+gtag('consent','default',{'ad_storage':'denied','ad_user_data':'denied','ad_personalization':'denied','analytics_storage':'denied','regions':['PK','EU']});
+gtag('consent','default',{'ad_storage':'denied','ad_user_data':'denied','ad_personalization':'denied','analytics_storage':'denied'});
+</script>
+<script src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6737111642010842" crossorigin="anonymous" async defer></script>
+<script src="https://www.googletagmanager.com/gtag/js?id=G-3K7RBN1QSL" defer></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-3K7RBN1QSL');</script>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[
+{"@type":"WebSite","name":"Daily Toolkit","url":"https://dailytoolkit.xyz"},
+{"@type":"WebApplication","name":"Free Online Color Picker","url":"https://dailytoolkit.xyz/tools/color-picker.html","applicationCategory":"DesignApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"Free online color picker and color converter with HEX, RGB, HSL, HSV and CMYK values."},
+{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://dailytoolkit.xyz/"},{"@type":"ListItem","position":2,"name":"Tools","item":"https://dailytoolkit.xyz/#tools"},{"@type":"ListItem","position":3,"name":"Color Picker","item":"https://dailytoolkit.xyz/tools/color-picker.html"}]},
+{"@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"What is a color picker?","acceptedAnswer":{"@type":"Answer","text":"A color picker is a tool that lets you select a color and view its digital color values such as HEX, RGB and HSL."}},
+{"@type":"Question","name":"What is a HEX color code?","acceptedAnswer":{"@type":"Answer","text":"A HEX color code is a six-digit hexadecimal representation of a color commonly used in HTML and CSS."}},
+{"@type":"Question","name":"Can I convert HEX to RGB?","acceptedAnswer":{"@type":"Answer","text":"Yes. Enter or select a color and the tool provides equivalent HEX, RGB, HSL, HSV and CMYK values."}},
+{"@type":"Question","name":"Can I generate a color palette?","acceptedAnswer":{"@type":"Answer","text":"Yes. The tool can generate complementary, analogous, triadic, split-complementary and monochromatic palette suggestions."}}
+]}
+]}
+</script>
 <style>
-:root {
-  --bg: #0f172a;
-  --bg-soft: #111827;
-  --panel: rgba(255,255,255,0.08);
-  --border: rgba(255,255,255,0.14);
-  --text: #e5e7eb;
-  --muted: #cbd5e1;
-  --primary: #2575fc;
-  --primary-hover: #1a5acb;
-  --success: #22c55e;
-  --radius: 20px;
-  --shadow: 0 10px 30px rgba(0,0,0,0.25);
-}
-
-* { box-sizing:border-box; margin:0; padding:0; }
-
-body {
-  font-family: 'Roboto', sans-serif;
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  min-height: 100vh;
-  background:
-    radial-gradient(circle at top left, rgba(37,117,252,0.18), transparent 30%),
-    radial-gradient(circle at bottom right, rgba(34,197,94,0.10), transparent 25%),
-    linear-gradient(135deg, #0f172a, #111827 45%, #1e293b);
-  color: var(--text);
-  padding: 20px;
-}
-
-/* LAYOUT */
-.main-wrapper {
-  display: flex;
-  gap: 30px;
-  max-width: 1200px;
-  width: 100%;
-}
-
-/* TOOL */
-.container {
-  flex: 2;
-  background: var(--panel);
-  border:1px solid var(--border);
-  backdrop-filter: blur(14px);
-  border-radius: var(--radius);
-  box-shadow: var(--shadow);
-  padding: 35px;
-  text-align: center;
-  transition: transform 0.3s ease;
-}
-
-.container:hover {
-  transform: translateY(-5px);
-}
-
-h1 {
-  color: var(--primary);
-  margin-bottom: 30px;
-  font-weight: 700;
-  font-size: 2em;
-}
-
-.color-display-wrapper {
-  margin-bottom: 25px;
-  display: flex;
-  justify-content: center;
-}
-
-.color-display {
-  width: 150px;
-  height: 150px;
-  border-radius: 50%;
-  border: 3px solid #eee;
-  box-shadow: inset 0 0 10px rgba(0,0,0,0.1), 0 0 15px rgba(37,117,252,0.3);
-  cursor: pointer;
-  transition: background-color 0.1s ease-out, transform 0.2s ease;
-}
-
-.color-display:active { transform: scale(0.98); }
-
-.color-inputs {
-  margin-bottom: 30px;
-}
-
-.input-group {
-  display: flex;
-  align-items: center;
-  margin-bottom: 15px;
-}
-
-.input-group label {
-  flex: 0 0 60px;
-  text-align: right;
-  margin-right: 15px;
-  font-weight: 500;
-  color: #555;
-}
-
-.input-group input[type="text"] {
-  flex-grow: 1;
-  padding: 10px 12px;
-  border-radius: 6px;
-  border: 1px solid #ddd;
-  font-family: 'Roboto Mono', monospace;
-  box-shadow: inset 0 1px 3px rgba(0,0,0,0.05);
-  font-size: 1em;
-}
-
-.input-group input[type="text"]:focus {
-  border-color: var(--primary);
-  outline: none;
-  box-shadow: 0 0 0 3px rgba(37,117,252,0.15);
-}
-
-.copy-btn {
-  background-color: var(--success);
-  color: #fff;
-  border: none;
-  padding: 8px 15px;
-  border-radius: 6px;
-  margin-left: 10px;
-  cursor: pointer;
-  font-size: 0.9em;
-  transition: background-color 0.2s ease, transform 0.1s ease;
-}
-
-.copy-btn:hover { background-color: #1e7a3e; transform: translateY(-1px); }
-.copy-btn:active { transform: translateY(0); }
-
-.slider-group {
-  display: flex;
-  align-items: center;
-  margin-bottom: 15px;
-}
-
-.slider-group label {
-  flex: 0 0 60px;
-  text-align: right;
-  margin-right: 15px;
-  font-weight: 500;
-  color: #555;
-}
-
-.slider-group input[type="range"] {
-  flex-grow: 1;
-  -webkit-appearance: none;
-  height: 8px;
-  background: #e0e0e0;
-  border-radius: 5px;
-  outline: none;
-  margin: 0 10px;
-}
-
-.slider-group input[type="range"]::-webkit-slider-thumb {
-  -webkit-appearance: none;
-  width: 22px;
-  height: 22px;
-  border-radius: 50%;
-  cursor: pointer;
-  border: 3px solid #fff;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-}
-
-#redSlider::-webkit-slider-thumb { background: #e74c3c; }
-#greenSlider::-webkit-slider-thumb { background: #2ecc71; }
-#blueSlider::-webkit-slider-thumb { background: #3498db; }
-
-.slider-group span {
-  width: 35px;
-  text-align: right;
-  font-weight: 500;
-  color: #444;
-}
-
-.native-picker {
-  width: 80px;
-  height: 40px;
-  border: none;
-  background: none;
-  cursor: pointer;
-  margin-top: 25px;
-  border-radius: 8px;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-  transition: transform 0.2s ease;
-}
-
-.native-picker:hover { transform: scale(1.05); }
-.native-picker:active { transform: scale(1); }
-
-.native-picker-info {
-  font-size: 0.9em;
-  color: #777;
-  margin-top: 10px;
-}
-
-/* SEO BOX */
-.seo-box {
-  flex: 1;
-  background: rgba(255,255,255,0.05);
-  padding: 25px;
-  border-radius: 15px;
-  border: 1px solid rgba(255,255,255,0.1);
-  color: #cbd5e1;
-}
-
-.seo-box h2 { color: var(--primary); margin: 10px 0; }
-.seo-box p { font-size: 14px; line-height: 1.7; }
-
-@media(max-width: 900px) {
-  .main-wrapper { flex-direction: column; }
-  .seo-box { margin-top: 25px; }
-}
+*{box-sizing:border-box;margin:0;padding:0} :root{--black:#0A0A0A;--white:#fff;--gray-100:#F7F7F7;--gray-200:#EFEFEF;--gray-300:#ddd;--gray-400:#ABABAB;--gray-600:#6B6B6B;--gold:#C9A84C;--gold-light:#E8D28A;--gold-text:#7A5C18;--display:'Playfair Display',Georgia,serif;--body:'Inter',system-ui,sans-serif;--transition:.3s cubic-bezier(.4,0,.2,1)}
+html{scroll-behavior:smooth}body{font-family:var(--body);color:var(--black);background:#fff;line-height:1.6;overflow-x:hidden}a{text-decoration:none;color:inherit}button,input{font:inherit}button{cursor:pointer}
+::-webkit-scrollbar{width:4px}::-webkit-scrollbar-track{background:var(--gray-100)}::-webkit-scrollbar-thumb{background:var(--gold)}
+nav{height:68px;position:fixed;top:0;left:0;right:0;z-index:1000;padding:0 4%;display:flex;align-items:center;justify-content:space-between;gap:1rem;background:rgba(255,255,255,.96);backdrop-filter:blur(14px);border-bottom:1px solid var(--gray-200);transition:var(--transition)}
+nav.scrolled{box-shadow:0 2px 24px rgba(0,0,0,.07)}.logo{font:700 1.3rem var(--display);white-space:nowrap}.logo span{color:var(--gold-text)}
+.nav-links{display:flex;list-style:none;gap:1.5rem}.nav-links a{font-size:.78rem;font-weight:600;color:var(--gray-600);text-transform:uppercase;letter-spacing:.05em}.nav-links a:hover{color:var(--black)}
+.nav-search{display:flex;background:var(--gray-100);border:1px solid var(--gray-200)}.nav-search input{border:0;background:transparent;padding:.5rem .7rem;outline:0;width:150px}.nav-search button{border:0;background:var(--black);color:#fff;padding:0 .8rem}
+.hamburger{display:none;background:none;border:0;flex-direction:column;gap:5px}.hamburger span{width:22px;height:2px;background:#000}.mobile-menu{display:none;position:fixed;z-index:999;top:68px;left:0;right:0;background:#fff;padding:1rem 4%;border-bottom:1px solid var(--gray-200);flex-direction:column;gap:1rem}.mobile-menu.open{display:flex}.mobile-menu a{font-size:.8rem;text-transform:uppercase;font-weight:600}
+.hero{padding:125px 4% 55px;background:linear-gradient(180deg,#fff,#fafafa);border-bottom:1px solid var(--gray-200)}.container{max-width:1200px;margin:auto}.crumb{font-size:.75rem;color:var(--gray-600);margin-bottom:1.2rem}.eyebrow{display:inline-flex;gap:.5rem;align-items:center;font-size:.7rem;color:var(--gold-text);font-weight:700;letter-spacing:.14em;text-transform:uppercase;margin-bottom:.7rem}.eyebrow:before{content:"";width:22px;height:1px;background:var(--gold)}
+h1{font:700 clamp(2.2rem,5vw,4rem)/1.08 var(--display);letter-spacing:-.03em;margin-bottom:1rem}.hero p{max-width:780px;color:var(--gray-600);line-height:1.85}.divider{height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent)}
+.tool-section{padding:65px 4%}.tool{border:1px solid var(--gray-200);box-shadow:0 16px 45px rgba(0,0,0,.06);background:#fff}.tool-head{padding:1.4rem 1.5rem;border-bottom:1px solid var(--gray-200);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem}.tool-head h2{font:700 1.5rem var(--display)}.status{font-size:.75rem;color:var(--gray-600)}
+.picker-grid{display:grid;grid-template-columns:330px 1fr;gap:1.5rem;padding:1.5rem}.picker-panel{border:1px solid var(--gray-200);padding:1.3rem;background:#fafafa}.color-input{width:100%;height:180px;border:0;padding:0;background:none;cursor:pointer}.hex-input{display:flex;margin-top:1rem}.hex-input input{flex:1;border:1px solid var(--gray-300);padding:.75rem;outline:0;text-transform:uppercase}.hex-input button{border:0;background:var(--black);color:#fff;padding:0 1rem}.label{font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;margin-bottom:.4rem;display:block}
+.values{display:grid;grid-template-columns:repeat(2,1fr);gap:.8rem}.value-card{background:#fff;border:1px solid var(--gray-200);padding:.9rem;position:relative}.value-card small{display:block;color:var(--gray-600);font-size:.68rem;text-transform:uppercase}.value-card strong{font-size:.9rem;display:block;margin-top:.25rem;word-break:break-all}.copy{position:absolute;right:.5rem;bottom:.5rem;border:1px solid var(--gray-300);background:#fff;font-size:.65rem;padding:.3rem .5rem}
+.swatch-large{height:170px;border:1px solid var(--gray-200);margin-bottom:1rem;display:flex;align-items:flex-end;padding:1rem;color:#fff;text-shadow:0 1px 4px #000;background:#C9A84C}.swatch-label{font-size:.75rem;font-weight:700}
+.sliders{margin-top:1.2rem}.slider-row{display:grid;grid-template-columns:55px 1fr 45px;align-items:center;gap:.6rem;margin:.7rem 0}.slider-row label{font-size:.72rem;font-weight:700}.slider-row input{width:100%}.slider-row output{font-size:.72rem;text-align:right;color:var(--gray-600)}
+.actions{display:flex;gap:.6rem;flex-wrap:wrap;margin-top:1rem}.btn{border:0;padding:.75rem 1.1rem;font-size:.75rem;font-weight:700;letter-spacing:.05em;text-transform:uppercase}.primary{background:#0A0A0A;color:#fff}.primary:hover{background:var(--gold);color:#000}.secondary{background:#fff;border:1px solid var(--gray-300)}.secondary:hover{border-color:#000}
+.palette-section{padding:0 1.5rem 1.5rem}.palette-tabs{display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom:1rem}.palette-tabs button{border:1px solid var(--gray-300);background:#fff;padding:.5rem .75rem;font-size:.7rem}.palette-tabs button.active{background:#000;color:#fff;border-color:#000}.palette{display:grid;grid-template-columns:repeat(6,1fr);gap:.5rem}.palette-item{height:95px;display:flex;align-items:flex-end;padding:.5rem;color:#fff;font-size:.65rem;font-weight:700;text-shadow:0 1px 4px #000;cursor:pointer;transition:.2s}.palette-item:hover{transform:translateY(-3px)}
+.content{padding:72px 4%;background:var(--gray-100)}.content.white{background:#fff}.inner{max-width:1000px;margin:auto}.heading{margin-bottom:2rem}.heading h2{font:700 clamp(1.7rem,3vw,2.5rem) var(--display);margin:.3rem 0 .6rem}.heading p{color:var(--gray-600);max-width:750px}.features{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem}.card{background:#fff;border:1px solid var(--gray-200);padding:1.4rem;transition:var(--transition)}.card:hover{transform:translateY(-3px);box-shadow:0 10px 25px rgba(0,0,0,.06)}.card b{font:1.6rem var(--display);color:var(--gold)}.card h3{font-size:.92rem;margin:.35rem 0}.card p{font-size:.8rem;color:var(--gray-600);line-height:1.7}
+.prose{font-size:.93rem;line-height:1.9;color:#404040}.prose p{margin-bottom:1rem}.prose h3{font:700 1.35rem var(--display);color:#000;margin:2rem 0 .6rem}
+.faq{border-top:1px solid var(--gray-200)}.faq-item{border-bottom:1px solid var(--gray-200)}.faq-q{width:100%;padding:1rem 0;background:none;border:0;text-align:left;font-weight:700;display:flex;justify-content:space-between}.faq-q span{color:var(--gold);font-size:1.2rem}.faq-a{display:none;color:var(--gray-600);font-size:.84rem;padding:0 0 1rem;line-height:1.8}.faq-item.open .faq-a{display:block}
+.related{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem}.related a{border:1px solid var(--gray-200);padding:1.2rem;background:#fff}.related h3{font-size:.88rem}.related p{font-size:.75rem;color:var(--gray-600);margin-top:.3rem}
+footer{background:#0A0A0A;color:#fff;padding:55px 4% 25px}.foot{max-width:1200px;margin:auto}.footgrid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:2rem;padding-bottom:2rem}.footlogo{font:700 1.5rem var(--display)}.footlogo span{color:var(--gold-light)}.foot p,.foot a{font-size:.75rem;color:#aaa}.foot h3{font-size:.72rem;color:var(--gold-light);text-transform:uppercase;margin-bottom:.7rem}.foot ul{list-style:none;display:grid;gap:.4rem}.bottom{border-top:1px solid #292929;padding-top:1rem;color:#777;font-size:.7rem;display:flex;justify-content:space-between}
+.toast{position:fixed;right:20px;bottom:20px;background:#000;color:#fff;padding:.8rem 1rem;font-size:.75rem;transform:translateY(100px);opacity:0;transition:.3s;z-index:2000}.toast.show{transform:none;opacity:1}
+@media(max-width:900px){.nav-links,.nav-search{display:none}.hamburger{display:flex}.picker-grid{grid-template-columns:1fr}.features{grid-template-columns:repeat(2,1fr)}.related{grid-template-columns:repeat(2,1fr)}.footgrid{grid-template-columns:1fr 1fr}}
+@media(max-width:600px){.hero,.tool-section,.content{padding-left:5%;padding-right:5%}.features,.related{grid-template-columns:1fr}.palette{grid-template-columns:repeat(3,1fr)}.footgrid{grid-template-columns:1fr}.bottom{flex-direction:column;gap:.5rem}.picker-grid{padding:1rem}.palette-section{padding:0 1rem 1rem}}
 </style>
 </head>
 <body>
-<div class="main-wrapper">
+<nav id="nav">
+<a class="logo" href="../index.html">Daily <span>Toolkit</span></a>
+<ul class="nav-links"><li><a href="../index.html">Home</a></li><li><a href="../index.html#tools">Tools</a></li><li><a href="../about.html">About</a></li><li><a href="../blog.html">Blog</a></li><li><a href="../contact.html">Contact</a></li></ul>
+<form class="nav-search" onsubmit="searchTool(event)"><input placeholder="Search tools..." aria-label="Search tools"><button>Search</button></form>
+<button class="hamburger" id="hamb"><span></span><span></span><span></span></button>
+</nav>
+<div class="mobile-menu" id="mobile"><a href="../index.html">Home</a><a href="../index.html#tools">Tools</a><a href="../about.html">About</a><a href="../blog.html">Blog</a><a href="../contact.html">Contact</a></div>
 
-  <!-- TOOL -->
-  <div class="container">
-    <h1>🎨 Advanced Color Picker</h1>
+<header class="hero"><div class="container">
+<div class="crumb"><a href="../index.html">Home</a> / <a href="../index.html#tools">Tools</a> / Color Picker</div>
+<div class="eyebrow">Free Design Utility</div>
+<h1>Color Picker Online</h1>
+<p>Pick any color and instantly explore its HEX, RGB, HSL, HSV and CMYK values. Create color palettes, generate lighter and darker shades, copy CSS-ready codes and use the results in websites, apps, graphic designs and digital projects.</p>
+</div></header>
+<div class="divider"></div>
 
-    <div class="color-display-wrapper">
-      <div id="colorDisplay" class="color-display" style="background-color: #000000;"></div>
-    </div>
-
-    <div class="color-inputs">
-      <div class="input-group">
-        <label for="hexInput">HEX:</label>
-        <input type="text" id="hexInput" value="#000000" maxlength="7">
-        <button class="copy-btn" data-target="hexInput">Copy</button>
-      </div>
-      <div class="input-group">
-        <label for="rgbInput">RGB:</label>
-        <input type="text" id="rgbInput" value="rgb(0,0,0)" readonly>
-        <button class="copy-btn" data-target="rgbInput">Copy</button>
-      </div>
-    </div>
-
-    <div class="slider-group">
-      <label for="redSlider">Red:</label>
-      <input type="range" id="redSlider" min="0" max="255" value="0">
-      <span id="redValue">0</span>
-    </div>
-    <div class="slider-group">
-      <label for="greenSlider">Green:</label>
-      <input type="range" id="greenSlider" min="0" max="255" value="0">
-      <span id="greenValue">0</span>
-    </div>
-    <div class="slider-group">
-      <label for="blueSlider">Blue:</label>
-      <input type="range" id="blueSlider" min="0" max="255" value="0">
-      <span id="blueValue">0</span>
-    </div>
-
-    <input type="color" id="nativeColorPicker" value="#000000" class="native-picker">
-    <p class="native-picker-info">Use the native color picker for quick selection.</p>
-  </div>
-
-  <!-- SEO CONTENT -->
-  <div class="seo-box">
-    <h2>Free Advanced Color Picker Tool</h2>
-    <p>
-      This color picker tool allows you to choose colors with precision using RGB sliders, HEX code input, or the native color picker. Instantly see the color preview and copy it in HEX or RGB format.
-    </p>
-
-    <h2>How to Use the Color Picker</h2>
-    <p>
-      Adjust the red, green, and blue sliders or enter a HEX code to pick your desired color. You can also use the native color picker for faster selection. Copy the color code with one click to use in your projects.
-    </p>
-
-    <h2>Why Use This Tool?</h2>
-    <p>
-      This tool is free, fast, and user-friendly. Whether you are a designer, developer, or hobbyist, you can quickly generate precise colors for web design, graphics, or digital art. It's the perfect online color generator with instant copy functionality.
-    </p>
-  </div>
-
+<main>
+<section class="tool-section"><div class="container">
+<div class="tool">
+<div class="tool-head"><h2>Free Online Color Picker & Converter</h2><div class="status" id="status">Ready • Select a color</div></div>
+<div class="picker-grid">
+<div class="picker-panel">
+<label class="label">Choose Color</label>
+<input class="color-input" id="colorInput" type="color" value="#C9A84C" aria-label="Choose a color">
+<div class="hex-input"><input id="hexInput" value="#C9A84C" maxlength="7" aria-label="HEX color code"><button id="copyHex">Copy</button></div>
+<div class="sliders">
+<div class="slider-row"><label>Red</label><input id="r" type="range" min="0" max="255" value="201"><output id="rv">201</output></div>
+<div class="slider-row"><label>Green</label><input id="g" type="range" min="0" max="255" value="168"><output id="gv">168</output></div>
+<div class="slider-row"><label>Blue</label><input id="b" type="range" min="0" max="255" value="76"><output id="bv">76</output></div>
+</div>
+<div class="actions"><button class="btn primary" id="random">Random Color</button><button class="btn secondary" id="reset">Reset</button></div>
 </div>
 
+<div>
+<div class="swatch-large" id="swatch"><span class="swatch-label" id="swatchLabel">#C9A84C</span></div>
+<div class="values">
+<div class="value-card"><small>HEX</small><strong id="hexVal">#C9A84C</strong><button class="copy" data-copy="hexVal">Copy</button></div>
+<div class="value-card"><small>RGB</small><strong id="rgbVal">rgb(201, 168, 76)</strong><button class="copy" data-copy="rgbVal">Copy</button></div>
+<div class="value-card"><small>HSL</small><strong id="hslVal">hsl(44, 54%, 54%)</strong><button class="copy" data-copy="hslVal">Copy</button></div>
+<div class="value-card"><small>HSV</small><strong id="hsvVal">hsv(44, 62%, 79%)</strong><button class="copy" data-copy="hsvVal">Copy</button></div>
+<div class="value-card"><small>CMYK</small><strong id="cmykVal">cmyk(0%, 16%, 62%, 21%)</strong><button class="copy" data-copy="cmykVal">Copy</button></div>
+<div class="value-card"><small>CSS Variable</small><strong id="cssVal">--color-primary: #C9A84C;</strong><button class="copy" data-copy="cssVal">Copy</button></div>
+</div>
+</div>
+</div>
+<div class="palette-section">
+<label class="label">Color Palette Generator</label>
+<div class="palette-tabs">
+<button class="active" data-palette="complementary">Complementary</button>
+<button data-palette="analogous">Analogous</button>
+<button data-palette="triadic">Triadic</button>
+<button data-palette="split">Split Complementary</button>
+<button data-palette="mono">Monochromatic</button>
+</div>
+<div class="palette" id="palette"></div>
+</div>
+</div>
+</div></section>
+
+<section class="content"><div class="inner">
+<div class="heading"><div class="eyebrow">Color Tool Features</div><h2>Everything You Need to Work With Digital Colors</h2><p>A practical color picker for designers, developers, students, creators and anyone who needs accurate digital color values.</p></div>
+<div class="features">
+<div class="card"><b>01</b><h3>HEX Color Picker</h3><p>Select a color and instantly get a CSS-ready hexadecimal code such as #C9A84C.</p></div>
+<div class="card"><b>02</b><h3>RGB Converter</h3><p>View red, green and blue channel values for use in CSS, graphics and digital interfaces.</p></div>
+<div class="card"><b>03</b><h3>HSL Values</h3><p>Understand hue, saturation and lightness values for more intuitive color adjustments.</p></div>
+<div class="card"><b>04</b><h3>HSV Conversion</h3><p>Get hue, saturation and value information useful for digital color workflows.</p></div>
+<div class="card"><b>05</b><h3>CMYK Approximation</h3><p>View an approximate CMYK conversion for print-oriented design references.</p></div>
+<div class="card"><b>06</b><h3>Palette Generator</h3><p>Generate complementary, analogous, triadic, split-complementary and monochromatic palettes.</p></div>
+<div class="card"><b>07</b><h3>Copy Color Codes</h3><p>Copy individual values quickly so you can paste them into CSS, design software or notes.</p></div>
+<div class="card"><b>08</b><h3>RGB Sliders</h3><p>Fine-tune individual red, green and blue channels without manually typing a color code.</p></div>
+<div class="card"><b>09</b><h3>Random Colors</h3><p>Generate a random color instantly when you need inspiration for a design or UI.</p></div>
+</div>
+</div></section>
+
+<section class="content white"><div class="inner prose">
+<div class="heading"><div class="eyebrow">Color Picker Guide</div><h2>What Is an Online Color Picker?</h2></div>
+<p>An online color picker is a digital utility that helps you select a color and inspect its numerical representations. Instead of guessing a shade or searching through a long list of named colors, you can visually choose a color and immediately see the values used by web browsers and design applications.</p>
+<p>Daily Toolkit's color picker provides several popular color models in one place. HEX is widely used in HTML and CSS. RGB describes a color through red, green and blue channels. HSL expresses color using hue, saturation and lightness, which can make certain adjustments easier to understand. HSV uses hue, saturation and value. CMYK is commonly associated with printing, although browser-based RGB-to-CMYK conversions should be treated as approximate references.</p>
+<h3>What Is a HEX Color Code?</h3>
+<p>A HEX code is a hexadecimal representation of an RGB color. It normally contains six characters after a hash symbol. The first two characters represent red, the next two green, and the final two blue. For example, #FF0000 represents pure red, while #000000 represents black and #FFFFFF represents white.</p>
+<h3>HEX vs RGB: Which Should You Use?</h3>
+<p>Both HEX and RGB can represent the same colors in many web design situations. HEX is compact and convenient for CSS stylesheets. RGB can be easier when you are thinking about individual color channels or when using transparency with the rgba() format. The best choice depends on your project and coding style.</p>
+<h3>What Is HSL Used For?</h3>
+<p>HSL can be helpful when creating color systems because hue represents the basic color family while saturation and lightness describe intensity and brightness. Designers and developers often find HSL convenient for creating hover states, lighter variants and darker variants of a base color.</p>
+<h3>How to Choose a Good Color Palette</h3>
+<p>A strong palette usually starts with one primary color and then adds supporting colors that maintain visual harmony. Complementary colors sit opposite each other on the color wheel and can create strong contrast. Analogous colors sit near each other and often feel more cohesive. Triadic combinations distribute three colors around the wheel. Monochromatic palettes use different lightness and saturation levels of one hue.</p>
+<h3>Color Picker for Web Design</h3>
+<p>When designing a website, a color picker can help maintain consistency between buttons, backgrounds, headings, borders and interactive states. It is useful to save a small set of design tokens rather than selecting unrelated colors throughout a project. A primary color, secondary color, neutral background, text color and accent color can provide a strong foundation.</p>
+<h3>Color Accessibility and Contrast</h3>
+<p>Choosing attractive colors is only one part of interface design. Text must also remain readable against its background. When creating websites, check contrast between foreground and background colors, especially for smaller text. A visually beautiful color combination can still create usability problems if the contrast is too weak.</p>
+</div></div></section>
+
+<section class="content"><div class="inner">
+<div class="heading"><div class="eyebrow">Frequently Asked Questions</div><h2>Color Picker FAQs</h2></div>
+<div class="faq">
+<div class="faq-item"><button class="faq-q">What is a color picker? <span>+</span></button><div class="faq-a">A color picker lets you visually select a color and view its digital values, including HEX, RGB, HSL and other color formats.</div></div>
+<div class="faq-item"><button class="faq-q">What is a HEX color code? <span>+</span></button><div class="faq-a">A HEX code is a hexadecimal representation of an RGB color commonly used in HTML and CSS.</div></div>
+<div class="faq-item"><button class="faq-q">Can I convert HEX to RGB? <span>+</span></button><div class="faq-a">Yes. Select or enter a HEX color and the equivalent RGB value is displayed automatically.</div></div>
+<div class="faq-item"><button class="faq-q">Can I generate a color palette? <span>+</span></button><div class="faq-a">Yes. Use the palette generator to explore complementary, analogous, triadic, split-complementary and monochromatic combinations.</div></div>
+<div class="faq-item"><button class="faq-q">Is this color picker free? <span>+</span></button><div class="faq-a">Yes. The Daily Toolkit color picker is free to use in a modern web browser.</div></div>
+</div></div></section>
+
+<section class="content white"><div class="inner">
+<div class="heading"><div class="eyebrow">Explore More</div><h2>More Daily Toolkit Tools</h2></div>
+<div class="related">
+<a href="background-remover.html"><h3>Background Remover</h3><p>Remove backgrounds from images.</p></a>
+<a href="image-compressor.html"><h3>Image Compressor</h3><p>Compress images for faster sharing.</p></a>
+<a href="image-resizer.html"><h3>Image Resizer</h3><p>Resize images to custom dimensions.</p></a>
+<a href="qr-generator.html"><h3>QR Generator</h3><p>Create QR codes online.</p></a>
+</div></div></section>
+</main>
+
+<footer><div class="foot"><div class="footgrid">
+<div><div class="footlogo">Daily <span>Toolkit</span></div><p>Free online tools for everyday tasks, including image utilities, calculators, converters, text tools and productivity utilities.</p></div>
+<div><h3>Tools</h3><ul><li><a href="background-remover.html">Background Remover</a></li><li><a href="color-picker.html">Color Picker</a></li><li><a href="word-counter.html">Word Counter</a></li><li><a href="qr-generator.html">QR Generator</a></li></ul></div>
+<div><h3>Company</h3><ul><li><a href="../about.html">About</a></li><li><a href="../blog.html">Blog</a></li><li><a href="../contact.html">Contact</a></li></ul></div>
+<div><h3>Legal</h3><ul><li><a href="../privacy.html">Privacy</a></li><li><a href="../terms.html">Terms</a></li></ul></div>
+</div><div class="bottom"><span>© 2026 Daily Toolkit. All rights reserved.</span><span>Free tools for everyday work.</span></div></div></footer>
+<div class="toast" id="toast"></div>
+
 <script>
-document.addEventListener('DOMContentLoaded', () => {
-    const colorDisplay = document.getElementById('colorDisplay');
-    const hexInput = document.getElementById('hexInput');
-    const rgbInput = document.getElementById('rgbInput');
-    const redSlider = document.getElementById('redSlider');
-    const greenSlider = document.getElementById('greenSlider');
-    const blueSlider = document.getElementById('blueSlider');
-    const redValueSpan = document.getElementById('redValue');
-    const greenValueSpan = document.getElementById('greenValue');
-    const blueValueSpan = document.getElementById('blueValue');
-    const nativeColorPicker = document.getElementById('nativeColorPicker');
-    const copyButtons = document.querySelectorAll('.copy-btn');
-
-    let red = 0, green = 0, blue = 0;
-
-    function updateColor() {
-        const rgbColor = `rgb(${red},${green},${blue})`;
-        const hexColor = rgbToHex(red, green, blue);
-        colorDisplay.style.backgroundColor = rgbColor;
-        hexInput.value = hexColor.toUpperCase();
-        rgbInput.value = rgbColor;
-        redValueSpan.textContent = red;
-        greenValueSpan.textContent = green;
-        blueValueSpan.textContent = blue;
-        nativeColorPicker.value = hexColor;
-    }
-
-    redSlider.addEventListener('input', e => { red = parseInt(e.target.value); updateColor(); });
-    greenSlider.addEventListener('input', e => { green = parseInt(e.target.value); updateColor(); });
-    blueSlider.addEventListener('input', e => { blue = parseInt(e.target.value); updateColor(); });
-
-    hexInput.addEventListener('input', e => {
-        const hex = e.target.value;
-        if(isValidHex(hex)){
-            const rgb = hexToRgb(hex);
-            red=rgb.r; green=rgb.g; blue=rgb.b;
-            redSlider.value=red; greenSlider.value=green; blueSlider.value=blue;
-            updateColor();
-        }
-    });
-
-    nativeColorPicker.addEventListener('input', e => {
-        const rgb = hexToRgb(e.target.value);
-        red=rgb.r; green=rgb.g; blue=rgb.b;
-        redSlider.value=red; greenSlider.value=green; blueSlider.value=blue;
-        updateColor();
-    });
-
-    copyButtons.forEach(button => {
-        button.addEventListener('click', () => {
-            const target = document.getElementById(button.dataset.target);
-            target.select();
-            document.execCommand('copy');
-            button.textContent = 'Copied!';
-            setTimeout(()=> button.textContent='Copy', 1500);
-        });
-    });
-
-    function componentToHex(c){ const hex=c.toString(16); return hex.length==1?'0'+hex:hex; }
-    function rgbToHex(r,g,b){ return `#${componentToHex(r)}${componentToHex(g)}${componentToHex(b)}`; }
-    function hexToRgb(hex){
-        const shorthandRegex=/^#?([a-f\d])([a-f\d])([a-f\d])$/i;
-        hex=hex.replace(shorthandRegex,(m,r,g,b)=>r+r+g+g+b+b);
-        const result=/^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
-        return result?{r:parseInt(result[1],16),g:parseInt(result[2],16),b:parseInt(result[3],16)}:null;
-    }
-    function isValidHex(hex){ return /^#([A-Fa-f0-9]{3}){1,2}$/.test(hex); }
-
-    updateColor();
-});
+const $=s=>document.querySelector(s),$$=s=>document.querySelectorAll(s);
+const nav=$('#nav');window.addEventListener('scroll',()=>nav.classList.toggle('scrolled',scrollY>10));
+$('#hamb').onclick=()=>$('#mobile').classList.toggle('open');
+function searchTool(e){e.preventDefault();let q=e.target.querySelector('input').value.toLowerCase();if(q.includes('background'))location='background-remover.html';else if(q.includes('word'))location='word-counter.html';else if(q.includes('qr'))location='qr-generator.html';else location='../index.html#tools'}
+const color=$('#colorInput'),hex=$('#hexInput'),r=$('#r'),g=$('#g'),b=$('#b'),rv=$('#rv'),gv=$('#gv'),bv=$('#bv');
+let current={r:201,g:168,b:76},paletteType='complementary';
+function clamp(n){return Math.max(0,Math.min(255,Math.round(n)))}
+function rgbToHex(r,g,b){return '#'+[r,g,b].map(x=>x.toString(16).padStart(2,'0')).join('').toUpperCase()}
+function hexToRgb(h){h=h.replace('#','').trim();if(/^[0-9a-fA-F]{3}$/.test(h))h=h.split('').map(x=>x+x).join('');if(!/^[0-9a-fA-F]{6}$/.test(h))return null;return{r:parseInt(h.slice(0,2),16),g:parseInt(h.slice(2,4),16),b:parseInt(h.slice(4,6),16)}}
+function rgbToHsl(r,g,b){r/=255;g/=255;b/=255;let max=Math.max(r,g,b),min=Math.min(r,g,b),h,s,l=(max+min)/2;if(max===min)h=s=0;else{let d=max-min;s=l>.5?d/(2-max-min):d/(max+min);switch(max){case r:h=(g-b)/d+(g<b?6:0);break;case g:h=(b-r)/d+2;break;default:h=(r-g)/d+4}h/=6}return[Math.round(h*360),Math.round(s*100),Math.round(l*100)]}
+function rgbToHsv(r,g,b){let max=Math.max(r,g,b),min=Math.min(r,g,b),d=max-min,h=0,s=max?d/max:0,v=max/255;if(d){switch(max){case r:h=(g-b)/d+(g<b?6:0);break;case g:h=(b-r)/d+2;break;default:h=(r-g)/d+4}h/=6}return[Math.round(h*360),Math.round(s*100),Math.round(v*100)]}
+function rgbToCmyk(r,g,b){let R=r/255,G=g/255,B=b/255,k=1-Math.max(R,G,B);if(k>=.999)return[0,0,0,100];return[Math.round((1-R-k)/(1-k)*100),Math.round((1-G-k)/(1-k)*100),Math.round((1-B-k)/(1-k)*100),Math.round(k*100)]}
+function hslToRgb(h,s,l){h/=360;s/=100;l/=100;let f=n=>{let k=(n+h*12)%12;return l-s*Math.min(l,1-l)*Math.max(-1,Math.min(k-3,9-k,1))};return{r:Math.round(255*f(0)),g:Math.round(255*f(8)),b:Math.round(255*f(4))}}
+function update(){current={r:+r.value,g:+g.value,b:+b.value};let H=rgbToHex(current.r,current.g,current.b);hex.value=H;color.value=H;rv.value=current.r;gv.value=current.g;bv.value=current.b;let hsl=rgbToHsl(...Object.values(current)),hsv=rgbToHsv(...Object.values(current)),cmyk=rgbToCmyk(...Object.values(current));$('#swatch').style.background=H;$('#swatchLabel').textContent=H;$('#hexVal').textContent=H;$('#rgbVal').textContent=`rgb(${current.r}, ${current.g}, ${current.b})`;$('#hslVal').textContent=`hsl(${hsl[0]}, ${hsl[1]}%, ${hsl[2]}%)`;$('#hsvVal').textContent=`hsv(${hsv[0]}, ${hsv[1]}%, ${hsv[2]}%)`;$('#cmykVal').textContent=`cmyk(${cmyk[0]}%, ${cmyk[1]}%, ${cmyk[2]}%, ${cmyk[3]}%)`;$('#cssVal').textContent=`--color-primary: ${H};`;$('#status').textContent='Color selected • Values updated';generatePalette()}
+function setRGB(x){r.value=x.r;g.value=x.g;b.value=x.b;update()}
+[color,r,g,b].forEach(el=>el.addEventListener('input',()=>{if(el===color){let x=hexToRgb(color.value);if(x)setRGB(x)}else update()}));
+hex.addEventListener('change',()=>{let x=hexToRgb(hex.value);if(x)setRGB(x);else{hex.value=rgbToHex(...Object.values(current));showToast('Invalid HEX color')}})
+$('#copyHex').onclick=()=>copy(hex.value);
+function copy(v){navigator.clipboard?.writeText(v).then(()=>showToast('Color code copied'))}
+$$('.copy').forEach(btn=>btn.onclick=()=>copy($('#'+btn.dataset.copy).textContent));
+function showToast(t){let x=$('#toast');x.textContent=t;x.classList.add('show');setTimeout(()=>x.classList.remove('show'),2200)}
+$('#random').onclick=()=>setRGB({r:Math.random()*256,g:Math.random()*256,b:Math.random()*256});
+$('#reset').onclick=()=>setRGB({r:201,g:168,b:76});
+$$('.palette-tabs button').forEach(btn=>btn.onclick=()=>{$$('.palette-tabs button').forEach(x=>x.classList.remove('active'));btn.classList.add('active');paletteType=btn.dataset.palette;generatePalette()});
+function generatePalette(){let h=rgbToHsl(...Object.values(current))[0],s=rgbToHsl(...Object.values(current))[1],l=rgbToHsl(...Object.values(current))[2],hs=[];if(paletteType==='complementary')hs=[h,h+180];if(paletteType==='analogous')hs=[h-40,h-20,h,h+20,h+40];if(paletteType==='triadic')hs=[h,h+120,h+240];if(paletteType==='split')hs=[h,h+150,h+210];if(paletteType==='mono')hs=[h,h,h,h,h,h];let arr=hs.map((x,i)=>paletteType==='mono'?hslToRgb(h,s,Math.max(10,Math.min(90,15+i*14))):hslToRgb((x+360)%360,s,l));if(arr.length<6){let base=arr.slice();while(arr.length<6)arr.push(base[arr.length%base.length])}$('#palette').innerHTML=arr.map(x=>{let H=rgbToHex(x.r,x.g,x.b);return `<div class="palette-item" style="background:${H}" data-color="${H}">${H}</div>`}).join('');$$('.palette-item').forEach(x=>x.onclick=()=>{setRGB(hexToRgb(x.dataset.color));copy(x.dataset.color)})}
+$$('.faq-q').forEach(x=>x.onclick=()=>x.parentElement.classList.toggle('open'));
+update();
 </script>
 </body>
 </html>
