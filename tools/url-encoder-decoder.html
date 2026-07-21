@@ -1,160 +1,251 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>URL Encoder/Decoder Tool</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f8f9fa; /* Light grey background */
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            margin: 0;
-            padding: 20px;
-            box-sizing: border-box;
-        }
-        .tool-container {
-            background-color: #ffffff;
-            border-radius: 12px;
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
-            padding: 40px;
-            max-width: 700px;
-            width: 100%;
-            text-align: center;
-            border: 1px solid #e9ecef;
-        }
-        h1 {
-            color: #17a2b8; /* Info blue/cyan for heading */
-            margin-bottom: 30px;
-            font-size: 2.2em;
-        }
-        textarea {
-            width: calc(100% - 40px); /* Adjust for padding */
-            height: 120px;
-            padding: 15px 18px;
-            margin-bottom: 25px;
-            border: 1px solid #17a2b8;
-            border-radius: 8px;
-            font-size: 1.1em;
-            resize: vertical;
-            outline: none;
-            box-sizing: border-box;
-            background-color: #eaf8fa; /* Lighter background for input */
-            line-height: 1.5;
-        }
-        textarea::placeholder {
-            color: #aaa;
-        }
-        .button-group {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            margin-bottom: 30px;
-        }
-        .button-group button {
-            background-color: #17a2b8; /* Info blue/cyan */
-            color: white;
-            border: none;
-            padding: 15px 30px;
-            border-radius: 8px;
-            cursor: pointer;
-            font-size: 1.1em;
-            transition: background-color 0.3s ease, transform 0.2s ease;
-            min-width: 150px;
-        }
-        .button-group button:hover {
-            background-color: #138496;
-            transform: translateY(-2px);
-        }
-        .button-group button:active {
-            transform: translateY(0);
-        }
-        #outputTextArea {
-            background-color: #f0f8f9; /* Even lighter for output */
-            border: 1px solid #ced4da;
-            color: #333;
-            cursor: text;
-        }
-        .info-message {
-            margin-top: 20px;
-            color: #6c757d;
-            font-size: 0.95em;
-        }
-        .error-message {
-            color: #dc3545;
-            font-weight: bold;
-            margin-top: 15px;
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>URL Encoder & Decoder Online - Encode or Decode URLs Free | Daily Toolkit</title>
+<meta name="description" content="Free online URL Encoder and Decoder. Encode URLs, query parameters and text with percent encoding, decode encoded URLs, inspect components, parse query parameters, convert plus spaces, and copy or download results instantly.">
+<meta name="keywords" content="URL encoder, URL decoder, URL encode online, URL decode online, percent encoding, percent decoder, encode URI, decode URI, query parameter encoder, URL encoding tool, URL parser, URL query string decoder, percent encode text, URL escape tool">
+<meta name="robots" content="index, follow">
+<meta name="author" content="Daily Toolkit">
+<link rel="canonical" href="https://dailytoolkit.xyz/tools/url-encoder-decoder.html">
+<meta property="og:title" content="Free URL Encoder & Decoder Online">
+<meta property="og:description" content="Encode and decode URLs, query strings and text with a powerful browser-based URL utility.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://dailytoolkit.xyz/tools/url-encoder-decoder.html">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="URL Encoder & Decoder Online - Daily Toolkit">
+<meta name="twitter:description" content="Free online URL encoding and decoding tool with URL parsing, query parameters, copy and download features.">
+<script>
+window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
+gtag('consent','default',{'ad_storage':'denied','ad_user_data':'denied','ad_personalization':'denied','analytics_storage':'denied'});
+</script>
+<script src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6737111642010842" crossorigin="anonymous" async defer></script>
+<script src="https://www.googletagmanager.com/gtag/js?id=G-3K7RBN1QSL" defer></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-3K7RBN1QSL');</script>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[
+{"@type":"WebSite","name":"Daily Toolkit","url":"https://dailytoolkit.xyz"},
+{"@type":"WebApplication","name":"Free URL Encoder and Decoder","url":"https://dailytoolkit.xyz/tools/url-encoder-decoder.html","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"Encode and decode URLs, URI components, query strings and percent-encoded text online."},
+{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://dailytoolkit.xyz/"},{"@type":"ListItem","position":2,"name":"Tools","item":"https://dailytoolkit.xyz/#tools"},{"@type":"ListItem","position":3,"name":"URL Encoder & Decoder","item":"https://dailytoolkit.xyz/tools/url-encoder-decoder.html"}]},
+{"@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"What is URL encoding?","acceptedAnswer":{"@type":"Answer","text":"URL encoding converts characters that have special meanings or are not safe in a URL into percent-encoded representations, such as converting a space into %20."}},
+{"@type":"Question","name":"What is the difference between encodeURI and encodeURIComponent?","acceptedAnswer":{"@type":"Answer","text":"encodeURI is intended for a complete URI and preserves URI syntax characters, while encodeURIComponent is intended for an individual URI component such as a query parameter value and encodes more reserved characters."}},
+{"@type":"Question","name":"Can I decode a percent-encoded URL?","acceptedAnswer":{"@type":"Answer","text":"Yes. Paste an encoded URL or text into the decoder and the tool will attempt to convert percent-encoded sequences back into readable characters."}},
+{"@type":"Question","name":"Is URL encoding the same as encryption?","acceptedAnswer":{"@type":"Answer","text":"No. URL encoding is a formatting and transport mechanism, not a security or encryption method. Encoded data should not be treated as secret."}},
+{"@type":"Question","name":"Does this URL tool upload my data?","acceptedAnswer":{"@type":"Answer","text":"The core encoding and decoding operations run in your browser using JavaScript, so the text does not need to be uploaded to a server."}}
+]}
+]}
+</script>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}:root{--black:#0A0A0A;--white:#fff;--gray-100:#F7F7F7;--gray-200:#EFEFEF;--gray-300:#D9D9D9;--gray-400:#A5A5A5;--gray-600:#696969;--gold:#C9A84C;--gold-light:#E8D28A;--gold-text:#7A5C18;--display:'Playfair Display',Georgia,serif;--body:'Inter',system-ui,sans-serif}
+html{scroll-behavior:smooth}body{font-family:var(--body);color:var(--black);background:#fff;line-height:1.6;overflow-x:hidden}a{text-decoration:none;color:inherit}button,input,textarea,select{font:inherit}button{cursor:pointer}
+::-webkit-scrollbar{width:4px}::-webkit-scrollbar-track{background:var(--gray-100)}::-webkit-scrollbar-thumb{background:var(--gold)}
+nav{height:68px;position:fixed;top:0;left:0;right:0;z-index:1000;padding:0 4%;display:flex;align-items:center;justify-content:space-between;gap:1rem;background:rgba(255,255,255,.96);backdrop-filter:blur(14px);border-bottom:1px solid var(--gray-200);transition:.3s}
+nav.scrolled{box-shadow:0 2px 24px rgba(0,0,0,.07)}.logo{font:700 1.3rem var(--display);white-space:nowrap}.logo span{color:var(--gold-text)}
+.nav-links{display:flex;list-style:none;gap:1.5rem}.nav-links a{font-size:.78rem;font-weight:600;color:var(--gray-600);text-transform:uppercase;letter-spacing:.05em}.nav-links a:hover{color:#000}
+.nav-search{display:flex;background:var(--gray-100);border:1px solid var(--gray-200)}.nav-search input{border:0;background:transparent;padding:.5rem .7rem;outline:0;width:150px}.nav-search button{border:0;background:#000;color:#fff;padding:0 .8rem}
+.hamburger{display:none;background:none;border:0;flex-direction:column;gap:5px}.hamburger span{width:22px;height:2px;background:#000}.mobile-menu{display:none;position:fixed;z-index:999;top:68px;left:0;right:0;background:#fff;padding:1rem 4%;border-bottom:1px solid var(--gray-200);flex-direction:column;gap:1rem}.mobile-menu.open{display:flex}.mobile-menu a{font-size:.8rem;text-transform:uppercase;font-weight:600}
+.hero{padding:125px 4% 55px;background:linear-gradient(180deg,#fff,#fafafa);border-bottom:1px solid var(--gray-200)}.container{max-width:1200px;margin:auto}.crumb{font-size:.75rem;color:var(--gray-600);margin-bottom:1.2rem}.eyebrow{display:inline-flex;gap:.5rem;align-items:center;font-size:.7rem;color:var(--gold-text);font-weight:700;letter-spacing:.14em;text-transform:uppercase;margin-bottom:.7rem}.eyebrow:before{content:"";width:22px;height:1px;background:var(--gold)}
+h1{font:700 clamp(2.2rem,5vw,4rem)/1.08 var(--display);letter-spacing:-.03em;margin-bottom:1rem}.hero p{max-width:880px;color:var(--gray-600);line-height:1.85}.divider{height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent)}
+.tool-section{padding:65px 4%}.tool{border:1px solid var(--gray-200);box-shadow:0 16px 45px rgba(0,0,0,.06);background:#fff}.tool-head{padding:1.4rem 1.5rem;border-bottom:1px solid var(--gray-200);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem}.tool-head h2{font:700 1.5rem var(--display)}.status{font-size:.75rem;color:var(--gray-600)}
+.modebar{display:flex;gap:.5rem;padding:1rem 1.5rem;border-bottom:1px solid var(--gray-200);flex-wrap:wrap}.mode{border:1px solid var(--gray-300);background:#fff;padding:.65rem 1rem;font-size:.72rem;font-weight:700}.mode.active,.mode:hover{background:#000;color:#fff;border-color:#000}
+.editor{padding:1.5rem}.toolbar{display:flex;gap:.5rem;flex-wrap:wrap;justify-content:space-between;margin-bottom:.8rem}.group{display:flex;gap:.5rem;flex-wrap:wrap}.btn{border:1px solid var(--gray-300);background:#fff;padding:.55rem .8rem;font-size:.7rem;transition:.2s}.btn:hover{background:#000;color:#fff;border-color:#000}.btn.primary{background:#000;color:#fff;border-color:#000}.btn.primary:hover{background:#333}
+.panes{display:grid;grid-template-columns:1fr 1fr;gap:1rem}.pane-title{display:flex;justify-content:space-between;align-items:center;margin-bottom:.5rem}.pane-title b{font-size:.7rem;text-transform:uppercase;letter-spacing:.08em}.counter{font-size:.65rem;color:var(--gray-600)}textarea{width:100%;min-height:320px;resize:vertical;border:1px solid var(--gray-300);padding:1.1rem;outline:0;font-size:.9rem;line-height:1.7;color:#222;background:#fff;word-break:break-all}textarea:focus{border-color:#000;box-shadow:0 0 0 3px rgba(201,168,76,.13)}
+.options{display:grid;grid-template-columns:repeat(4,1fr);gap:.7rem;padding:1.5rem;border-top:1px solid var(--gray-200)}.option{border:1px solid var(--gray-200);padding:.8rem;background:#fafafa;font-size:.72rem}.option label{display:flex;gap:.5rem;align-items:center}.option input{accent-color:#000}
+.stats{display:grid;grid-template-columns:repeat(5,1fr);gap:.7rem;padding:1.5rem;border-top:1px solid var(--gray-200)}.stat{border:1px solid var(--gray-200);padding:.9rem;background:#fafafa}.stat strong{display:block;font:700 1.15rem var(--display);word-break:break-all}.stat span{font-size:.62rem;text-transform:uppercase;color:var(--gray-600)}
+.parsed{padding:1.5rem;border-top:1px solid var(--gray-200);overflow:auto}.parsed h3{font:700 1.2rem var(--display);margin-bottom:.8rem}.table{width:100%;border-collapse:collapse;min-width:600px}.table th,.table td{padding:.65rem;border:1px solid var(--gray-200);font-size:.72rem;text-align:left;vertical-align:top;word-break:break-all}.table th{background:#fafafa;text-transform:uppercase;font-size:.62rem;letter-spacing:.06em}
+.content{padding:72px 4%;background:var(--gray-100)}.content.white{background:#fff}.inner{max-width:1000px;margin:auto}.heading{margin-bottom:2rem}.heading h2{font:700 clamp(1.7rem,3vw,2.5rem) var(--display);margin:.3rem 0 .6rem}.heading p{color:var(--gray-600);max-width:760px}.features{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem}.card{background:#fff;border:1px solid var(--gray-200);padding:1.4rem;transition:.3s}.card:hover{transform:translateY(-3px);box-shadow:0 10px 25px rgba(0,0,0,.06)}.card b{font:1.6rem var(--display);color:var(--gold)}.card h3{font-size:.92rem;margin:.35rem 0}.card p{font-size:.8rem;color:var(--gray-600);line-height:1.7}
+.prose{font-size:.93rem;line-height:1.9;color:#404040}.prose p{margin-bottom:1rem}.prose h3{font:700 1.35rem var(--display);color:#000;margin:2rem 0 .6rem}
+.faq{border-top:1px solid var(--gray-200)}.faq-item{border-bottom:1px solid var(--gray-200)}.faq-q{width:100%;padding:1rem 0;background:none;border:0;text-align:left;font-weight:700;display:flex;justify-content:space-between}.faq-q span{color:var(--gold);font-size:1.2rem}.faq-a{display:none;color:var(--gray-600);font-size:.84rem;padding:0 0 1rem;line-height:1.8}.faq-item.open .faq-a{display:block}
+.related{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem}.related a{border:1px solid var(--gray-200);padding:1.2rem;background:#fff}.related h3{font-size:.88rem}.related p{font-size:.75rem;color:var(--gray-600);margin-top:.3rem}
+footer{background:#0A0A0A;color:#fff;padding:55px 4% 25px}.foot{max-width:1200px;margin:auto}.footgrid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:2rem;padding-bottom:2rem}.footlogo{font:700 1.5rem var(--display)}.footlogo span{color:var(--gold-light)}.foot p,.foot a{font-size:.75rem;color:#aaa}.foot h3{font-size:.72rem;color:var(--gold-light);text-transform:uppercase;margin-bottom:.7rem}.foot ul{list-style:none;display:grid;gap:.4rem}.bottom{border-top:1px solid #292929;padding-top:1rem;color:#777;font-size:.7rem;display:flex;justify-content:space-between}
+.toast{position:fixed;right:20px;bottom:20px;background:#000;color:#fff;padding:.8rem 1rem;font-size:.75rem;transform:translateY(100px);opacity:0;transition:.3s;z-index:2000}.toast.show{transform:none;opacity:1}
+@media(max-width:1000px){.options{grid-template-columns:repeat(2,1fr)}.stats{grid-template-columns:repeat(3,1fr)}}@media(max-width:900px){.nav-links,.nav-search{display:none}.hamburger{display:flex}.panes{grid-template-columns:1fr}.features{grid-template-columns:repeat(2,1fr)}.related{grid-template-columns:repeat(2,1fr)}}@media(max-width:600px){.hero,.tool-section,.content{padding-left:5%;padding-right:5%}.editor{padding:1rem}.features,.related{grid-template-columns:1fr}.stats{grid-template-columns:repeat(2,1fr)}.options{grid-template-columns:1fr}.footgrid{grid-template-columns:1fr}.bottom{flex-direction:column;gap:.5rem}}
+</style>
 </head>
 <body>
-    <div class="tool-container">
-        <h1>URL Encoder / Decoder</h1>
-        <textarea id="inputTextArea" placeholder="Enter URL or text to encode/decode..."></textarea>
-        <div class="button-group">
-            <button onclick="encodeUrl()">Encode URL</button>
-            <button onclick="decodeUrl()">Decode URL</button>
-        </div>
-        <textarea id="outputTextArea" readonly placeholder="Result will appear here..."></textarea>
-        <p class="info-message" id="messageArea"></p>
-    </div>
+<nav id="nav">
+<a class="logo" href="../index.html">Daily <span>Toolkit</span></a>
+<ul class="nav-links"><li><a href="../index.html">Home</a></li><li><a href="../index.html#tools">Tools</a></li><li><a href="../about.html">About</a></li><li><a href="../blog.html">Blog</a></li><li><a href="../contact.html">Contact</a></li></ul>
+<form class="nav-search" onsubmit="searchTool(event)"><input placeholder="Search tools..." aria-label="Search tools"><button>Search</button></form>
+<button class="hamburger" id="hamb"><span></span><span></span><span></span></button>
+</nav>
+<div class="mobile-menu" id="mobile"><a href="../index.html">Home</a><a href="../index.html#tools">Tools</a><a href="../about.html">About</a><a href="../blog.html">Blog</a><a href="../contact.html">Contact</a></div>
 
-    <script>
-        function getInputValue() {
-            return document.getElementById('inputTextArea').value;
-        }
+<header class="hero"><div class="container">
+<div class="crumb"><a href="../index.html">Home</a> / <a href="../index.html#tools">Tools</a> / URL Encoder & Decoder</div>
+<div class="eyebrow">Free URL Utility</div>
+<h1>URL Encoder & Decoder Online</h1>
+<p>Encode and decode URLs, URI components, query strings and percent-encoded text instantly. Use standard URL encoding, component encoding, decoding, plus-space conversion, URL parsing and query parameter inspection in one powerful browser-based tool.</p>
+</div></header>
+<div class="divider"></div>
 
-        function setOutputValue(value) {
-            document.getElementById('outputTextArea').value = value;
-        }
+<main>
+<section class="tool-section"><div class="container">
+<div class="tool">
+<div class="tool-head"><h2>Free Online URL Encoder & Decoder</h2><div class="status" id="status">Ready • Paste a URL or text</div></div>
+<div class="modebar">
+<button class="mode active" data-mode="encodeURI">Encode URI</button>
+<button class="mode" data-mode="decodeURI">Decode URI</button>
+<button class="mode" data-mode="encodeComponent">Encode Component</button>
+<button class="mode" data-mode="decodeComponent">Decode Component</button>
+<button class="mode" data-mode="plusEncode">Form / Plus Encode</button>
+<button class="mode" data-mode="plusDecode">Form / Plus Decode</button>
+</div>
+<div class="editor">
+<div class="toolbar">
+<div class="group"><button class="btn" id="sample">Load Sample</button><button class="btn" id="paste">Paste</button><button class="btn" id="clear">Clear</button></div>
+<div class="group"><button class="btn" id="swap">Swap</button><button class="btn" id="copy">Copy Result</button><button class="btn" id="download">Download TXT</button></div>
+</div>
+<div class="panes">
+<div><div class="pane-title"><b>Input</b><span class="counter" id="inCount">0 characters</span></div><textarea id="input" placeholder="Paste a URL, query string or text here..."></textarea></div>
+<div><div class="pane-title"><b>Result</b><span class="counter" id="outCount">0 characters</span></div><textarea id="output" readonly placeholder="Encoded or decoded result will appear here..."></textarea></div>
+</div>
+</div>
+<div class="options">
+<div class="option"><label><input type="checkbox" id="auto"> Convert while typing</label></div>
+<div class="option"><label><input type="checkbox" id="spaces"> Encode spaces as +</label></div>
+<div class="option"><label><input type="checkbox" id="unicode" checked> Support Unicode text</label></div>
+<div class="option"><label><input type="checkbox" id="safe"> Preserve URL-safe characters</label></div>
+</div>
+<div class="stats">
+<div class="stat"><strong id="chars">0</strong><span>Input Characters</span></div><div class="stat"><strong id="resultChars">0</strong><span>Result Characters</span></div><div class="stat"><strong id="words">0</strong><span>Words</span></div><div class="stat"><strong id="lengthChange">0%</strong><span>Length Change</span></div><div class="stat"><strong id="protocol">—</strong><span>Protocol</span></div>
+</div>
+<div class="parsed">
+<h3>URL Components & Query Parameters</h3>
+<div id="parseBox"><p style="font-size:.8rem;color:#777">Enter a complete URL to inspect its protocol, hostname, port, pathname, hash and query parameters.</p></div>
+</div>
+</div>
+</div></section>
 
-        function displayMessage(message, isError = false) {
-            const messageArea = document.getElementById('messageArea');
-            messageArea.textContent = message;
-            messageArea.className = isError ? 'error-message' : 'info-message';
-        }
+<section class="content"><div class="inner">
+<div class="heading"><div class="eyebrow">Powerful Features</div><h2>Everything You Need for URL Encoding</h2><p>A practical URL utility for developers, SEO professionals, marketers, students and anyone who works with web links or query strings.</p></div>
+<div class="features">
+<div class="card"><b>01</b><h3>Encode URI</h3><p>Encode a complete URI while preserving characters that form normal URI syntax.</p></div>
+<div class="card"><b>02</b><h3>Decode URI</h3><p>Convert percent-encoded URI sequences back into readable text.</p></div>
+<div class="card"><b>03</b><h3>Encode Components</h3><p>Safely encode individual query parameter values, paths or other URI components.</p></div>
+<div class="card"><b>04</b><h3>Decode Components</h3><p>Decode individual URL components and percent-encoded values.</p></div>
+<div class="card"><b>05</b><h3>Plus Encoding</h3><p>Convert spaces to plus signs for common application/x-www-form-urlencoded data.</p></div>
+<div class="card"><b>06</b><h3>Unicode Support</h3><p>Handle international characters and multilingual text through standard JavaScript URI functions.</p></div>
+<div class="card"><b>07</b><h3>Query Inspector</h3><p>Parse a complete URL and inspect query parameter keys and values in a clean table.</p></div>
+<div class="card"><b>08</b><h3>URL Components</h3><p>See protocol, hostname, port, pathname, search query and hash information.</p></div>
+<div class="card"><b>09</b><h3>Copy Result</h3><p>Copy your encoded or decoded result to the clipboard with one click.</p></div>
+<div class="card"><b>10</b><h3>Download Result</h3><p>Save the transformed URL or text as a plain TXT file for later use.</p></div>
+<div class="card"><b>11</b><h3>Swap Input & Result</h3><p>Move the current result back into the input box to chain encoding and decoding operations.</p></div>
+<div class="card"><b>12</b><h3>Live Statistics</h3><p>Monitor character counts, word count, length changes and detected URL protocol.</p></div>
+</div></div></section>
 
-        function clearMessages() {
-            document.getElementById('messageArea').textContent = '';
-            document.getElementById('messageArea').className = 'info-message';
-        }
+<section class="content white"><div class="inner prose">
+<div class="heading"><div class="eyebrow">URL Encoding Guide</div><h2>What Is URL Encoding?</h2></div>
+<p>URL encoding, also called percent encoding, is a method used to represent characters in a URL in a form that can be safely transmitted and interpreted by web systems. Certain characters have reserved meanings in URLs, while others may not be suitable for direct use. Encoding represents such characters using a percent sign followed by hexadecimal digits.</p>
+<h3>Why Do URLs Need Encoding?</h3>
+<p>Web addresses often contain spaces, non-ASCII characters and punctuation. A URL encoder converts characters into representations that are safer to transport as part of a URI. For example, a space is commonly represented as <strong>%20</strong> in percent encoding. Form-style encoding may represent a space with a plus sign instead.</p>
+<h3>URL Encoding vs URL Decoding</h3>
+<p>Encoding transforms readable characters into URL-safe representations. Decoding performs the reverse operation when valid percent-encoded sequences are present. If you receive a URL containing sequences such as percent signs followed by hexadecimal values, a decoder can make those sequences easier to read.</p>
+<h3>encodeURI vs encodeURIComponent</h3>
+<p>These two JavaScript operations have different purposes. <strong>encodeURI()</strong> is designed for a complete URI and leaves certain reserved characters intact because they help define URI structure. <strong>encodeURIComponent()</strong> is intended for a single URI component, such as a query parameter value, and therefore encodes a wider set of characters.</p>
+<h3>When Should You Encode a Query Parameter?</h3>
+<p>If a value is being inserted into a query string, encoding the individual value is generally safer than manually concatenating raw text. For example, a search value containing spaces or symbols can be encoded before being added to a parameter. This prevents characters in the value from accidentally being interpreted as URL syntax.</p>
+<h3>URL Encoding for Developers</h3>
+<p>Developers use URL encoding when constructing links, API requests, redirects, tracking URLs, form submissions and query strings. It is especially important when data contains spaces, ampersands, question marks, equals signs or non-Latin characters.</p>
+<h3>URL Encoding for SEO</h3>
+<p>SEO professionals may encounter encoded URLs when working with tracking parameters, international URLs, redirects and technical audits. Encoding does not automatically improve rankings, but correctly formatted URLs can reduce technical problems and make links more reliable.</p>
+<h3>Is URL Encoding Encryption?</h3>
+<p>No. URL encoding is not encryption. It does not hide information or protect confidential data. Anyone who understands percent encoding can decode it. Never use URL encoding as a replacement for encryption, authentication or secure data protection.</p>
+<h3>What Happens to Spaces?</h3>
+<p>In standard percent encoding, a space is commonly represented as <strong>%20</strong>. In application/x-www-form-urlencoded data, spaces are commonly represented by <strong>+</strong>. The exact representation depends on the context in which the data is being encoded.</p>
+</div></div></section>
 
-        function encodeUrl() {
-            clearMessages();
-            const input = getInputValue().trim();
-            if (!input) {
-                displayMessage('Please enter text to encode.', true);
-                return;
-            }
-            try {
-                const encoded = encodeURIComponent(input);
-                setOutputValue(encoded);
-                displayMessage('URL encoded successfully!');
-            } catch (e) {
-                console.error('Encoding error:', e);
-                displayMessage('Error encoding URL. Ensure it\'s valid text.', true);
-            }
-        }
+<section class="content"><div class="inner">
+<div class="heading"><div class="eyebrow">Frequently Asked Questions</div><h2>URL Encoder & Decoder FAQs</h2></div>
+<div class="faq">
+<div class="faq-item"><button class="faq-q">What is a URL encoder? <span>+</span></button><div class="faq-a">A URL encoder converts characters into percent-encoded representations that can be safely included in URLs or URI components.</div></div>
+<div class="faq-item"><button class="faq-q">What is a URL decoder? <span>+</span></button><div class="faq-a">A URL decoder reverses valid percent encoding and converts encoded sequences into their readable character forms.</div></div>
+<div class="faq-item"><button class="faq-q">Should I use encodeURI or encodeURIComponent? <span>+</span></button><div class="faq-a">Use URI encoding for a complete URI when you want to preserve its structural characters. Use component encoding for individual values, such as query parameter values.</div></div>
+<div class="faq-item"><button class="faq-q">Why does a space become %20? <span>+</span></button><div class="faq-a">Percent encoding represents a space using the hexadecimal byte value format. In some form-encoded contexts, a space may instead be represented with a plus sign.</div></div>
+<div class="faq-item"><button class="faq-q">Can I encode Urdu, Arabic, Chinese or other Unicode text? <span>+</span></button><div class="faq-a">Yes. Modern URL encoding functions can handle Unicode text. This tool uses browser-native URI functions for the core transformation.</div></div>
+<div class="faq-item"><button class="faq-q">Is encoded data secure? <span>+</span></button><div class="faq-a">No. Encoding is not encryption. Encoded information can be decoded easily and should not be used to protect confidential information.</div></div>
+<div class="faq-item"><button class="faq-q">Does the tool save my URLs? <span>+</span></button><div class="faq-a">The core encoder and decoder operate locally in your browser and do not require sending the text to a server for conversion.</div></div>
+</div></div></section>
 
-        function decodeUrl() {
-            clearMessages();
-            const input = getInputValue().trim();
-            if (!input) {
-                displayMessage('Please enter text to decode.', true);
-                return;
-            }
-            try {
-                const decoded = decodeURIComponent(input);
-                setOutputValue(decoded);
-                displayMessage('URL decoded successfully!');
-            } catch (e) {
-                console.error('Decoding error:', e);
-                displayMessage('Error decoding URL. Ensure it\'s a valid encoded URL.', true);
-            }
-        }
-    </script>
+<section class="content white"><div class="inner">
+<div class="heading"><div class="eyebrow">Explore More</div><h2>More Daily Toolkit Tools</h2></div>
+<div class="related">
+<a href="text-case-converter.html"><h3>Text Case Converter</h3><p>Convert uppercase, lowercase, title case and more.</p></a>
+<a href="word-counter.html"><h3>Word Counter</h3><p>Count words, characters, sentences and reading time.</p></a>
+<a href="password-gen.html"><h3>Password Generator</h3><p>Create strong random passwords instantly.</p></a>
+<a href="qr-generator.html"><h3>QR Code Generator</h3><p>Generate QR codes for links and text.</p></a>
+</div></div></section>
+</main>
+
+<footer><div class="foot"><div class="footgrid">
+<div><div class="footlogo">Daily <span>Toolkit</span></div><p>Free online tools for everyday tasks, including image utilities, calculators, converters, text tools and productivity utilities.</p></div>
+<div><h3>Tools</h3><ul><li><a href="background-remover.html">Background Remover</a></li><li><a href="color-picker.html">Color Picker</a></li><li><a href="word-counter.html">Word Counter</a></li><li><a href="text-case-converter.html">Text Case Converter</a></li></ul></div>
+<div><h3>Company</h3><ul><li><a href="../about.html">About</a></li><li><a href="../blog.html">Blog</a></li><li><a href="../contact.html">Contact</a></li></ul></div>
+<div><h3>Legal</h3><ul><li><a href="../privacy.html">Privacy</a></li><li><a href="../terms.html">Terms</a></li></ul></div>
+</div><div class="bottom"><span>© 2026 Daily Toolkit. All rights reserved.</span><span>Free tools for everyday work.</span></div></div></footer>
+<div class="toast" id="toast"></div>
+
+<script>
+const $=s=>document.querySelector(s),$$=s=>document.querySelectorAll(s);
+const nav=$('#nav');window.addEventListener('scroll',()=>nav.classList.toggle('scrolled',scrollY>10));
+$('#hamb').onclick=()=>$('#mobile').classList.toggle('open');
+function searchTool(e){e.preventDefault();let q=e.target.querySelector('input').value.toLowerCase();if(q.includes('word'))location='word-counter.html';else if(q.includes('case'))location='text-case-converter.html';else if(q.includes('password'))location='password-gen.html';else location='../index.html#tools'}
+const input=$('#input'),output=$('#output');let mode='encodeURI';
+const sample='https://dailytoolkit.xyz/search?q=hello world&category=online tools&language=English';
+function encodePlus(s){return encodeURIComponent(s).replace(/%20/g,'+')}
+function decodePlus(s){try{return decodeURIComponent(s.replace(/\+/g,' '))}catch(e){return s}}
+function convert(){
+let s=input.value,r='';
+try{
+if(mode==='encodeURI')r=encodeURI(s);
+if(mode==='decodeURI')r=decodeURI(s);
+if(mode==='encodeComponent')r=encodeURIComponent(s);
+if(mode==='decodeComponent')r=decodeURIComponent(s);
+if(mode==='plusEncode')r=encodePlus(s);
+if(mode==='plusDecode')r=decodePlus(s);
+if($('#spaces').checked && (mode==='encodeURI'||mode==='encodeComponent'))r=r.replace(/%20/g,'+');
+output.value=r;$('#status').textContent=s?`Done • ${mode}`:'Ready • Paste a URL or text';
+}catch(e){output.value='Error: Invalid or malformed encoded sequence.';$('#status').textContent='Could not decode input';}
+analyze();parseURL();
+}
+function analyze(){
+let s=input.value,r=output.value,words=s.trim()?s.trim().split(/\s+/).length:0;
+$('#inCount').textContent=s.length.toLocaleString()+' characters';$('#outCount').textContent=r.length.toLocaleString()+' characters';
+$('#chars').textContent=s.length;$('#resultChars').textContent=r.length;$('#words').textContent=words;
+$('#lengthChange').textContent=s.length?((r.length-s.length)/s.length*100).toFixed(1)+'%':'0%';
+try{let u=new URL(s);$('#protocol').textContent=u.protocol.replace(':','')}catch(e){$('#protocol').textContent='—'}
+}
+function parseURL(){
+let s=input.value.trim(),box=$('#parseBox');
+if(!s){box.innerHTML='<p style="font-size:.8rem;color:#777">Enter a complete URL to inspect its components and query parameters.</p>';return}
+try{
+let u=new URL(s),rows=[
+['Protocol',u.protocol],['Username',u.username||'—'],['Hostname',u.hostname],['Port',u.port||'—'],['Host',u.host],['Pathname',u.pathname],['Search',u.search||'—'],['Hash',u.hash||'—']
+];
+let html='<table class="table"><thead><tr><th>Component</th><th>Value</th></tr></thead><tbody>'+rows.map(x=>`<tr><td>${esc(x[0])}</td><td>${esc(x[1])}</td></tr>`).join('')+'</tbody></table>';
+let params=[...u.searchParams.entries()];
+if(params.length){html+='<h3 style="margin-top:1.5rem">Query Parameters</h3><table class="table"><thead><tr><th>Key</th><th>Value</th></tr></thead><tbody>'+params.map(x=>`<tr><td>${esc(x[0])}</td><td>${esc(x[1])}</td></tr>`).join('')+'</tbody></table>'}
+box.innerHTML=html;
+}catch(e){box.innerHTML='<p style="font-size:.8rem;color:#777">The input is not recognized as a complete absolute URL. Encoding and decoding still work normally for plain text and URL components.</p>'}
+}
+function esc(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[c]))}
+$$('.mode').forEach(b=>b.onclick=()=>{$$('.mode').forEach(x=>x.classList.remove('active'));b.classList.add('active');mode=b.dataset.mode;convert()});
+input.addEventListener('input',()=>{$('#auto').checked&&convert();analyze();if(!$('#auto').checked)parseURL()});
+$('#auto').onchange=()=>{if($('#auto').checked)convert()};
+$('#sample').onclick=()=>{input.value=sample;convert();input.focus()};
+$('#clear').onclick=()=>{input.value='';output.value='';analyze();parseURL();input.focus()};
+$('#paste').onclick=async()=>{try{input.value=await navigator.clipboard.readText();convert();showToast('Text pasted')}catch(e){showToast('Clipboard permission unavailable')}};
+$('#copy').onclick=()=>{if(!output.value)return showToast('Nothing to copy');navigator.clipboard.writeText(output.value).then(()=>showToast('Result copied'))};
+$('#swap').onclick=()=>{if(!output.value)return showToast('No result available');input.value=output.value;convert();showToast('Result moved to input')};
+$('#download').onclick=()=>{if(!output.value)return showToast('Nothing to download');let blob=new Blob([output.value],{type:'text/plain'}),a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='url-encoded-decoded-result.txt';a.click();URL.revokeObjectURL(a.href);showToast('TXT file downloaded')};
+$('#spaces').onchange=()=>convert();
+function showToast(t){let x=$('#toast');x.textContent=t;x.classList.add('show');setTimeout(()=>x.classList.remove('show'),2200)}
+$$('.faq-q').forEach(x=>x.onclick=()=>x.parentElement.classList.toggle('open'));
+analyze();parseURL();
+</script>
 </body>
 </html>
