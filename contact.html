@@ -1,0 +1,756 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact Us – Daily Toolkit</title>
+
+  <!-- Content Security Policy -->
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://pagead2.googlesyndication.com https://www.googletagmanager.com https://*.google.com https://*.doubleclick.net https://cdn.jsdelivr.net https://unpkg.com https://*.vercel-scripts.com; connect-src 'self' https://pagead2.googlesyndication.com https://www.google-analytics.com https://www.googletagmanager.com https://vitals.vercel-insights.com https://*.vercel-insights.com; img-src 'self' data: https://*.googlesyndication.com https://*.doubleclick.net https://www.google-analytics.com https://*.google.com https://ahsan098-2.github.io; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com; font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com; frame-src 'self' https://googleads.g.doubleclick.net https://pagead2.googlesyndication.com; object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests;">
+
+  <!-- Google AdSense -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6737111642010842" crossorigin="anonymous"></script>
+
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XSNWLXJKBZ"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-XSNWLXJKBZ');
+  </script>
+
+  <!-- Vercel Speed Insights -->
+  <script type="module">
+    import { injectSpeedInsights } from 'https://cdn.jsdelivr.net/npm/@vercel/speed-insights@2.0.0/dist/index.mjs';
+    injectSpeedInsights();
+  </script>
+
+  <!-- SEO -->
+  <meta name="description" content="Contact Daily Toolkit — send us your feedback, suggestions, or questions about our free online tools.">
+  <meta name="robots" content="index, follow">
+  <meta name="author" content="Ahsanullah">
+  <link rel="canonical" href="https://dailytoolkit.xyz/contact.html">
+  <meta property="og:title" content="Contact Us – Daily Toolkit">
+  <meta property="og:description" content="Get in touch with Daily Toolkit for feedback, suggestions, or questions.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://dailytoolkit.xyz/contact.html">
+  <meta property="og:image" content="https://ahsan098-2.github.io/aum123/assets/preview.png">
+
+  <!-- Fonts & Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --black: #0A0A0A;
+      --white: #FFFFFF;
+      --gray-100: #F7F7F7;
+      --gray-200: #EFEFEF;
+      --gray-400: #ABABAB;
+      --gray-600: #6B6B6B;
+      --gold: #C9A84C;
+      --font-display: 'Playfair Display', Georgia, serif;
+      --font-body: 'Inter', system-ui, sans-serif;
+      --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font-body);
+      background: var(--white);
+      color: var(--black);
+      line-height: 1.6;
+      overflow-x: hidden;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    a { text-decoration: none; color: inherit; }
+
+    ::-webkit-scrollbar { width: 4px; }
+    ::-webkit-scrollbar-track { background: var(--gray-100); }
+    ::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 2px; }
+
+    .sr-only {
+      position: absolute !important; width: 1px !important; height: 1px !important;
+      padding: 0 !important; margin: -1px !important; overflow: hidden !important;
+      clip: rect(0,0,0,0) !important; white-space: nowrap !important; border: 0 !important;
+    }
+
+    /* ── NAVBAR ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 4%; height: 68px;
+      background: rgba(255,255,255,0.96);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--gray-200);
+      transition: box-shadow var(--transition); gap: 1rem;
+    }
+    nav.scrolled { box-shadow: 0 2px 24px rgba(0,0,0,0.07); }
+
+    .nav-logo {
+      font-family: var(--font-display);
+      font-size: 1.3rem; font-weight: 700;
+      color: var(--black); white-space: nowrap;
+      display: flex; align-items: center; gap: 0.4rem;
+    }
+    .nav-logo span { color: var(--gold); }
+    .nav-logo i { color: var(--gold); font-size: 1.1rem; }
+
+    .nav-links {
+      display: flex; gap: 1.6rem; list-style: none; align-items: center;
+    }
+    .nav-links a {
+      font-size: 0.82rem; font-weight: 500; color: var(--gray-600);
+      letter-spacing: 0.04em; text-transform: uppercase;
+      transition: color var(--transition); padding: 4px 0; position: relative;
+    }
+    .nav-links a::after {
+      content: ''; position: absolute; bottom: 0; left: 0; right: 0;
+      height: 1px; background: var(--gold);
+      transform: scaleX(0); transform-origin: left; transition: transform var(--transition);
+    }
+    .nav-links a:hover, .nav-links a.active { color: var(--black); }
+    .nav-links a:hover::after, .nav-links a.active::after { transform: scaleX(1); }
+
+    .nav-search {
+      display: flex; align-items: center;
+      background: var(--gray-100); border: 1px solid var(--gray-200);
+      border-radius: 2px; overflow: hidden; min-width: 200px;
+    }
+    .nav-search input {
+      flex: 1; border: none; background: transparent;
+      padding: 0.5rem 0.8rem; font-family: var(--font-body);
+      font-size: 0.82rem; color: var(--black); outline: none;
+    }
+    .nav-search input::placeholder { color: var(--gray-400); }
+    .nav-search button {
+      background: var(--black); color: var(--white); border: none;
+      padding: 0.5rem 0.75rem; cursor: pointer;
+      transition: background var(--transition); font-size: 0.8rem;
+    }
+    .nav-search button:hover { background: var(--gold); color: var(--black); }
+
+    .hamburger {
+      display: none; flex-direction: column; gap: 5px;
+      cursor: pointer; padding: 4px; background: none; border: none;
+    }
+    .hamburger span { display: block; width: 22px; height: 1.5px; background: var(--black); transition: var(--transition); }
+
+    .mobile-menu {
+      display: none; position: fixed; top: 68px; left: 0; right: 0;
+      background: var(--white); border-bottom: 1px solid var(--gray-200);
+      padding: 1.2rem 4%; flex-direction: column; gap: 1rem; z-index: 999;
+    }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a {
+      font-size: 0.88rem; font-weight: 500; color: var(--gray-600);
+      letter-spacing: 0.04em; text-transform: uppercase; transition: color var(--transition);
+    }
+    .mobile-menu a:hover { color: var(--gold); }
+
+    /* ── GOLD DIVIDER ── */
+    .gold-divider {
+      width: 100%; height: 1px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    }
+
+    /* ── PAGE HEADER ── */
+    .page-header {
+      padding: 110px 4% 56px;
+      background: var(--gray-100);
+      border-bottom: 1px solid var(--gray-200);
+      text-align: center;
+      position: relative; overflow: hidden;
+    }
+    .page-header-bg {
+      position: absolute; top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      font-family: var(--font-display);
+      font-size: clamp(80px, 14vw, 180px);
+      font-weight: 700; color: transparent;
+      -webkit-text-stroke: 1px var(--gray-200);
+      user-select: none; pointer-events: none;
+      white-space: nowrap; opacity: 0.5;
+    }
+    .page-header-inner { position: relative; z-index: 1; }
+    .page-eyebrow {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      font-size: 0.72rem; font-weight: 600; letter-spacing: 0.14em;
+      text-transform: uppercase; color: var(--gold); margin-bottom: 0.8rem;
+    }
+    .page-eyebrow::before, .page-eyebrow::after {
+      content: ''; display: block; width: 20px; height: 1px; background: var(--gold);
+    }
+    .page-header h1 {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      font-weight: 700; letter-spacing: -0.03em;
+      color: var(--black); margin-bottom: 0.6rem;
+    }
+    .page-header h1 em { font-style: italic; color: var(--gold); }
+    .page-header p { font-size: 0.95rem; color: var(--gray-600); max-width: 480px; margin: 0 auto; }
+
+    /* ── MAIN LAYOUT ── */
+    main { flex: 1; padding: 60px 4% 80px; }
+    .main-inner {
+      max-width: 1100px; margin: 0 auto;
+      display: grid; grid-template-columns: 1fr 1.4fr; gap: 3rem; align-items: start;
+    }
+
+    /* ── INFO CARDS ── */
+    .info-col { display: flex; flex-direction: column; gap: 1.2rem; }
+
+    .info-card {
+      background: var(--gray-100); border: 1px solid var(--gray-200);
+      border-radius: 4px; padding: 1.5rem;
+      display: flex; gap: 1rem; align-items: flex-start;
+      transition: var(--transition); position: relative; overflow: hidden;
+    }
+    .info-card::after {
+      content: ''; position: absolute; left: 0; top: 0; bottom: 0;
+      width: 2px; background: var(--gold);
+      transform: scaleY(0); transform-origin: top; transition: transform var(--transition);
+    }
+    .info-card:hover { box-shadow: 0 6px 20px rgba(0,0,0,0.06); }
+    .info-card:hover::after { transform: scaleY(1); }
+
+    .info-icon {
+      width: 42px; height: 42px; background: var(--white);
+      border-radius: 8px; display: flex; align-items: center; justify-content: center;
+      color: var(--gold); font-size: 1.1rem; flex-shrink: 0;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+    }
+    .info-content h3 { font-size: 0.88rem; font-weight: 700; margin-bottom: 0.25rem; }
+    .info-content p { font-size: 0.8rem; color: var(--gray-600); line-height: 1.6; }
+    .info-content a { color: var(--gold); font-weight: 500; transition: opacity var(--transition); }
+    .info-content a:hover { opacity: 0.75; }
+
+    /* Social row */
+    .social-row {
+      display: flex; gap: 0.7rem; margin-top: 0.5rem;
+    }
+    .soc-btn {
+      width: 36px; height: 36px; border-radius: 50%;
+      background: var(--white); border: 1px solid var(--gray-200);
+      display: flex; align-items: center; justify-content: center;
+      color: var(--gray-600); font-size: 0.85rem;
+      transition: var(--transition);
+    }
+    .soc-btn:hover { background: var(--black); color: var(--white); border-color: var(--black); }
+
+    /* FAQ mini */
+    .faq-mini { margin-top: 0.5rem; }
+    .faq-mini-title {
+      font-size: 0.72rem; font-weight: 600; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--gold); margin-bottom: 0.8rem;
+      display: flex; align-items: center; gap: 0.5rem;
+    }
+    .faq-mini-title::before { content: ''; display: block; width: 16px; height: 1px; background: var(--gold); }
+
+    .faq-mini-item {
+      padding: 0.9rem 1rem; background: var(--white);
+      border: 1px solid var(--gray-200); border-radius: 4px;
+      margin-bottom: 0.6rem; cursor: pointer; transition: var(--transition);
+    }
+    .faq-mini-item:hover { border-color: var(--gold); }
+    .faq-mini-q {
+      font-size: 0.82rem; font-weight: 600;
+      display: flex; justify-content: space-between; align-items: center; gap: 0.5rem;
+    }
+    .faq-mini-toggle { color: var(--gold); font-size: 0.9rem; flex-shrink: 0; transition: transform var(--transition); }
+    .faq-mini-item.open .faq-mini-toggle { transform: rotate(45deg); }
+    .faq-mini-a { font-size: 0.78rem; color: var(--gray-600); line-height: 1.65; display: none; margin-top: 0.5rem; }
+    .faq-mini-item.open .faq-mini-a { display: block; }
+
+    /* ── FORM CARD ── */
+    .form-card {
+      background: var(--white); border: 1px solid var(--gray-200);
+      border-radius: 4px; padding: 2.2rem;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.05);
+    }
+    .form-card-header { margin-bottom: 1.8rem; }
+    .form-card-header h2 {
+      font-family: var(--font-display);
+      font-size: 1.6rem; font-weight: 700; margin-bottom: 0.3rem;
+    }
+    .form-card-header p { font-size: 0.84rem; color: var(--gray-600); }
+
+    .form-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;
+    }
+    .form-group { display: flex; flex-direction: column; gap: 0.4rem; }
+    .form-group.full { grid-column: 1 / -1; }
+
+    label {
+      font-size: 0.76rem; font-weight: 600; letter-spacing: 0.06em;
+      text-transform: uppercase; color: var(--black);
+    }
+
+    input[type="text"],
+    input[type="email"],
+    select,
+    textarea {
+      width: 100%; padding: 0.75rem 0.9rem;
+      border: 1px solid var(--gray-200); border-radius: 2px;
+      font-family: var(--font-body); font-size: 0.88rem;
+      color: var(--black); background: var(--gray-100);
+      outline: none; transition: var(--transition);
+      appearance: none;
+    }
+    input:focus, select:focus, textarea:focus {
+      background: var(--white); border-color: var(--black);
+      box-shadow: 0 0 0 3px rgba(10,10,10,0.05);
+    }
+    input::placeholder, textarea::placeholder { color: var(--gray-400); }
+    textarea { resize: vertical; min-height: 130px; }
+
+    select {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23ABABAB' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+      background-repeat: no-repeat; background-position: right 0.9rem center;
+      padding-right: 2.2rem; cursor: pointer;
+    }
+
+    .char-count {
+      font-size: 0.7rem; color: var(--gray-400);
+      text-align: right; margin-top: 0.2rem;
+    }
+
+    /* Rating */
+    .rating-group { display: flex; gap: 0.4rem; align-items: center; }
+    .star-btn {
+      background: none; border: none; font-size: 1.3rem;
+      cursor: pointer; color: var(--gray-200); transition: color var(--transition);
+      padding: 0;
+    }
+    .star-btn.active, .star-btn:hover { color: var(--gold); }
+
+    /* Submit */
+    .btn-submit {
+      width: 100%; padding: 0.9rem;
+      background: var(--black); color: var(--white);
+      border: none; border-radius: 2px; cursor: pointer;
+      font-family: var(--font-body); font-size: 0.84rem;
+      font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase;
+      transition: var(--transition); display: flex; align-items: center;
+      justify-content: center; gap: 0.5rem; margin-top: 0.5rem;
+    }
+    .btn-submit:hover { background: var(--gold); color: var(--black); }
+    .btn-submit:disabled { opacity: 0.5; cursor: not-allowed; }
+    .btn-submit i { font-size: 0.9rem; }
+
+    /* Success */
+    .success-msg {
+      display: none; text-align: center; padding: 2rem 1rem;
+    }
+    .success-msg .success-icon {
+      width: 56px; height: 56px; background: var(--black);
+      border-radius: 50%; display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 1rem; color: var(--gold); font-size: 1.4rem;
+    }
+    .success-msg h3 {
+      font-family: var(--font-display); font-size: 1.4rem; margin-bottom: 0.4rem;
+    }
+    .success-msg p { font-size: 0.85rem; color: var(--gray-600); }
+
+    /* Note */
+    .form-note { font-size: 0.75rem; color: var(--gray-400); margin-top: 0.8rem; text-align: center; }
+    .form-note i { color: var(--gold); }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--black); color: var(--gray-400);
+      padding: 48px 4% 24px;
+    }
+    .footer-inner { max-width: 1100px; margin: 0 auto; }
+    .footer-top {
+      display: grid; grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 2rem; margin-bottom: 2rem;
+    }
+    .footer-brand .nav-logo { color: var(--white); margin-bottom: 0.8rem; }
+    .footer-desc { font-size: 0.8rem; line-height: 1.7; max-width: 220px; }
+    .footer-col h4 {
+      font-size: 0.68rem; font-weight: 600; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--white); margin-bottom: 1rem;
+    }
+    .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; }
+    .footer-col ul a { font-size: 0.78rem; color: var(--gray-400); transition: color var(--transition); }
+    .footer-col ul a:hover { color: var(--gold); }
+    .social-links { display: flex; gap: 0.7rem; margin-top: 1rem; }
+    .social-link {
+      width: 32px; height: 32px; border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 50%; display: flex; align-items: center; justify-content: center;
+      color: var(--gray-400); font-size: 0.78rem; transition: var(--transition);
+    }
+    .social-link:hover { border-color: var(--gold); color: var(--gold); }
+    .footer-bottom {
+      padding-top: 1.5rem; border-top: 1px solid rgba(255,255,255,0.06);
+      display: flex; justify-content: space-between; align-items: center;
+      flex-wrap: wrap; gap: 0.8rem;
+    }
+    .footer-bottom p { font-size: 0.76rem; }
+
+    /* Back to top */
+    .back-top {
+      position: fixed; bottom: 1.8rem; right: 1.8rem;
+      width: 38px; height: 38px; background: var(--black); color: var(--white);
+      border: none; border-radius: 2px; cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      opacity: 0; transform: translateY(8px); transition: var(--transition); z-index: 50;
+    }
+    .back-top.show { opacity: 1; transform: translateY(0); }
+    .back-top:hover { background: var(--gold); color: var(--black); }
+
+    /* Reveal */
+    .reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.55s ease, transform 0.55s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      .main-inner { grid-template-columns: 1fr; }
+      .footer-top { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 768px) {
+      .nav-links, .nav-search { display: none; }
+      .hamburger { display: flex; }
+      .form-grid { grid-template-columns: 1fr; }
+      .footer-top { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 480px) {
+      main { padding: 40px 4% 60px; }
+      .form-card { padding: 1.4rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav id="navbar">
+  <a href="index.html" class="nav-logo"><i class="fas fa-tools"></i> Daily<span>Toolkit</span></a>
+  <ul class="nav-links">
+    <li><a href="index.html" class="nav-link">Home</a></li>
+    <li><a href="tools.html" class="nav-link">Tools</a></li>
+    <li><a href="about.html" class="nav-link">About</a></li>
+    <li><a href="privacy.html" class="nav-link">Privacy</a></li>
+    <li><a href="contact.html" class="nav-link active">Contact</a></li>
+    <li><a href="terms.html" class="nav-link">Terms</a></li>
+    <li><a href="blog.html" class="nav-link">Blog</a></li>
+  </ul>
+  <form class="nav-search" onsubmit="event.preventDefault(); window.location='index.html#tools'">
+    <input type="text" placeholder="Search tools..." aria-label="Search tools">
+    <button type="submit" aria-label="Search"><i class="fas fa-search"></i></button>
+  </form>
+  <button class="hamburger" id="hamburger" onclick="toggleMenu()" aria-label="Toggle menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="index.html">Home</a>
+  <a href="tools.html">Tools</a>
+  <a href="about.html">About</a>
+  <a href="privacy.html">Privacy</a>
+  <a href="contact.html">Contact</a>
+  <a href="terms.html">Terms</a>
+  <a href="blog.html">Blog</a>
+</div>
+
+<!-- PAGE HEADER -->
+<div class="page-header">
+  <div class="page-header-bg" aria-hidden="true">CONTACT</div>
+  <div class="page-header-inner">
+    <div class="page-eyebrow">Get in Touch</div>
+    <h1>We'd love to <em>hear from you</em></h1>
+    <p>Have a question, suggestion, or feedback? Send us a message and we'll get back to you.</p>
+  </div>
+</div>
+
+<div class="gold-divider"></div>
+
+<main>
+  <div class="main-inner">
+
+    <!-- LEFT: Info + FAQ -->
+    <div class="info-col">
+
+      <div class="info-card reveal">
+        <div class="info-icon"><i class="fas fa-envelope"></i></div>
+        <div class="info-content">
+          <h3>Email Us</h3>
+          <p>For general questions, feedback, or tool suggestions.<br>
+          <a href="mailto:contact@dailytoolkit.xyz">contact@dailytoolkit.xyz</a></p>
+        </div>
+      </div>
+
+      <div class="info-card reveal">
+        <div class="info-icon"><i class="fas fa-globe"></i></div>
+        <div class="info-content">
+          <h3>Website</h3>
+          <p>Visit our homepage to explore all free tools.<br>
+          <a href="https://dailytoolkit.xyz" target="_blank">dailytoolkit.xyz</a></p>
+        </div>
+      </div>
+
+      <div class="info-card reveal">
+        <div class="info-icon"><i class="fas fa-clock"></i></div>
+        <div class="info-content">
+          <h3>Response Time</h3>
+          <p>We usually respond within <strong>24–48 hours</strong>. We read every message carefully.</p>
+        </div>
+      </div>
+
+      <div class="info-card reveal">
+        <div class="info-icon"><i class="fas fa-share-nodes"></i></div>
+        <div class="info-content">
+          <h3>Follow Us</h3>
+          <p>Stay updated with new tools and improvements.</p>
+          <div class="social-row" style="margin-top:0.8rem;">
+            <a href="https://www.facebook.com/Ahsanullah7116/" class="soc-btn" target="_blank" rel="noopener" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://twitter.com/yourprofile" class="soc-btn" target="_blank" rel="noopener" aria-label="Twitter"><i class="fab fa-x-twitter"></i></a>
+            <a href="https://www.instagram.com/ahsan_ontop01/" class="soc-btn" target="_blank" rel="noopener" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="https://pk.linkedin.com/in/ahsanullah-mahar-b1b177285" class="soc-btn" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-mini reveal">
+        <div class="faq-mini-title">Quick Answers</div>
+        <div class="faq-mini-item" onclick="toggleFaqMini(this)">
+          <div class="faq-mini-q">Are your tools really free? <span class="faq-mini-toggle">+</span></div>
+          <div class="faq-mini-a">Yes — every tool on Daily Toolkit is 100% free with no signup required.</div>
+        </div>
+        <div class="faq-mini-item" onclick="toggleFaqMini(this)">
+          <div class="faq-mini-q">How do I suggest a new tool? <span class="faq-mini-toggle">+</span></div>
+          <div class="faq-mini-a">Use the contact form to the right and select "Suggest a Tool" as the subject. We review all suggestions.</div>
+        </div>
+        <div class="faq-mini-item" onclick="toggleFaqMini(this)">
+          <div class="faq-mini-q">Can I report a bug? <span class="faq-mini-toggle">+</span></div>
+          <div class="faq-mini-a">Absolutely. Select "Bug Report" in the form and describe what happened. We'll fix it as fast as possible.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- RIGHT: Form -->
+    <div class="form-card reveal">
+      <div id="formArea">
+        <div class="form-card-header">
+          <h2>Send a Message</h2>
+          <p>Fill in the details below and we'll respond as soon as possible.</p>
+        </div>
+
+        <form id="contactForm" onsubmit="submitForm(event)" novalidate>
+          <div class="form-grid">
+
+            <div class="form-group">
+              <label for="name">Full Name <span style="color:var(--gold)">*</span></label>
+              <input type="text" id="name" name="name" placeholder="Ahsan Mahar" required>
+            </div>
+
+            <div class="form-group">
+              <label for="email">Email Address <span style="color:var(--gold)">*</span></label>
+              <input type="email" id="email" name="email" placeholder="you@example.com" required>
+            </div>
+
+            <div class="form-group full">
+              <label for="subject">Subject <span style="color:var(--gold)">*</span></label>
+              <select id="subject" name="subject" required>
+                <option value="" disabled selected>Select a subject...</option>
+                <option value="general">General Question</option>
+                <option value="suggest">Suggest a Tool</option>
+                <option value="bug">Bug Report</option>
+                <option value="feedback">Website Feedback</option>
+                <option value="partnership">Partnership / Collaboration</option>
+                <option value="other">Other</option>
+              </select>
+            </div>
+
+            <div class="form-group full">
+              <label for="message">Message <span style="color:var(--gold)">*</span></label>
+              <textarea id="message" name="message" placeholder="Tell us what's on your mind..." required maxlength="1000" oninput="updateCharCount(this)"></textarea>
+              <div class="char-count"><span id="charCount">0</span> / 1000</div>
+            </div>
+
+            <div class="form-group full">
+              <label>Rate Your Experience (optional)</label>
+              <div class="rating-group" id="starRating">
+                <button type="button" class="star-btn" data-val="1" onclick="setRating(1)" aria-label="1 star">★</button>
+                <button type="button" class="star-btn" data-val="2" onclick="setRating(2)" aria-label="2 stars">★</button>
+                <button type="button" class="star-btn" data-val="3" onclick="setRating(3)" aria-label="3 stars">★</button>
+                <button type="button" class="star-btn" data-val="4" onclick="setRating(4)" aria-label="4 stars">★</button>
+                <button type="button" class="star-btn" data-val="5" onclick="setRating(5)" aria-label="5 stars">★</button>
+                <span id="ratingLabel" style="font-size:0.78rem;color:var(--gray-400);margin-left:0.4rem;"></span>
+              </div>
+              <input type="hidden" id="ratingValue" name="rating" value="">
+            </div>
+
+          </div>
+
+          <button type="submit" class="btn-submit" id="submitBtn">
+            <i class="fas fa-paper-plane"></i> Send Message
+          </button>
+          <p class="form-note"><i class="fas fa-lock"></i> Your information is safe and never shared with third parties.</p>
+        </form>
+      </div>
+
+      <!-- Success state -->
+      <div class="success-msg" id="successMsg">
+        <div class="success-icon"><i class="fas fa-check"></i></div>
+        <h3>Message Sent!</h3>
+        <p>Thank you for reaching out. We'll get back to you within 24–48 hours.</p>
+        <button onclick="resetForm()" style="margin-top:1.2rem;background:var(--black);color:var(--white);border:none;padding:0.7rem 1.4rem;border-radius:2px;font-size:0.82rem;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;cursor:pointer;transition:background 0.3s;" onmouseover="this.style.background='#C9A84C';this.style.color='#000'" onmouseout="this.style.background='#0A0A0A';this.style.color='#fff'">Send Another</button>
+      </div>
+    </div>
+
+  </div>
+</main>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <a href="index.html" class="nav-logo"><i class="fas fa-tools"></i> Daily<span>Toolkit</span></a>
+        <p class="footer-desc">Free online tools for everyday digital tasks. No signup, no limits.</p>
+        <div class="social-links">
+          <a href="https://www.facebook.com/Ahsanullah7116/" class="social-link" target="_blank" rel="noopener" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+          <a href="https://twitter.com/yourprofile" class="social-link" target="_blank" rel="noopener" aria-label="Twitter"><i class="fab fa-x-twitter"></i></a>
+          <a href="https://www.instagram.com/ahsan_ontop01/" class="social-link" target="_blank" rel="noopener" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+          <a href="https://pk.linkedin.com/in/ahsanullah-mahar-b1b177285" class="social-link" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Quick Tools</h4>
+        <ul>
+          <li><a href="tools/age-calculator.html">Age Calculator</a></li>
+          <li><a href="tools/bmi-calculator.html">BMI Calculator</a></li>
+          <li><a href="tools/compress-pdf.html">Compress PDF</a></li>
+          <li><a href="tools/qr-generator.html">QR Generator</a></li>
+          <li><a href="tools/password-gen.html">Password Generator</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Pages</h4>
+        <ul>
+          <li><a href="about.html">About</a></li>
+          <li><a href="blog.html">Blog</a></li>
+          <li><a href="privacy.html">Privacy Policy</a></li>
+          <li><a href="terms.html">Terms of Service</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Categories</h4>
+        <ul>
+          <li><a href="index.html#categories">Calculators</a></li>
+          <li><a href="index.html#categories">PDF Tools</a></li>
+          <li><a href="index.html#categories">Image Tools</a></li>
+          <li><a href="index.html#categories">Text Utilities</a></li>
+          <li><a href="index.html#categories">Generators</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025 Daily Toolkit. All rights reserved.</p>
+      <p style="font-size:0.74rem;">Built with care for everyday users.</p>
+    </div>
+  </div>
+</footer>
+
+<button class="back-top" id="backTop" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Back to top">
+  <i class="fas fa-arrow-up"></i>
+</button>
+
+<script>
+  // Navbar scroll
+  window.addEventListener('scroll', () => {
+    document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 60);
+    document.getElementById('backTop').classList.toggle('show', window.scrollY > 300);
+  });
+
+  // Mobile menu
+  function toggleMenu() {
+    document.getElementById('mobileMenu').classList.toggle('open');
+  }
+
+  // FAQ mini
+  function toggleFaqMini(el) {
+    el.classList.toggle('open');
+  }
+
+  // Star rating
+  let selectedRating = 0;
+  const labels = ['', 'Poor', 'Fair', 'Good', 'Very Good', 'Excellent'];
+  function setRating(val) {
+    selectedRating = val;
+    document.getElementById('ratingValue').value = val;
+    document.getElementById('ratingLabel').textContent = labels[val];
+    document.querySelectorAll('.star-btn').forEach(btn => {
+      btn.classList.toggle('active', parseInt(btn.dataset.val) <= val);
+    });
+  }
+
+  // Char count
+  function updateCharCount(el) {
+    document.getElementById('charCount').textContent = el.value.length;
+  }
+
+  // Form submit
+  function submitForm(e) {
+    e.preventDefault();
+    const name = document.getElementById('name').value.trim();
+    const email = document.getElementById('email').value.trim();
+    const subject = document.getElementById('subject').value;
+    const message = document.getElementById('message').value.trim();
+
+    // Simple validation
+    if (!name || !email || !subject || !message) {
+      alert('Please fill in all required fields.');
+      return;
+    }
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      alert('Please enter a valid email address.');
+      return;
+    }
+
+    // Simulate sending
+    const btn = document.getElementById('submitBtn');
+    btn.disabled = true;
+    btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
+
+    setTimeout(() => {
+      document.getElementById('formArea').style.display = 'none';
+      document.getElementById('successMsg').style.display = 'block';
+    }, 1400);
+  }
+
+  function resetForm() {
+    document.getElementById('contactForm').reset();
+    document.getElementById('charCount').textContent = '0';
+    selectedRating = 0;
+    document.querySelectorAll('.star-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById('ratingLabel').textContent = '';
+    document.getElementById('ratingValue').value = '';
+    document.getElementById('submitBtn').disabled = false;
+    document.getElementById('submitBtn').innerHTML = '<i class="fas fa-paper-plane"></i> Send Message';
+    document.getElementById('formArea').style.display = 'block';
+    document.getElementById('successMsg').style.display = 'none';
+  }
+
+  // Scroll reveal
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) setTimeout(() => e.target.classList.add('visible'), i * 80);
+    });
+  }, { threshold: 0.08 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
