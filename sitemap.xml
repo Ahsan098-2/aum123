@@ -7,205 +7,211 @@
        <priority>1.0000</priority>
   </url>
   <url>
-       <loc>https://www.dailytoolkit.xyz/about.html</loc>
+       <loc>https://www.dailytoolkit.xyz/about</loc>
        <lastmod>2026-07-23T15:28:23+00:00</lastmod>
        <changefreq>daily</changefreq>
        <priority>0.8000</priority>
   </url>
   <url>
-       <loc>https://www.dailytoolkit.xyz/privacy.html</loc>
+       <loc>https://www.dailytoolkit.xyz/privacy</loc>
        <lastmod>2026-07-23T15:28:23+00:00</lastmod>
        <changefreq>daily</changefreq>
        <priority>0.8000</priority>
   </url>
   <url>
-       <loc>https://www.dailytoolkit.xyz/contact.html</loc>
+       <loc>https://www.dailytoolkit.xyz/contact</loc>
        <lastmod>2026-07-23T15:28:23+00:00</lastmod>
        <changefreq>daily</changefreq>
        <priority>0.8000</priority>
   </url>
   <url>
-       <loc>https://www.dailytoolkit.xyz/terms.html</loc>
+       <loc>https://www.dailytoolkit.xyz/terms</loc>
        <lastmod>2026-07-23T15:28:23+00:00</lastmod>
        <changefreq>daily</changefreq>
        <priority>0.8000</priority>
   </url>
   <url>
-       <loc>https://www.dailytoolkit.xyz/blog.html</loc>
+       <loc>https://www.dailytoolkit.xyz/blog</loc>
        <lastmod>2026-07-23T15:28:23+00:00</lastmod>
        <changefreq>daily</changefreq>
        <priority>0.8000</priority>
   </url>
   <url>
-       <loc>https://www.dailytoolkit.xyz/tools/age-calculator.html</loc>
+       <loc>https://www.dailytoolkit.xyz/tools</loc>
+       <lastmod>2026-07-31T00:00:00+00:00</lastmod>
+       <changefreq>daily</changefreq>
+       <priority>0.9000</priority>
+  </url>
+  <url>
+       <loc>https://www.dailytoolkit.xyz/tools/age-calculator</loc>
        <lastmod>2026-07-23T15:28:23+00:00</lastmod>
        <changefreq>daily</changefreq>
        <priority>0.8000</priority>
   </url>
   <url>
-       <loc>https://www.dailytoolkit.xyz/tools/password-gen.html</loc>
+       <loc>https://www.dailytoolkit.xyz/tools/password-gen</loc>
        <lastmod>2026-07-23T15:28:23+00:00</lastmod>
        <changefreq>daily</changefreq>
        <priority>0.8000</priority>
   </url>
   <url>
-       <loc>https://www.dailytoolkit.xyz/tools/background-remover.html</loc>
+       <loc>https://www.dailytoolkit.xyz/tools/background-remover</loc>
        <lastmod>2026-07-23T15:28:23+00:00</lastmod>
        <changefreq>daily</changefreq>
        <priority>0.8000</priority>
   </url>
   <url>
-       <loc>https://www.dailytoolkit.xyz/tools/qr-generator.html</loc>
+       <loc>https://www.dailytoolkit.xyz/tools/qr-generator</loc>
        <lastmod>2026-07-23T15:28:23+00:00</lastmod>
        <changefreq>daily</changefreq>
        <priority>0.8000</priority>
   </url>
   <url>
-       <loc>https://www.dailytoolkit.xyz/tools/bmi-calculator.html</loc>
+       <loc>https://www.dailytoolkit.xyz/tools/bmi-calculator</loc>
        <lastmod>2026-07-23T15:28:23+00:00</lastmod>
        <changefreq>daily</changefreq>
        <priority>0.8000</priority>
   </url>
   <url>
-       <loc>https://www.dailytoolkit.xyz/tools/compress-pdf.html</loc>
+       <loc>https://www.dailytoolkit.xyz/tools/compress-pdf</loc>
        <lastmod>2026-07-23T15:28:23+00:00</lastmod>
        <changefreq>daily</changefreq>
        <priority>0.8000</priority>
   </url>
   <url>
-       <loc>https://www.dailytoolkit.xyz/tools/image-compressor.html</loc>
+       <loc>https://www.dailytoolkit.xyz/tools/image-compressor</loc>
        <lastmod>2026-07-23T15:28:23+00:00</lastmod>
        <changefreq>daily</changefreq>
        <priority>0.8000</priority>
   </url>
   <url>
-       <loc>https://www.dailytoolkit.xyz/tools/loan-calculator.html</loc>
+       <loc>https://www.dailytoolkit.xyz/tools/loan-calculator</loc>
        <lastmod>2026-07-23T15:28:23+00:00</lastmod>
        <changefreq>daily</changefreq>
        <priority>0.6400</priority>
   </url>
   <url>
-       <loc>https://www.dailytoolkit.xyz/tools/unit-converter.html</loc>
+       <loc>https://www.dailytoolkit.xyz/tools/unit-converter</loc>
        <lastmod>2026-07-23T15:28:23+00:00</lastmod>
        <changefreq>daily</changefreq>
        <priority>0.6400</priority>
   </url>
   <url>
-       <loc>https://www.dailytoolkit.xyz/tools/crypto-price-checker.html</loc>
+       <loc>https://www.dailytoolkit.xyz/tools/crypto-price-checker</loc>
        <lastmod>2026-07-23T15:28:23+00:00</lastmod>
        <changefreq>daily</changefreq>
        <priority>0.6400</priority>
   </url>
   <url>
-       <loc>https://www.dailytoolkit.xyz/tools/gold-price-checker.html</loc>
+       <loc>https://www.dailytoolkit.xyz/tools/gold-price-checker</loc>
        <lastmod>2026-07-23T15:28:23+00:00</lastmod>
        <changefreq>daily</changefreq>
        <priority>0.6400</priority>
   </url>
   <url>
-       <loc>https://www.dailytoolkit.xyz/tools/fuel-price-checker.html</loc>
+       <loc>https://www.dailytoolkit.xyz/tools/fuel-price-checker</loc>
        <lastmod>2026-07-23T15:28:23+00:00</lastmod>
        <changefreq>daily</changefreq>
        <priority>0.6400</priority>
   </url>
   <url>
-       <loc>https://www.dailytoolkit.xyz/tools/stock-price-tracker.html</loc>
+       <loc>https://www.dailytoolkit.xyz/tools/stock-price-tracker</loc>
        <lastmod>2026-07-23T15:28:23+00:00</lastmod>
        <changefreq>daily</changefreq>
        <priority>0.6400</priority>
   </url>
   <url>
-       <loc>https://www.dailytoolkit.xyz/tools/pdf-merger.html</loc>
+       <loc>https://www.dailytoolkit.xyz/tools/pdf-merger</loc>
        <lastmod>2026-07-23T15:28:23+00:00</lastmod>
        <changefreq>daily</changefreq>
        <priority>0.6400</priority>
   </url>
   <url>
-       <loc>https://www.dailytoolkit.xyz/tools/pdf-splitter.html</loc>
+       <loc>https://www.dailytoolkit.xyz/tools/pdf-splitter</loc>
        <lastmod>2026-07-23T15:28:23+00:00</lastmod>
        <changefreq>daily</changefreq>
        <priority>0.6400</priority>
   </url>
   <url>
-       <loc>https://www.dailytoolkit.xyz/tools/pdf-to-image.html</loc>
+       <loc>https://www.dailytoolkit.xyz/tools/pdf-to-image</loc>
        <lastmod>2026-07-23T15:28:23+00:00</lastmod>
        <changefreq>daily</changefreq>
        <priority>0.6400</priority>
   </url>
   <url>
-       <loc>https://www.dailytoolkit.xyz/tools/image-to-pdf.html</loc>
+       <loc>https://www.dailytoolkit.xyz/tools/image-to-pdf</loc>
        <lastmod>2026-07-23T15:28:23+00:00</lastmod>
        <changefreq>daily</changefreq>
        <priority>0.6400</priority>
   </url>
   <url>
-       <loc>https://www.dailytoolkit.xyz/tools/image-resizer.html</loc>
+       <loc>https://www.dailytoolkit.xyz/tools/image-resizer</loc>
        <lastmod>2026-07-23T15:28:23+00:00</lastmod>
        <changefreq>daily</changefreq>
        <priority>0.6400</priority>
   </url>
   <url>
-       <loc>https://www.dailytoolkit.xyz/tools/color-picker.html</loc>
+       <loc>https://www.dailytoolkit.xyz/tools/color-picker</loc>
        <lastmod>2026-07-23T15:28:23+00:00</lastmod>
        <changefreq>daily</changefreq>
        <priority>0.6400</priority>
   </url>
   <url>
-       <loc>https://www.dailytoolkit.xyz/tools/word-counter.html</loc>
+       <loc>https://www.dailytoolkit.xyz/tools/word-counter</loc>
        <lastmod>2026-07-23T15:28:23+00:00</lastmod>
        <changefreq>daily</changefreq>
        <priority>0.6400</priority>
   </url>
   <url>
-       <loc>https://www.dailytoolkit.xyz/tools/text-case-converter.html</loc>
+       <loc>https://www.dailytoolkit.xyz/tools/text-case-converter</loc>
        <lastmod>2026-07-23T15:28:23+00:00</lastmod>
        <changefreq>daily</changefreq>
        <priority>0.6400</priority>
   </url>
   <url>
-       <loc>https://www.dailytoolkit.xyz/tools/url-encoder-decoder.html</loc>
+       <loc>https://www.dailytoolkit.xyz/tools/url-encoder-decoder</loc>
        <lastmod>2026-07-23T15:28:23+00:00</lastmod>
        <changefreq>daily</changefreq>
        <priority>0.6400</priority>
   </url>
   <url>
-       <loc>https://www.dailytoolkit.xyz/tools/instagram-caption-maker.html</loc>
+       <loc>https://www.dailytoolkit.xyz/tools/instagram-caption-maker</loc>
        <lastmod>2026-07-23T15:28:23+00:00</lastmod>
        <changefreq>daily</changefreq>
        <priority>0.6400</priority>
   </url>
   <url>
-       <loc>https://www.dailytoolkit.xyz/tools/barcode-generator.html</loc>
+       <loc>https://www.dailytoolkit.xyz/tools/barcode-generator</loc>
        <lastmod>2026-07-23T15:28:23+00:00</lastmod>
        <changefreq>daily</changefreq>
        <priority>0.6400</priority>
   </url>
   <url>
-       <loc>https://www.dailytoolkit.xyz/tools/hashtag-generator.html</loc>
+       <loc>https://www.dailytoolkit.xyz/tools/hashtag-generator</loc>
        <lastmod>2026-07-23T15:28:23+00:00</lastmod>
        <changefreq>daily</changefreq>
        <priority>0.6400</priority>
   </url>
   <url>
-       <loc>https://www.dailytoolkit.xyz/tools/bio-ideas-generator.html</loc>
+       <loc>https://www.dailytoolkit.xyz/tools/bio-ideas-generator</loc>
        <lastmod>2026-07-23T15:28:23+00:00</lastmod>
        <changefreq>daily</changefreq>
        <priority>0.6400</priority>
   </url>
   <url>
-       <loc>https://www.dailytoolkit.xyz/tools/emoji-picker.html</loc>
+       <loc>https://www.dailytoolkit.xyz/tools/emoji-picker</loc>
        <lastmod>2026-07-23T15:28:23+00:00</lastmod>
        <changefreq>daily</changefreq>
        <priority>0.6400</priority>
   </url>
   <url>
-       <loc>https://www.dailytoolkit.xyz/tools/ip-finder.html</loc>
+       <loc>https://www.dailytoolkit.xyz/tools/ip-finder</loc>
        <lastmod>2026-07-23T15:28:23+00:00</lastmod>
        <changefreq>daily</changefreq>
        <priority>0.6400</priority>
   </url>
   <url>
-       <loc>https://www.dailytoolkit.xyz/tools/pension-calculator.html</loc>
+       <loc>https://www.dailytoolkit.xyz/tools/pension-calculator</loc>
        <lastmod>2026-07-23T15:28:23+00:00</lastmod>
        <changefreq>daily</changefreq>
        <priority>0.5120</priority>
