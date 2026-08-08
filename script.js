@@ -238,7 +238,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initHeroParticles();
   initCounters();
   initScrollReveal();
-});
+  
 document.addEventListener("DOMContentLoaded", function () {
   
   // ----------------------------------------------------
