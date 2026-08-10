@@ -332,7 +332,7 @@ a { text-decoration: none; color: inherit; }
 }
 
 .mobile-nav {
-  display: none;
+  display: flex; opacity: 0; visibility: hidden; pointer-events: none;
   flex-direction: column;
   gap: 0.5rem;
   background: rgba(10, 15, 30, 0.96);
