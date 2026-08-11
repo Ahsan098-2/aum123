@@ -841,7 +841,7 @@ async function copyImage(){
 function printQR(){
   if(!state.lastCanvas){$("status").textContent="Generate a QR code first.";return}
   const win=window.open("","_blank");
-  win.document.write(`<html><head><title>Print QR Code</title><style>body{text-align:center;font-family:Arial;padding:40px}img{max-width:80vw}</style></head><body><h1>Daily Toolkit QR Code</h1><img src="${state.lastCanvas.toDataURL("image/png")}"><script>window.onload=()=>window.print()<\/script></body></html>`);
+  win.document.write(`<html><head><title>Print QR Code</title><style>body{text-align:center;font-family:Arial;padding:40px}img{max-width:80vw}</style></head><body><h1>Daily Toolkit QR Code</h1><img src="${state.lastCanvas.toDataURL("image/png")}" alt="Generated QR Code"><script>window.onload=()=>window.print()<\/script></body></html>`);
   win.document.close();
 }
 
