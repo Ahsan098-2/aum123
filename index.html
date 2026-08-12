@@ -93,18 +93,29 @@
   <meta name="twitter:description" content="Free online tools for daily tasks including calculators, converters, image utilities, and text tools.">
   <meta name="twitter:image" content="https://ahsan098-2.github.io/aum123/assets/preview.png">
 
-  <!-- Schema.org JSON-LD -->
+   <!-- Schema.org JSON-LD -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "WebSite",
-    "name": "Daily Toolkit",
-    "url": "https://dailytoolkit.xyz",
-    "description": "Daily Toolkit offers free online tools for daily use including calculators, PDF tools, image tools, converters, text utilities, SEO tools, productivity tools, and web tools — fast, simple, and easy to use.",
-    "publisher": {
-      "@type": "Organization",
-      "name": "Daily Toolkit"
-    }
+    "@graph": [
+      {
+        "@type": "WebSite",
+        "@id": "https://dailytoolkit.xyz/#website",
+        "url": "https://dailytoolkit.xyz/",
+        "name": "Daily Toolkit",
+        "description": "Daily Toolkit offers free online tools for daily use including calculators, PDF tools, image tools, converters, text utilities, SEO tools, productivity tools, and web tools — fast, simple, and easy to use.",
+        "publisher": {
+          "@id": "https://dailytoolkit.xyz/#organization"
+        }
+      },
+      {
+        "@type": "Organization",
+        "@id": "https://dailytoolkit.xyz/#organization",
+        "name": "Daily Toolkit",
+        "url": "https://dailytoolkit.xyz/",
+        "logo": "https://dailytoolkit.xyz/assets/logo.png"
+      }
+    ]
   }
   </script>
 
