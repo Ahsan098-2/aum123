@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://www.dailytoolkit.xyz/sitemap.xml
+Sitemap: https://dailytoolkit.xyz/sitemap.xml
