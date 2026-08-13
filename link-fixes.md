@@ -36,7 +36,7 @@
 3. **No hreflang tags** - Multiple language support missing
 4. **Missing og:image** - Open graph images may not exist
 5. **No structured data for FAQs** - FAQ schema missing
-6. **Analytics ID mismatch** - Different GA IDs across pages (G-3K7RBN1QSL vs G-XSNWLXJKBZ)
+6. **Analytics ID mismatch** - Different GA IDs across pages (G-3K7RBN1QSL vs G-3K7RBN1QSL)
 
 ## Geo-Targeting Issues
 
