@@ -27,7 +27,7 @@
 - ✅ LinkedIn: `https://pk.linkedin.com/in/ahsanullah-mahar-b1b177285`
 
 ### Image Links
-- ❌ `https://www.dailytoolkit.xyz/assets/preview.png` - May be broken (assets folder appears empty)
+- ❌ `https://dailytoolkit.xyz/assets/preview.png` - May be broken (assets folder appears empty)
 
 ## SEO Issues Found
 
