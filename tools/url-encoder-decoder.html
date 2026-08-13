@@ -8,11 +8,11 @@
 <meta name="keywords" content="URL encoder, URL decoder, URL encode online, URL decode online, percent encoding, percent decoder, encode URI, decode URI, query parameter encoder, URL encoding tool, URL parser, URL query string decoder, percent encode text, URL escape tool">
 <meta name="robots" content="index, follow">
 <meta name="author" content="Daily Toolkit">
-<link rel="canonical" href="https://www.dailytoolkit.xyz/tools/url-encoder-decoder">
+<link rel="canonical" href="https://dailytoolkit.xyz/tools/url-encoder-decoder">
 <meta property="og:title" content="Free URL Encoder & Decoder Online">
 <meta property="og:description" content="Encode and decode URLs, query strings and text with a powerful browser-based URL utility.">
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://www.dailytoolkit.xyz/tools/url-encoder-decoder">
+<meta property="og:url" content="https://dailytoolkit.xyz/tools/url-encoder-decoder">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="URL Encoder & Decoder Online - Daily Toolkit">
 <meta name="twitter:description" content="Free online URL encoding and decoding tool with URL parsing, query parameters, copy and download features.">
@@ -27,9 +27,9 @@ gtag('consent','default',{'ad_storage':'denied','ad_user_data':'denied','ad_pers
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <script type="application/ld+json">
 {"@context":"https://schema.org","@graph":[
-{"@type":"WebSite","name":"Daily Toolkit","url":"https://www.dailytoolkit.xyz"},
-{"@type":"WebApplication","name":"Free URL Encoder and Decoder","url":"https://www.dailytoolkit.xyz/tools/url-encoder-decoder","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"Encode and decode URLs, URI components, query strings and percent-encoded text online."},
-{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://www.dailytoolkit.xyz/"},{"@type":"ListItem","position":2,"name":"Tools","item":"https://www.dailytoolkit.xyz/#tools"},{"@type":"ListItem","position":3,"name":"URL Encoder & Decoder","item":"https://www.dailytoolkit.xyz/tools/url-encoder-decoder"}]},
+{"@type":"WebSite","name":"Daily Toolkit","url":"https://dailytoolkit.xyz"},
+{"@type":"WebApplication","name":"Free URL Encoder and Decoder","url":"https://dailytoolkit.xyz/tools/url-encoder-decoder","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"Encode and decode URLs, URI components, query strings and percent-encoded text online."},
+{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://dailytoolkit.xyz/"},{"@type":"ListItem","position":2,"name":"Tools","item":"https://dailytoolkit.xyz/#tools"},{"@type":"ListItem","position":3,"name":"URL Encoder & Decoder","item":"https://dailytoolkit.xyz/tools/url-encoder-decoder"}]},
 {"@type":"FAQPage","mainEntity":[
 {"@type":"Question","name":"What is URL encoding?","acceptedAnswer":{"@type":"Answer","text":"URL encoding converts characters that have special meanings or are not safe in a URL into percent-encoded representations, such as converting a space into %20."}},
 {"@type":"Question","name":"What is the difference between encodeURI and encodeURIComponent?","acceptedAnswer":{"@type":"Answer","text":"encodeURI is intended for a complete URI and preserves URI syntax characters, while encodeURIComponent is intended for an individual URI component such as a query parameter value and encodes more reserved characters."}},
@@ -195,7 +195,7 @@ const nav=$('#nav');window.addEventListener('scroll',()=>nav.classList.toggle('s
 $('#hamb').onclick=()=>$('#mobile').classList.toggle('open');
 function searchTool(e){e.preventDefault();let q=e.target.querySelector('input').value.toLowerCase();if(q.includes('word'))location='word-counter';else if(q.includes('case'))location='text-case-converter';else if(q.includes('password'))location='password-gen';else location='../index#tools'}
 const input=$('#input'),output=$('#output');let mode='encodeURI';
-const sample='https://www.dailytoolkit.xyz/search?q=hello world&category=online tools&language=English';
+const sample='https://dailytoolkit.xyz/search?q=hello world&category=online tools&language=English';
 function encodePlus(s){return encodeURIComponent(s).replace(/%20/g,'+')}
 function decodePlus(s){try{return decodeURIComponent(s.replace(/\+/g,' '))}catch(e){return s}}
 function convert(){
