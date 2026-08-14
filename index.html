@@ -98,7 +98,7 @@
   <meta name="twitter:image" content="https://dailytoolkit.xyz/assets/preview.png">
 
    <!-- Schema.org JSON-LD -->
-  <script type="application/ld+json">
+   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@graph": [
@@ -108,20 +108,55 @@
         "url": "https://dailytoolkit.xyz/",
         "name": "Daily Toolkit",
         "description": "Daily Toolkit offers free online tools for daily use including calculators, PDF tools, image tools, converters, text utilities, SEO tools, productivity tools, and web tools — fast, simple, and easy to use.",
-        "publisher": {
-          "@id": "https://dailytoolkit.xyz/#organization"
-        }
+        "publisher": { "@id": "https://dailytoolkit.xyz/#organization" },
+        "inLanguage": "en"
       },
       {
         "@type": "Organization",
         "@id": "https://dailytoolkit.xyz/#organization",
         "name": "Daily Toolkit",
         "url": "https://dailytoolkit.xyz/",
-        "logo": "https://dailytoolkit.xyz/assets/logo.png"
+        "logo": {
+          "@type": "ImageObject",
+          "@id": "https://dailytoolkit.xyz/#logo",
+          "url": "https://dailytoolkit.xyz/assets/logo.png",
+          "contentUrl": "https://dailytoolkit.xyz/assets/logo.png",
+          "width": 512,
+          "height": 512
+        },
+        "image": { "@id": "https://dailytoolkit.xyz/#logo" },
+        "description": "Daily Toolkit is a free online tools platform offering PDF utilities, image tools, calculators, and localized web tools — no login required.",
+        "sameAs": [
+          "https://www.facebook.com/Ahsanullah7116",
+          "https://www.instagram.com/ahsan_ontop01",
+          "https://www.linkedin.com/in/ahsanullah-mahar-b1b177285",
+          "https://github.com/Ahsan098-2"
+        ]
+      },
+      {
+        "@type": "WebPage",
+        "@id": "https://dailytoolkit.xyz/#webpage",
+        "url": "https://dailytoolkit.xyz/",
+        "name": "Free Online Web Tools: PDF, Image & Calculators | Daily Toolkit",
+        "isPartOf": { "@id": "https://dailytoolkit.xyz/#website" },
+        "description": "Free online web tools: compress PDF files, convert image to pdf, photo to text, and quick utilities for daily tasks.",
+        "datePublished": "2025-11-01",
+        "dateModified": "2026-08-01",
+        "inLanguage": "en"
+      },
+      {
+        "@type": "ItemList",
+        "@id": "https://dailytoolkit.xyz/#toollist",
+        "name": "Daily Toolkit — Free Online Tools",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "url": "https://dailytoolkit.xyz/tools/pdf-merger", "name": "PDF Merger" },
+          { "@type": "ListItem", "position": 2, "url": "https://dailytoolkit.xyz/tools/image-compressor", "name": "Image Compressor" },
+          { "@type": "ListItem", "position": 3, "url": "https://dailytoolkit.xyz/tools/qr-generator", "name": "QR Generator" }
+        ]
       }
     ]
   }
-  </script>
+</script>
 
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
