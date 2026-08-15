@@ -35,4 +35,5 @@
   ensureATSResumeTool();
   load('/script-optimized.js?v=20260815');
   load('/assets/new-featured-tools.js?v=20260815');
+  load('/assets/home-ats-tool.js?v=20260815');
 })();
