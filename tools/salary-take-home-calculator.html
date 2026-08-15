@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Salary Take-Home Calculator | Estimate Your Net Pay</title>
+<meta name="description" content="Estimate your monthly and yearly take-home salary after tax, deductions and benefits. Free salary calculator with transparent assumptions and instant results.">
+<meta name="robots" content="index,follow">
+<link rel="canonical" href="https://dailytoolkit.xyz/tools/salary-take-home-calculator.html">
+<style>
+:root{--bg:#f6f8fb;--card:#fff;--text:#172033;--muted:#657084;--line:#e4e8ef;--brand:#2563eb;--brand2:#1d4ed8;--good:#0f766e}
+*{box-sizing:border-box}body{margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,sans-serif;background:var(--bg);color:var(--text);line-height:1.65}a{color:inherit}.wrap{max-width:1080px;margin:auto;padding:24px 18px}.top{display:flex;justify-content:space-between;align-items:center;padding:12px 0 24px}.brand{font-weight:800;text-decoration:none}.back{color:var(--muted);text-decoration:none}.hero{text-align:center;padding:30px 0}.eyebrow{color:var(--brand);font-weight:700;font-size:.85rem;text-transform:uppercase;letter-spacing:.08em}h1{font-size:clamp(2rem,5vw,3.4rem);line-height:1.1;margin:10px 0}.lead{max-width:720px;margin:0 auto;color:var(--muted)}.layout{display:grid;grid-template-columns:1fr 1fr;gap:20px}.card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:24px;box-shadow:0 8px 30px #1720330b}label{display:block;font-weight:700;margin:14px 0 6px}input,select{width:100%;padding:13px;border:1px solid #cfd6e2;border-radius:10px;font:inherit;background:#fff}button{width:100%;margin-top:20px;padding:14px;border:0;border-radius:10px;background:var(--brand);color:#fff;font-weight:800;font-size:1rem;cursor:pointer}button:hover{background:var(--brand2)}.result{display:grid;gap:12px}.metric{padding:16px;border:1px solid var(--line);border-radius:12px;background:#fbfcfe}.metric strong{display:block;font-size:1.5rem}.muted{color:var(--muted);font-size:.92rem}.article{margin-top:22px}.article h2{margin-top:30px}footer{margin:40px 0 15px;padding-top:20px;border-top:1px solid var(--line);color:var(--muted);font-size:.9rem}@media(max-width:760px){.layout{grid-template-columns:1fr}.top{align-items:flex-start}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="top"><a class="brand" href="/">Daily Toolkit</a><a class="back" href="/">All tools</a></header>
+<section class="hero"><div class="eyebrow">Finance calculator</div><h1>Salary Take-Home Calculator</h1><p class="lead">Estimate your net monthly and yearly pay after entering salary, deductions and benefits. Use your own tax and deduction assumptions for a transparent estimate.</p></section>
+<main class="layout">
+<section class="card"><h2>Your salary details</h2><label for="salary">Gross annual salary</label><input id="salary" type="number" min="0" step="100" value="60000"><label for="tax">Estimated annual tax (%)</label><input id="tax" type="number" min="0" max="100" step="0.1" value="15"><label for="deductions">Other annual deductions</label><input id="deductions" type="number" min="0" step="100" value="0"><label for="benefits">Annual employer/benefit value</label><input id="benefits" type="number" min="0" step="100" value="0"><button id="calculate">Calculate take-home pay</button><p class="muted">This is an estimate, not tax advice. Actual payroll rules vary by country, tax year, benefits and deductions.</p></section>
+<section class="card"><h2>Your estimate</h2><div class="result"><div class="metric"><span class="muted">Net annual pay</span><strong id="annual">—</strong></div><div class="metric"><span class="muted">Net monthly pay</span><strong id="monthly">—</strong></div><div class="metric"><span class="muted">Estimated annual tax</span><strong id="taxout">—</strong></div><div class="metric"><span class="muted">Effective tax rate</span><strong id="rate">—</strong></div><div class="metric"><span class="muted">Total compensation including benefit value</span><strong id="total">—</strong></div></div></section>
+</main>
+<article class="card article"><h2>How the salary take-home calculator works</h2><p>Take-home pay is the amount left from gross salary after estimated tax and other deductions. This calculator lets you enter your own tax percentage rather than assuming a universal tax table, because payroll rules differ by country and tax year.</p><h2>How to use it</h2><p>Enter your gross annual salary, estimated tax rate and other annual deductions. If your compensation includes a separately valued benefit, add it to the benefit field to compare total compensation with cash take-home pay.</p><h2>Why your actual paycheck can differ</h2><p>Payroll can include progressive tax bands, social contributions, insurance, retirement contributions, allowances and taxable benefits. Check your employer payroll statement or official tax authority for the exact amount.</p><h2>Frequently asked questions</h2><h3>Is this calculator an official tax calculator?</h3><p>No. It is an estimation tool designed for planning and comparison. It does not replace professional tax advice or an official government calculator.</p><h3>Can I use it for any country?</h3><p>Yes, as a general estimator if you know the relevant effective tax rate and deductions. For country-specific results, use the applicable official tax rules and tax year.</p></article>
+<footer>Daily Toolkit · Practical online tools. <a href="/privacy.html">Privacy</a> · <a href="/terms.html">Terms</a> · <a href="/contact.html">Contact</a></footer>
+</div>
+<script>
+const money=n=>new Intl.NumberFormat(undefined,{style:'currency',currency:'USD',maximumFractionDigits:2}).format(n);
+function calculate(){const s=Math.max(0,Number(document.querySelector('#salary').value)||0);const t=Math.min(100,Math.max(0,Number(document.querySelector('#tax').value)||0));const d=Math.max(0,Number(document.querySelector('#deductions').value)||0);const b=Math.max(0,Number(document.querySelector('#benefits').value)||0);const tax=s*t/100;const net=Math.max(0,s-tax-d);document.querySelector('#annual').textContent=money(net);document.querySelector('#monthly').textContent=money(net/12);document.querySelector('#taxout').textContent=money(tax);document.querySelector('#rate').textContent=(s?tax/s*100:0).toFixed(2)+'%';document.querySelector('#total').textContent=money(net+b)}
+document.querySelector('#calculate').addEventListener('click',calculate);calculate();
+</script>
+</body>
+</html>
