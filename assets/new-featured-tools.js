@@ -25,23 +25,19 @@
   }
 
   function ensureATSCard(grid){
-    if(!grid || typeof currentFilter!=='undefined' && currentFilter!=='all') return;
+    if(!grid) return;
     if(grid.querySelector('[data-ats-resume-tool="true"]')) return;
 
     const ats=makeCard(['📄','ATS Resume Score Checker','Compare your resume against a job description to find missing keywords and improve ATS compatibility.','tools/ats-resume-score-checker.html','text']);
     ats.setAttribute('data-ats-resume-tool','true');
 
-    // Put ATS directly after Age Calculator so it is visible beside it on the home page.
     const cards=Array.from(grid.querySelectorAll('.tool-card-item'));
     const age=cards.find(function(card){
       const href=card.getAttribute('href')||'';
       return href.includes('age-calculator');
     });
-    if(age){
-      age.insertAdjacentElement('afterend',ats);
-    }else{
-      grid.appendChild(ats);
-    }
+    if(age) age.insertAdjacentElement('afterend',ats);
+    else grid.appendChild(ats);
   }
 
   function integrateWithExistingCatalog(grid){
@@ -54,8 +50,7 @@
           }
         });
         renderTools();
-        // renderTools can rebuild the grid, so enforce the requested ATS placement afterwards.
-        ensureATSCard(grid);
+        setTimeout(function(){ensureATSCard(grid);},0);
         return true;
       }
     }catch(error){
@@ -64,15 +59,17 @@
     return false;
   }
 
-  function patchRenderTools(grid){
-    if(typeof renderTools!=='function' || renderTools.__atsPatched) return;
-    const original=renderTools;
-    function patchedRenderTools(){
-      original.apply(this,arguments);
-      setTimeout(function(){ ensureATSCard(grid); },0);
-    }
-    patchedRenderTools.__atsPatched=true;
-    window.renderTools=patchedRenderTools;
+  function watchGrid(grid){
+    let timer=null;
+    const observer=new MutationObserver(function(){
+      clearTimeout(timer);
+      timer=setTimeout(function(){
+        // The home page's renderTools() replaces grid.innerHTML whenever a filter/search changes.
+        // Re-add the ATS card after that replacement and keep it immediately after Age Calculator.
+        if(grid.id==='toolsGrid') ensureATSCard(grid);
+      },20);
+    });
+    observer.observe(grid,{childList:true});
   }
 
   function init(){
@@ -82,9 +79,9 @@
       return;
     }
 
-    patchRenderTools(grid);
     integrateWithExistingCatalog(grid);
-    setTimeout(function(){ ensureATSCard(grid); },50);
+    setTimeout(function(){ensureATSCard(grid);},100);
+    watchGrid(grid);
   }
 
   if(document.readyState==='loading'){
