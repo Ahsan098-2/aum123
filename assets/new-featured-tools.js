@@ -19,23 +19,29 @@
     a.className='tool-card-item premium-featured-tool';
     a.href='/' + t[3].replace(/^\//,'');
     a.setAttribute('data-premium-tool','true');
-    a.innerHTML='<span class="tc-icon">'+t[0]+'</span><span class="tc-name">'+t[1]+'</span><span class="tc-desc">'+t[2]+'</span><span class="tc-arrow">Use Tool →</span>';
+    a.setAttribute('aria-label',t[1]+' - '+t[2]);
+    a.innerHTML='<div class="tc-icon">'+t[0]+'</div><div class="tc-name">'+t[1]+'</div><div class="tc-desc">'+t[2]+'</div><div class="tc-arrow" aria-hidden="true">Use Tool →</div>';
     return a;
   }
 
-  function renderIndependent(grid){
-    if(!grid || grid.dataset.premiumRendered==='true') return;
-    grid.dataset.premiumRendered='true';
+  function ensureATSCard(grid){
+    if(!grid || typeof currentFilter!=='undefined' && currentFilter!=='all') return;
+    if(grid.querySelector('[data-ats-resume-tool="true"]')) return;
 
-    const fragment=document.createDocumentFragment();
-    const marker=document.createElement('div');
-    marker.id='premiumToolsMarker';
-    marker.style.cssText='grid-column:1/-1;background:#0A0A0A;color:#fff;padding:14px 18px;font-size:.78rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;display:flex;align-items:center;justify-content:space-between;border-radius:10px;margin-bottom:4px';
-    marker.innerHTML='<span>✦ New Premium Tools</span><span style="color:#E8D28A">10 high-value utilities</span>';
-    fragment.appendChild(marker);
+    const ats=makeCard(['📄','ATS Resume Score Checker','Compare your resume against a job description to find missing keywords and improve ATS compatibility.','tools/ats-resume-score-checker.html','text']);
+    ats.setAttribute('data-ats-resume-tool','true');
 
-    premiumTools.forEach(function(t){ fragment.appendChild(makeCard(t)); });
-    grid.prepend(fragment);
+    // Put ATS directly after Age Calculator so it is visible beside it on the home page.
+    const cards=Array.from(grid.querySelectorAll('.tool-card-item'));
+    const age=cards.find(function(card){
+      const href=card.getAttribute('href')||'';
+      return href.includes('age-calculator');
+    });
+    if(age){
+      age.insertAdjacentElement('afterend',ats);
+    }else{
+      grid.appendChild(ats);
+    }
   }
 
   function integrateWithExistingCatalog(grid){
@@ -44,17 +50,29 @@
         const existing=new Set(allTools.map(function(t){return t.url}));
         premiumTools.forEach(function(t){
           if(!existing.has(t[3])){
-            allTools.unshift({name:t[1],desc:t[2],icon:'fas fa-star',cat:t[4],url:t[3]});
+            allTools.push({name:t[1],desc:t[2],icon:'fas fa-star',cat:t[4],url:t[3]});
           }
         });
         renderTools();
-        grid.dataset.premiumRendered='true';
+        // renderTools can rebuild the grid, so enforce the requested ATS placement afterwards.
+        ensureATSCard(grid);
         return true;
       }
     }catch(error){
       console.warn('Daily Toolkit premium catalog integration fallback:',error);
     }
     return false;
+  }
+
+  function patchRenderTools(grid){
+    if(typeof renderTools!=='function' || renderTools.__atsPatched) return;
+    const original=renderTools;
+    function patchedRenderTools(){
+      original.apply(this,arguments);
+      setTimeout(function(){ ensureATSCard(grid); },0);
+    }
+    patchedRenderTools.__atsPatched=true;
+    window.renderTools=patchedRenderTools;
   }
 
   function init(){
@@ -64,11 +82,9 @@
       return;
     }
 
-    if(grid.dataset.premiumRendered==='true') return;
-
-    if(!integrateWithExistingCatalog(grid)){
-      renderIndependent(grid);
-    }
+    patchRenderTools(grid);
+    integrateWithExistingCatalog(grid);
+    setTimeout(function(){ ensureATSCard(grid); },50);
   }
 
   if(document.readyState==='loading'){
