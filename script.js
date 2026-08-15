@@ -1,191 +1,146 @@
-// Tool modal open/close logic
-document.addEventListener('DOMContentLoaded', () => {
-  const openButtons = document.querySelectorAll('.open-tool-btn');
-  const backdrop = document.getElementById('toolModalBackdrop');
-  const content = document.getElementById('toolModalContent');
-  const closeBtn = document.getElementById('closeToolModal');
+// Daily Toolkit homepage behavior + 1000-tool catalog
+(function () {
+  'use strict';
 
-  openButtons.forEach(btn => {
-    btn.addEventListener('click', () => {
-      const toolId = btn.getAttribute('data-tool');
-      const fullTool = document.getElementById(`tool-full-${toolId}`);
-      if (fullTool) {
-        content.innerHTML = fullTool.innerHTML;
-        backdrop.style.display = 'flex';
-      }
-    });
-  });
+  function ready(fn) {
+    if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', fn);
+    else fn();
+  }
 
-  closeBtn.addEventListener('click', () => {
-    backdrop.style.display = 'none';
-    content.innerHTML = '';
-  });
+  ready(function () {
+    // Safe legacy modal handlers
+    const openButtons = document.querySelectorAll('.open-tool-btn');
+    const backdrop = document.getElementById('toolModalBackdrop');
+    const content = document.getElementById('toolModalContent');
+    const closeBtn = document.getElementById('closeToolModal');
 
-  backdrop.addEventListener('click', e => {
-    if (e.target === backdrop) {
-      backdrop.style.display = 'none';
-      content.innerHTML = '';
+    if (backdrop && content) {
+      openButtons.forEach(btn => btn.addEventListener('click', () => {
+        const toolId = btn.getAttribute('data-tool');
+        const fullTool = document.getElementById(`tool-full-${toolId}`);
+        if (fullTool) {
+          content.innerHTML = fullTool.innerHTML;
+          backdrop.style.display = 'flex';
+        }
+      }));
+      if (closeBtn) closeBtn.addEventListener('click', () => {
+        backdrop.style.display = 'none';
+        content.innerHTML = '';
+      });
+      backdrop.addEventListener('click', e => {
+        if (e.target === backdrop) {
+          backdrop.style.display = 'none';
+          content.innerHTML = '';
+        }
+      });
     }
+
+    load1000Tools();
   });
-});
 
-/* Visual enhancements */
-document.addEventListener('DOMContentLoaded', () => {
-  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  const isFinePointer = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+  async function load1000Tools() {
+    const grid = document.getElementById('toolsGrid');
+    if (!grid) return;
 
-  if (isFinePointer && !prefersReducedMotion) {
-    const dot = document.createElement('div');
-    const ring = document.createElement('div');
-    dot.className = 'cursor-dot'; ring.className = 'cursor-ring';
-    document.body.append(dot, ring);
-    let mouseX=0,mouseY=0,ringX=0,ringY=0;
-    document.addEventListener('mousemove',e=>{mouseX=e.clientX;mouseY=e.clientY;dot.style.transform=`translate(${mouseX}px,${mouseY}px) translate(-50%,-50%)`;});
-    function loop(){ringX+=(mouseX-ringX)*.18;ringY+=(mouseY-ringY)*.18;ring.style.transform=`translate(${ringX}px,${ringY}px) translate(-50%,-50%)`;requestAnimationFrame(loop)}
-    loop();
-  }
+    // Absolute root path works on custom domains, Vercel and GitHub Pages subpaths.
+    const candidates = [
+      '/generated-tools/manifest.json',
+      'generated-tools/manifest.json'
+    ];
 
-  const observer = new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');observer.unobserve(e.target)}}),{threshold:.08});
-  document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
-});
+    let rows = null;
+    for (const url of candidates) {
+      try {
+        const response = await fetch(url + '?v=1000', { cache: 'no-store' });
+        if (response.ok) {
+          rows = await response.json();
+          if (Array.isArray(rows) && rows.length) break;
+        }
+      } catch (_) {}
+    }
 
-/* ================================================================
-   DAILY TOOLKIT — 1000 TOOL HOMEPAGE CONNECTOR
-   Loads the generated-tools manifest and connects every generated
-   page to the existing #toolsGrid on index.html. The homepage remains
-   static/SEO friendly while the browser renders the full live catalog.
-================================================================ */
-(function init1000ToolCatalog(){
-  const manifestUrl = 'generated-tools/manifest.json';
+    if (!Array.isArray(rows) || !rows.length) {
+      grid.innerHTML = '<div style="grid-column:1/-1;padding:2rem;text-align:center;color:#6B6B6B">Tools are loading. Please refresh once.</div>';
+      return;
+    }
 
-  function escapeHtml(value){
-    return String(value ?? '').replace(/[&<>\"']/g, ch => ({'&':'&amp;','<':'&lt;','>':'&gt;','\"':'&quot;',"'":'&#39;'}[ch]));
-  }
-
-  function iconForCategory(category){
-    const c = category.toLowerCase();
-    if(c.includes('pdf') || c.includes('file')) return 'file-pdf';
-    if(c.includes('image') || c.includes('color') || c.includes('typography')) return 'image';
-    if(c.includes('security') || c.includes('password')) return 'shield-heart';
-    if(c.includes('math') || c.includes('calculator') || c.includes('algebra') || c.includes('statistics')) return 'calculator';
-    if(c.includes('date') || c.includes('time')) return 'birthday-cake';
-    if(c.includes('finance') || c.includes('business')) return 'coins';
-    if(c.includes('seo') || c.includes('marketing') || c.includes('social')) return 'hashtag';
-    if(c.includes('developer') || c.includes('code') || c.includes('json') || c.includes('css') || c.includes('html')) return 'tools';
-    if(c.includes('url') || c.includes('encoding') || c.includes('regex')) return 'link';
-    if(c.includes('health')) return 'weight';
-    return 'tools';
-  }
-
-  function installCatalog(rows){
-    if(!Array.isArray(rows) || !rows.length) return;
-
-    // Replace the old small homepage catalog with all generated tools.
-    window.allTools = rows.map(r => ({
-      id: r.id,
-      name: r.title,
-      desc: `${r.operation} utility in ${r.category}`,
-      category: r.category,
-      cat: r.category.toLowerCase(),
-      iconName: iconForCategory(r.category),
-      url: r.path
+    // Make the complete catalog available to the existing homepage search/filter UI.
+    window.allTools = rows.map((r, i) => ({
+      id: r.id || i + 1,
+      name: r.title || `Tool ${i + 1}`,
+      desc: `${r.operation || 'Online'} tool for ${r.category || 'Daily Toolkit'}`,
+      category: r.category || 'Other',
+      cat: String(r.category || 'Other').toLowerCase(),
+      url: r.path || r.url
     }));
 
-    // Keep the existing inline homepage functions compatible.
-    window.currentFilter = 'all';
-    window.currentSearch = '';
+    const escape = value => String(value ?? '').replace(/[&<>\"']/g, c => ({
+      '&':'&amp;', '<':'&lt;', '>':'&gt;', '\"':'&quot;', "'":'&#39;'
+    }[c]));
 
-    const grid = document.getElementById('toolsGrid');
-    const noResult = document.getElementById('noSearchResult');
-    if(!grid) return;
-
-    // Build a compact category navigation above the 1000-card grid.
-    const tabWrap = document.querySelector('.filter-tabs');
-    if(tabWrap){
-      const categories = [...new Set(rows.map(r=>r.category))];
-      tabWrap.innerHTML = '';
-      const allBtn = document.createElement('button');
-      allBtn.className='filter-tab active';
-      allBtn.type='button';
-      allBtn.textContent=`All 1000 Tools`;
-      allBtn.addEventListener('click',()=>setCatalogFilter('all',allBtn));
-      tabWrap.appendChild(allBtn);
-      categories.forEach(category=>{
-        const btn=document.createElement('button');
-        btn.className='filter-tab'; btn.type='button'; btn.textContent=category;
-        btn.addEventListener('click',()=>setCatalogFilter(category.toLowerCase(),btn));
-        tabWrap.appendChild(btn);
-      });
-    }
-
-    // Update homepage stats to reflect the actual connected catalog.
-    document.querySelectorAll('.stat-number').forEach(el=>{
-      if(el.textContent.trim().match(/\d/)) el.textContent='1,000+';
-    });
-    document.querySelectorAll('.stat-label').forEach(el=>{
-      if(el.textContent.toLowerCase().includes('free tools')) el.textContent='Connected Tools';
-    });
-
-    function render(){
-      const filter = window.catalogFilter || 'all';
-      const query = (window.catalogSearch || '').trim().toLowerCase();
-      const filtered = window.allTools.filter(t=>{
-        const catOk = filter==='all' || t.cat===filter;
+    function renderTools(filter = 'all', query = '') {
+      const q = String(query).trim().toLowerCase();
+      const filtered = window.allTools.filter(t => {
+        const catOK = filter === 'all' || t.cat === filter;
         const text = `${t.name} ${t.desc} ${t.category}`.toLowerCase();
-        return catOk && (!query || text.includes(query));
+        return catOK && (!q || text.includes(q));
       });
-      noResult.style.display=filtered.length?'none':'block';
-      grid.innerHTML=filtered.map(t=>`
-        <a href="${escapeHtml(t.url)}" class="tool-card-item" data-tool="${escapeHtml(t.name.toLowerCase())}" aria-label="${escapeHtml(t.name)} - ${escapeHtml(t.desc)}">
-          <div class="tc-icon"><svg class="icon" aria-hidden="true"><use href="#i-${escapeHtml(t.iconName)}"></use></svg></div>
-          <div class="tc-name">${escapeHtml(t.name)}</div>
-          <div class="tc-desc">${escapeHtml(t.desc)}</div>
-          <div class="tc-arrow" aria-hidden="true">Use Tool →</div>
-        </a>`).join('');
+
+      const noResult = document.getElementById('noSearchResult');
+      if (noResult) noResult.style.display = filtered.length ? 'none' : 'block';
+
+      grid.innerHTML = filtered.map(t => `
+        <a class="tool-card-item" href="${escape(t.url)}" title="${escape(t.name)}" aria-label="Open ${escape(t.name)}">
+          <div class="tc-icon" aria-hidden="true">⚡</div>
+          <div class="tc-name">${escape(t.name)}</div>
+          <div class="tc-desc">${escape(t.desc)}</div>
+          <div class="tc-arrow">Use Tool →</div>
+        </a>
+      `).join('');
     }
 
-    window.render1000Tools=render;
-    window.setCatalogFilter=function(category,btn){
-      window.catalogFilter=category;
-      document.querySelectorAll('.filter-tab').forEach(b=>b.classList.remove('active'));
-      if(btn) btn.classList.add('active');
-      render();
-      const tools=document.getElementById('tools');
-      if(tools) tools.scrollIntoView({behavior:'smooth'});
-    };
+    window.render1000Tools = renderTools;
+    window.catalogFilter = 'all';
+    window.catalogSearch = '';
 
-    // Hook all existing search fields into the 1000-tool catalog.
-    document.querySelectorAll('#searchInput, .search-box input, .mobile-search input').forEach(input=>{
-      input.addEventListener('input',()=>{window.catalogSearch=input.value.toLowerCase();render();});
+    // Replace old category buttons with all real categories.
+    const tabs = document.querySelector('.filter-tabs');
+    if (tabs) {
+      const categories = [...new Set(window.allTools.map(t => t.category))];
+      tabs.innerHTML = '';
+
+      const addTab = (label, value, active) => {
+        const button = document.createElement('button');
+        button.type = 'button';
+        button.className = `filter-tab${active ? ' active' : ''}`;
+        button.textContent = label;
+        button.addEventListener('click', () => {
+          window.catalogFilter = value;
+          tabs.querySelectorAll('.filter-tab').forEach(b => b.classList.remove('active'));
+          button.classList.add('active');
+          renderTools(window.catalogFilter, window.catalogSearch);
+        });
+        tabs.appendChild(button);
+      };
+
+      addTab('All Tools (1,000)', 'all', true);
+      categories.forEach(category => addTab(category, category.toLowerCase(), false));
+    }
+
+    // Connect every homepage search field.
+    document.querySelectorAll('#searchInput, .nav-search input, .mobile-search input, input[type="search"]').forEach(input => {
+      input.addEventListener('input', () => {
+        window.catalogSearch = input.value;
+        renderTools(window.catalogFilter, window.catalogSearch);
+      });
     });
 
-    render();
+    // Update the visible count without disturbing unrelated statistics.
+    document.querySelectorAll('.stat-number').forEach(el => {
+      if (/tool/i.test(el.parentElement?.textContent || '') || /\+?\s*tools?/i.test(el.textContent)) el.textContent = '1,000+';
+    });
+
+    // First render: all 1,000 cards are visibly present exactly like existing tool cards.
+    renderTools('all', '');
   }
-
-  fetch(manifestUrl,{cache:'no-cache'})
-    .then(response=>{
-      if(!response.ok) throw new Error(`Manifest HTTP ${response.status}`);
-      return response.json();
-    })
-    .then(rows=>{
-      if(rows.length !== 1000) console.warn(`Daily Toolkit catalog contains ${rows.length} generated tools; expected 1000.`);
-      installCatalog(rows);
-    })
-    .catch(error=>{
-      console.error('Daily Toolkit 1000-tool catalog could not load:',error);
-      const grid=document.getElementById('toolsGrid');
-      if(grid && !grid.children.length){
-        const msg=document.createElement('p');
-        msg.textContent='Tool catalog is temporarily loading. Please refresh the page.';
-        grid.replaceWith(msg);
-      }
-    });
 })();
-
-// Broken/empty link guard
-window.addEventListener('DOMContentLoaded',()=>{
-  document.querySelectorAll('a').forEach(link=>{
-    const href=link.getAttribute('href');
-    if(!href || href==='undefined') link.setAttribute('aria-disabled','true');
-  });
-});
