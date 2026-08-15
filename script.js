@@ -8,7 +8,6 @@
   }
 
   ready(function () {
-    // Safe legacy modal handlers
     const openButtons = document.querySelectorAll('.open-tool-btn');
     const backdrop = document.getElementById('toolModalBackdrop');
     const content = document.getElementById('toolModalContent');
@@ -42,29 +41,43 @@
     const grid = document.getElementById('toolsGrid');
     if (!grid) return;
 
-    // Absolute root path works on custom domains, Vercel and GitHub Pages subpaths.
+    // Prevent the homepage reveal animation from keeping dynamically inserted cards invisible.
+    grid.classList.remove('reveal');
+    grid.classList.add('visible');
+    grid.style.opacity = '1';
+    grid.style.transform = 'none';
+
     const candidates = [
       '/generated-tools/manifest.json',
+      './generated-tools/manifest.json',
       'generated-tools/manifest.json'
     ];
 
     let rows = null;
+    let lastError = '';
     for (const url of candidates) {
       try {
-        const response = await fetch(url + '?v=1000', { cache: 'no-store' });
-        if (response.ok) {
-          rows = await response.json();
-          if (Array.isArray(rows) && rows.length) break;
+        const response = await fetch(url + (url.includes('?') ? '&' : '?') + 'v=20260815', { cache: 'no-store' });
+        if (!response.ok) {
+          lastError = `HTTP ${response.status}`;
+          continue;
         }
-      } catch (_) {}
+        const data = await response.json();
+        if (Array.isArray(data) && data.length) {
+          rows = data;
+          break;
+        }
+        lastError = 'Manifest is empty or invalid';
+      } catch (error) {
+        lastError = error.message || 'Network error';
+      }
     }
 
     if (!Array.isArray(rows) || !rows.length) {
-      grid.innerHTML = '<div style="grid-column:1/-1;padding:2rem;text-align:center;color:#6B6B6B">Tools are loading. Please refresh once.</div>';
+      grid.innerHTML = `<div style="grid-column:1/-1;padding:2rem;text-align:center;color:#6B6B6B"><strong>Tool catalog could not load.</strong><br><small>${lastError || 'Unknown error'}</small><br><a href="/tools.html" style="text-decoration:underline">Open All Tools</a></div>`;
       return;
     }
 
-    // Make the complete catalog available to the existing homepage search/filter UI.
     window.allTools = rows.map((r, i) => ({
       id: r.id || i + 1,
       name: r.title || `Tool ${i + 1}`,
@@ -97,13 +110,18 @@
           <div class="tc-arrow">Use Tool →</div>
         </a>
       `).join('');
+
+      // Explicitly keep the dynamically-created grid visible.
+      grid.style.display = 'grid';
+      grid.style.visibility = 'visible';
+      grid.style.opacity = '1';
+      grid.style.transform = 'none';
     }
 
     window.render1000Tools = renderTools;
     window.catalogFilter = 'all';
     window.catalogSearch = '';
 
-    // Replace old category buttons with all real categories.
     const tabs = document.querySelector('.filter-tabs');
     if (tabs) {
       const categories = [...new Set(window.allTools.map(t => t.category))];
@@ -123,11 +141,10 @@
         tabs.appendChild(button);
       };
 
-      addTab('All Tools (1,000)', 'all', true);
+      addTab(`All Tools (${window.allTools.length})`, 'all', true);
       categories.forEach(category => addTab(category, category.toLowerCase(), false));
     }
 
-    // Connect every homepage search field.
     document.querySelectorAll('#searchInput, .nav-search input, .mobile-search input, input[type="search"]').forEach(input => {
       input.addEventListener('input', () => {
         window.catalogSearch = input.value;
@@ -135,12 +152,10 @@
       });
     });
 
-    // Update the visible count without disturbing unrelated statistics.
     document.querySelectorAll('.stat-number').forEach(el => {
-      if (/tool/i.test(el.parentElement?.textContent || '') || /\+?\s*tools?/i.test(el.textContent)) el.textContent = '1,000+';
+      if (/tool/i.test(el.parentElement?.textContent || '') || /\+?\s*tools?/i.test(el.textContent)) el.textContent = `${window.allTools.length}+`;
     });
 
-    // First render: all 1,000 cards are visibly present exactly like existing tool cards.
     renderTools('all', '');
   }
 })();
