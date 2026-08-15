@@ -1492,24 +1492,24 @@ document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
         resultsContainer.innerHTML = `<div style="padding: 12px; color: #666; font-size: 13px; text-align: center; background: #f8fafc; border-radius: 6px;">No matching tool found for your request.</div>`;
         return;
       }
-
-      data.results.forEach(tool => {
+  data.results.forEach(tool => {
         const card = document.createElement("a");
         card.className = "ai-tool-card";
         card.href = tool.url;
+        // 👇 Compact inline CSS styling
+        card.style.cssText = "display: flex; align-items: center; justify-content: space-between; padding: 8px 12px; margin-top: 6px; background: #ffffff; border: 1px solid #e2e8f0; border-radius: 6px; text-decoration: none; transition: 0.2s; font-size: 13px;";
+        
         card.innerHTML = `
-          <div>
-            <div>🔨 ${tool.name}</div>
-            <div style="font-size: 11px; color: #666; font-weight: 400; margin-top: 2px;">${tool.description}</div>
+          <div style="display: flex; align-items: center; gap: 8px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">
+            <span style="font-size: 14px;">🔨</span>
+            <strong style="color: #1e293b; font-weight: 600;">${tool.name}</strong>
+            <span style="color: #64748b; font-size: 11px; margin-left: 4px; overflow: hidden; text-overflow: ellipsis;">— ${tool.description}</span>
           </div>
-          <span style="color: #7A5C18; font-size: 12px; margin-left: 8px;">Open Tool →</span>
+          <span style="color: #0284c7; font-size: 11px; font-weight: 600; white-space: nowrap; margin-left: 10px;">Open →</span>
         `;
         resultsContainer.appendChild(card);
       });
-    } catch (err) {
-      resultsContainer.innerHTML = `<div style="padding: 12px; color: red; font-size: 13px; text-align: center;">Failed to process search request.</div>`;
-    }
-  }
+     
 </script>
   <script src="script.js"></script>
 </body>
