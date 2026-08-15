@@ -1,1 +1,687 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>ATS Resume Score Checker | Keyword Match & Resume Optimization | Daily Toolkit</title><meta name="description" content="Compare resume text with a job description using a transparent browser-based keyword matching checklist. Find detected terms, missing terms and an ATS-style compatibility score."><meta name="robots" content="index,follow"><link rel="canonical" href="https://dailytoolkit.xyz/tools/ats-resume-score-checker.html"><link rel="stylesheet" href="/assets/premium-tools.css"></head><body><header class="pt-header"><div class="pt-container pt-nav"><a class="pt-brand" href="/">Daily <span>Toolkit</span></a><nav class="pt-navlinks"><a href="/">Home</a><a href="/tools.html">All Tools</a><a href="/about.html">About</a><a href="/contact.html">Contact</a><button id="themeButton" class="pt-theme">🌙</button></nav></div></header><main><section class="pt-hero"><div class="pt-container"><span class="pt-eyebrow">Career & Resume</span><h1>ATS Resume Score Checker</h1><p class="pt-lead">Compare a resume with a target job description, identify recurring job-related terms and find areas that may deserve attention before you apply.</p></div></section><section class="pt-container"><div class="pt-tool"><div class="pt-toolbar"><div class="pt-actions"><button id="calc" class="pt-btn primary">Check Resume Match</button><button id="sample" class="pt-btn">Load Example</button></div><div class="pt-actions"><button id="copyButton" class="pt-btn">Copy Result</button><button id="downloadButton" class="pt-btn">Download</button><button id="resetButton" class="pt-btn">Reset</button></div></div><div class="pt-grid"><section class="pt-panel"><h2>Resume text</h2><div class="pt-field"><label for="resume">Paste your resume</label><textarea id="resume" data-default="" rows="15" placeholder="Paste the text of your resume here..."></textarea></div></section><section class="pt-panel"><h2>Target job</h2><div class="pt-field"><label for="job">Paste the job description</label><textarea id="job" data-default="" rows="15" placeholder="Paste the job description here..."></textarea></div></section></div><section class="pt-panel"><div class="pt-results"><div class="pt-metric"><small>ATS-style match</small><strong id="score">—</strong></div><div class="pt-metric"><small>Detected terms</small><strong id="detected">—</strong></div><div class="pt-metric"><small>Potentially missing</small><strong id="missingCount">—</strong></div><div class="pt-metric"><small>Resume words</small><strong id="resumeWords">—</strong></div></div><p id="resultText" class="pt-note">This is a transparent keyword-matching aid, not a proprietary ATS.</p><h3>Detected job terms</h3><div id="detectedList"></div><h3>Potentially missing terms</h3><div id="missingList"></div></section><div id="toolStatus" class="pt-status">Local text analysis. Your resume is not intentionally uploaded for scoring.</div></div></section><article class="pt-content"><section><h2>What Is an ATS Resume Score Checker and Why Use It?</h2><p>Applicant tracking systems can help employers organize applications, but different systems and employers use different configurations. A resume checker can therefore be useful as a preparation aid when it focuses on understandable signals rather than pretending to reproduce a proprietary ranking system.</p><p>This tool compares meaningful recurring terms in a job description with the text of your resume. It highlights terms that appear to be present and terms that are absent from the resume text. The result is an ATS-style compatibility score for this specific text comparison, not a guarantee that an employer's software will assign the same score.</p></section><section><h2>Step-by-Step Instructions</h2><ol><li>Paste the text from your current resume.</li><li>Paste the complete target job description.</li><li>Run the checker.</li><li>Review detected and potentially missing terms.</li><li>Only add skills or keywords that genuinely describe your experience.</li><li>Rewrite bullets naturally to demonstrate relevant experience rather than repeating keywords.</li></ol></section><section><h2>Key Technical & Privacy Features</h2><ul><li>Keyword extraction and matching happen locally in JavaScript.</li><li>No recruitment platform or employer database is connected.</li><li>The scoring method is transparent and based on detected terms.</li><li>The layout is responsive for editing on smaller screens.</li><li>Results can be copied or downloaded for personal use.</li></ul><div class="pt-callout"><strong>Important:</strong> Do not invent qualifications to improve a score. A good resume should accurately represent your skills and experience. Also avoid entering unnecessary sensitive personal information.</div></section><section><h2>Who Benefits From This Utility?</h2><p><strong>Job seekers</strong> can compare a resume to a specific vacancy. <strong>Students and graduates</strong> can identify terminology used by employers. <strong>Career coaches</strong> can use the checklist as a discussion aid. <strong>Professionals</strong> can quickly spot relevant terms before tailoring an application.</p></section><section><h2>How to Improve a Resume Match Responsibly</h2><p>Start with truthful relevance. If a job asks for Excel and you have genuine Excel experience, describe what you actually accomplished with it. If a requirement is missing from your background, do not add it merely because the checker reports a gap. Instead, emphasize adjacent experience or learning honestly. Strong resumes also use measurable outcomes, clear section headings and readable formatting.</p></section><section><h2>Frequently Asked Questions</h2><div class="pt-faq"><details><summary>Is the score the same as a real ATS score?</summary><p>No. ATS products differ, and employers configure them differently. This tool provides a transparent text-matching estimate.</p></details><details><summary>Should I add every missing keyword?</summary><p>No. Add terminology only when it truthfully reflects your qualifications, projects or experience.</p></details><details><summary>Is my resume uploaded?</summary><p>The matching calculation runs in your browser. Avoid entering sensitive information into any online tool unless you understand its privacy model.</p></details></div></section><section><h2>Why Daily Toolkit?</h2><p>Daily Toolkit aims to make tools understandable and honest about their limits. We avoid presenting a simple heuristic as an official employer or search-engine score.</p></section><section><h2>Related Tools</h2><div class="pt-related"><a href="/tools/salary-take-home-calculator.html">Salary Calculator</a><a href="/tools/debt-payoff-calculator.html">Debt Payoff</a><a href="/tools/investment-return-calculator.html">Investment Return</a><a href="/tools/retirement-calculator.html">Retirement</a><a href="/tools/ecommerce-profit-calculator.html">E-commerce Profit</a><a href="/tools/business-break-even-calculator.html">Break-Even</a><a href="/tools/freelancer-hourly-rate-calculator.html">Freelancer Rate</a><a href="/tools/job-offer-comparison-calculator.html">Job Offer Comparison</a><a href="/tools/website-seo-audit-tool.html">SEO Audit</a></div></section></article></main><footer class="pt-footer"><div class="pt-container pt-footer-inner"><strong>Daily Toolkit</strong><div class="pt-footer-links"><a href="/about.html">About</a><a href="/privacy.html">Privacy Policy</a><a href="/terms.html">Terms of Service</a><a href="/contact.html">Contact</a></div></div></footer><script src="/assets/premium-tools.js"></script><script>const stop=new Set('the and for with from that this are you your our into about have has will can job work using use their they them a an to of in on as is be or by at it'.split(' '));function extract(t){const a=t.toLowerCase().match(/[a-z][a-z0-9+#.-]{2,}/g)||[],m={};a.forEach(x=>{if(!stop.has(x))m[x]=(m[x]||0)+1});return Object.entries(m).sort((a,b)=>b[1]-a[1]).slice(0,40).map(x=>x[0])}function run(){const r=resume.value.toLowerCase(),terms=extract(job.value),hits=terms.filter(x=>r.includes(x)),miss=terms.filter(x=>!r.includes(x)),score=terms.length?Math.round(hits.length/terms.length*100):0;DailyToolkit.set('score',score+'%');DailyToolkit.set('detected',hits.length);DailyToolkit.set('missingCount',miss.length);DailyToolkit.set('resumeWords',(resume.value.match(/\S+/g)||[]).length.toLocaleString());detectedList.innerHTML=hits.map(x=>'<span style="display:inline-block;margin:4px;padding:5px 9px;border-radius:999px;background:var(--pt-soft)">'+x+'</span>').join('')||'<span class="pt-note">No terms detected yet.</span>';missingList.innerHTML=miss.slice(0,25).map(x=>'<span style="display:inline-block;margin:4px;padding:5px 9px;border-radius:999px;background:var(--pt-soft)">'+x+'</span>').join('')||'<span class="pt-note">No obvious missing terms.</span>';DailyToolkit.set('resultText','This '+score+'% figure reflects only this simple keyword comparison. It is not a real employer ATS score.');DailyToolkit.status('Resume comparison complete. Review terms for truthful relevance.','success')}calc.onclick=run;sample.onclick=()=>{resume.value='Data entry specialist with Excel, Microsoft Office, reporting, customer service and database experience. Improved reporting workflows and maintained accurate records.';job.value='We are seeking a data entry specialist with Excel, Microsoft Office, reporting, customer service and database skills. Attention to detail and accurate records are important.';run()};</script></body></html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta name="p:domain_verify" content="541f159793148c6b8774cc2238ddb47c"/>
+  <link rel="sitemap" type="application/xml" title="Sitemap" href="/sitemap.xml" />
+
+  <!-- Content Security Policy & Google Consent Mode -->
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+
+    gtag('consent', 'default', {
+      'ad_storage': 'denied',
+      'ad_user_data': 'denied',
+      'ad_personalization': 'denied',
+      'analytics_storage': 'denied',
+      'regions':['PK','EU']
+    });
+
+    gtag('consent', 'default', {
+      'ad_storage': 'denied',
+      'ad_user_data': 'denied',
+      'ad_personalization': 'denied',
+      'analytics_storage': 'denied'
+    });
+  </script>
+
+  <!-- Google AdSense -->
+  <script src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6737111642010842" crossorigin="anonymous" async defer></script>
+
+  <!-- Google Analytics (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-3K7RBN1QSL"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-3K7RBN1QSL');
+  </script>
+
+  <!-- Website Favicon -->
+  <link rel="icon" type="image/png" href="https://dailytoolkit.xyz/assets/logo.png">
+  <link rel="apple-touch-icon" href="https://dailytoolkit.xyz/assets/logo.png">
+
+  <!-- Optimized Meta Tags -->
+  <title>ATS Resume Score Checker & Keyword Match Tool | Daily Toolkit</title>
+  <meta name="description" content="Check your resume against target job descriptions with our free ATS Resume Score Checker. Identify detected keywords, missing terms, and compatibility score online.">
+  <meta name="keywords" content="ats resume checker, resume score, keyword match, job description match, free resume audit, daily toolkit, cv optimizer">
+  <meta name="robots" content="index, follow">
+  <meta name="author" content="Ahsanullah Mahar">
+
+  <!-- Canonical Link -->
+  <link rel="canonical" href="https://dailytoolkit.xyz/tools/ats-resume-score-checker.html">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="ATS Resume Score Checker | Daily Toolkit">
+  <meta property="og:description" content="Compare your resume text with job descriptions instantly. Find missing keywords and improve your ATS compatibility score.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://dailytoolkit.xyz/tools/ats-resume-score-checker.html">
+  <meta property="og:image" content="https://dailytoolkit.xyz/assets/preview.png">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="ATS Resume Score Checker | Daily Toolkit">
+  <meta name="twitter:description" content="Analyze resume keywords and calculate job match percentage locally in your browser.">
+  <meta name="twitter:image" content="https://dailytoolkit.xyz/assets/preview.png">
+
+  <!-- Schema.org JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebSite",
+        "@id": "https://dailytoolkit.xyz/#website",
+        "url": "https://dailytoolkit.xyz/",
+        "name": "Daily Toolkit",
+        "description": "Daily Toolkit offers free online web utilities including ATS resume checkers, calculators, and converters.",
+        "publisher": { "@id": "https://dailytoolkit.xyz/#organization" },
+        "inLanguage": "en"
+      },
+      {
+        "@type": "Organization",
+        "@id": "https://dailytoolkit.xyz/#organization",
+        "name": "Daily Toolkit",
+        "url": "https://dailytoolkit.xyz/",
+        "logo": {
+          "@type": "ImageObject",
+          "@id": "https://dailytoolkit.xyz/#logo",
+          "url": "https://dailytoolkit.xyz/assets/logo.png",
+          "contentUrl": "https://dailytoolkit.xyz/assets/logo.png",
+          "width": 512,
+          "height": 512
+        }
+      },
+      {
+        "@type": "WebPage",
+        "@id": "https://dailytoolkit.xyz/tools/ats-resume-score-checker.html#webpage",
+        "url": "https://dailytoolkit.xyz/tools/ats-resume-score-checker.html",
+        "name": "ATS Resume Score Checker & Keyword Match Tool | Daily Toolkit",
+        "isPartOf": { "@id": "https://dailytoolkit.xyz/#website" },
+        "description": "Compare resume text with a job description using a client-side keyword matching algorithm.",
+        "inLanguage": "en"
+      },
+      {
+        "@type": "SoftwareApplication",
+        "name": "ATS Resume Score Checker",
+        "operatingSystem": "All",
+        "applicationCategory": "BusinessApplication",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "USD"
+        }
+      }
+    ]
+  }
+  </script>
+
+  <!-- Fonts & Styles -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    
+    :root {
+      --black: #0A0A0A;
+      --white: #FFFFFF;
+      --gray-50: #F9FAFB;
+      --gray-100: #F3F4F6;
+      --gray-200: #E5E7EB;
+      --gray-300: #D1D5DB;
+      --gray-600: #4B5563;
+      --gray-800: #1F2937;
+      --gold: #C9A84C;
+      --gold-dark: #A68632;
+      --gold-text: #7A5C18;
+      --green-bg: #DEF7EC;
+      --green-text: #03543F;
+      --red-bg: #FDE8E8;
+      --red-text: #9B1C1C;
+      --font-display: 'Playfair Display', Georgia, serif;
+      --font-body: 'Inter', system-ui, sans-serif;
+      --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font-body);
+      background: var(--white);
+      color: var(--black);
+      line-height: 1.6;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    a { text-decoration: none; color: inherit; }
+
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: var(--gray-100); }
+    ::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 3px; }
+
+    /* Navbar */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 5%; height: 68px;
+      background: rgba(255,255,255,0.96);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--gray-200);
+    }
+
+    .nav-logo {
+      font-family: var(--font-display);
+      font-size: 1.35rem; font-weight: 700;
+      color: var(--black); display: flex; align-items: center; gap: 0.4rem;
+    }
+    .nav-logo span { color: var(--gold-text); }
+
+    .nav-links { display: flex; gap: 1.8rem; list-style: none; align-items: center; }
+    .nav-links a {
+      font-size: 0.85rem; font-weight: 500; color: var(--gray-600);
+      letter-spacing: 0.04em; text-transform: uppercase;
+      transition: color var(--transition);
+    }
+    .nav-links a:hover, .nav-links a.active { color: var(--black); }
+
+    /* Main Container */
+    main { flex: 1; padding-top: 68px; }
+
+    /* Hero Banner */
+    .pt-hero {
+      background: var(--gray-50);
+      border-bottom: 1px solid var(--gray-200);
+      padding: 3.5rem 5% 2.5rem;
+      text-align: center;
+    }
+    .pt-container { max-width: 1200px; margin: 0 auto; }
+    .pt-eyebrow {
+      display: inline-block; font-size: 0.75rem; font-weight: 700;
+      letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--gold-text); margin-bottom: 0.6rem;
+    }
+    .pt-hero h1 {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 3.5vw, 3rem);
+      font-weight: 700; color: var(--black); margin-bottom: 0.8rem;
+      letter-spacing: -0.02em;
+    }
+    .pt-lead {
+      font-size: 1rem; color: var(--gray-600);
+      max-width: 680px; margin: 0 auto; line-height: 1.7;
+    }
+
+    /* Tool Interface Wrapper */
+    .pt-tool-section { padding: 3rem 5%; }
+    .pt-tool-card {
+      background: var(--white);
+      border: 1px solid var(--gray-200);
+      border-radius: 8px;
+      padding: 2rem;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.03);
+    }
+
+    /* Action Buttons Toolbar */
+    .pt-toolbar {
+      display: flex; justify-content: space-between; align-items: center;
+      flex-wrap: wrap; gap: 1rem; margin-bottom: 2rem;
+      padding-bottom: 1.2rem; border-bottom: 1px solid var(--gray-200);
+    }
+    .pt-actions { display: flex; gap: 0.6rem; flex-wrap: wrap; }
+
+    .pt-btn {
+      padding: 0.65rem 1.3rem; font-size: 0.82rem; font-weight: 600;
+      letter-spacing: 0.04em; text-transform: uppercase;
+      border-radius: 4px; border: 1px solid var(--gray-300);
+      background: var(--white); color: var(--black);
+      cursor: pointer; transition: var(--transition);
+      display: inline-flex; align-items: center; justify-content: center;
+    }
+    .pt-btn:hover { border-color: var(--black); background: var(--gray-100); }
+    .pt-btn.primary {
+      background: var(--black); color: var(--white); border-color: var(--black);
+    }
+    .pt-btn.primary:hover { background: var(--gold); border-color: var(--gold); color: var(--black); }
+
+    /* Input Grid */
+    .pt-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 2rem;
+    }
+    @media (max-width: 768px) { .pt-grid { grid-template-columns: 1fr; } }
+
+    .pt-panel {
+      background: var(--gray-50);
+      border: 1px solid var(--gray-200);
+      border-radius: 6px; padding: 1.2rem;
+    }
+    .pt-panel h2 { font-size: 1.05rem; font-weight: 700; margin-bottom: 0.8rem; color: var(--black); }
+    .pt-field label { display: block; font-size: 0.8rem; font-weight: 600; color: var(--gray-600); margin-bottom: 0.4rem; }
+    
+    textarea {
+      width: 100%; border: 1px solid var(--gray-300); border-radius: 4px;
+      padding: 0.8rem; font-family: var(--font-body); font-size: 0.88rem;
+      color: var(--black); outline: none; transition: var(--transition);
+      resize: vertical; min-height: 240px; background: var(--white);
+    }
+    textarea:focus { border-color: var(--black); box-shadow: 0 0 0 2px rgba(10,10,10,0.05); }
+
+    /* Results Panel */
+    .pt-results-panel {
+      background: var(--white); border: 1px solid var(--gray-200);
+      border-radius: 6px; padding: 1.5rem; margin-bottom: 1.5rem;
+    }
+    .pt-metrics {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+      gap: 1rem; margin-bottom: 1.2rem;
+    }
+    .pt-metric {
+      background: var(--gray-50); border: 1px solid var(--gray-200);
+      padding: 1rem; border-radius: 6px; text-align: center;
+    }
+    .pt-metric small { display: block; font-size: 0.72rem; color: var(--gray-600); text-transform: uppercase; font-weight: 600; }
+    .pt-metric strong { display: block; font-size: 1.6rem; font-weight: 700; color: var(--black); margin-top: 0.2rem; }
+
+    .pt-note { font-size: 0.85rem; color: var(--gray-600); margin-bottom: 1.2rem; font-style: italic; }
+
+    .pt-tags-container { margin-top: 1rem; }
+    .pt-tags-container h3 { font-size: 0.92rem; font-weight: 700; margin-bottom: 0.6rem; color: var(--black); }
+    .pt-tag-list { display: flex; flex-wrap: wrap; gap: 0.4rem; min-height: 40px; }
+
+    .pt-tag-hit {
+      display: inline-block; padding: 4px 10px; border-radius: 20px;
+      background: var(--green-bg); color: var(--green-text);
+      font-size: 0.78rem; font-weight: 600;
+    }
+    .pt-tag-miss {
+      display: inline-block; padding: 4px 10px; border-radius: 20px;
+      background: var(--red-bg); color: var(--red-text);
+      font-size: 0.78rem; font-weight: 600;
+    }
+
+    .pt-status {
+      font-size: 0.8rem; color: var(--gray-600); text-align: center;
+      padding-top: 1rem; border-top: 1px solid var(--gray-200);
+    }
+
+    /* Content Area (AdSense High-Value Documentation) */
+    .pt-content {
+      max-width: 900px; margin: 0 auto; padding: 3rem 5% 5rem;
+    }
+    .pt-content section { margin-bottom: 2.5rem; }
+    .pt-content h2 {
+      font-family: var(--font-display); font-size: 1.5rem; font-weight: 700;
+      color: var(--black); margin-bottom: 0.8rem; letter-spacing: -0.01em;
+    }
+    .pt-content h3 {
+      font-size: 1.1rem; font-weight: 700; color: var(--black);
+      margin: 1.2rem 0 0.5rem;
+    }
+    .pt-content p {
+      font-size: 0.95rem; color: var(--gray-600); line-height: 1.75; margin-bottom: 1rem;
+    }
+    .pt-content ol, .pt-content ul {
+      padding-left: 1.4rem; margin-bottom: 1rem; color: var(--gray-600); font-size: 0.95rem;
+    }
+    .pt-content li { margin-bottom: 0.5rem; line-height: 1.6; }
+
+    .pt-callout {
+      background: var(--gray-50); border-left: 3px solid var(--gold);
+      padding: 1.2rem 1.5rem; margin: 1.5rem 0; border-radius: 0 4px 4px 0;
+    }
+
+    /* FAQ Details styling */
+    .pt-faq details {
+      background: var(--gray-50); border: 1px solid var(--gray-200);
+      border-radius: 6px; padding: 1rem 1.2rem; margin-bottom: 0.8rem;
+    }
+    .pt-faq summary {
+      font-weight: 600; font-size: 0.95rem; cursor: pointer; color: var(--black); outline: none;
+    }
+    .pt-faq p { margin-top: 0.6rem; margin-bottom: 0; font-size: 0.9rem; }
+
+    /* Footer */
+    footer.pt-footer {
+      background: var(--black); color: var(--white);
+      padding: 3rem 5%; border-top: 1px solid var(--gray-800); margin-top: auto;
+    }
+    .pt-footer-inner {
+      max-width: 1200px; margin: 0 auto;
+      display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1.5rem;
+    }
+    .pt-footer-links { display: flex; gap: 1.5rem; }
+    .pt-footer-links a { font-size: 0.85rem; color: var(--gray-300); transition: color var(--transition); }
+    .pt-footer-links a:hover { color: var(--gold); }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <nav>
+    <a class="nav-logo" href="/">Daily <span>Toolkit</span></a>
+    <ul class="nav-links">
+      <li><a href="/">Home</a></li>
+      <li><a href="/tools.html" class="active">All Tools</a></li>
+      <li><a href="/about.html">About</a></li>
+      <li><a href="/contact.html">Contact</a></li>
+    </ul>
+  </nav>
+
+  <main>
+    <!-- Hero Section -->
+    <section class="pt-hero">
+      <div class="pt-container">
+        <span class="pt-eyebrow">Career & Optimization Utility</span>
+        <h1>ATS Resume Score Checker</h1>
+        <p class="pt-lead">Evaluate your resume against target job descriptions in real-time. Uncover missing keywords, analyze match percentages, and optimize your application locally in your browser.</p>
+      </div>
+    </section>
+
+    <!-- Interactive Tool Interface -->
+    <section class="pt-tool-section pt-container">
+      <div class="pt-tool-card">
+        
+        <!-- Controls Toolbar -->
+        <div class="pt-toolbar">
+          <div class="pt-actions">
+            <button id="calc" class="pt-btn primary">Check Resume Match</button>
+            <button id="sample" class="pt-btn">Load Example</button>
+          </div>
+          <div class="pt-actions">
+            <button id="copyButton" class="pt-btn">Copy Result</button>
+            <button id="downloadButton" class="pt-btn">Download Report</button>
+            <button id="resetButton" class="pt-btn">Reset</button>
+          </div>
+        </div>
+
+        <!-- Input Editors -->
+        <div class="pt-grid">
+          <section class="pt-panel">
+            <h2>Resume Text</h2>
+            <div class="pt-field">
+              <label for="resume">Paste your resume content below:</label>
+              <textarea id="resume" rows="15" placeholder="Paste full resume text here (experience, skills, education)..."></textarea>
+            </div>
+          </section>
+
+          <section class="pt-panel">
+            <h2>Target Job Description</h2>
+            <div class="pt-field">
+              <label for="job">Paste the job posting text below:</label>
+              <textarea id="job" rows="15" placeholder="Paste job advertisement description and qualifications here..."></textarea>
+            </div>
+          </section>
+        </div>
+
+        <!-- Analytical Output Display -->
+        <div class="pt-results-panel">
+          <div class="pt-metrics">
+            <div class="pt-metric">
+              <small>ATS Match Score</small>
+              <strong id="score">—</strong>
+            </div>
+            <div class="pt-metric">
+              <small>Detected Terms</small>
+              <strong id="detected">—</strong>
+            </div>
+            <div class="pt-metric">
+              <small>Potentially Missing</small>
+              <strong id="missingCount">—</strong>
+            </div>
+            <div class="pt-metric">
+              <small>Resume Word Count</small>
+              <strong id="resumeWords">—</strong>
+            </div>
+          </div>
+
+          <p id="resultText" class="pt-note">Paste your texts above and click "Check Resume Match" to run local evaluation.</p>
+
+          <div class="pt-tags-container">
+            <h3>Detected Job Keywords</h3>
+            <div id="detectedList" class="pt-tag-list"><span class="pt-note">No terms detected yet.</span></div>
+          </div>
+
+          <div class="pt-tags-container" style="margin-top: 1.5rem;">
+            <h3>Potentially Missing Keywords</h3>
+            <div id="missingList" class="pt-tag-list"><span class="pt-note">No analysis generated yet.</span></div>
+          </div>
+        </div>
+
+        <div id="toolStatus" class="pt-status">100% Client-Side Processing. Your data is analyzed in-browser and is never transmitted or stored.</div>
+      </div>
+    </section>
+
+    <!-- Comprehensive High-Value AdSense Documentation Content -->
+    <article class="pt-content">
+      <section>
+        <h2>What Is an ATS Resume Score Checker and Why Use It?</h2>
+        <p>An Applicant Tracking System (ATS) is recruitment software used by corporate HR departments, hiring managers, and staffing agencies to collect, scan, sort, and rank job applications. Before a human hiring manager reads your application, automated algorithms scan your CV to identify core competencies, technical stack mentions, job titles, and experience duration matching the vacancy requirements.</p>
+        <p>The <strong>ATS Resume Score Checker</strong> on Daily Toolkit operates as a transparent text-matching tool. Instead of relying on mysterious black-box algorithms, it extracts recurring, industry-standard terms from any job posting and compares them with your resume text. It calculates an ATS-style keyword match density score, helping you spot critical missing terms and adapt your application before submitting it online.</p>
+      </section>
+
+      <section>
+        <h2>Step-by-Step Guide to Optimizing Your Resume</h2>
+        <ol>
+          <li><strong>Copy Resume Text:</strong> Paste your plain-text CV content into the left panel.</li>
+          <li><strong>Copy Job Description:</strong> Paste the full requirements and duties from the target job posting into the right panel.</li>
+          <li><strong>Run the Keyword Match:</strong> Click <strong>Check Resume Match</strong> to execute instant tokenization and phrase parsing.</li>
+          <li><strong>Evaluate Gaps:</strong> Examine the list of highlighted missing keywords alongside detected term overlaps.</li>
+          <li><strong>Incorporate Relevant Experience:</strong> Naturally integrate missing keywords into your bullet points where you have authentic hands-on experience.</li>
+          <li><strong>Re-test:</strong> Re-run the checker to ensure your score reaches a competitive baseline (ideally 70% or higher).</li>
+        </ol>
+      </section>
+
+      <section>
+        <h2>Key Technical & Privacy Features</h2>
+        <ul>
+          <li><strong>Local Browser Computation:</strong> String parsing and keyword comparisons run locally via Vanilla JavaScript within your browser. No server uploads occur.</li>
+          <li><strong>Transparent Heuristics:</strong> Computes keyword presence using direct token match frequencies, eliminating artificial scoring inflation.</li>
+          <li><strong>Privacy First:</strong> Your confidential contact info, employment history, and personal details remain completely private on your local machine.</li>
+          <li><strong>Exportable Output:</strong> Quickly copy the match breakdown or download text reports for offline record-keeping.</li>
+        </ul>
+
+        <div class="pt-callout">
+          <strong>Ethical Resume Tip:</strong> Never perform "keyword stuffing" or invent fictitious skills to manipulate an ATS score. Recruiting teams verify listed skills during interview rounds. Focus on showcasing genuine experience using the specific wording recruiters use.
+        </div>
+      </section>
+
+      <section>
+        <h2>Who Benefits From This Utility?</h2>
+        <p><strong>Job Seekers:</strong> Customize your application for specific roles to bypass automated screening filters.</p>
+        <p><strong>Career Switchers:</strong> Identify transferable skills and industry-specific language needed for new career paths.</p>
+        <p><strong>Students & Recent Graduates:</strong> Align entry-level resumes with corporate posting requirements.</p>
+        <p><strong>Freelancers & Consultants:</strong> Tailor project bids and proposals to client RFPs and job postings.</p>
+      </section>
+
+      <section>
+        <h2>Strategies for Improving Your ATS Compatibility Score Responsibly</h2>
+        <p>To maximize interview callbacks, optimize your resume using these proven practices:</p>
+        <ul>
+          <li><strong>Use Exact Phrasing:</strong> If a job description specifically requests "Project Management" rather than "Project Lead", update your terminology to match.</li>
+          <li><strong>Highlight Quantifiable Achievements:</strong> Combine target keywords with metric-driven outcomes (e.g., "Utilized Python to automate workflows, cutting processing time by 35%").</li>
+          <li><strong>Keep Formatting Standard:</strong> Avoid embedding crucial text inside graphics, non-standard tables, or complex text boxes that legacy parser scripts cannot read.</li>
+        </ul>
+      </section>
+
+      <section class="pt-faq">
+        <h2>Frequently Asked Questions</h2>
+        <details>
+          <summary>Does a 100% match score guarantee an interview?</summary>
+          <p>No. While a high keyword match ensures your resume passes initial keyword screening, human recruiters ultimately evaluate soft skills, work tenure, career trajectory, and overall presentation.</p>
+        </details>
+        <details>
+          <summary>Is my confidential resume data saved on any server?</summary>
+          <p>No. All calculations are executed directly in your browser session using JavaScript. Your text is cleared as soon as you close or refresh the page.</p>
+        </details>
+        <details>
+          <summary>How many missing keywords should I add?</summary>
+          <p>Focus on incorporating high-frequency hard skills and core qualifications that truthfully reflect your technical background and past responsibilities.</p>
+        </details>
+      </section>
+
+      <section>
+        <h2>Why Daily Toolkit?</h2>
+        <p>Daily Toolkit provides free, privacy-focused online web tools designed to solve real-world daily tasks. We prioritize user privacy, clean user interfaces, fast loading speeds, and honest utility without requiring mandatory accounts or intrusive software downloads.</p>
+      </section>
+    </article>
+  </main>
+
+  <!-- Footer -->
+  <footer class="pt-footer">
+    <div class="pt-footer-inner">
+      <strong>Daily Toolkit &copy; 2026</strong>
+      <div class="pt-footer-links">
+        <a href="/about.html">About</a>
+        <a href="/privacy.html">Privacy Policy</a>
+        <a href="/terms.html">Terms of Service</a>
+        <a href="/contact.html">Contact</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Real Functional Engine JavaScript -->
+  <script>
+    // Stop Words Set
+    const stopWords = new Set([
+      'the','and','for','with','from','that','this','are','you','your','our','into','about',
+      'have','has','will','can','job','work','using','use','their','they','them','a','an',
+      'to','of','in','on','as','is','be','or','by','at','it','we','be','all','been','must',
+      'ability','knowledge','experience','skills','working','required','strong','well','will'
+    ]);
+
+    // DOM Elements
+    const resumeInput = document.getElementById('resume');
+    const jobInput = document.getElementById('job');
+    const calcBtn = document.getElementById('calc');
+    const sampleBtn = document.getElementById('sample');
+    const copyBtn = document.getElementById('copyButton');
+    const downloadBtn = document.getElementById('downloadButton');
+    const resetBtn = document.getElementById('resetButton');
+
+    const scoreEl = document.getElementById('score');
+    const detectedEl = document.getElementById('detected');
+    const missingCountEl = document.getElementById('missingCount');
+    const resumeWordsEl = document.getElementById('resumeWords');
+    const resultTextEl = document.getElementById('resultText');
+
+    const detectedListEl = document.getElementById('detectedList');
+    const missingListEl = document.getElementById('missingList');
+    const statusEl = document.getElementById('toolStatus');
+
+    // Extract Significant Words
+    function extractKeywords(text) {
+      const words = text.toLowerCase().match(/[a-z][a-z0-9+#.-]{2,}/g) || [];
+      const frequencyMap = {};
+      
+      words.forEach(word => {
+        if (!stopWords.has(word)) {
+          frequencyMap[word] = (frequencyMap[word] || 0) + 1;
+        }
+      });
+
+      return Object.entries(frequencyMap)
+        .sort((a, b) => b[1] - a[1])
+        .slice(0, 35)
+        .map(entry => entry[0]);
+    }
+
+    // Main Analysis Function
+    function runAnalysis() {
+      const resumeText = resumeInput.value.trim();
+      const jobText = jobInput.value.trim();
+
+      if (!resumeText || !jobText) {
+        statusEl.textContent = 'Please provide both resume text and a job description to perform matching.';
+        statusEl.style.color = '#9B1C1C';
+        return;
+      }
+
+      const lowerResume = resumeText.toLowerCase();
+      const jobTerms = extractKeywords(jobText);
+      
+      const hitTerms = jobTerms.filter(term => lowerResume.includes(term));
+      const missTerms = jobTerms.filter(term => !lowerResume.includes(term));
+      
+      const scorePercentage = jobTerms.length ? Math.round((hitTerms.length / jobTerms.length) * 100) : 0;
+      const totalWords = (resumeText.match(/\S+/g) || []).length;
+
+      // Update UI Metrics
+      scoreEl.textContent = scorePercentage + '%';
+      detectedEl.textContent = hitTerms.length;
+      missingCountEl.textContent = missTerms.length;
+      resumeWordsEl.textContent = totalWords.toLocaleString();
+
+      // Render Keyword Badges
+      detectedListEl.innerHTML = hitTerms.map(term => 
+        `<span class="pt-tag-hit">${term}</span>`
+      ).join('') || '<span class="pt-note">No overlapping job terms detected.</span>';
+
+      missingListEl.innerHTML = missTerms.map(term => 
+        `<span class="pt-tag-miss">${term}</span>`
+      ).join('') || '<span class="pt-note">No obvious missing terms detected!</span>';
+
+      resultTextEl.textContent = `Analysis Complete: Your resume matches ${scorePercentage}% of the primary key terms extracted from the job description.`;
+      statusEl.textContent = 'Local text comparison completed successfully.';
+      statusEl.style.color = '#03543F';
+    }
+
+    // Load Sample Data
+    sampleBtn.addEventListener('click', () => {
+      resumeInput.value = `John Doe - Software Developer\nExperience with JavaScript, HTML, CSS, React, and Git.\nImplemented responsive frontend components, fixed web bugs, and improved performance. Dedicated team player with strong communication skills and database management using SQL.`;
+      jobInput.value = `We are seeking a Frontend Software Developer proficient in JavaScript, React, HTML, CSS, and Git.\nQualifications: Must have experience with web performance optimization, REST APIs, TypeScript, and SQL databases. Excellent communication skills and teamwork required.`;
+      runAnalysis();
+    });
+
+    // Reset Form
+    resetBtn.addEventListener('click', () => {
+      resumeInput.value = '';
+      jobInput.value = '';
+      scoreEl.textContent = '—';
+      detectedEl.textContent = '—';
+      missingCountEl.textContent = '—';
+      resumeWordsEl.textContent = '—';
+      detectedListEl.innerHTML = '<span class="pt-note">No terms detected yet.</span>';
+      missingListEl.innerHTML = '<span class="pt-note">No analysis generated yet.</span>';
+      resultTextEl.textContent = 'Paste your texts above and click "Check Resume Match" to run local evaluation.';
+      statusEl.textContent = '100% Client-Side Processing. Your data is analyzed in-browser and is never transmitted or stored.';
+      statusEl.style.color = '#4B5563';
+    });
+
+    // Copy Results
+    copyBtn.addEventListener('click', () => {
+      if (scoreEl.textContent === '—') {
+        alert('Please run the analysis first.');
+        return;
+      }
+      const summaryText = `Daily Toolkit ATS Analysis Report:\nMatch Score: ${scoreEl.textContent}\nDetected Terms: ${detectedEl.textContent}\nMissing Terms Count: ${missingCountEl.textContent}\nResume Word Count: ${resumeWordsEl.textContent}`;
+      navigator.clipboard.writeText(summaryText).then(() => {
+        alert('Analysis summary copied to clipboard!');
+      });
+    });
+
+    // Download Report
+    downloadBtn.addEventListener('click', () => {
+      if (scoreEl.textContent === '—') {
+        alert('Please run the analysis first.');
+        return;
+      }
+      const reportContent = `===================================\nDAILY TOOLKIT - ATS RESUME SCORE REPORT\n===================================\n\nMatch Score: ${scoreEl.textContent}\nDetected Terms Count: ${detectedEl.textContent}\nMissing Terms Count: ${missingCountEl.textContent}\nTotal Resume Words: ${resumeWordsEl.textContent}\n\n===================================\n`;
+      const blob = new Blob([reportContent], { type: 'text/plain' });
+      const link = document.createElement('a');
+      link.href = URL.createObjectURL(blob);
+      link.download = 'ATS_Resume_Score_Report.txt';
+      link.click();
+    });
+
+    // Event Listener
+    calcBtn.addEventListener('click', runAnalysis);
+  </script>
+</body>
+</html>
