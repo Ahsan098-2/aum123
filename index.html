@@ -1468,48 +1468,7 @@ document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
       resultsContainer.appendChild(card);
     });
   }
-  // 🟢 AI Search Function ab is script tag ke andar bilkul safe hai
-  async function executeAISearch() {
-    const inputField = document.getElementById("aiSearchInput");
-    const query = inputField.value.trim();
-    const resultsContainer = document.getElementById("searchResults");
-
-    if (!query) return;
-
-    resultsContainer.innerHTML = `<div style="padding: 12px; font-size: 13px; color: #666; text-align: center;">✨ AI agent is thinking...</div>`;
-
-    try {
-      const response = await fetch('/api/search', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ query })
-      });
-
-      const data = await response.json();
-      resultsContainer.innerHTML = "";
-
-      if (!data.results || data.results.length === 0) {
-        resultsContainer.innerHTML = `<div style="padding: 12px; color: #666; font-size: 13px; text-align: center; background: #f8fafc; border-radius: 6px;">No matching tool found for your request.</div>`;
-        return;
-      }
-  data.results.forEach(tool => {
-        const card = document.createElement("a");
-        card.className = "ai-tool-card";
-        card.href = tool.url;
-        // 👇 Compact inline CSS styling
-        card.style.cssText = "display: flex; align-items: center; justify-content: space-between; padding: 8px 12px; margin-top: 6px; background: #ffffff; border: 1px solid #e2e8f0; border-radius: 6px; text-decoration: none; transition: 0.2s; font-size: 13px;";
-        
-        card.innerHTML = `
-          <div style="display: flex; align-items: center; gap: 8px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">
-            <span style="font-size: 14px;">🔨</span>
-            <strong style="color: #1e293b; font-weight: 600;">${tool.name}</strong>
-            <span style="color: #64748b; font-size: 11px; margin-left: 4px; overflow: hidden; text-overflow: ellipsis;">— ${tool.description}</span>
-          </div>
-          <span style="color: #0284c7; font-size: 11px; font-weight: 600; white-space: nowrap; margin-left: 10px;">Open →</span>
-        `;
-        resultsContainer.appendChild(card);
-      });
-     
+ 
 </script>
   <script src="script.js"></script>
 </body>
