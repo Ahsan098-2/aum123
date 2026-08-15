@@ -879,6 +879,22 @@
       </div>
 
       <div class="hero-right">
+      <!-- ================= AI SEARCH BAR START ================= -->
+      <div class="ai-search-container" style="max-width: 650px; margin: 10px 0 20px; font-family: var(--font-body);">
+        <div class="search-box" style="position: relative; display: flex; align-items: center; background: var(--gray-100); border: 2px solid var(--gray-200); border-radius: 8px; padding: 4px;">
+          <span class="ai-badge" style="position: absolute; left: 12px; background: var(--gold); color: var(--black); padding: 4px 10px; border-radius: 20px; font-size: 11px; font-weight: 700; text-transform: uppercase;">✨ AI Search</span>
+          <input 
+            type="text" 
+            id="aiSearchInput" 
+            placeholder="Type what you want (e.g., 'compress pdf', 'image resizer')..." 
+            onkeyup="filterTools()"
+            style="width: 100%; padding: 12px 16px 12px 110px; font-size: 14px; border: none; background: transparent; outline: none; color: var(--black);"
+          />
+        </div>
+        <div id="searchResults" class="results-grid" style="margin-top: 10px; display: grid; gap: 8px;"></div>
+      </div>
+      <!-- ================= AI SEARCH BAR END ================= -->
+        
         <div class="search-box" role="search">
           <svg class="icon" aria-hidden="true"><use href="#i-search"></use></svg>
           <input type="text" placeholder="Search tools like PDF, image, calculator..." oninput="liveSearch(this.value)" aria-label="Search tools">
@@ -1361,6 +1377,43 @@ const observer = new IntersectionObserver(entries => {
 }, { threshold: 0.08 });
 document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 </script>
+  <!-- ================= AI SEARCH SCRIPT START ================= -->
+<script>
+  // DailyToolkit Tools Database
+  const toolsList = [
+    { name: "PDF Merger", url: "https://dailytoolkit.xyz/tools/pdf-merger", tags: ["pdf", "compress", "merge", "convert", "document"] },
+    { name: "Image Compressor", url: "https://dailytoolkit.xyz/tools/image-compressor", tags: ["image", "photo", "resize", "jpg", "png", "crop", "compress"] },
+    { name: "QR Generator", url: "https://dailytoolkit.xyz/tools/qr-generator", tags: ["qr", "code", "generator", "link", "barcode"] }
+  ];
+
+  function filterTools() {
+    const query = document.getElementById("aiSearchInput").value.toLowerCase().trim();
+    const resultsContainer = document.getElementById("searchResults");
+    resultsContainer.innerHTML = "";
+
+    if (query === "") return;
+
+    const filtered = toolsList.filter(tool => {
+      const nameMatch = tool.name.toLowerCase().includes(query);
+      const tagMatch = tool.tags.some(tag => tag.toLowerCase().includes(query));
+      return nameMatch || tagMatch;
+    });
+
+    if (filtered.length === 0) {
+      resultsContainer.innerHTML = `<div style="padding: 10px; color: var(--gray-600); font-size: 13px; text-align: center; background: var(--gray-100); border-radius: 4px;">No matching tool found. Try 'pdf', 'image', or 'qr'.</div>`;
+      return;
+    }
+
+    filtered.forEach(tool => {
+      const card = document.createElement("a");
+      card.href = tool.url;
+      card.style.cssText = "padding: 10px 14px; background: var(--white); border: 1px solid var(--gray-200); border-radius: 4px; display: flex; justify-content: space-between; align-items: center; text-decoration: none; color: var(--black); font-size: 13px; font-weight: 600; transition: 0.2s;";
+      card.innerHTML = `<span>🔨 ${tool.name}</span> <span style="color: var(--gold-text); font-size: 12px;">Open Tool →</span>`;
+      resultsContainer.appendChild(card);
+    });
+  }
+</script>
+<!-- ================= AI SEARCH SCRIPT END ================= -->
   <script src="script.js"></script>
 </body>
 </html>
