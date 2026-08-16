@@ -3,18 +3,6 @@
   'use strict';
 
   var ATS_NAME = 'ATS Resume Score Checker';
-  var HIDDEN_HOME_TOOLS = new Set([
-    'salary take-home calculator',
-    'debt payoff calculator',
-    'investment return calculator',
-    'retirement calculator',
-    'e-commerce profit calculator',
-    'business break-even calculator',
-    'freelancer hourly rate calculator',
-    'job offer comparison calculator',
-    'website seo audit tool',
-    'css gradient generator'
-  ]);
 
   function normalize(value){
     return String(value || '').trim().replace(/\s+/g, ' ').toLowerCase();
@@ -29,21 +17,15 @@
       .toLowerCase();
   }
 
-  function isHiddenHomeTool(tool){
-    if(!tool) return false;
-    var name = normalize(tool.name);
+  function toolKey(tool){
+    if(!tool) return '';
     var url = normalizeUrl(tool.url);
-    if(HIDDEN_HOME_TOOLS.has(name)) return true;
-    for(var hiddenName of HIDDEN_HOME_TOOLS){
-      var slug = hiddenName.replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
-      if(url === 'tools/' + slug) return true;
-    }
-    return false;
+    var name = normalize(tool.name);
+    return url || ('name:' + name);
   }
 
-  // Keep ATS in the main catalog only once, while removing only the
-  // screenshot-requested cards from the homepage. Their actual tool files
-  // remain untouched and continue to work at their normal URLs.
+  // Keep every real homepage tool. If the same tool was added more than once,
+  // keep the first copy only. Tool files are never deleted by this script.
   function ensureHomeCatalog(){
     try{
       if(typeof allTools === 'undefined' || !Array.isArray(allTools)) return false;
@@ -53,20 +35,11 @@
       var filtered = [];
 
       allTools.forEach(function(tool){
-        if(isHiddenHomeTool(tool)){
+        var key = toolKey(tool);
+        if(!key || seen.has(key)){
           changed = true;
           return;
         }
-
-        var name = normalize(tool && tool.name);
-        var url = normalizeUrl(tool && tool.url);
-        var key = url || ('name:' + name);
-
-        if(seen.has(key)){
-          changed = true;
-          return;
-        }
-
         seen.add(key);
         filtered.push(tool);
       });
@@ -74,21 +47,18 @@
       allTools.length = 0;
       Array.prototype.push.apply(allTools, filtered);
 
-      var atsIndexes = [];
-      allTools.forEach(function(tool, index){
-        if(normalize(tool && tool.name) === normalize(ATS_NAME) || normalizeUrl(tool && tool.url) === 'tools/ats-resume-score-checker'){
-          atsIndexes.push(index);
-        }
-      });
-
-      if(atsIndexes.length > 1){
-        for(var i = atsIndexes.length - 1; i > 0; i--){
-          allTools.splice(atsIndexes[i], 1);
-          changed = true;
+      var atsCount = 0;
+      for(var i = allTools.length - 1; i >= 0; i--){
+        var t = allTools[i] || {};
+        if(normalize(t.name) === normalize(ATS_NAME) || normalizeUrl(t.url) === 'tools/ats-resume-score-checker'){
+          atsCount++;
+          if(atsCount > 1){
+            allTools.splice(i, 1);
+            changed = true;
+          }
         }
       }
 
-      // If ATS is missing entirely, add it once directly after the first tool.
       var hasATS = allTools.some(function(tool){
         return normalize(tool && tool.name) === normalize(ATS_NAME) || normalizeUrl(tool && tool.url) === 'tools/ats-resume-score-checker';
       });
@@ -115,44 +85,28 @@
   function addATSIcon(card){
     var icon = card.querySelector('.tool-icon');
     if(!icon) return;
-
     icon.innerHTML = '<svg class="icon" aria-hidden="true" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>';
   }
 
+  // Remove only duplicate rendered cards. All unique tools remain visible.
   function cleanRenderedHomepage(){
     var cards = document.querySelectorAll('.tool-card, .quick-tool');
-    var seenATS = false;
+    var seen = new Set();
 
     cards.forEach(function(card){
-      var text = normalize(card.textContent);
       var title = card.querySelector('.tool-title, .tool-name, h3, h4');
-      var name = normalize(title ? title.textContent : text);
+      var name = normalize(title ? title.textContent : '');
       var link = card.getAttribute('href') || (card.querySelector('a') && card.querySelector('a').getAttribute('href')) || '';
       var url = normalizeUrl(link);
+      var key = url || ('name:' + name);
 
-      var hidden = HIDDEN_HOME_TOOLS.has(name);
-      if(!hidden){
-        for(var hiddenName of HIDDEN_HOME_TOOLS){
-          var slug = hiddenName.replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
-          if(url === 'tools/' + slug){
-            hidden = true;
-            break;
-          }
-        }
-      }
-
-      if(hidden){
+      if(!key || seen.has(key)){
         card.remove();
         return;
       }
+      seen.add(key);
 
-      var isATS = name === normalize(ATS_NAME) || url === 'tools/ats-resume-score-checker';
-      if(isATS){
-        if(seenATS){
-          card.remove();
-          return;
-        }
-        seenATS = true;
+      if(name === normalize(ATS_NAME) || url === 'tools/ats-resume-score-checker'){
         addATSIcon(card);
       }
     });
@@ -166,8 +120,6 @@
   function boot(){
     cleanup();
 
-    // Some homepage catalog scripts render asynchronously. Keep the cleanup
-    // active briefly so late-added duplicate cards are removed as well.
     var attempts = 0;
     var timer = setInterval(function(){
       cleanup();
@@ -197,6 +149,6 @@
     boot();
   }
 
-  load('/script-optimized.js?v=20260815');
-  load('/assets/new-featured-tools.js?v=20260815');
+  load('/script-optimized.js?v=20260816');
+  load('/assets/new-featured-tools.js?v=20260816');
 })();
