@@ -123,3 +123,70 @@ img{max-width:100%;display:block}
 @media(max-width:700px){.dt-links{display:none;position:absolute;top:68px;left:0;right:0;padding:1rem 4%;background:#0d1325;flex-direction:column;align-items:flex-start;border-bottom:1px solid var(--glass-border)}.dt-links.open{display:flex}.dt-menu{display:block}.dt-form-grid,.pt-fields{grid-template-columns:1fr}.dt-stats,.pt-results{grid-template-columns:1fr 1fr}.pt-navlinks a{display:none}.tool-score{grid-template-columns:1fr 1fr}}
 @media(max-width:480px){.dt-hero{padding:55px 4% 38px}.dt-content,.dt-card,.pt-panel{padding:1rem}.dt-stats,.pt-results,.pt-related{grid-template-columns:1fr}.dt-footer{align-items:flex-start;flex-direction:column}.pt-toolbar{flex-direction:column}.pt-actions{width:100%}.pt-btn{flex:1}}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important;transition-duration:.01ms!important}}
+
+/* =========================================================
+   MOBILE UX + PERFORMANCE / CRO LAYER
+   Designed for Daily Toolkit's mobile-heavy traffic.
+   ========================================================= */
+@media(max-width:700px){
+  :root{--mobile-gutter:16px;--mobile-header:60px}
+  html{font-size:16px;scroll-padding-top:calc(var(--mobile-header) + 12px)}
+  body{line-height:1.55}
+
+  /* Keep mobile navigation compact and thumb-friendly. */
+  .dt-nav,.pt-header{min-height:var(--mobile-header);padding-left:var(--mobile-gutter);padding-right:var(--mobile-gutter)}
+  .dt-nav{backdrop-filter:none}
+  .pt-header{backdrop-filter:none}
+  .dt-menu,.pt-theme{min-width:48px;min-height:48px;display:grid;place-items:center}
+  .dt-links{top:var(--mobile-header);padding:10px var(--mobile-gutter) 14px;gap:4px}
+  .dt-links a,.pt-navlinks a{min-height:48px;display:flex;align-items:center;padding:0 8px}
+
+  /* Tool-first layout: input and execution controls stay visible early. */
+  .dt-hero,.pt-hero{padding:38px var(--mobile-gutter) 24px}
+  .dt-hero h1,.pt-hero h1{font-size:clamp(1.75rem,8vw,2.35rem);line-height:1.12}
+  .dt-hero p,.pt-lead{font-size:.88rem}
+  .dt-breadcrumb{padding:10px var(--mobile-gutter);font-size:.72rem;overflow:auto;white-space:nowrap}
+  .dt-main{padding:0 var(--mobile-gutter) 48px}
+  .pt-container{width:calc(100% - (2 * var(--mobile-gutter)))}
+  .dt-grid,.pt-grid{gap:.75rem}
+  .dt-card,.pt-tool,.pt-panel{padding:14px;border-radius:14px;backdrop-filter:none;box-shadow:0 10px 30px rgba(0,0,0,.14)}
+
+  /* Prevent tiny controls and make the primary action obvious. */
+  .dt-form-grid input,.dt-form-grid select,
+  .pt-field input,.pt-field select,.pt-field textarea{min-height:48px;font-size:16px;padding:.7rem .8rem}
+  .dt-actions,.pt-actions{gap:8px}
+  .dt-primary,.dt-secondary,.pt-btn{min-height:48px;padding:.7rem 1rem}
+  .dt-primary{width:100%;display:flex;align-items:center;justify-content:center}
+  .pt-btn.primary{min-width:140px}
+  .dt-actions .dt-secondary{flex:1}
+
+  /* Reduce cognitive load in long forms. */
+  .dt-form-grid,.pt-fields{grid-template-columns:1fr}
+  .dt-stats,.pt-results,.tool-score{grid-template-columns:1fr 1fr}
+  .pt-toolbar{gap:.7rem;margin-bottom:.7rem}
+
+  /* Avoid layout shifts from dynamically revealed result areas. */
+  .dt-result,.pt-results{scroll-margin-top:calc(var(--mobile-header) + 12px)}
+  .dt-content,.pt-content{margin-top:1rem}
+
+  /* Long SEO/FAQ sections are secondary to the tool interaction. */
+  .dt-content,.pt-content section,.pt-faq,.pt-related{content-visibility:auto;contain-intrinsic-size:auto 500px}
+
+  /* Mobile sticky action hook. Add .mobile-sticky-action to the primary action only. */
+  .mobile-sticky-action{position:sticky;bottom:10px;z-index:900;width:100%;min-height:52px;box-shadow:0 8px 28px rgba(0,0,0,.32)}
+}
+
+/* Touch targets and focus visibility across all viewport sizes. */
+.dt-menu,.dt-primary,.dt-secondary,.pt-btn,.pt-theme,
+.dt-form-grid input,.dt-form-grid select,.pt-field input,.pt-field select,.pt-field textarea,
+button,a[role="button"]{touch-action:manipulation}
+@media(pointer:coarse){
+  .dt-menu,.dt-primary,.dt-secondary,.pt-btn,.pt-theme{min-height:48px}
+  .dt-links a,.pt-navlinks a{min-height:48px}
+}
+
+/* Prefer stable rendering over decorative motion on constrained devices. */
+@media(max-width:700px){
+  .background-animation::before,.background-animation::after{animation:none;filter:blur(70px);opacity:.22}
+  .fade-in{animation:none}
+}
