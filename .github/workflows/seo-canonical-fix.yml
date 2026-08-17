@@ -1,0 +1,53 @@
+name: SEO Canonical Fix
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  inject-canonical-script:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Ensure dynamic canonical script is loaded on every HTML page
+        shell: python
+        run: |
+          from pathlib import Path
+
+          marker = '<script src="/assets/js/canonical.js"></script>'
+          changed = []
+
+          for path in Path('.').rglob('*.html'):
+              if any(part in {'.git', 'node_modules'} for part in path.parts):
+                  continue
+
+              text = path.read_text(encoding='utf-8')
+              if marker in text or '</head>' not in text.lower():
+                  continue
+
+              pos = text.lower().find('</head>')
+              text = text[:pos] + '  ' + marker + '\n' + text[pos:]
+              path.write_text(text, encoding='utf-8')
+              changed.append(str(path))
+
+          print(f'Updated {len(changed)} HTML files')
+          for item in changed:
+              print(item)
+
+      - name: Commit canonical script changes
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -- '*.html'
+          if git diff --cached --quiet; then
+            echo "No HTML changes required."
+          else
+            git commit -m "fix(seo): load dynamic canonical handler on all pages"
+            git push
+          fi
