@@ -22,6 +22,7 @@ jobs:
           import re
 
           ORIGIN = 'https://dailytoolkit.xyz'
+          canonical_re = re.compile(r'<link\s+[^>]*rel=["\']canonical["\'][^>]*>', re.I)
           changed = []
 
           def canonical_for(path: Path) -> str:
@@ -31,50 +32,27 @@ jobs:
               clean = re.sub(r'\.html$', '', rel, flags=re.I)
               return ORIGIN + '/' + clean.lstrip('/')
 
-          canonical_re = re.compile(
-              r'<link\\s+[^>]*rel=["\']canonical["\'][^>]*>',
-              re.I,
-          )
-
           for path in Path('.').rglob('*.html'):
               if any(part in {'.git', 'node_modules'} for part in path.parts):
                   continue
 
               text = path.read_text(encoding='utf-8')
-              if '</head>' not in text.lower():
+              if not re.search(r'</head\s*>', text, re.I):
                   continue
 
               canonical_url = canonical_for(path)
               tag = f'<link rel="canonical" href="{canonical_url}" />'
-              matches = list(canonical_re.finditer(text))
 
-              if matches:
-                  first = matches[0]
-                  text = text[:first.start()] + tag + text[first.end():]
-                  # Remove any additional canonical tags so each document has exactly one.
-                  text = canonical_re.sub(lambda m: '' if m.start() != first.start() else m.group(0), text)
-                  # The replacement above can be position-sensitive after editing, so enforce one tag again.
-                  matches_after = list(canonical_re.finditer(text))
-                  if len(matches_after) > 1:
-                      keep = matches_after[0]
-                      rebuilt = []
-                      last = 0
-                      for m in matches_after[1:]:
-                          rebuilt.append(text[last:m.start()])
-                          last = m.end()
-                      rebuilt.append(text[last:])
-                      text = ''.join(rebuilt)
-                      # Restore the canonical tag if the first match was accidentally removed.
-                      if not canonical_re.search(text):
-                          text = text.replace('</head>', '  ' + tag + '\n</head>', 1)
-              else:
-                  head_pos = text.lower().find('</head>')
-                  text = text[:head_pos] + '  ' + tag + '\n' + text[head_pos:]
+              # Remove every existing canonical tag, then insert exactly one in <head>.
+              cleaned = canonical_re.sub('', text)
+              head_end = re.search(r'</head\s*>', cleaned, re.I)
+              cleaned = cleaned[:head_end.start()] + '  ' + tag + '\n' + cleaned[head_end.start():]
 
-              path.write_text(text, encoding='utf-8')
-              changed.append(str(path))
+              if cleaned != text:
+                  path.write_text(cleaned, encoding='utf-8')
+                  changed.append(str(path))
 
-          print(f'Normalized {len(changed)} HTML files')
+          print(f'Canonical normalization changed {len(changed)} HTML files')
           for item in changed:
               print(item)
 
