@@ -1,4 +1,4 @@
-name: SEO Canonical Fix
+name: SEO Canonical Validation
 
 on:
   push:
@@ -9,45 +9,83 @@ permissions:
   contents: write
 
 jobs:
-  inject-canonical-script:
+  normalize-canonical-tags:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Ensure dynamic canonical script is loaded on every HTML page
+      - name: Normalize static canonical tags on every HTML page
         shell: python
         run: |
           from pathlib import Path
+          import re
 
-          marker = '<script src="/assets/js/canonical.js"></script>'
+          ORIGIN = 'https://dailytoolkit.xyz'
           changed = []
+
+          def canonical_for(path: Path) -> str:
+              rel = path.as_posix()
+              if rel == 'index.html':
+                  return ORIGIN + '/'
+              clean = re.sub(r'\.html$', '', rel, flags=re.I)
+              return ORIGIN + '/' + clean.lstrip('/')
+
+          canonical_re = re.compile(
+              r'<link\\s+[^>]*rel=["\']canonical["\'][^>]*>',
+              re.I,
+          )
 
           for path in Path('.').rglob('*.html'):
               if any(part in {'.git', 'node_modules'} for part in path.parts):
                   continue
 
               text = path.read_text(encoding='utf-8')
-              if marker in text or '</head>' not in text.lower():
+              if '</head>' not in text.lower():
                   continue
 
-              pos = text.lower().find('</head>')
-              text = text[:pos] + '  ' + marker + '\n' + text[pos:]
+              canonical_url = canonical_for(path)
+              tag = f'<link rel="canonical" href="{canonical_url}" />'
+              matches = list(canonical_re.finditer(text))
+
+              if matches:
+                  first = matches[0]
+                  text = text[:first.start()] + tag + text[first.end():]
+                  # Remove any additional canonical tags so each document has exactly one.
+                  text = canonical_re.sub(lambda m: '' if m.start() != first.start() else m.group(0), text)
+                  # The replacement above can be position-sensitive after editing, so enforce one tag again.
+                  matches_after = list(canonical_re.finditer(text))
+                  if len(matches_after) > 1:
+                      keep = matches_after[0]
+                      rebuilt = []
+                      last = 0
+                      for m in matches_after[1:]:
+                          rebuilt.append(text[last:m.start()])
+                          last = m.end()
+                      rebuilt.append(text[last:])
+                      text = ''.join(rebuilt)
+                      # Restore the canonical tag if the first match was accidentally removed.
+                      if not canonical_re.search(text):
+                          text = text.replace('</head>', '  ' + tag + '\n</head>', 1)
+              else:
+                  head_pos = text.lower().find('</head>')
+                  text = text[:head_pos] + '  ' + tag + '\n' + text[head_pos:]
+
               path.write_text(text, encoding='utf-8')
               changed.append(str(path))
 
-          print(f'Updated {len(changed)} HTML files')
+          print(f'Normalized {len(changed)} HTML files')
           for item in changed:
               print(item)
 
-      - name: Commit canonical script changes
+      - name: Commit canonical normalization changes
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add -- '*.html'
           if git diff --cached --quiet; then
-            echo "No HTML changes required."
+            echo "No canonical changes required."
           else
-            git commit -m "fix(seo): load dynamic canonical handler on all pages"
+            git commit -m "fix(seo): normalize static canonical tags"
             git push
           fi
