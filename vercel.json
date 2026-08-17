@@ -3,6 +3,22 @@
   "trailingSlash": false,
   "redirects": [
     {
+      "source": "/index.html",
+      "destination": "https://dailytoolkit.xyz/",
+      "permanent": true
+    },
+    {
+      "source": "/:path*",
+      "has": [
+        {
+          "type": "host",
+          "value": "www.dailytoolkit.xyz"
+        }
+      ],
+      "destination": "https://dailytoolkit.xyz/:path*",
+      "permanent": true
+    },
+    {
       "source": "/age-calculator",
       "destination": "/tools/age-calculator",
       "permanent": true
