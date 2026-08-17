@@ -1,0 +1,92 @@
+name: SEO Content Optimization
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+
+permissions:
+  contents: write
+
+jobs:
+  optimize-seo-pages:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Improve titles, descriptions and intent content
+        shell: python
+        run: |
+          from pathlib import Path
+          import re
+
+          pages = {
+              'tools/text-case-converter.html': {
+                  'title': 'Text Case Converter - Uppercase, Lowercase, Title & Sentence Case | Daily Toolkit',
+                  'description': 'Free text case converter to change text to uppercase, lowercase, title case, sentence case, camelCase, PascalCase, snake_case and kebab-case online.',
+                  'og_title': 'Text Case Converter - Convert Text Case Online',
+                  'og_description': 'Convert text instantly between uppercase, lowercase, title case, sentence case and developer-friendly case formats.',
+                  'twitter_title': 'Text Case Converter Online - Daily Toolkit',
+                  'twitter_description': 'Free online text case converter with uppercase, lowercase, title, sentence, camelCase, PascalCase, snake_case and kebab-case.',
+                  'insert_before': '<section class="content"><div class="inner prose">',
+                  'content': '''<section class="content"><div class="inner prose">\n<div class="heading"><div class="eyebrow">Text Formatting Guide</div><h2>Convert Text Case Online</h2></div>\n<p>Use the free text case converter to change capitalization instantly. Convert text to uppercase, lowercase, title case, sentence case, capitalize words, camelCase, PascalCase, snake_case and kebab-case without retyping your text.</p>\n<h3>Uppercase, Lowercase and Sentence Case</h3>\n<p>Uppercase converts letters to capitals, lowercase converts them to small letters, and sentence case formats normal sentences by capitalizing the beginning of each sentence. These options are useful for cleaning copied text, headings, notes and documents.</p>\n<h3>Title Case and Capitalize Words</h3>\n<p>Use Title Case for headings and titles or Capitalize Words when you want the first letter of each word changed. Always review proper names and acronyms after automatic conversion.</p>\n<h3>Developer Case Formats</h3>\n<p>Convert readable phrases into camelCase, PascalCase, snake_case, kebab-case and CONSTANT_CASE for variables, classes, database fields, URLs and other technical naming conventions.</p>\n<h3>How to Use the Text Case Converter</h3>\n<ol><li>Paste or type your text into the input box.</li><li>Select the case format you need.</li><li>Review the converted result and copy or download it.</li></ol>\n<h3>Is the Text Processed in the Browser?</h3>\n<p>The core conversion features are designed to run in the browser. Do not enter sensitive information if a feature or browser extension indicates that data is being transmitted elsewhere.</p>\n</div></div></section>\n\n'''
+              },
+              'tools/pdf-splitter.html': {
+                  'title': 'PDF Splitter - Split PDF Pages Online for Free | Daily Toolkit',
+                  'description': 'Split PDF files online for free. Extract selected pages, separate page ranges and create smaller PDF documents with the Daily Toolkit PDF splitter.',
+                  'og_title': 'PDF Splitter - Split and Extract PDF Pages Online',
+                  'og_description': 'Split PDF files into pages or page ranges with a free online PDF splitter.',
+                  'twitter_title': 'PDF Splitter Online - Daily Toolkit',
+                  'twitter_description': 'Split PDF pages, extract selected pages and create smaller PDF files online.',
+                  'insert_before': '<section class="content"><div class="inner prose">',
+                  'content': '''<section class="content"><div class="inner prose">\n<div class="heading"><div class="eyebrow">PDF Splitter Guide</div><h2>Split PDF Files Online</h2></div>\n<p>Use the Daily Toolkit PDF splitter to separate a PDF into individual pages or selected page ranges. It is useful when you need only specific pages from a report, form, presentation or other document.</p>\n<h3>How to Split a PDF</h3>\n<ol><li>Upload or select your PDF in the tool.</li><li>Choose the pages or ranges you want to extract.</li><li>Run the splitter and download the resulting PDF files.</li></ol>\n<h3>PDF Page Splitter and PDF Cutter</h3>\n<p>A PDF splitter can also work as a page extractor or PDF cutter when you need to remove unwanted pages or create a smaller document from selected pages. Choose the exact pages you need before downloading the result.</p>\n<h3>When Should You Split a PDF?</h3>\n<p>Splitting is useful for extracting a chapter, separating invoices, sharing only selected pages or reducing a large document into smaller files.</p>\n<h3>PDF Splitter FAQs</h3>\n<p>For best results, review the page selection before downloading and keep an original copy of important documents.</p>\n</div></div></section>\n\n'''
+              },
+              'tools/emoji-picker.html': {
+                  'title': 'Emoji Picker - Copy & Paste Emojis Online | Daily Toolkit',
+                  'description': 'Pick, search, copy and paste emojis online with a free emoji picker. Find emojis for messages, social media, websites and everyday text.',
+                  'og_title': 'Emoji Picker - Search, Copy & Paste Emojis',
+                  'og_description': 'Find and copy emojis quickly with the free Daily Toolkit emoji picker.',
+                  'twitter_title': 'Emoji Picker Online - Daily Toolkit',
+                  'twitter_description': 'Search, select, copy and paste emojis for messages, social media and websites.',
+                  'insert_before': '<section class="content"><div class="inner prose">',
+                  'content': '''<section class="content"><div class="inner prose">\n<div class="heading"><div class="eyebrow">Emoji Guide</div><h2>Find and Copy Emojis Online</h2></div>\n<p>Use the free emoji picker to find, select, copy and paste emojis for messages, social media posts, comments, websites and everyday writing.</p>\n<h3>How to Use the Emoji Picker</h3>\n<ol><li>Browse or search for the emoji you want.</li><li>Select the emoji.</li><li>Copy it and paste it wherever you need it.</li></ol>\n<h3>Popular Emoji Categories</h3>\n<p>Explore common categories such as smileys, people, animals, food, travel, activities, objects and symbols to find an emoji quickly.</p>\n<h3>Emoji Picker for Social Media</h3>\n<p>Emojis can add visual context to captions, comments, messages and short-form content. Choose emojis that match the meaning and tone of your text.</p>\n<h3>Emoji Picker FAQs</h3>\n<p>Emoji appearance can vary between operating systems, browsers and apps because each platform may use a different emoji font.</p>\n</div></div></section>\n\n'''
+              }
+          }
+
+          changed = []
+          for filename, cfg in pages.items():
+              path = Path(filename)
+              if not path.exists():
+                  print(f'SKIP: {filename} not found')
+                  continue
+              text = path.read_text(encoding='utf-8')
+
+              text = re.sub(r'<title>.*?</title>', f'<title>{cfg["title"]}</title>', text, count=1, flags=re.I|re.S)
+              text = re.sub(r'<meta name="description" content="[^"]*"\s*/?>', f'<meta name="description" content="{cfg["description"]}">', text, count=1, flags=re.I)
+              text = re.sub(r'<meta property="og:title" content="[^"]*"\s*/?>', f'<meta property="og:title" content="{cfg["og_title"]}">', text, count=1, flags=re.I)
+              text = re.sub(r'<meta property="og:description" content="[^"]*"\s*/?>', f'<meta property="og:description" content="{cfg["og_description"]}">', text, count=1, flags=re.I)
+              text = re.sub(r'<meta name="twitter:title" content="[^"]*"\s*/?>', f'<meta name="twitter:title" content="{cfg["twitter_title"]}">', text, count=1, flags=re.I)
+              text = re.sub(r'<meta name="twitter:description" content="[^"]*"\s*/?>', f'<meta name="twitter:description" content="{cfg["twitter_description"]}">', text, count=1, flags=re.I)
+
+              marker = cfg['insert_before']
+              if marker in text and 'SEO-OPTIMIZED-CONTENT' not in text:
+                  block = cfg['content'].replace('<section', '<!-- SEO-OPTIMIZED-CONTENT -->\n<section', 1)
+                  text = text.replace(marker, block + marker, 1)
+
+              path.write_text(text, encoding='utf-8')
+              changed.append(filename)
+
+          print('Optimized:', ', '.join(changed) if changed else 'none')
+
+      - name: Commit SEO content changes
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -- '*.html'
+          if git diff --cached --quiet; then
+            echo "No SEO content changes required."
+          else
+            git commit -m "feat(seo): strengthen tool content for search intent"
+            git push
+          fi
