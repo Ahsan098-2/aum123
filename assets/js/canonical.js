@@ -1,13 +1,17 @@
 /*
- * Daily Toolkit — Dynamic Canonical URL
+ * Daily Toolkit — Canonical URL normalizer
  *
- * Normalizes every page to:
- *   https://dailytoolkit.xyz<pathname>
+ * Canonical URLs always use the production origin and the clean Vercel URL:
+ *   https://dailytoolkit.xyz<clean-path>
  *
- * - Uses window.location.pathname only (query strings/fragments are ignored)
- * - Forces the canonical HTTPS origin
- * - Removes trailing slashes except for the homepage
- * - Updates an existing canonical tag or creates one when missing
+ * Rules:
+ * - HTTPS production origin only
+ * - www is never canonical
+ * - query strings and fragments are ignored
+ * - .html is removed from page paths
+ * - /index.html and /index resolve to /
+ * - trailing slashes are removed except for /
+ * - updates the existing canonical tag instead of creating duplicates
  */
 (function () {
   'use strict';
@@ -15,12 +19,17 @@
   var CANONICAL_ORIGIN = 'https://dailytoolkit.xyz';
   var pathname = window.location.pathname || '/';
 
-  // Keep the homepage as /; remove trailing slash from all other paths.
-  var cleanPath = pathname === '/' ? '/' : pathname.replace(/\/+$/, '');
+  // Normalize common duplicate URL forms before generating the canonical.
+  var cleanPath = pathname;
 
-  // Safety fallback in case the browser provides an unexpected empty path.
-  if (!cleanPath) {
+  if (/^\/index(?:\.html)?\/?$/i.test(cleanPath)) {
     cleanPath = '/';
+  } else {
+    // Remove the .html extension from page URLs.
+    cleanPath = cleanPath.replace(/\.html$/i, '');
+    // Remove trailing slashes from non-homepage URLs.
+    cleanPath = cleanPath.replace(/\/+$/, '');
+    if (!cleanPath) cleanPath = '/';
   }
 
   var canonicalUrl = CANONICAL_ORIGIN + cleanPath;
