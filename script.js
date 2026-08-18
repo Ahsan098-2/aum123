@@ -17,6 +17,28 @@
       .toLowerCase();
   }
 
+  function ensureCanonical(){
+    try{
+      var path = window.location.pathname || '/';
+      path = path.replace(/\/+/g, '/').replace(/\.html$/i, '');
+      if(path !== '/') path = path.replace(/\/$/, '');
+      var canonicalUrl = 'https://dailytoolkit.xyz' + (path || '/');
+
+      var canonical = document.querySelector('link[rel="canonical"]');
+      if(!canonical){
+        canonical = document.createElement('link');
+        canonical.rel = 'canonical';
+        document.head.appendChild(canonical);
+      }
+      canonical.href = canonicalUrl;
+
+      var ogUrl = document.querySelector('meta[property="og:url"]');
+      if(ogUrl) ogUrl.setAttribute('content', canonicalUrl);
+    }catch(error){
+      console.warn('Daily Toolkit canonical normalization:', error);
+    }
+  }
+
   function toolKey(tool){
     if(!tool) return '';
     var url = normalizeUrl(tool.url);
@@ -90,8 +112,6 @@
     document.head.appendChild(s);
   }
 
-  /* Load the mobile UX/CRO layer through the already-linked site loader.
-     This avoids replacing the large inline index.html stylesheet. */
   function loadMobileUX(){
     if(document.querySelector('link[data-daily-toolkit-mobile-ux]')) return;
     var link=document.createElement('link');
@@ -102,11 +122,13 @@
   }
 
   function cleanup(){
+    ensureCanonical();
     ensureHomeCatalog();
     cleanRenderedHomepage();
   }
 
   function boot(){
+    ensureCanonical();
     loadMobileUX();
     cleanup();
     var attempts=0;
