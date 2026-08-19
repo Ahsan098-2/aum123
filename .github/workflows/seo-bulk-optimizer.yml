@@ -1,0 +1,40 @@
+name: Bulk SEO Optimizer
+
+on:
+  push:
+    paths:
+      - 'scripts/seo_bulk_optimizer.py'
+      - 'tools/*.html'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  optimize:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+
+      - name: Optimize tool SEO metadata
+        run: python scripts/seo_bulk_optimizer.py
+
+      - name: Commit SEO updates
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add tools/*.html
+          if git diff --cached --quiet; then
+            echo 'No SEO changes required.'
+          else
+            git commit -m 'SEO: optimize tool titles descriptions and canonicals'
+            git push
+          fi
