@@ -1,106 +1,112 @@
-/*
- * Daily Toolkit — Canonical URL normalizer + on-page content enhancer
- *
- * Canonical URLs always use the production origin and clean paths.
- * The content enhancer adds the long-form guide required on tool pages and
- * a discoverable article library on the blog page. It runs after the document
- * is ready so it does not interfere with tool functionality.
- */
+/* Daily Toolkit: canonical + search-intent SEO metadata + tool guide */
 (function () {
   'use strict';
 
-  var CANONICAL_ORIGIN = 'https://dailytoolkit.xyz';
-  var pathname = window.location.pathname || '/';
-  var cleanPath = pathname;
+  var ORIGIN = 'https://dailytoolkit.xyz';
+  var path = (window.location.pathname || '/').replace(/\.html$/i, '').replace(/\/+$/, '') || '/';
+  var slug = path.split('/').filter(Boolean).pop() || '';
 
-  if (/^\/index(?:\.html)?\/?$/i.test(cleanPath)) {
-    cleanPath = '/';
-  } else {
-    cleanPath = cleanPath.replace(/\.html$/i, '');
-    cleanPath = cleanPath.replace(/\/+$/, '');
-    if (!cleanPath) cleanPath = '/';
+  var SEO = {
+    'age-calculator':['Age Calculator Online – Calculate Your Exact Age | Daily Toolkit','Calculate your exact age from your date of birth in years, months and days. Free online age calculator with an accurate age breakdown and age difference support.','age calculator, age calculator online, age calculator by date of birth, calculate age, chronological age calculator, age difference calculator'],
+    'ats-resume-score-checker':['ATS Resume Checker – Check Your Resume Score Free | Daily Toolkit','Check your resume for ATS compatibility, keywords, formatting and job-match issues. Get a practical resume score online for free before applying.','ATS resume checker, ATS resume score, resume checker, resume scanner, ATS compatibility checker, resume keyword checker'],
+    'background-remover':['Background Remover Online – Remove Image Background Free | Daily Toolkit','Remove backgrounds from images online with a simple free background remover. Create clean transparent PNG images quickly without installing software.','background remover, remove background from image, image background remover, transparent background, background eraser online'],
+    'barcode-generator':['Barcode Generator Online – Create Free Barcodes | Daily Toolkit','Create barcodes online for products, inventory and labels. Generate a downloadable barcode quickly with this free browser-based barcode generator.','barcode generator, barcode generator online, create barcode, free barcode maker, product barcode generator, barcode maker'],
+    'bio-ideas-generator':['Instagram Bio Ideas Generator – Create Bio Ideas Free | Daily Toolkit','Generate Instagram bio ideas for personal brands, creators and businesses. Get short, creative and searchable bio ideas online for free.','instagram bio ideas, bio generator, instagram bio generator, creative bio ideas, social media bio generator'],
+    'bmi-calculator':['BMI Calculator Online – Calculate Body Mass Index | Daily Toolkit','Calculate your Body Mass Index (BMI) online using height and weight. Get your BMI value, category and a simple explanation with this free calculator.','BMI calculator, BMI calculator online, body mass index calculator, calculate BMI, BMI by height and weight'],
+    'business-break-even-calculator':['Break-Even Calculator – Calculate Business Break-Even Point | Daily Toolkit','Calculate your business break-even point, required sales and profit margin using fixed costs, variable costs and selling price. Free online calculator.','break even calculator, break even point calculator, business break even calculator, break even analysis, sales break even calculator'],
+    'color-picker':['Color Picker Online – Pick HEX, RGB & HSL Colors | Daily Toolkit','Pick colors online and get HEX, RGB and HSL values instantly. Use this free color picker for web design, UI, graphics and CSS color selection.','color picker, color picker online, HEX color picker, RGB color picker, HSL color picker, color selector'],
+    'compress-pdf':['Compress PDF Online – Reduce PDF File Size Free | Daily Toolkit','Compress PDF files online to reduce file size while keeping documents readable. Free PDF compressor for sharing, email, uploads and web use.','compress PDF, PDF compressor, compress PDF online, reduce PDF size, reduce PDF file size, free PDF compressor'],
+    'crypto-price-checker':['Crypto Price Checker – Check Cryptocurrency Prices | Daily Toolkit','Check cryptocurrency prices and market information online with a fast crypto price checker. Track popular coins and view current market data.','crypto price checker, cryptocurrency prices, crypto prices, coin price checker, Bitcoin price checker, crypto market prices'],
+    'debt-payoff-calculator':['Debt Payoff Calculator – Plan Your Debt Repayment | Daily Toolkit','Calculate how long it may take to pay off debt and estimate interest and monthly payments. Compare repayment plans with this free debt payoff calculator.','debt payoff calculator, debt repayment calculator, debt snowball calculator, debt avalanche calculator, payoff calculator'],
+    'ecommerce-profit-calculator':['Ecommerce Profit Calculator – Calculate Online Store Profit | Daily Toolkit','Calculate ecommerce profit, margin and return using product cost, selling price, fees, shipping and other expenses. Free online ecommerce profit calculator.','ecommerce profit calculator, ecommerce margin calculator, online store profit calculator, Shopify profit calculator, product profit calculator'],
+    'emoji-picker':['Emoji Picker Online – Copy & Paste Emojis Free | Daily Toolkit','Find, search and copy emojis online for messages, social media, websites and documents. Free emoji picker with quick copy and paste support.','emoji picker, emoji picker online, copy emojis, emoji copy paste, emoji keyboard online, emoji list'],
+    'freelancer-hourly-rate-calculator':['Freelance Hourly Rate Calculator – Set Your Freelance Rate | Daily Toolkit','Calculate a freelance hourly rate from your income goal, working hours, expenses, taxes and unpaid time. Find a practical rate for your freelance work.','freelance hourly rate calculator, freelancer rate calculator, freelance pricing calculator, hourly rate calculator, freelance income calculator'],
+    'fuel-price-checker':['Fuel Price Checker – Check Petrol & Diesel Prices | Daily Toolkit','Check current fuel price information with a simple online fuel price checker. Compare petrol and diesel prices and plan your travel or vehicle costs.','fuel price checker, petrol price, diesel price, fuel prices, petrol price checker, diesel price checker'],
+    'gold-price-checker':['Gold Price Checker – Check Gold Prices Online | Daily Toolkit','Check gold price information online and compare common gold purity levels. Use this free gold price checker to estimate current gold value and rates.','gold price checker, gold price today, gold rate, gold price online, 24k gold price, 22k gold price'],
+    'gradient-generator':['CSS Gradient Generator – Create Linear & Radial Gradients | Daily Toolkit','Create beautiful CSS gradients online with a live preview. Generate linear or radial gradient CSS code for websites, apps and UI designs for free.','CSS gradient generator, gradient generator, CSS gradient, linear gradient generator, radial gradient generator, gradient maker'],
+    'hashtag-generator':['Hashtag Generator – Create Relevant Social Media Hashtags | Daily Toolkit','Generate relevant hashtag ideas for social media posts, videos and campaigns. Create topic-based hashtags quickly with this free online hashtag generator.','hashtag generator, hashtag generator online, Instagram hashtag generator, TikTok hashtag generator, social media hashtags'],
+    'image-compressor':['Image Compressor Online – Compress JPG, PNG & WebP | Daily Toolkit','Compress JPG, PNG and WebP images online to reduce file size while keeping good quality. Fast browser-based image compression for websites and sharing.','image compressor, image compressor online, compress image, JPG compressor, PNG compressor, WebP compressor, reduce image size'],
+    'image-resizer':['Image Resizer Online – Resize JPG, PNG & WebP Images | Daily Toolkit','Resize JPG, PNG and WebP images online by width, height or dimensions. Free image resizer for websites, social media, forms and documents.','image resizer, image resizer online, resize image, resize JPG, resize PNG, image size changer'],
+    'image-to-pdf':['Image to PDF Converter – Convert JPG & PNG to PDF | Daily Toolkit','Convert JPG, PNG and other images to PDF online. Combine images into a PDF, adjust page settings and download your document with this free converter.','image to PDF, JPG to PDF, PNG to PDF, image to PDF converter, convert image to PDF, photos to PDF'],
+    'instagram-caption-maker':['Instagram Caption Generator – Create Captions Free | Daily Toolkit','Create engaging Instagram caption ideas for photos, reels, brands and creators. Generate short, creative captions with this free online caption maker.','Instagram caption generator, Instagram caption maker, caption ideas, social media caption generator, Reel caption generator'],
+    'investment-return-calculator':['Investment Return Calculator – Calculate ROI & Returns | Daily Toolkit','Estimate investment growth, profit, total return and ROI from your initial amount, contributions and expected return. Free online investment calculator.','investment return calculator, ROI calculator, investment calculator, return on investment calculator, investment growth calculator'],
+    'ip-finder':['IP Address Finder – Find Your Public IP Address | Daily Toolkit','Find your public IP address and basic connection information online. Use this free IP finder to quickly check the IP address visible to websites.','IP address finder, what is my IP, my IP address, public IP checker, IP lookup, find IP address'],
+    'job-offer-comparison-calculator':['Job Offer Comparison Calculator – Compare Salary & Benefits | Daily Toolkit','Compare job offers by salary, bonuses, benefits, commute and other costs. Estimate which job offer provides better overall value with this free calculator.','job offer comparison calculator, compare job offers, salary comparison calculator, job offer calculator, compensation comparison'],
+    'loan-calculator':['Loan Calculator – Calculate Monthly Payment & Interest | Daily Toolkit','Calculate loan payments, total interest and repayment cost from loan amount, interest rate and term. Free online loan payment calculator with clear results.','loan calculator, loan payment calculator, monthly payment calculator, interest calculator, EMI calculator, loan interest calculator'],
+    'password-gen':['Password Generator – Create Strong Random Passwords | Daily Toolkit','Generate strong random passwords online with customizable length, numbers, symbols and letter options. Free password generator for safer accounts.','password generator, strong password generator, random password generator, secure password generator, password maker'],
+    'pdf-merger':['PDF Merger – Merge Multiple PDF Files Online Free | Daily Toolkit','Merge multiple PDF files into one document online. Reorder files and create a single PDF quickly with this free browser-based PDF merger.','PDF merger, merge PDF, merge PDF online, combine PDF files, PDF combiner, free PDF merger'],
+    'pdf-splitter':['PDF Splitter – Split PDF Pages Online Free | Daily Toolkit','Split a PDF into separate files or extract selected pages online. Free PDF splitter for organizing, sharing and managing PDF documents.','PDF splitter, split PDF, split PDF online, extract PDF pages, PDF page extractor, separate PDF pages'],
+    'pdf-to-image':['PDF to Image Converter – Convert PDF Pages to JPG & PNG | Daily Toolkit','Convert PDF pages to JPG or PNG images online. Turn document pages into shareable image files quickly with this free PDF to image converter.','PDF to image, PDF to JPG, PDF to PNG, PDF converter, convert PDF to image, PDF page to image'],
+    'pension-calculator':['Pension Calculator – Estimate Retirement Pension & Income | Daily Toolkit','Estimate retirement pension and income using age, contributions, savings and expected returns. Free pension calculator for planning your future finances.','pension calculator, retirement pension calculator, pension estimate, retirement income calculator, pension planning calculator'],
+    'qr-generator':['QR Code Generator – Create Free QR Codes Online | Daily Toolkit','Create free QR codes for URLs, text, Wi-Fi, contact details and more. Customize and download QR codes quickly with this browser-based generator.','QR code generator, QR generator, QR code maker, create QR code, free QR code generator, WiFi QR code, URL QR code'],
+    'retirement-calculator':['Retirement Calculator – Plan Your Retirement Savings | Daily Toolkit','Estimate how much you may need for retirement and project future savings from your current age, contributions, return and retirement goal.','retirement calculator, retirement savings calculator, retirement planning calculator, how much to retire, retirement income calculator'],
+    'salary-take-home-calculator':['Salary Take-Home Calculator – Estimate Net Pay | Daily Toolkit','Estimate take-home pay and net salary from gross income, deductions, taxes and contributions. Free salary calculator for comparing your expected paycheck.','salary take home calculator, take home pay calculator, net salary calculator, paycheck calculator, salary calculator'],
+    'stock-price-tracker':['Stock Price Tracker – Track Stock Prices & Market Data | Daily Toolkit','Track stock prices and market information online with a simple stock price tracker. Check symbols and current market data in one place.','stock price tracker, stock price checker, stock market tracker, share price tracker, stock price today'],
+    'text-case-converter':['Text Case Converter – Convert Uppercase, Lowercase & More | Daily Toolkit','Convert text to uppercase, lowercase, title case, sentence case and other formats instantly. Free online text case converter for writing and editing.','text case converter, uppercase converter, lowercase converter, title case converter, sentence case converter, text formatter'],
+    'unit-converter':['Unit Converter – Convert Length, Weight, Temperature & More | Daily Toolkit','Convert common units for length, weight, temperature, area, volume and more. Fast free online unit converter with clear conversion results.','unit converter, unit conversion, length converter, weight converter, temperature converter, measurement converter'],
+    'url-encoder-decoder':['URL Encoder & Decoder – Encode or Decode URLs Online | Daily Toolkit','Encode and decode URLs online using percent encoding. Convert special characters safely for web addresses, query strings and developers.','URL encoder, URL decoder, URL encode, URL decode, percent encoding, encode URL online'],
+    'website-seo-audit':['SEO Audit Tool – Check Website SEO Issues Free | Daily Toolkit','Run a practical website SEO audit and check titles, meta descriptions, headings, links and other on-page SEO signals. Free online SEO checker.','SEO audit tool, website SEO audit, SEO checker, on page SEO checker, website SEO checker, SEO analysis tool'],
+    'website-seo-audit-tool':['Website SEO Checker – Analyze On-Page SEO & Metadata | Daily Toolkit','Analyze a website on-page SEO signals including title, description, headings, links and metadata. Free website SEO checker for quick audits.','website SEO checker, SEO checker online, on page SEO analyzer, website SEO analyzer, SEO analysis tool, meta tag checker'],
+    'word-counter':['Word Counter – Count Words, Characters & Sentences Online | Daily Toolkit','Count words, characters, sentences, paragraphs and reading time instantly. Free online word counter for writers, students, SEO and content creators.','word counter, word count tool, character counter, sentence counter, word counter online, reading time calculator']
+  };
+
+  function setMeta(name, content) {
+    var el = document.head.querySelector('meta[name="' + name + '"]');
+    if (!el) { el = document.createElement('meta'); el.name = name; document.head.appendChild(el); }
+    el.content = content;
+  }
+  function setProperty(property, content) {
+    var el = document.head.querySelector('meta[property="' + property + '"]');
+    if (!el) { el = document.createElement('meta'); el.setAttribute('property', property); document.head.appendChild(el); }
+    el.content = content;
+  }
+  function setCanonical(url) {
+    var links = document.head.querySelectorAll('link[rel="canonical"]');
+    var link = links[0];
+    if (!link) { link = document.createElement('link'); link.rel = 'canonical'; document.head.appendChild(link); }
+    link.href = url;
+    for (var i = 1; i < links.length; i++) links[i].remove();
   }
 
-  var canonicalUrl = CANONICAL_ORIGIN + cleanPath;
-  var canonical = document.head.querySelector('link[rel="canonical"]');
-  if (!canonical) {
-    canonical = document.createElement('link');
-    canonical.setAttribute('rel', 'canonical');
-    document.head.appendChild(canonical);
-  }
-  canonical.setAttribute('href', canonicalUrl);
+  var canonicalUrl = ORIGIN + path;
+  setCanonical(canonicalUrl);
 
-  function titleFromSlug(slug) {
-    var special = {pdf:'PDF', qr:'QR', url:'URL', seo:'SEO', ip:'IP', ats:'ATS', bmi:'BMI', api:'API'};
-    return slug.split('-').map(function (part) { return special[part] || part.charAt(0).toUpperCase() + part.slice(1); }).join(' ');
-  }
+  if (SEO[slug] && /^\/tools\//i.test(path)) {
+    var data = SEO[slug];
+    document.title = data[0];
+    setMeta('description', data[1]);
+    setMeta('keywords', data[2]);
+    setMeta('robots', 'index, follow, max-image-preview:large');
+    setMeta('author', 'Daily Toolkit');
+    setProperty('og:title', data[0]);
+    setProperty('og:description', data[1]);
+    setProperty('og:url', canonicalUrl);
+    setProperty('og:type', 'website');
+    setMeta('twitter:title', data[0]);
+    setMeta('twitter:description', data[1]);
+    setMeta('twitter:card', 'summary_large_image');
 
-  function categoryText(slug) {
-    if (/pdf|document/.test(slug)) return 'For document work, accuracy matters as much as speed. Keep an original copy, confirm page order and readability, and check the final file before sending it to another person. PDF workflows are especially useful for applications, reports, receipts, forms, study notes and business records.';
-    if (/image|photo|background|barcode|qr|color|gradient/.test(slug)) return 'For visual work, start with a good source and decide where the result will be used. Web pages, social posts, print documents and messaging apps can have different size and quality needs. Always preview the finished result at a realistic size before publishing it.';
-    if (/calculator|loan|debt|salary|investment|retirement|pension|profit|rate|bmi|age/.test(slug)) return 'For calculation tools, the quality of the answer depends on the inputs. Enter values carefully, confirm units and dates, and treat the result as an estimate when real-world rules, fees, taxes or professional requirements apply. Comparing a few realistic scenarios is often more useful than relying on one number.';
-    if (/password|security|ip|url|seo|ats/.test(slug)) return 'For technical and security-related tasks, review the output before acting on it. Avoid exposing private credentials or confidential information, verify URLs and settings, and use the result as one part of a wider workflow rather than assuming that an automated check can replace expert review.';
-    return 'For everyday productivity tasks, a simple repeatable workflow is usually the fastest approach: prepare the input, run the tool, inspect the result, and then save or reuse it. Keeping the original input when appropriate makes it easier to correct mistakes without starting from scratch.';
-  }
+    var schema = document.getElementById('dt-seo-schema');
+    if (!schema) { schema = document.createElement('script'); schema.type = 'application/ld+json'; schema.id = 'dt-seo-schema'; document.head.appendChild(schema); }
+    schema.textContent = JSON.stringify({
+      '@context':'https://schema.org', '@type':'WebApplication', name:data[0].split(' | ')[0], url:canonicalUrl,
+      description:data[1], applicationCategory:'UtilityApplication', operatingSystem:'Any',
+      offers:{'@type':'Offer',price:'0',priceCurrency:'USD'}
+    });
 
-  function injectToolGuide() {
-    if (!/^\/tools\//i.test(pathname) || document.getElementById('dt-tool-guide')) return;
-    var slug = pathname.split('/').filter(Boolean).pop().replace(/\.html$/i, '');
-    var name = titleFromSlug(slug);
-    var guide = document.createElement('section');
-    guide.id = 'dt-tool-guide';
-    guide.setAttribute('aria-labelledby', 'dt-tool-guide-title');
-    guide.innerHTML = '<div class="dt-guide-inner">' +
-      '<p class="dt-guide-eyebrow">Complete Tool Guide</p>' +
-      '<h2 id="dt-tool-guide-title">' + name + ': How to Use It, Features, Benefits and FAQs</h2>' +
-      '<p><strong>' + name + '</strong> is a free online utility designed to make a common digital task easier to complete in a browser. Instead of installing specialist software for an occasional job, you can use this page as a focused workspace: provide the required information, choose the relevant options, run the tool, and review the result. It is intended for students, office workers, freelancers, creators, developers, small businesses and everyday internet users who want a straightforward solution. ' + categoryText(slug) + '</p>' +
-      '<p>The most reliable way to use any online tool is to understand what goes in and what comes out. Before starting, read the labels around the controls and make sure you have selected the correct file, date, number, unit or setting. If the task involves an important document or decision, keep an original copy and verify the result independently. Online tools are excellent for routine processing, but they should not be treated as professional advice for medical, legal, financial or other high-stakes decisions.</p>' +
-      '<h3>How to Use ' + name + '</h3>' +
-      '<ol><li>Open the tool and read the short instructions so you know what information or file is required.</li><li>Enter the values or select the source file carefully. Check spelling, dates, units, page ranges and other details that affect the result.</li><li>Choose optional settings only when you understand their effect. If you are unsure, start with the default or balanced option.</li><li>Run the tool and wait for the result. Processing time can vary with file size, browser resources and the complexity of the task.</li><li>Review the output before downloading, sharing, publishing or using it elsewhere. If something is incorrect, change one input at a time and run the tool again.</li></ol>' +
-      '<h3>Key Features</h3>' +
-      '<p>The page is designed around a focused task rather than a complicated software workflow. Clear inputs help reduce mistakes, the browser-based interface keeps access simple, and the result can normally be reviewed immediately. Depending on the tool, the workflow may include calculations, conversion, text processing, image handling, document processing, generation or an automated check. A useful result is one that is understandable and ready for the next step in your workflow. For file-based tools, practical limits such as file size, browser memory and device storage can affect processing, so smaller or optimized source files may work better.</p>' +
-      '<h3>Why Use This Tool?</h3>' +
-      '<p>' + name + ' can save time when you need a quick result without learning a large application. It can be useful for homework, office administration, content creation, website maintenance, small-business tasks and personal projects. The biggest benefit is repeatability: once you understand the inputs, the same process can be used again with different information. This makes the tool useful for routine work while still keeping the user in control of the final result.</p>' +
-      '<h3>Best Practices</h3>' +
-      '<p>Use accurate inputs, keep important originals, and review outputs before relying on them. Avoid uploading confidential material unless you are comfortable with the service and understand its handling requirements. On mobile devices, use a stable browser connection and allow enough storage for downloads. When a result is important, compare it with the original data or an independent reference. These simple checks reduce avoidable errors and make an online tool much more useful as part of a larger workflow.</p>' +
-      '<h3>FAQs</h3>' +
-      '<div class="dt-faq"><details><summary>Is ' + name + ' free to use?</summary><p>Yes. Daily Toolkit provides the tool as a free online utility. Normal use does not require installing a paid desktop application.</p></details><details><summary>Do I need to install software?</summary><p>No. Open the page in a modern browser and follow the controls shown on the tool.</p></details><details><summary>What if the result is not correct?</summary><p>Check the input first, especially dates, numbers, file selection, units and options. Correct one item at a time and run the tool again.</p></details><details><summary>Does it work on mobile?</summary><p>The pages are designed for modern phones, tablets and computers. Browser and device limits can still affect very large files or complex processing.</p></details></div>' +
-      '</div>';
-    var style = document.createElement('style');
-    style.textContent = '#dt-tool-guide{margin:2.5rem auto 0;padding:2.5rem 4%;border-top:1px solid #eee;background:#fff}.dt-guide-inner{max-width:900px;margin:auto;color:#222}.dt-guide-eyebrow{text-transform:uppercase;letter-spacing:.14em;font-size:.7rem;font-weight:700;color:#8a6a20;margin:0 0 .6rem}.dt-guide-inner h2{font-family:Georgia,serif;font-size:clamp(1.6rem,3vw,2.3rem);line-height:1.2;margin:0 0 1rem}.dt-guide-inner h3{font-family:Georgia,serif;font-size:1.25rem;margin:1.8rem 0 .65rem}.dt-guide-inner p,.dt-guide-inner li{font-size:.95rem;line-height:1.8;color:#555}.dt-guide-inner ol{padding-left:1.3rem}.dt-guide-inner li{margin:.45rem 0}.dt-faq{display:grid;gap:.7rem}.dt-faq details{border:1px solid #eee;border-radius:6px;padding:.85rem 1rem;background:#fafafa}.dt-faq summary{cursor:pointer;font-weight:600;color:#222}.dt-faq details p{margin:.6rem 0 0}';
-    document.head.appendChild(style);
-    var main = document.querySelector('main') || document.body;
-    main.appendChild(guide);
+    if (!document.getElementById('dt-tool-guide')) {
+      var name = data[0].split(' | ')[0];
+      var guide = document.createElement('section'); guide.id = 'dt-tool-guide';
+      guide.innerHTML = '<div class="dt-guide-inner"><p class="dt-guide-eyebrow">Complete Tool Guide</p>' +
+        '<h2>' + name + ': How to Use It, Features, Benefits and FAQs</h2>' +
+        '<p><strong>' + name + '</strong> is a free online utility for completing a focused digital task in your browser. It is designed for students, office workers, freelancers, creators, developers, small businesses and everyday users who want a quick, clear workflow without installing specialist software.</p>' +
+        '<h3>How to Use ' + name + '</h3><ol><li>Open the tool and read the input instructions.</li><li>Enter accurate information or select the correct file.</li><li>Choose options only when you understand their effect.</li><li>Run the tool and wait for the result.</li><li>Review the output before downloading, sharing or using it.</li></ol>' +
+        '<h3>Key Features</h3><p>The tool focuses on a specific task with clear controls and an immediate result. Depending on the tool, it can calculate, convert, generate, compress, process, analyze or format information. Browser-based access makes it convenient on modern phones, tablets and computers.</p>' +
+        '<h3>Why Use This Tool?</h3><p>It can save time on routine work and provide a repeatable process for common online tasks. For important documents, calculations or decisions, keep original data and independently verify the final result.</p>' +
+        '<h3>Best Practices</h3><p>Use accurate inputs, check units and dates, preview results and keep important originals. Avoid entering confidential information unless you understand how the service handles it. Large files may be limited by browser memory or device resources.</p>' +
+        '<h3>Frequently Asked Questions</h3><div class="dt-faq"><details><summary>Is this tool free?</summary><p>Yes. Daily Toolkit provides this tool as a free online utility.</p></details><details><summary>Do I need to install software?</summary><p>No. The tool is designed to run in a modern web browser.</p></details><details><summary>Does it work on mobile?</summary><p>Yes, the page is designed for modern mobile and desktop browsers, subject to normal device limits.</p></details><details><summary>What should I do if the result looks wrong?</summary><p>Check your inputs, file selection, dates, numbers and settings, then run the tool again.</p></details></div></div>';
+      var style = document.createElement('style'); style.textContent = '#dt-tool-guide{margin:2rem auto 0;padding:2.5rem 4%;border-top:1px solid #eee;background:#fff}.dt-guide-inner{max-width:900px;margin:auto;color:#222}.dt-guide-eyebrow{text-transform:uppercase;letter-spacing:.14em;font-size:.7rem;font-weight:700;color:#8a6a20;margin:0 0 .6rem}.dt-guide-inner h2{font-family:Georgia,serif;font-size:clamp(1.6rem,3vw,2.3rem);line-height:1.2;margin:0 0 1rem}.dt-guide-inner h3{font-family:Georgia,serif;font-size:1.25rem;margin:1.8rem 0 .65rem}.dt-guide-inner p,.dt-guide-inner li{font-size:.95rem;line-height:1.8;color:#555}.dt-guide-inner ol{padding-left:1.3rem}.dt-guide-inner li{margin:.45rem 0}.dt-faq{display:grid;gap:.7rem}.dt-faq details{border:1px solid #eee;border-radius:6px;padding:.85rem 1rem;background:#fafafa}.dt-faq summary{cursor:pointer;font-weight:600;color:#222}.dt-faq details p{margin:.6rem 0 0}';
+      document.head.appendChild(style); (document.querySelector('main') || document.body).appendChild(guide);
+    }
   }
-
-  function injectBlogLibrary() {
-    if (!/^\/blog(?:\.html)?\/?$/i.test(pathname) || document.getElementById('dt-blog-library')) return;
-    var items = [
-      ['how-to-compress-a-pdf-without-losing-important-quality','How to Compress a PDF Without Losing Important Quality'],
-      ['how-to-convert-images-to-pdf-online','How to Convert Images to PDF Online'],
-      ['age-calculator-guide-exact-age-by-date-of-birth','Age Calculator Guide: Exact Age by Date of Birth'],
-      ['how-to-use-a-loan-calculator-and-understand-emi','How to Use a Loan Calculator and Understand EMI'],
-      ['pdf-merge-vs-pdf-split-which-tool-to-use','PDF Merge vs PDF Split: Which Tool Should You Use?'],
-      ['password-generator-best-practices','Password Generator Best Practices for Safer Accounts'],
-      ['how-to-resize-images-for-web-and-social-media','How to Resize Images for Web and Social Media'],
-      ['qr-code-guide-for-business-and-personal-use','QR Code Guide for Business and Personal Use'],
-      ['word-counter-guide-for-writing-and-seo','Word Counter Guide for Writing and SEO'],
-      ['website-seo-audit-checklist-for-beginners','Website SEO Audit Checklist for Beginners']
-    ];
-    var section = document.createElement('section');
-    section.id = 'dt-blog-library';
-    section.innerHTML = '<div class="dt-blog-inner"><p class="dt-guide-eyebrow">Guides & Tutorials</p><h2>Practical Technology Guides</h2><p>Step-by-step articles covering PDF, image, calculator, security, writing and website workflows.</p><div class="dt-article-grid">' + items.map(function (item) { return '<article><h3><a href="/articles/' + item[0] + '.html">' + item[1] + '</a></h3><p>Practical guidance, common mistakes, examples and FAQs.</p></article>'; }).join('') + '</div></div>';
-    var style = document.createElement('style');
-    style.textContent = '#dt-blog-library{margin:2rem 0;padding:2.5rem 4%;background:#fafafa;border-top:1px solid #eee}.dt-blog-inner{max-width:1100px;margin:auto}.dt-blog-inner h2{font-family:Georgia,serif;font-size:2rem;margin:.2rem 0 .5rem}.dt-blog-inner>p{color:#666;max-width:700px}.dt-article-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1rem;margin-top:1.4rem}.dt-article-grid article{background:#fff;border:1px solid #eee;border-radius:6px;padding:1.2rem}.dt-article-grid h3{font-size:1.05rem;line-height:1.35;margin:0 0 .5rem}.dt-article-grid h3 a{color:#222}.dt-article-grid h3 a:hover{color:#8a6a20}.dt-article-grid p{font-size:.86rem;color:#666;margin:0}';
-    document.head.appendChild(style);
-    (document.querySelector('main') || document.body).appendChild(section);
-  }
-
-  function runEnhancements() {
-    injectToolGuide();
-    injectBlogLibrary();
-  }
-
-  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', runEnhancements);
-  else runEnhancements();
 })();
