@@ -1,0 +1,167 @@
+name: Apply Medium SEO Fixes
+
+on:
+  push:
+    branches: [fix-medium-seo-security-issues]
+
+permissions:
+  contents: write
+
+jobs:
+  seo-fixes:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Apply SEO fixes
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import re
+
+          root = Path('.')
+          html_files = list(root.rglob('*.html'))
+
+          title_replacements = {
+              'index.html': (
+                  'Free Online Web Tools: PDF, Image & Calculators | Daily Toolkit',
+                  'Free Online PDF, Image & Calculator Tools | Daily Toolkit'
+              ),
+              'contact.html': (
+                  'Contact Us – Daily Toolkit',
+                  'Contact Daily Toolkit | Support & Feedback'
+              ),
+              'tools/debt-payoff-calculator.html': (
+                  'Debt Payoff Calculator | Payoff Date, Interest & Payment Planner | Daily Toolkit',
+                  'Debt Payoff Calculator | Interest & Payment Planner'
+              ),
+              'tools/investment-return-calculator.html': (
+                  'Investment Return Calculator | Compound Growth & Contribution Planner | Daily Toolkit',
+                  'Investment Return Calculator | Compound Growth Planner'
+              ),
+              'tools/job-offer-comparison-calculator.html': (
+                  'Job Offer Comparison Calculator | Salary, Benefits & Commute Value | Daily Toolkit',
+                  'Job Offer Comparison Calculator | Salary & Benefits'
+              ),
+          }
+
+          redirect_map = {
+              '/age-calculator': '/tools/age-calculator',
+              '/background-remover': '/tools/background-remover',
+              '/barcode-generator': '/tools/barcode-generator',
+              '/bio-ideas-generator': '/tools/bio-ideas-generator',
+              '/bmi-calculator': '/tools/bmi-calculator',
+              '/color-picker': '/tools/color-picker',
+              '/compress-pdf': '/tools/compress-pdf',
+              '/crypto-price-checker': '/tools/crypto-price-checker',
+              '/emoji-picker': '/tools/emoji-picker',
+              '/fuel-price-checker': '/tools/fuel-price-checker',
+              '/gold-price-checker': '/tools/gold-price-checker',
+              '/gradient-generator': '/tools/gradient-generator',
+              '/hashtag-generator': '/tools/hashtag-generator',
+              '/image-compressor': '/tools/image-compressor',
+              '/image-resizer': '/tools/image-resizer',
+              '/image-to-pdf': '/tools/image-to-pdf',
+              '/instagram-caption-maker': '/tools/instagram-caption-maker',
+              '/ip-finder': '/tools/ip-finder',
+              '/loan-calculator': '/tools/loan-calculator',
+              '/password-gen': '/tools/password-gen',
+              '/pdf-merger': '/tools/pdf-merger',
+              '/pdf-splitter': '/tools/pdf-splitter',
+              '/pdf-to-image': '/tools/pdf-to-image',
+              '/pension-calculator': '/tools/pension-calculator',
+              '/qr-generator': '/tools/qr-generator',
+              '/stock-price-tracker': '/tools/stock-price-tracker',
+              '/text-case-converter': '/tools/text-case-converter',
+              '/unit-converter': '/tools/unit-converter',
+              '/url-encoder-decoder': '/tools/url-encoder-decoder',
+              '/word-counter': '/tools/word-counter',
+          }
+
+          def replace_title(text, old, new):
+              return text.replace(f'<title>{old}</title>', f'<title>{new}</title>', 1)
+
+          for path in html_files:
+              text = path.read_text(encoding='utf-8')
+              before = text
+
+              rel = path.as_posix()
+              if rel in title_replacements:
+                  old, new = title_replacements[rel]
+                  text = replace_title(text, old, new)
+                  # Keep JSON-LD WebPage name aligned with the HTML title where present.
+                  text = text.replace(f'"name":"{old}"', f'"name":"{new}"')
+                  text = text.replace(f'"name": "{old}"', f'"name": "{new}"')
+
+              # Replace links that point to known internal redirect aliases.
+              for source, target in redirect_map.items():
+                  text = text.replace(f'href="{source}"', f'href="{target}"')
+                  text = text.replace(f'href="{source}/"', f'href="{target}"')
+                  text = text.replace(f'href="{source}.html"', f'href="{target}"')
+
+              # Keep meta descriptions compact enough for search snippets.
+              def trim_description(m):
+                  value = m.group(1).strip()
+                  if len(value) <= 155:
+                      return m.group(0)
+                  short = re.sub(r'\s+', ' ', value[:152]).rsplit(' ', 1)[0].rstrip(' ,;:-') + '.'
+                  return f'<meta name="description" content="{short}">' 
+
+              text = re.sub(
+                  r'<meta\s+name="description"\s+content="([^"]+)"\s*/?>',
+                  trim_description,
+                  text,
+                  flags=re.I,
+              )
+
+              # If a page has an H1 but no H2, add one immediately after the H1.
+              if re.search(r'<h1\b[^>]*>', text, flags=re.I) and not re.search(r'<h2\b[^>]*>', text, flags=re.I):
+                  h1_match = re.search(r'(<h1\b[^>]*>.*?</h1>)', text, flags=re.I | re.S)
+                  if h1_match:
+                      plain = re.sub(r'<[^>]+>', '', h1_match.group(1))
+                      heading = re.sub(r'[^A-Za-z0-9\s]', '', plain).strip() or 'About This Tool'
+                      insert = f'\n<section class="seo-supporting-content"><h2>About {heading}</h2><p>This page explains the purpose of {heading.lower()} and how to use it. Use the inputs provided, review the result, and check the notes or assumptions shown by the tool before relying on the output. Daily Toolkit is designed to keep common online tasks simple, fast, and accessible on desktop and mobile devices.</p></section>\n'
+                      text = text.replace(h1_match.group(1), h1_match.group(1) + insert, 1)
+
+              # Make heading levels sequential where a lower-level heading skips a rank.
+              def normalize_headings(match):
+                  tags = list(re.finditer(r'<h([1-6])\b([^>]*)>(.*?)</h\1>', match.group(0), flags=re.I | re.S))
+                  if not tags:
+                      return match.group(0)
+                  out = match.group(0)
+                  previous = None
+                  for t in tags:
+                      level = int(t.group(1))
+                      new_level = level
+                      if previous is not None and level > previous + 1:
+                          new_level = previous + 1
+                      if new_level != level:
+                          original = t.group(0)
+                          changed = re.sub(r'<h[1-6]\b', f'<h{new_level}', original, count=1, flags=re.I)
+                          changed = re.sub(r'</h[1-6]>', f'</h{new_level}>', changed, count=1, flags=re.I)
+                          out = out.replace(original, changed, 1)
+                      previous = new_level
+                  return out
+
+              # Process only the document body so scripts/styles are untouched.
+              body_match = re.search(r'<body\b[^>]*>.*?</body>', text, flags=re.I | re.S)
+              if body_match:
+                  body = normalize_headings(body_match.group(0))
+                  text = text[:body_match.start()] + body + text[body_match.end():]
+
+              if text != before:
+                  path.write_text(text, encoding='utf-8')
+
+          PY
+
+      - name: Commit SEO fixes
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add index.html contact.html tools/debt-payoff-calculator.html tools/investment-return-calculator.html tools/job-offer-comparison-calculator.html vercel.json .github/workflows/apply-seo-medium-fixes.yml
+          git add "*.html" "tools/*.html"
+          git diff --cached --quiet && exit 0
+          git commit -m "Fix medium SEO issues and internal redirects"
+          git push
