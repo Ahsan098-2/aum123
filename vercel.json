@@ -1,6 +1,9 @@
 {
+  "$schema": "https://openapi.vercel.sh/vercel.json",
   "cleanUrls": true,
   "trailingSlash": false,
+  "buildCommand": "echo 'DailyToolkit static HTML: no build required'",
+  "outputDirectory": ".",
   "redirects": [
     {"source":"/:path*","has":[{"type":"host","value":"www.dailytoolkit.xyz"}],"destination":"https://dailytoolkit.xyz/:path*","permanent":true},
     {"source":"/age-calculator","destination":"/tools/age-calculator","permanent":true},
@@ -33,9 +36,6 @@
     {"source":"/unit-converter","destination":"/tools/unit-converter","permanent":true},
     {"source":"/url-encoder-decoder","destination":"/tools/url-encoder-decoder","permanent":true},
     {"source":"/word-counter","destination":"/tools/word-counter","permanent":true}
-  ],
-  "rewrites": [
-    {"source":"/","destination":"/index.html"}
   ],
   "headers": [
     {
