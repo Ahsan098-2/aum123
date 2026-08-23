@@ -17,14 +17,17 @@ jobs:
       - name: Build tool content, articles and legal navigation
         run: python scripts/content_quality_upgrade.py
 
-      - name: Commit generated content
+      - name: Repair technical SEO after content generation
+        run: python scripts/technical_seo_repair.py
+
+      - name: Commit generated content and SEO repairs
         run: |
           git config user.name "dailytoolkit-content-bot"
           git config user.email "actions@users.noreply.github.com"
-          git add tools articles blog.html about.html contact.html privacy.html terms.html
+          git add tools articles blog.html about.html contact.html privacy.html terms.html index.html sitemap.xml
           if git diff --cached --quiet; then
-            echo "No content changes needed."
+            echo "No content or SEO changes needed."
           else
-            git commit -m "Improve tool content, blog guides and site trust pages"
+            git commit -m "fix(seo): keep generated content technically optimized"
             git push
           fi
