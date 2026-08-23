@@ -35,9 +35,6 @@
     {"source":"/url-encoder-decoder","destination":"/tools/url-encoder-decoder","permanent":true},
     {"source":"/word-counter","destination":"/tools/word-counter","permanent":true}
   ],
-  "rewrites": [
-    {"source":"/","destination":"/index"}
-  ],
   "headers": [
     {
       "source": "/(.*)",
