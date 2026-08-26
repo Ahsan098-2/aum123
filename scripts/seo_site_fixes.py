@@ -99,3 +99,5 @@ if __name__ == '__main__':
             normalized += 1
 
     print(f'Applied Screaming Frog fixes. Heading hierarchy normalized on {normalized} HTML files.')
+
+# Trigger the SEO fixer after the workflow configuration is installed.
