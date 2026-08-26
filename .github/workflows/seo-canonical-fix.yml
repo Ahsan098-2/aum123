@@ -24,14 +24,9 @@ jobs:
 
           ORIGIN = 'https://dailytoolkit.xyz'
           changed = []
-
           canonical_re = re.compile(r'<link\s+[^>]*rel=["\']canonical["\'][^>]*>\s*', re.I)
           keywords_re = re.compile(r'\s*<meta\s+[^>]*name=["\']keywords["\'][^>]*>\s*', re.I)
-          highperf_re = re.compile(
-              r'<script>\s*atOptions\s*=\s*\{.*?\};\s*</script>\s*'
-              r'<script\s+src=["\']https://www\.highperformanceformat\.com/[^"\']+["\']\s*>\s*</script>',
-              re.I | re.S,
-          )
+          highperf_re = re.compile(r'<script>\s*atOptions\s*=\s*\{.*?\};\s*</script>\s*<script\s+src=["\']https://www\.highperformanceformat\.com/[^"\']+["\']\s*>\s*</script>', re.I | re.S)
 
           def canonical_for(path: Path) -> str:
               rel = path.as_posix()
@@ -41,26 +36,20 @@ jobs:
               return ORIGIN + '/' + clean.lstrip('/')
 
           for path in Path('.').rglob('*.html'):
-              if any(part in {'.git', 'node_modules'} for part in path.parts):
+              if any(part in {'.git', 'node_modules'} for part in path.parts) or path.name == '404.html' or path.name.startswith('google'):
                   continue
-              if path.name == '404.html' or path.name.startswith('google'):
-                  continue
-
               text = path.read_text(encoding='utf-8')
               if not re.search(r'</head\s*>', text, re.I):
                   continue
-
               original = text
               text = text.replace('https://www.dailytoolkit.xyz', ORIGIN)
               text = keywords_re.sub('\n', text)
               text = highperf_re.sub('', text)
-
               canonical_url = canonical_for(path)
               tag = f'<link rel="canonical" href="{canonical_url}" />\n  '
               text = canonical_re.sub('', text)
               head_end = re.search(r'</head\s*>', text, re.I)
               text = text[:head_end.start()] + '  ' + tag + text[head_end.start():]
-
               if text != original:
                   path.write_text(text, encoding='utf-8')
                   changed.append(str(path))
@@ -95,9 +84,8 @@ jobs:
                   index.write_text(text, encoding='utf-8')
                   changed.append('index.html')
 
-          print(f'Technical SEO repair changed {len(set(changed))} files')
-          for item in sorted(set(changed)):
-              print(item)
+      - name: Fix internal redirect links, duplicate H2 headings and long meta descriptions
+        run: python scripts/seo_crawl_cleanup.py
 
       - name: Apply Screaming Frog fixes
         run: python scripts/seo_site_fixes.py
@@ -106,10 +94,10 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add -- '*.html' sitemap.xml vercel.json scripts/seo_site_fixes.py
+          git add -- '*.html' sitemap.xml vercel.json scripts/seo_site_fixes.py scripts/seo_crawl_cleanup.py
           if git diff --cached --quiet; then
             echo "No technical SEO changes required."
           else
-            git commit -m "fix(seo): repair Screaming Frog issues [skip ci]"
+            git commit -m "fix(seo): repair remaining crawl issues [skip ci]"
             git push
           fi
