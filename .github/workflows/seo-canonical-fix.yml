@@ -99,14 +99,17 @@ jobs:
           for item in sorted(set(changed)):
               print(item)
 
+      - name: Apply Screaming Frog fixes
+        run: python scripts/seo_site_fixes.py
+
       - name: Commit technical SEO repairs
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add -- '*.html' sitemap.xml
+          git add -- '*.html' sitemap.xml vercel.json scripts/seo_site_fixes.py
           if git diff --cached --quiet; then
             echo "No technical SEO changes required."
           else
-            git commit -m "fix(seo): repair canonical URLs, metadata and sitemap"
+            git commit -m "fix(seo): repair Screaming Frog issues [skip ci]"
             git push
           fi
