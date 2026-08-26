@@ -5,6 +5,7 @@ on:
     paths:
       - 'scripts/seo_bulk_optimizer.py'
       - 'scripts/seo_site_fixes.py'
+      - 'scripts/seo_serp_final_fixes.py'
       - 'tools/*.html'
       - 'index.html'
       - 'tools.html'
@@ -35,11 +36,14 @@ jobs:
       - name: Apply Screaming Frog fixes
         run: python scripts/seo_site_fixes.py
 
+      - name: Apply final SERP metadata fixes
+        run: python scripts/seo_serp_final_fixes.py
+
       - name: Commit SEO updates
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add tools/*.html index.html tools.html contact.html vercel.json scripts/seo_site_fixes.py
+          git add tools/*.html index.html tools.html contact.html vercel.json scripts/seo_site_fixes.py scripts/seo_serp_final_fixes.py
           if git diff --cached --quiet; then
             echo 'No SEO changes required.'
           else
