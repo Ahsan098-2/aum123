@@ -1,20 +1,93 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Website SEO Audit Tool | On-Page SEO Checker</title><meta name="description" content="Run a basic on-page SEO audit by entering a webpage URL and checking title, description, headings, canonical and visible links where browser access permits."><meta name="robots" content="index,follow"><style>body{font:16px/1.6 system-ui;margin:0;background:#f6f8fb;color:#172033}.w{max-width:1000px;margin:auto;padding:24px}.nav{display:flex;justify-content:space-between}.hero{text-align:center;padding:35px}.card{background:#fff;border:1px solid #e4e8ef;border-radius:18px;padding:24px;margin-bottom:18px}input{width:100%;padding:13px;border:1px solid #ccd4df;border-radius:9px;box-sizing:border-box}button{width:100%;padding:13px;margin-top:15px;background:#2563eb;color:#fff;border:0;border-radius:9px;font-weight:800}.check{display:grid;grid-template-columns:1fr auto;gap:12px;padding:13px;border-bottom:1px solid #e4e8ef}.ok{font-weight:800}.muted{color:#657084}.notice{padding:12px;background:#f1f5f9;border-radius:10px}@media(max-width:650px){.check{grid-template-columns:1fr}}</style>  <script src="/assets/js/canonical.js"></script>
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-                                        <link rel="canonical" href="https://dailytoolkit.xyz/tools/website-seo-audit" />
-  </head><body><div class="w"><nav class="nav"><a href="/">Daily Toolkit</a><a href="/">Home</a></nav><header class="hero"><div class="muted">SEO utility</div><h1>Website SEO Audit Tool</h1><p class="muted">Check basic on-page SEO signals from a public webpage. Results depend on browser access and the page response.</p></header><section class="card"><label for="url"><strong>Website URL</strong></label><input id="url" type="url" placeholder="https://example.com/page"><button onclick="audit()">Run SEO audit</button><p class="muted">This browser audit does not replace a full crawler. Some websites block cross-origin browser requests.</p></section><section class="card"><h2>Audit results</h2><div id="results" class="notice">Enter a URL to begin.</div></section><article class="card"><h2>What this SEO audit checks</h2><p>The tool checks accessible HTML for a page title, meta description, canonical URL, heading structure, language attribute and visible link count. These are useful on-page signals, but search visibility also depends on content quality, relevance, technical accessibility and many other factors.</p><h2>If the audit cannot fetch a page</h2><p>Modern browsers restrict cross-origin requests unless the target site permits them. A failed browser fetch does not necessarily mean the website has an SEO problem.</p></article></div><script>async function audit(){let u=document.querySelector('#url').value.trim();if(!/^https?:\/\//i.test(u))u='https://'+u;results.innerHTML='<div class="notice">Checking page…</div>';try{let res=await fetch(u,{mode:'cors'});if(!res.ok)throw Error('HTTP '+res.status);let html=await res.text(),doc=new DOMParser().parseFromString(html,'text/html');let title=doc.title.trim(),desc=doc.querySelector('meta[name="description"]')?.content.trim()||'',canon=doc.querySelector('link[rel="canonical"]')?.href||'',h1=doc.querySelectorAll('h1').length,h2=doc.querySelectorAll('h2').length,links=doc.querySelectorAll('a[href]').length,lang=doc.documentElement.lang||'';let row=(n,v)=>'<div class="check"><span>'+n+'</span><span class="ok">'+v+'</span></div>';results.innerHTML=row('Title',title?title.length+' characters':'Missing')+row('Meta description',desc?desc.length+' characters':'Missing')+row('H1 headings',h1)+row('H2 headings',h2)+row('Canonical',canon?'Present':'Missing')+row('HTML language',lang||'Missing')+row('Links detected',links)}catch(e){results.innerHTML='<div class="notice"><strong>Browser fetch blocked or unavailable.</strong><br>'+e.message+'<br><br>Try a page that allows cross-origin requests, or use a server-side crawler for a complete audit.</div>'}}</script></body></html>
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>SEO Website Checker | Free Website SEO Audit Tool | Daily Toolkit</title>
+<meta name="description" content="Free SEO website checker and website SEO audit tool. Check title tags, meta descriptions, headings, canonical URLs, language and links to find important on-page SEO issues.">
+<meta name="robots" content="index,follow">
+<link rel="canonical" href="https://dailytoolkit.xyz/tools/website-seo-audit">
+<meta property="og:title" content="SEO Website Checker | Free Website SEO Audit Tool">
+<meta property="og:description" content="Check your website SEO with Daily Toolkit's free SEO website checker. Analyze essential on-page SEO signals in seconds.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://dailytoolkit.xyz/tools/website-seo-audit">
+<meta property="og:site_name" content="Daily Toolkit">
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@graph":[
+    {
+      "@type":"WebPage",
+      "@id":"https://dailytoolkit.xyz/tools/website-seo-audit#webpage",
+      "url":"https://dailytoolkit.xyz/tools/website-seo-audit",
+      "name":"SEO Website Checker | Free Website SEO Audit Tool | Daily Toolkit",
+      "description":"Free SEO website checker and website SEO audit tool for checking important on-page SEO signals.",
+      "isPartOf":{"@id":"https://dailytoolkit.xyz/#website"},
+      "inLanguage":"en"
+    },
+    {
+      "@type":"WebApplication",
+      "name":"Daily Toolkit SEO Website Checker",
+      "url":"https://dailytoolkit.xyz/tools/website-seo-audit",
+      "applicationCategory":"SEOApplication",
+      "operatingSystem":"Any",
+      "offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}
+    },
+    {
+      "@type":"BreadcrumbList",
+      "itemListElement":[
+        {"@type":"ListItem","position":1,"name":"Daily Toolkit","item":"https://dailytoolkit.xyz/"},
+        {"@type":"ListItem","position":2,"name":"SEO Website Checker","item":"https://dailytoolkit.xyz/tools/website-seo-audit"}
+      ]
+    }
+  ]
+}
+</script>
+<style>
+body{font:16px/1.6 system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;margin:0;background:#f6f8fb;color:#172033}.w{max-width:1000px;margin:auto;padding:24px}.nav{display:flex;justify-content:space-between;gap:20px}.nav a{font-weight:700;color:#172033;text-decoration:none}.hero{text-align:center;padding:35px 10px}.hero h1{font-size:clamp(2rem,5vw,3.2rem);line-height:1.15;margin:12px 0}.hero p{max-width:760px;margin:0 auto}.card{background:#fff;border:1px solid #e4e8ef;border-radius:18px;padding:24px;margin-bottom:18px}input{width:100%;padding:13px;border:1px solid #ccd4df;border-radius:9px;box-sizing:border-box}button{width:100%;padding:13px;margin-top:15px;background:#2563eb;color:#fff;border:0;border-radius:9px;font-weight:800;cursor:pointer}.check{display:grid;grid-template-columns:1fr auto;gap:12px;padding:13px;border-bottom:1px solid #e4e8ef}.ok{font-weight:800}.muted{color:#657084}.notice{padding:12px;background:#f1f5f9;border-radius:10px}@media(max-width:650px){.check{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="w">
+<nav class="nav" aria-label="Main navigation"><a href="/">Daily Toolkit</a><a href="/tools">All Tools</a></nav>
+<header class="hero">
+<div class="muted">Free SEO tool</div>
+<h1>SEO Website Checker</h1>
+<p class="muted">Check your website SEO with a free on-page SEO audit. Analyze your page title, meta description, headings, canonical URL, language and links, then use the results to improve your search visibility.</p>
+</header>
+<section class="card">
+<label for="url"><strong>Website URL</strong></label>
+<input id="url" type="url" placeholder="https://example.com/page" autocomplete="url">
+<button onclick="audit()">Check Website SEO</button>
+<p class="muted">Enter a public webpage URL. Browser security may prevent some websites from being fetched directly.</p>
+</section>
+<section class="card" aria-live="polite"><h2>SEO Audit Results</h2><div id="results" class="notice">Enter a URL to check its SEO.</div></section>
+<article class="card">
+<h2>Free Website SEO Checker</h2>
+<p>Daily Toolkit's SEO website checker helps you review essential on-page SEO signals before publishing or updating a webpage. Use it to spot missing metadata and basic HTML issues that can affect how a page is understood by search engines and users.</p>
+<h2>What this SEO audit checks</h2>
+<p>The audit checks the accessible HTML for a page title, meta description, H1 and H2 headings, canonical URL, HTML language attribute and visible link count. These are useful on-page signals, but an SEO audit is not a guarantee of rankings. Search visibility also depends on helpful content, relevance, internal linking, crawlability, page experience, authority and many other factors.</p>
+<h2>How to use the SEO website checker</h2>
+<p>Enter the full URL of the webpage you want to review and select <strong>Check Website SEO</strong>. Review the results and fix important missing or incomplete on-page elements. For a complete technical SEO assessment, a server-side crawler is required because some websites block browser cross-origin requests.</p>
+<h2>Why website SEO matters</h2>
+<p>Strong website SEO makes pages easier for search engines to crawl, interpret and match with relevant searches. Clear titles, useful descriptions, logical headings, canonical URLs and accessible links create a stronger technical foundation for high-quality content.</p>
+</article>
+</div>
+<script>
+async function audit(){
+ let u=document.querySelector('#url').value.trim();
+ if(!/^https?:\/\//i.test(u))u='https://'+u;
+ const results=document.querySelector('#results');
+ results.innerHTML='<div class="notice">Checking website SEO…</div>';
+ try{
+  const res=await fetch(u,{mode:'cors'});
+  if(!res.ok)throw Error('HTTP '+res.status);
+  const html=await res.text(),doc=new DOMParser().parseFromString(html,'text/html');
+  const title=doc.title.trim(),desc=doc.querySelector('meta[name="description"]')?.content.trim()||'',canon=doc.querySelector('link[rel="canonical"]')?.href||'',h1=doc.querySelectorAll('h1').length,h2=doc.querySelectorAll('h2').length,links=doc.querySelectorAll('a[href]').length,lang=doc.documentElement.lang||'';
+  const row=(n,v)=>'<div class="check"><span>'+n+'</span><span class="ok">'+v+'</span></div>';
+  results.innerHTML=row('Title',title?title.length+' characters':'Missing')+row('Meta description',desc?desc.length+' characters':'Missing')+row('H1 headings',h1)+row('H2 headings',h2)+row('Canonical',canon?'Present':'Missing')+row('HTML language',lang||'Missing')+row('Links detected',links);
+ }catch(e){results.innerHTML='<div class="notice"><strong>Browser fetch blocked or unavailable.</strong><br>'+e.message+'<br><br>Some websites block cross-origin browser requests. A failed browser fetch does not necessarily mean the website has an SEO problem.</div>'}
+}
+</script>
+</body>
+</html>
