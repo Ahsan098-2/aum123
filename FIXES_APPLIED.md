@@ -68,7 +68,7 @@
 ```
 
 **Priority 2 (High)**
-- [ ] Fix Twitter link: `https://twitter.com/Ahsan_OnTop01`
+- [ ] Fix Twitter link: `https://x.com/Ahsan_OnTop01`
 - [ ] Create blog.html or add redirect
 - [ ] Complete truncated meta descriptions
 - [ ] Unify Google Analytics ID to G-3K7RBN1QSL
