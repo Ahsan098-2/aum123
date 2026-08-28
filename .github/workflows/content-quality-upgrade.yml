@@ -14,30 +14,11 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Build tool content, articles and legal navigation
-        run: python scripts/content_quality_upgrade.py
+      - name: Build article content and blog navigation only
+        run: python scripts/content_quality_articles_only.py
 
-      - name: Remove generic generated guide from Age Calculator
-        run: |
-          python - <<'PY'
-          from pathlib import Path
-
-          path = Path('tools/age-calculator.html')
-          text = path.read_text(encoding='utf-8')
-          marker = '<!-- DAILY TOOLKIT CONTENT UPGRADE -->'
-          start = text.find(marker)
-
-          if start != -1:
-              end = text.lower().find('</main>', start)
-              if end != -1:
-                  text = text[:start] + text[end:]
-                  path.write_text(text, encoding='utf-8')
-                  print('Removed generic generated guide from Age Calculator.')
-              else:
-                  raise SystemExit('Generated guide marker found, but closing </main> was not found.')
-          else:
-              print('Age Calculator has no generic generated guide.')
-          PY
+      - name: Remove previously polluted tool-page content
+        run: python scripts/clean_polluted_tool_content.py
 
       - name: Repair technical SEO after content generation
         run: python scripts/technical_seo_repair.py
@@ -46,10 +27,10 @@ jobs:
         run: |
           git config user.name "dailytoolkit-content-bot"
           git config user.email "actions@users.noreply.github.com"
-          git add tools articles blog.html about.html contact.html privacy.html terms.html index.html sitemap.xml
+          git add tools articles blog.html about.html contact.html privacy.html terms.html index.html sitemap.xml scripts
           if git diff --cached --quiet; then
             echo "No content or SEO changes needed."
           else
-            git commit -m "fix(seo): keep generated content technically optimized"
+            git commit -m "fix(seo): prevent generated content from polluting tool pages"
             git push
           fi
