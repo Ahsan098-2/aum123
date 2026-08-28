@@ -23,16 +23,17 @@ TARGETS = [
 
 
 def remove_container_blocks(text: str) -> str:
-    # Remove the nearest section/article block when it contains one of the
-    # known unrelated heading sets. This operates on source HTML, not the DOM.
+    # Remove complete section/article containers that contain multiple known
+    # unrelated headings. This keeps navigation headings such as Search.
     changed = True
     while changed:
         changed = False
         for tag in ("section", "article"):
             pattern = re.compile(
-                rf"<(?P<tag>{tag})\\b[^>]*>(?P<body>.*?)</{tag}>" ,
+                rf"<(?P<tag>{tag})\b[^>]*>(?P<body>.*?)</{tag}>",
                 re.I | re.S,
             )
+
             def repl(match):
                 nonlocal changed
                 body = match.group("body")
@@ -41,13 +42,13 @@ def remove_container_blocks(text: str) -> str:
                     changed = True
                     return ""
                 return match.group(0)
+
             text = pattern.sub(repl, text)
 
-    # Remove individual heading/paragraph runs when the source does not use a
-    # section/article wrapper. Keep navigation headings such as Search intact.
+    # Fallback for unwrapped headings. Do not remove generic Search/Pages/etc.
     for target in TARGETS:
         heading = re.compile(
-            rf"<h[1-6]\\b[^>]*>\\s*{re.escape(target)}\\s*</h[1-6]>" ,
+            rf"<h[1-6]\b[^>]*>\s*{re.escape(target)}\s*</h[1-6]>",
             re.I | re.S,
         )
         text = heading.sub("", text)
