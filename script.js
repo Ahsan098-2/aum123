@@ -105,6 +105,61 @@
     });
   }
 
+  function injectHomeYouTubePromo(){
+    try{
+      var path = window.location.pathname || '/';
+      if(path !== '/' && path !== '/index.html') return;
+      var container = document.querySelector('.ad-banner-container');
+      if(!container || container.dataset.youtubePromoApplied === 'true') return;
+
+      container.dataset.youtubePromoApplied = 'true';
+      container.className = 'ad-banner-container daily-youtube-promo';
+      container.innerHTML = '\
+        <div class="daily-youtube-promo__header">\
+          <span class="daily-youtube-promo__label">Ad</span>\
+          <span class="daily-youtube-promo__choices">AdChoices <span aria-hidden="true">ⓘ</span></span>\
+        </div>\
+        <div class="daily-youtube-promo__body">\
+          <a class="daily-youtube-promo__thumb" href="https://youtube.com/shorts/qUaq2sfu1Kw" target="_blank" rel="noopener noreferrer" aria-label="Watch Our Latest Short Guide on YouTube">\
+            <img src="https://i.ytimg.com/vi/qUaq2sfu1Kw/maxresdefault.jpg" alt="YouTube Shorts preview for Watch Our Latest Short Guide" loading="lazy">\
+            <span class="daily-youtube-promo__play" aria-hidden="true">▶</span>\
+            <span class="daily-youtube-promo__shorts">SHORTS</span>\
+          </a>\
+          <div class="daily-youtube-promo__content">\
+            <div class="daily-youtube-promo__eyebrow">Daily Toolkit on YouTube</div>\
+            <h3>Watch Our Latest Short Guide</h3>\
+            <p>Learn quick web utility tips</p>\
+            <a class="daily-youtube-promo__button" href="https://youtube.com/shorts/qUaq2sfu1Kw" target="_blank" rel="noopener noreferrer">Watch on YouTube</a>\
+          </div>\
+        </div>';
+
+      if(!document.getElementById('daily-youtube-promo-style')){
+        var style = document.createElement('style');
+        style.id = 'daily-youtube-promo-style';
+        style.textContent = '\
+          .daily-youtube-promo{display:block!important;width:min(728px,calc(100% - 32px));max-width:728px!important;margin:28px auto!important;overflow:hidden!important;background:#fff;border:1px solid #d9d9d9;box-shadow:0 2px 10px rgba(0,0,0,.035);font-family:Inter,system-ui,sans-serif}\
+          .daily-youtube-promo__header{height:34px;display:flex;align-items:center;justify-content:space-between;padding:0 12px;border-bottom:1px solid #e7e7e7;background:#fafafa;color:#666;font-size:11px;letter-spacing:.02em}\
+          .daily-youtube-promo__label{font-weight:600;color:#666}\
+          .daily-youtube-promo__choices{font-size:10px;color:#777}\
+          .daily-youtube-promo__body{display:flex;align-items:center;gap:18px;padding:16px;background:#fff;min-height:190px}\
+          .daily-youtube-promo__thumb{position:relative;display:block;width:120px;height:170px;flex:0 0 120px;overflow:hidden;background:#eee}\
+          .daily-youtube-promo__thumb img{width:100%;height:100%;object-fit:cover;object-position:center;display:block}\
+          .daily-youtube-promo__play{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:42px;height:42px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,.72);color:#fff;font-size:15px;padding-left:2px;box-shadow:0 2px 8px rgba(0,0,0,.22)}\
+          .daily-youtube-promo__shorts{position:absolute;left:8px;bottom:8px;padding:3px 6px;border-radius:3px;background:rgba(0,0,0,.72);color:#fff;font-size:8px;font-weight:700;letter-spacing:.08em}\
+          .daily-youtube-promo__content{min-width:0;flex:1}\
+          .daily-youtube-promo__eyebrow{font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:#777;margin-bottom:7px}\
+          .daily-youtube-promo__content h3{margin:0 0 6px;font-size:19px;line-height:1.25;color:#111;font-weight:700}\
+          .daily-youtube-promo__content p{margin:0 0 15px;font-size:13px;line-height:1.5;color:#666}\
+          .daily-youtube-promo__button{display:inline-flex;align-items:center;justify-content:center;padding:9px 15px;border-radius:4px;background:#1769e0;color:#fff!important;font-size:12px;font-weight:600;text-decoration:none!important;transition:background .2s ease}\
+          .daily-youtube-promo__button:hover{background:#0f56be}\
+          @media(max-width:560px){.daily-youtube-promo{width:calc(100% - 24px);margin:20px auto!important}.daily-youtube-promo__body{gap:12px;padding:12px;min-height:155px}.daily-youtube-promo__thumb{width:88px;height:132px;flex-basis:88px}.daily-youtube-promo__content h3{font-size:16px}.daily-youtube-promo__content p{font-size:12px;margin-bottom:11px}.daily-youtube-promo__button{width:100%;padding:8px 10px}.daily-youtube-promo__eyebrow{font-size:8px}}';
+        document.head.appendChild(style);
+      }
+    }catch(error){
+      console.warn('Daily Toolkit YouTube promo:', error);
+    }
+  }
+
   function load(src){
     var s=document.createElement('script');
     s.src=src;
@@ -125,6 +180,7 @@
     ensureCanonical();
     ensureHomeCatalog();
     cleanRenderedHomepage();
+    injectHomeYouTubePromo();
   }
 
   function boot(){
@@ -138,7 +194,7 @@
       if(attempts>=20) clearInterval(timer);
     },250);
     if(document.body && window.MutationObserver){
-      var observer=new MutationObserver(function(){ cleanRenderedHomepage(); });
+      var observer=new MutationObserver(function(){ cleanRenderedHomepage(); injectHomeYouTubePromo(); });
       observer.observe(document.body,{childList:true,subtree:true});
       setTimeout(function(){observer.disconnect();},6000);
     }
