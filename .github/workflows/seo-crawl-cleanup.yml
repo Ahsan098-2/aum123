@@ -44,13 +44,7 @@ jobs:
                   return BASE + '/'
               if p == 'tools.html':
                   return BASE + '/tools'
-              root_map = {
-                  'about.html': '/about',
-                  'privacy.html': '/privacy',
-                  'terms.html': '/terms',
-                  'contact.html': '/contact',
-                  'blog.html': '/blog',
-              }
+              root_map = {'about.html':'/about','privacy.html':'/privacy','terms.html':'/terms','contact.html':'/contact','blog.html':'/blog'}
               if p in root_map:
                   return BASE + root_map[p]
               if p.endswith('/index.html'):
@@ -58,10 +52,6 @@ jobs:
               if p.endswith('.html'):
                   return BASE + '/' + p[:-5]
               return BASE + '/' + p
-
-          def first_meta(text, attr, value):
-              m = re.search(rf'<meta\\s+[^>]*{attr}=["\\']{re.escape(value)}["\\'][^>]*>', text, re.I)
-              return m.group(0) if m else None
 
           def meta_content(tag):
               if not tag:
@@ -77,7 +67,14 @@ jobs:
               tag = f'<meta {attr}="{escape(value)}" content="{escape(content)}">\\n'
               return re.sub(r'</head>', tag + '</head>', text, count=1, flags=re.I)
 
-          def add_or_replace_link_canonical(text, url):
+          def canonical_for(path):
+              # website-seo-audit-tool is a duplicate utility page. Its authoritative
+              # page is the shorter website-seo-audit URL, which returns 200.
+              if path.as_posix() == 'tools/website-seo-audit-tool.html':
+                  return BASE + '/tools/website-seo-audit'
+              return clean_url_for(path)
+
+          def add_canonical(text, url):
               text = re.sub(r'<link\\s+[^>]*rel=["\\']canonical["\\'][^>]*>\\s*', '', text, flags=re.I)
               tag = f'<link rel="canonical" href="{escape(url)}">\\n'
               return re.sub(r'</head>', tag + '</head>', text, count=1, flags=re.I)
@@ -86,25 +83,22 @@ jobs:
           for p in Path('.').rglob('*.html'):
               if '.git' in p.parts or 'node_modules' in p.parts or p.name in EXCLUDED:
                   continue
-              if p.parts and p.parts[0] not in {'.', 'tools', 'articles'} and len(p.parts) > 1:
-                  continue
               files.append(p)
 
               text = p.read_text(encoding='utf-8')
               original = text
 
-              # Replace internal .html navigation with cleanUrls destinations.
+              # Vercel cleanUrls redirects .html URLs. Use the final clean URLs in internal links.
               text = re.sub(r'(?P<prefix>(?:href|src)=["\\'])/(?P<url>[^"\\']+?)\\.html(?P<suffix>["\\'])', r'\\g<prefix>/\\g<url>\\g<suffix>', text, flags=re.I)
               text = re.sub(r'(?P<prefix>(?:href|src)=["\\'])https://dailytoolkit\\.xyz/(?P<url>[^"\\']+?)\\.html(?P<suffix>["\\'])', r'\\g<prefix>https://dailytoolkit.xyz/\\g<url>\\g<suffix>', text, flags=re.I)
 
-              # Keep exactly one description tag.
-              desc_matches = list(re.finditer(r'<meta\\s+[^>]*name=["\\']description["\\'][^>]*>', text, flags=re.I))
-              if len(desc_matches) > 1:
-                  first_end = desc_matches[0].end()
+              # Exactly one description tag.
+              matches = list(re.finditer(r'<meta\\s+[^>]*name=["\\']description["\\'][^>]*>', text, flags=re.I))
+              if len(matches) > 1:
+                  first_end = matches[0].end()
                   tail = re.sub(r'<meta\\s+[^>]*name=["\\']description["\\'][^>]*>\\s*', '', text[first_end:], flags=re.I)
                   text = text[:first_end] + tail
 
-              # Use document title/description for social metadata.
               tm = re.search(r'<title>(.*?)</title>', text, flags=re.I | re.S)
               title = re.sub(r'\\s+', ' ', tm.group(1)).strip() if tm else p.stem.replace('-', ' ').title()
               dm = re.search(r'<meta\\s+[^>]*name=["\\']description["\\'][^>]*>', text, flags=re.I)
@@ -113,9 +107,10 @@ jobs:
                   desc = f'{title}. Free online utility from Daily Toolkit.'
                   text = add_or_replace_meta(text, 'name', 'description', desc)
 
-              url = clean_url_for(p)
-              text = add_or_replace_link_canonical(text, url)
+              url = canonical_for(p)
+              text = add_canonical(text, url)
 
+              # Complete OG + X/Twitter metadata for all public pages.
               text = add_or_replace_meta(text, 'property', 'og:title', title)
               text = add_or_replace_meta(text, 'property', 'og:description', desc)
               text = add_or_replace_meta(text, 'property', 'og:type', 'website')
@@ -127,35 +122,27 @@ jobs:
               text = add_or_replace_meta(text, 'name', 'twitter:description', desc)
               text = add_or_replace_meta(text, 'name', 'twitter:image', f'{BASE}/assets/preview.png')
 
-              # Ensure robots metadata is index/follow unless an explicit noindex is present.
-              robots = first_meta(text, 'name', 'robots')
-              if not robots:
-                  text = add_or_replace_meta(text, 'name', 'robots', 'index, follow, max-image-preview:large')
-
               if text != original:
                   p.write_text(text, encoding='utf-8')
 
-          # Build a sitemap from actual HTML pages. Exclude the intentional duplicate
-          # SEO audit tool because Vercel redirects it to the primary audit URL.
+          # Sitemap must contain only clean final URLs. The duplicate SEO audit tool
+          # is intentionally omitted because its canonical points to the primary page.
           urls = []
           for p in sorted(files, key=lambda x: x.as_posix()):
-              rel = p.as_posix()
-              if rel == 'tools/website-seo-audit-tool.html':
+              if p.as_posix() == 'tools/website-seo-audit-tool.html':
                   continue
-              # Keep only public pages under the site's actual document tree.
-              url = clean_url_for(p)
-              urls.append(url)
+              urls.append(clean_url_for(p))
 
-          unique_urls = []
+          unique = []
           seen = set()
           for u in urls:
               if u not in seen:
                   seen.add(u)
-                  unique_urls.append(u)
+                  unique.append(u)
 
           lines = ['<?xml version="1.0" encoding="UTF-8"?>', '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">']
-          for u in unique_urls:
-              priority = '1.0' if u == BASE + '/' else ('0.9' if '/tools/' in u or u.endswith('/tools') else '0.7')
+          for u in unique:
+              priority = '1.0' if u == BASE + '/' else ('0.9' if '/tools' in u else '0.7')
               freq = 'weekly' if u == BASE + '/' or '/tools' in u or u.endswith('/blog') or u.endswith('/articles') else 'monthly'
               lines.append(f'  <url><loc>{escape(u)}</loc><lastmod>2026-08-30</lastmod><changefreq>{freq}</changefreq><priority>{priority}</priority></url>')
           lines.append('</urlset>')
@@ -170,6 +157,6 @@ jobs:
           if git diff --cached --quiet; then
             echo 'No crawl cleanup changes required.'
           else
-            git commit -m 'SEO: repair sitemap canonical redirects and social metadata [skip ci]'
+            git commit -m 'SEO: repair canonical sitemap redirects and social tags [skip ci]'
             git push
           fi
