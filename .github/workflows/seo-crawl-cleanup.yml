@@ -1,0 +1,70 @@
+name: SEO Crawl Cleanup
+
+on:
+  push:
+    paths:
+      - '.github/workflows/seo-crawl-cleanup.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  cleanup:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Normalize internal URLs and meta descriptions
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import re
+
+          for path in Path('.').rglob('*.html'):
+              if '.git' in path.parts or 'node_modules' in path.parts:
+                  continue
+              text = path.read_text(encoding='utf-8')
+              original = text
+
+              # Vercel cleanUrls redirects *.html links to the clean URL. Replace
+              # internal HTML links with their direct final URLs.
+              text = re.sub(r'(?P<prefix>(?:href|src)=["\'])(?P<url>/[^"\']+?)\.html(?P<suffix>["\'])', r'\g<prefix>\g<url>\g<suffix>', text, flags=re.I)
+              text = re.sub(r'(?P<prefix>(?:href|src)=["\'])https://dailytoolkit\.xyz(?P<url>/[^"\']+?)\.html(?P<suffix>["\'])', r'\g<prefix>https://dailytoolkit.xyz\g<url>\g<suffix>', text, flags=re.I)
+
+              # Remove duplicate description tags, keeping the first one.
+              seen = False
+              def desc(m):
+                  nonlocal_dummy = None
+                  return m.group(0)
+              matches = list(re.finditer(r'<meta\s+[^>]*name=["\']description["\'][^>]*>', text, flags=re.I))
+              if len(matches) > 1:
+                  first_end = matches[0].end()
+                  tail = text[first_end:]
+                  tail = re.sub(r'<meta\s+[^>]*name=["\']description["\'][^>]*>', '', tail, flags=re.I)
+                  text = text[:first_end] + tail
+
+              if text != original:
+                  path.write_text(text, encoding='utf-8')
+
+          sitemap = Path('sitemap.xml')
+          if sitemap.exists():
+              text = sitemap.read_text(encoding='utf-8')
+              # Sitemap must contain final 200 URLs only. The -tool page is the
+              # redirecting duplicate of the primary website-seo-audit page.
+              text = re.sub(r'\s*<url><loc>https://dailytoolkit\.xyz/tools/website-seo-audit-tool</loc>.*?</url>', '', text, flags=re.I|re.S)
+              text = text.replace('https://dailytoolkit.xyz/articles/', 'https://dailytoolkit.xyz/articles')
+              sitemap.write_text(text, encoding='utf-8')
+          PY
+
+      - name: Commit cleanup
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -A
+          if git diff --cached --quiet; then
+            echo 'No crawl cleanup changes required.'
+          else
+            git commit -m 'SEO: fix internal redirects and sitemap canonical URLs [skip ci]'
+            git push
+          fi
