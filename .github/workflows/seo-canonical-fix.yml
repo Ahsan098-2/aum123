@@ -32,6 +32,10 @@ jobs:
               rel = path.as_posix()
               if rel == 'index.html':
                   return ORIGIN + '/'
+              # The physical articles/index.html file is served by the clean URL /articles.
+              # Never emit /articles/index as its canonical because Vercel redirects it.
+              if rel == 'articles/index.html':
+                  return ORIGIN + '/articles'
               clean = re.sub(r'\.html$', '', rel, flags=re.I)
               return ORIGIN + '/' + clean.lstrip('/')
 
