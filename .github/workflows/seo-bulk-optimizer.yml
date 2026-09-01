@@ -1,0 +1,64 @@
+name: Bulk SEO Optimizer
+
+on:
+  push:
+    paths:
+      - 'scripts/seo_bulk_optimizer.py'
+      - 'scripts/seo_keyword_content_upgrade.py'
+      - 'scripts/seo_site_fixes.py'
+      - 'scripts/seo_serp_final_fixes.py'
+      - 'scripts/seo_audit_fixes.py'
+      - 'tools/*.html'
+      - 'articles/*.html'
+      - 'index.html'
+      - 'tools.html'
+      - 'contact.html'
+      - 'about.html'
+      - 'privacy.html'
+      - 'terms.html'
+      - 'vercel.json'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  optimize:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+
+      - name: Run comprehensive Ahrefs SEO fixes
+        run: python scripts/seo_audit_fixes.py
+
+      - name: Optimize tool SEO metadata
+        run: python scripts/seo_bulk_optimizer.py
+
+      - name: Add high-traffic keyword clusters and useful tool content
+        run: python scripts/seo_keyword_content_upgrade.py
+
+      - name: Apply Screaming Frog fixes
+        run: python scripts/seo_site_fixes.py
+
+      - name: Apply final SERP metadata fixes
+        run: python scripts/seo_serp_final_fixes.py
+
+      - name: Commit SEO updates
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add '*.html' 'tools/*.html' 'articles/*.html' 'scripts/seo_audit_fixes.py' 'scripts/seo_site_fixes.py' 'scripts/seo_serp_final_fixes.py' 'scripts/seo_keyword_content_upgrade.py' 'vercel.json'
+          if git diff --cached --quiet; then
+            echo 'No SEO changes required.'
+          else
+            git commit -m 'SEO: fix Ahrefs social metadata and redirect links [skip ci]'
+            git push
+          fi

@@ -1,0 +1,36 @@
+name: Daily Toolkit Content Quality Upgrade
+
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: write
+
+jobs:
+  upgrade-content:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Build article content and blog navigation only
+        run: python scripts/content_quality_articles_only.py
+
+      - name: Remove previously polluted tool-page content
+        run: python scripts/clean_polluted_tool_content.py
+
+      - name: Repair technical SEO after content generation
+        run: python scripts/technical_seo_repair.py
+
+      - name: Commit generated content and SEO repairs
+        run: |
+          git config user.name "dailytoolkit-content-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add tools articles blog.html about.html contact.html privacy.html terms.html index.html sitemap.xml scripts
+          if git diff --cached --quiet; then
+            echo "No content or SEO changes needed."
+          else
+            git commit -m "fix(seo): prevent generated content from polluting tool pages"
+            git push
+          fi

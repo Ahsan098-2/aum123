@@ -1,0 +1,236 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "cleanUrls": true,
+  "trailingSlash": false,
+  "buildCommand": "echo 'DailyToolkit static HTML: no build required'",
+  "outputDirectory": ".",
+  "redirects": [
+    {
+      "source": "/:path*",
+      "has": [
+        {
+          "type": "host",
+          "value": "www.dailytoolkit.xyz"
+        }
+      ],
+      "destination": "https://dailytoolkit.xyz/:path*",
+      "permanent": true
+    },
+    {
+      "source": "/age-calculator",
+      "destination": "/tools/age-calculator",
+      "permanent": true
+    },
+    {
+      "source": "/background-remover",
+      "destination": "/tools/background-remover",
+      "permanent": true
+    },
+    {
+      "source": "/barcode-generator",
+      "destination": "/tools/barcode-generator",
+      "permanent": true
+    },
+    {
+      "source": "/bio-ideas-generator",
+      "destination": "/tools/bio-ideas-generator",
+      "permanent": true
+    },
+    {
+      "source": "/bmi-calculator",
+      "destination": "/tools/bmi-calculator",
+      "permanent": true
+    },
+    {
+      "source": "/color-picker",
+      "destination": "/tools/color-picker",
+      "permanent": true
+    },
+    {
+      "source": "/compress-pdf",
+      "destination": "/tools/compress-pdf",
+      "permanent": true
+    },
+    {
+      "source": "/crypto-price-checker",
+      "destination": "/tools/crypto-price-checker",
+      "permanent": true
+    },
+    {
+      "source": "/emoji-picker",
+      "destination": "/tools/emoji-picker",
+      "permanent": true
+    },
+    {
+      "source": "/fuel-price-checker",
+      "destination": "/tools/fuel-price-checker",
+      "permanent": true
+    },
+    {
+      "source": "/gold-price-checker",
+      "destination": "/tools/gold-price-checker",
+      "permanent": true
+    },
+    {
+      "source": "/gradient-generator",
+      "destination": "/tools/gradient-generator",
+      "permanent": true
+    },
+    {
+      "source": "/hashtag-generator",
+      "destination": "/tools/hashtag-generator",
+      "permanent": true
+    },
+    {
+      "source": "/image-compressor",
+      "destination": "/tools/image-compressor",
+      "permanent": true
+    },
+    {
+      "source": "/image-resizer",
+      "destination": "/tools/image-resizer",
+      "permanent": true
+    },
+    {
+      "source": "/image-to-pdf",
+      "destination": "/tools/image-to-pdf",
+      "permanent": true
+    },
+    {
+      "source": "/instagram-caption-maker",
+      "destination": "/tools/instagram-caption-maker",
+      "permanent": true
+    },
+    {
+      "source": "/ip-finder",
+      "destination": "/tools/ip-finder",
+      "permanent": true
+    },
+    {
+      "source": "/loan-calculator",
+      "destination": "/tools/loan-calculator",
+      "permanent": true
+    },
+    {
+      "source": "/password-gen",
+      "destination": "/tools/password-gen",
+      "permanent": true
+    },
+    {
+      "source": "/pdf-merger",
+      "destination": "/tools/pdf-merger",
+      "permanent": true
+    },
+    {
+      "source": "/pdf-splitter",
+      "destination": "/tools/pdf-splitter",
+      "permanent": true
+    },
+    {
+      "source": "/pdf-to-image",
+      "destination": "/tools/pdf-to-image",
+      "permanent": true
+    },
+    {
+      "source": "/pension-calculator",
+      "destination": "/tools/pension-calculator",
+      "permanent": true
+    },
+    {
+      "source": "/qr-generator",
+      "destination": "/tools/qr-generator",
+      "permanent": true
+    },
+    {
+      "source": "/stock-price-tracker",
+      "destination": "/tools/stock-price-tracker",
+      "permanent": true
+    },
+    {
+      "source": "/text-case-converter",
+      "destination": "/tools/text-case-converter",
+      "permanent": true
+    },
+    {
+      "source": "/unit-converter",
+      "destination": "/tools/unit-converter",
+      "permanent": true
+    },
+    {
+      "source": "/url-encoder-decoder",
+      "destination": "/tools/url-encoder-decoder",
+      "permanent": true
+    },
+    {
+      "source": "/word-counter",
+      "destination": "/tools/word-counter",
+      "permanent": true
+    }
+  ],
+  "headers": [
+    {
+      "source": "/ads.txt",
+      "headers": [
+        {
+          "key": "Content-Type",
+          "value": "text/plain; charset=utf-8"
+        },
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=3600, s-maxage=3600"
+        }
+      ]
+    },
+    {
+      "source": "/robots.txt",
+      "headers": [
+        {
+          "key": "Content-Type",
+          "value": "text/plain; charset=utf-8"
+        },
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=3600, s-maxage=3600"
+        }
+      ]
+    },
+    {
+      "source": "/sitemap.xml",
+      "headers": [
+        {
+          "key": "Content-Type",
+          "value": "application/xml; charset=utf-8"
+        },
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=3600, s-maxage=3600"
+        }
+      ]
+    },
+    {
+      "source": "/(.*)",
+      "headers": [
+        {
+          "key": "Strict-Transport-Security",
+          "value": "max-age=31536000; includeSubDomains; preload"
+        },
+        {
+          "key": "Referrer-Policy",
+          "value": "strict-origin-when-cross-origin"
+        },
+        {
+          "key": "Content-Security-Policy",
+          "value": "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https: http: https://www.googletagmanager.com https://pagead2.googlesyndication.com https://*.googlesyndication.com https://www.google-analytics.com https://*.google-analytics.com https://*.analytics.google.com https://www.google.com https://*.google.com https://www.googleadservices.com https://googleads.g.doubleclick.net https://*.doubleclick.net https://adtrafficquality.google; connect-src 'self' https://www.google-analytics.com https://*.google-analytics.com https://*.analytics.google.com https://www.googletagmanager.com https://pagead2.googlesyndication.com https://*.googlesyndication.com https://www.google.com https://*.google.com https://www.googleadservices.com https://googleads.g.doubleclick.net https://*.doubleclick.net https://adtrafficquality.google; img-src 'self' data: blob: https:; frame-src 'self' https://googleads.g.doubleclick.net https://*.doubleclick.net https://*.googlesyndication.com https://www.googletagmanager.com https://www.google.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://www.googletagmanager.com https://cdnjs.cloudflare.com; font-src 'self' data: https://fonts.gstatic.com https://cdnjs.cloudflare.com; media-src 'self' blob: data:; worker-src 'self' blob:; object-src 'none'; base-uri 'self'; form-action 'self' https://www.google.com"
+        },
+        {
+          "key": "X-Frame-Options",
+          "value": "SAMEORIGIN"
+        },
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,82 @@
+from pathlib import Path
+from datetime import date
+import re
+
+ORIGIN = "https://dailytoolkit.xyz"
+changed = []
+
+canonical_re = re.compile(r'<link\s+[^>]*rel=["\']canonical["\'][^>]*>\s*', re.I)
+keywords_re = re.compile(r'\s*<meta\s+[^>]*name=["\']keywords["\'][^>]*>\s*', re.I)
+highperf_re = re.compile(
+    r'<script>\s*atOptions\s*=\s*\{.*?\};\s*</script>\s*'
+    r'<script\s+src=["\']https://www\.highperformanceformat\.com/[^"\']+["\']\s*>\s*</script>',
+    re.I | re.S,
+)
+
+
+def canonical_for(path: Path) -> str:
+    rel = path.as_posix()
+    if rel == "index.html":
+        return ORIGIN + "/"
+    clean = re.sub(r"\.html$", "", rel, flags=re.I)
+    return ORIGIN + "/" + clean.lstrip("/")
+
+
+for path in Path(".").rglob("*.html"):
+    if any(part in {".git", "node_modules"} for part in path.parts):
+        continue
+    if path.name == "404.html" or path.name.startswith("google"):
+        continue
+
+    text = path.read_text(encoding="utf-8")
+    if not re.search(r"</head\s*>", text, re.I):
+        continue
+
+    original = text
+    text = text.replace("https://www.dailytoolkit.xyz", ORIGIN)
+    text = keywords_re.sub("\n", text)
+    text = highperf_re.sub("", text)
+
+    canonical_url = canonical_for(path)
+    tag = f'<link rel="canonical" href="{canonical_url}" />\n  '
+    text = canonical_re.sub("", text)
+    head_end = re.search(r"</head\s*>", text, re.I)
+    text = text[:head_end.start()] + "  " + tag + text[head_end.start():]
+
+    if text != original:
+        path.write_text(text, encoding="utf-8")
+        changed.append(str(path))
+
+sitemap = Path("sitemap.xml")
+if sitemap.exists():
+    text = sitemap.read_text(encoding="utf-8")
+    original = text
+    text = re.sub(r"https://www\.dailytoolkit\.xyz", ORIGIN, text, flags=re.I)
+    text = re.sub(r"(https://dailytoolkit\.xyz/[^<\s]+?)\.html(?=</loc>)", r"\1", text, flags=re.I)
+    text = re.sub(r"<lastmod>[^<]+</lastmod>", f"<lastmod>{date.today().isoformat()}</lastmod>", text)
+    if text != original:
+        sitemap.write_text(text, encoding="utf-8")
+        changed.append("sitemap.xml")
+
+privacy = Path("privacy.html")
+if privacy.exists():
+    text = privacy.read_text(encoding="utf-8")
+    original = text
+    text = text.replace("hosted on GitHub Pages", "deployed on Vercel")
+    text = text.replace("hosted as a static GitHub Pages website", "deployed as a static website on Vercel")
+    if text != original:
+        privacy.write_text(text, encoding="utf-8")
+        changed.append("privacy.html")
+
+index = Path("index.html")
+if index.exists():
+    text = index.read_text(encoding="utf-8")
+    original = text
+    text = re.sub(r"25\+\s+Free\s+Tools", "Free Online Tools", text, flags=re.I)
+    if text != original:
+        index.write_text(text, encoding="utf-8")
+        changed.append("index.html")
+
+print(f"Technical SEO repair changed {len(set(changed))} files")
+for item in sorted(set(changed)):
+    print(item)

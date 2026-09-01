@@ -1,0 +1,34 @@
+name: H2 Direct Audit
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '**/*.html'
+      - 'scripts/h2_audit.py'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Run H2 audit
+        run: python scripts/h2_audit.py
+
+      - name: Commit audit report
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add H2_AUDIT_REPORT.md
+          if git diff --cached --quiet; then
+            echo 'No report changes.'
+          else
+            git commit -m 'docs(seo): add direct H2 audit report [skip ci]'
+            git push
+          fi
