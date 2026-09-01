@@ -1,0 +1,69 @@
+name: Fix low internal link pages
+
+on:
+  push:
+    paths-ignore:
+      - '.github/workflows/fix-internal-link-notice.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  add-internal-links:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Add targeted hub links
+        shell: python
+        run: |
+          from pathlib import Path
+
+          resources = [
+              ("/tools/pdf-splitter", "PDF Splitter"),
+              ("/articles/password-generator-best-practices", "Password Generator Best Practices"),
+              ("/articles/pdf-merge-vs-pdf-split-which-tool-to-use", "PDF Merge vs PDF Split"),
+              ("/articles/website-seo-audit-checklist-for-beginners", "Website SEO Audit Checklist"),
+              ("/articles/how-to-convert-images-to-pdf-online", "How to Convert Images to PDF"),
+              ("/articles/word-counter-guide-for-writing-and-seo", "Word Counter Guide"),
+              ("/articles/qr-code-guide-for-business-and-personal-use", "QR Code Guide"),
+              ("/articles/how-to-use-a-loan-calculator-and-understand-emi", "Loan Calculator & EMI Guide"),
+              ("/tools/gradient-generator", "Gradient Generator"),
+              ("/tools/website-seo-audit", "Website SEO Checker"),
+              ("/articles/how-to-compress-a-pdf-without-losing-important-quality", "PDF Compression Guide"),
+              ("/articles/how-to-resize-images-for-web-and-social-media", "Image Resize Guide"),
+              ("/articles/age-calculator-guide-exact-age-by-date-of-birth", "Age Calculator Guide"),
+              ("/articles", "Guides & Articles"),
+          ]
+
+          block = '<section class="internal-link-resources" aria-label="Related Daily Toolkit resources"><h2>Related Resources</h2><p>'
+          block += ' · '.join(f'<a href="{url}">{label}</a>' for url, label in resources)
+          block += '</p></section>'
+
+          targets = [Path('index.html'), Path('tools.html'), Path('articles/index.html')]
+          for path in targets:
+              text = path.read_text(encoding='utf-8')
+              marker = '<section class="internal-link-resources"'
+              if marker in text:
+                  continue
+              insert_at = text.rfind('</main>')
+              if insert_at == -1:
+                  insert_at = text.rfind('</body>')
+              if insert_at == -1:
+                  raise RuntimeError(f'No insertion point found in {path}')
+              text = text[:insert_at] + block + '\n' + text[insert_at:]
+              path.write_text(text, encoding='utf-8')
+
+      - name: Commit changes
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add index.html tools.html articles/index.html
+          if git diff --cached --quiet; then
+            echo "No changes needed"
+            exit 0
+          fi
+          git commit -m "fix(seo): add internal links to low-inlink pages [skip ci]"
+          git push
