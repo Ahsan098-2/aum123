@@ -68,8 +68,6 @@ jobs:
               return re.sub(r'</head>', tag + '</head>', text, count=1, flags=re.I)
 
           def canonical_for(path):
-              # website-seo-audit-tool is a duplicate utility page. Its authoritative
-              # page is the shorter website-seo-audit URL, which returns 200.
               if path.as_posix() == 'tools/website-seo-audit-tool.html':
                   return BASE + '/tools/website-seo-audit'
               return clean_url_for(path)
@@ -88,11 +86,12 @@ jobs:
               text = p.read_text(encoding='utf-8')
               original = text
 
-              # Vercel cleanUrls redirects .html URLs. Use the final clean URLs in internal links.
+              # Vercel cleanUrls redirects .html URLs. Internal links must point
+              # directly to the final clean URL so crawlers never need the 308 hop.
               text = re.sub(r'(?P<prefix>(?:href|src)=["\\'])/(?P<url>[^"\\']+?)\\.html(?P<suffix>["\\'])', r'\\g<prefix>/\\g<url>\\g<suffix>', text, flags=re.I)
               text = re.sub(r'(?P<prefix>(?:href|src)=["\\'])https://dailytoolkit\\.xyz/(?P<url>[^"\\']+?)\\.html(?P<suffix>["\\'])', r'\\g<prefix>https://dailytoolkit.xyz/\\g<url>\\g<suffix>', text, flags=re.I)
+              text = re.sub(r'(?P<prefix>(?:href|src)=["\\'])(?!https?://)(?P<url>(?:\\.{0,2}/)?(?:tools/)?[^"\\']+?)\\.html(?P<suffix>["\\'])', r'\\g<prefix>\\g<url>\\g<suffix>', text, flags=re.I)
 
-              # Exactly one description tag.
               matches = list(re.finditer(r'<meta\\s+[^>]*name=["\\']description["\\'][^>]*>', text, flags=re.I))
               if len(matches) > 1:
                   first_end = matches[0].end()
@@ -109,8 +108,6 @@ jobs:
 
               url = canonical_for(p)
               text = add_canonical(text, url)
-
-              # Complete OG + X/Twitter metadata for all public pages.
               text = add_or_replace_meta(text, 'property', 'og:title', title)
               text = add_or_replace_meta(text, 'property', 'og:description', desc)
               text = add_or_replace_meta(text, 'property', 'og:type', 'website')
@@ -125,8 +122,6 @@ jobs:
               if text != original:
                   p.write_text(text, encoding='utf-8')
 
-          # Sitemap must contain only clean final URLs. The duplicate SEO audit tool
-          # is intentionally omitted because its canonical points to the primary page.
           urls = []
           for p in sorted(files, key=lambda x: x.as_posix()):
               if p.as_posix() == 'tools/website-seo-audit-tool.html':
@@ -144,7 +139,7 @@ jobs:
           for u in unique:
               priority = '1.0' if u == BASE + '/' else ('0.9' if '/tools' in u else '0.7')
               freq = 'weekly' if u == BASE + '/' or '/tools' in u or u.endswith('/blog') or u.endswith('/articles') else 'monthly'
-              lines.append(f'  <url><loc>{escape(u)}</loc><lastmod>2026-08-30</lastmod><changefreq>{freq}</changefreq><priority>{priority}</priority></url>')
+              lines.append(f'  <url><loc>{escape(u)}</loc><lastmod>2026-09-01</lastmod><changefreq>{freq}</changefreq><priority>{priority}</priority></url>')
           lines.append('</urlset>')
           Path('sitemap.xml').write_text('\\n'.join(lines) + '\\n', encoding='utf-8')
           PY
@@ -157,6 +152,6 @@ jobs:
           if git diff --cached --quiet; then
             echo 'No crawl cleanup changes required.'
           else
-            git commit -m 'SEO: repair canonical sitemap redirects and social tags [skip ci]'
+            git commit -m 'SEO: replace internal .html links with clean URLs [skip ci]'
             git push
           fi
