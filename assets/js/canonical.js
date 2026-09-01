@@ -49,9 +49,14 @@
   function getPageName() {
     var h1 = document.querySelector('main h1, h1');
     if (h1 && h1.textContent.trim()) return h1.textContent.replace(/\s+/g, ' ').trim();
-
     var title = document.title.replace(/\s*\|\s*Daily Toolkit\s*$/i, '').trim();
     return title || 'Page';
+  }
+
+  /* Remove the generic SEO block that was previously appended to the bottom of tool pages. */
+  function removeGenericSeoContent() {
+    var sections = document.querySelectorAll('.seo-content-section');
+    for (var i = 0; i < sections.length; i++) sections[i].remove();
   }
 
   function removeExistingBreadcrumbSchemas() {
@@ -74,7 +79,6 @@
 
   function addBreadcrumbStyles() {
     if (document.getElementById('dt-breadcrumb-styles')) return;
-
     var style = document.createElement('style');
     style.id = 'dt-breadcrumb-styles';
     style.textContent =
@@ -98,7 +102,6 @@
 
     var bar = document.createElement('div');
     bar.className = 'dt-breadcrumb-bar';
-
     var nav = document.createElement('nav');
     nav.className = 'dt-breadcrumb';
     nav.setAttribute('aria-label', 'Breadcrumb');
@@ -109,7 +112,6 @@
       a.textContent = text;
       nav.appendChild(a);
     }
-
     function addSeparator() {
       var span = document.createElement('span');
       span.className = 'sep';
@@ -119,7 +121,6 @@
     }
 
     addLink('Home', '/');
-
     if (isTool) {
       addSeparator();
       addLink('Tools', '/tools');
@@ -141,13 +142,11 @@
     }
 
     bar.appendChild(nav);
-
     var target = document.querySelector('main');
     if (target) {
       target.insertBefore(bar, target.firstElementChild);
       return;
     }
-
     var hero = document.querySelector('.hero, .breadcrumb-bar');
     if (hero && hero.parentNode) hero.parentNode.insertBefore(bar, hero);
     else if (document.body) document.body.insertBefore(bar, document.body.firstChild);
@@ -155,40 +154,23 @@
 
   function addBreadcrumbSchema() {
     if (path === '/') return;
-
     var isTool = /^\/tools\//i.test(path);
     var isToolsIndex = path.toLowerCase() === '/tools';
     var pageName = getPageName();
-    var items = [
-      { '@type': 'ListItem', position: 1, name: 'Home', item: ORIGIN + '/' }
-    ];
+    var items = [{ '@type': 'ListItem', position: 1, name: 'Home', item: ORIGIN + '/' }];
 
     if (isTool) {
-      items.push({
-        '@type': 'ListItem',
-        position: 2,
-        name: 'Tools',
-        item: ORIGIN + '/tools'
-      });
-      if (!isToolsIndex) {
-        items.push({
-          '@type': 'ListItem',
-          position: 3,
-          name: pageName,
-          item: canonicalUrl
-        });
-      }
+      items.push({ '@type': 'ListItem', position: 2, name: 'Tools', item: ORIGIN + '/tools' });
+      if (!isToolsIndex) items.push({ '@type': 'ListItem', position: 3, name: pageName, item: canonicalUrl });
     } else {
       items.push({
-        '@type': 'ListItem',
-        position: 2,
+        '@type': 'ListItem', position: 2,
         name: titleCase(path.replace(/^\//, '').split('/').pop() || pageName),
         item: canonicalUrl
       });
     }
 
     removeExistingBreadcrumbSchemas();
-
     var schema = document.createElement('script');
     schema.type = 'application/ld+json';
     schema.id = 'dt-breadcrumb-schema';
@@ -206,7 +188,6 @@
     var title = 'Age Calculator Online: Calculate Exact Age | Daily Toolkit';
     var description = 'Calculate your exact age from your date of birth in years, months and days. Free age calculator with accurate age breakdown and age difference support.';
     var keywords = 'age calculator, age calculator online, age calculator by date of birth, calculate age, chronological age calculator, age difference calculator';
-
     document.title = title;
     setMeta('description', description);
     setMeta('keywords', keywords);
@@ -220,14 +201,14 @@
     setMeta('twitter:description', description);
     setMeta('twitter:card', 'summary_large_image');
 
-    var schema = document.getElementById('dt-seo-schema');
-    if (!schema) {
-      schema = document.createElement('script');
-      schema.type = 'application/ld+json';
-      schema.id = 'dt-seo-schema';
-      document.head.appendChild(schema);
+    var seoSchema = document.getElementById('dt-seo-schema');
+    if (!seoSchema) {
+      seoSchema = document.createElement('script');
+      seoSchema.type = 'application/ld+json';
+      seoSchema.id = 'dt-seo-schema';
+      document.head.appendChild(seoSchema);
     }
-    schema.textContent = JSON.stringify({
+    seoSchema.textContent = JSON.stringify({
       '@context': 'https://schema.org',
       '@type': 'WebApplication',
       name: 'Age Calculator Online',
@@ -240,6 +221,7 @@
   }
 
   function initBreadcrumbs() {
+    removeGenericSeoContent();
     addBreadcrumbStyles();
     addVisibleBreadcrumbs();
     addBreadcrumbSchema();
