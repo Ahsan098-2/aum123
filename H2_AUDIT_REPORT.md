@@ -15,7 +15,7 @@ Pages with heading-structure issues: 1
 | `articles/how-to-resize-images-for-web-and-social-media.html` | 1 | 8 | None | None |
 | `articles/how-to-use-a-loan-calculator-and-understand-emi.html` | 1 | 8 | None | None |
 | `articles/index.html` | 1 | 12 | None | None |
-| `articles/password-generator-best-practices.html` | 1 | 8 | None | None |
+| `articles/password-generator-best-practices.html` | 1 | 9 | None | None |
 | `articles/pdf-merge-vs-pdf-split-which-tool-to-use.html` | 1 | 8 | None | None |
 | `articles/qr-code-guide-for-business-and-personal-use.html` | 1 | 7 | None | None |
 | `articles/website-seo-audit-checklist-for-beginners.html` | 1 | 8 | None | None |
