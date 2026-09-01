@@ -26,14 +26,13 @@ jobs:
           changed = []
           canonical_re = re.compile(r'<link\s+[^>]*rel=["\']canonical["\'][^>]*>\s*', re.I)
           keywords_re = re.compile(r'\s*<meta\s+[^>]*name=["\']keywords["\'][^>]*>\s*', re.I)
+          meta_desc_re = re.compile(r'<meta\s+[^>]*name=["\']description["\'][^>]*>\s*', re.I)
           highperf_re = re.compile(r'<script>\s*atOptions\s*=\s*\{.*?\};\s*</script>\s*<script\s+src=["\']https://www\.highperformanceformat\.com/[^"\']+["\']\s*>\s*</script>', re.I | re.S)
 
           def canonical_for(path: Path) -> str:
               rel = path.as_posix()
               if rel == 'index.html':
                   return ORIGIN + '/'
-              # The physical articles/index.html file is served by the clean URL /articles.
-              # Never emit /articles/index as its canonical because Vercel redirects it.
               if rel == 'articles/index.html':
                   return ORIGIN + '/articles'
               clean = re.sub(r'\.html$', '', rel, flags=re.I)
@@ -49,6 +48,13 @@ jobs:
               text = text.replace('https://www.dailytoolkit.xyz', ORIGIN)
               text = keywords_re.sub('\n', text)
               text = highperf_re.sub('', text)
+
+              # Keep the first meta description and remove any duplicate description tags.
+              meta_matches = list(meta_desc_re.finditer(text))
+              if len(meta_matches) > 1:
+                  for match in reversed(meta_matches[1:]):
+                      text = text[:match.start()] + text[match.end():]
+
               canonical_url = canonical_for(path)
               tag = f'<link rel="canonical" href="{canonical_url}" />\n  '
               text = canonical_re.sub('', text)
