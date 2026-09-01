@@ -1,0 +1,36 @@
+name: Fix terms meta description
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  fix:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - name: Remove duplicate meta description from terms page
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          p = Path('terms.html')
+          s = p.read_text(encoding='utf-8')
+          duplicate = '  <meta name="description" content="These terms govern your use of Daily Toolkit and all its free online tools. By using our website, you agree to these conditions.">\n'
+          if duplicate not in s:
+              raise SystemExit('Expected duplicate meta description not found')
+          s = s.replace(duplicate, '', 1)
+          if s.count('<meta name="description"') != 1:
+              raise SystemExit('terms.html does not contain exactly one meta description after fix')
+          p.write_text(s, encoding='utf-8')
+          PY
+      - name: Commit fix and remove temporary workflow
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add terms.html .github/workflows/fix-terms-meta-description.yml
+          git commit -m "fix(seo): remove duplicate terms meta description"
+          git rm .github/workflows/fix-terms-meta-description.yml
+          git commit -m "chore: remove temporary seo fix workflow"
+          git push
