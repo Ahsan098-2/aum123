@@ -56,15 +56,15 @@ jobs:
           def meta_content(tag):
               if not tag:
                   return ''
-              m = re.search(r'content=["\\'](.*?)["\\']', tag, re.I | re.S)
-              return re.sub(r'\\s+', ' ', m.group(1)).strip() if m else ''
+              m = re.search(r'content=["\'](.*?)["\']', tag, re.I | re.S)
+              return re.sub(r'\s+', ' ', m.group(1)).strip() if m else ''
 
           def remove_meta(text, attr, value):
-              return re.sub(rf'<meta\\s+[^>]*{attr}=["\\']{re.escape(value)}["\\'][^>]*>\\s*', '', text, flags=re.I)
+              return re.sub(rf'<meta\s+[^>]*{attr}=["\']{re.escape(value)}["\'][^>]*>\s*', '', text, flags=re.I)
 
           def add_or_replace_meta(text, attr, value, content):
               text = remove_meta(text, attr, value)
-              tag = f'<meta {attr}="{escape(value)}" content="{escape(content)}">\\n'
+              tag = f'<meta {attr}="{escape(value)}" content="{escape(content)}">\n'
               return re.sub(r'</head>', tag + '</head>', text, count=1, flags=re.I)
 
           def canonical_for(path):
@@ -73,8 +73,8 @@ jobs:
               return clean_url_for(path)
 
           def add_canonical(text, url):
-              text = re.sub(r'<link\\s+[^>]*rel=["\\']canonical["\\'][^>]*>\\s*', '', text, flags=re.I)
-              tag = f'<link rel="canonical" href="{escape(url)}">\\n'
+              text = re.sub(r'<link\s+[^>]*rel=["\']canonical["\'][^>]*>\s*', '', text, flags=re.I)
+              tag = f'<link rel="canonical" href="{escape(url)}">\n'
               return re.sub(r'</head>', tag + '</head>', text, count=1, flags=re.I)
 
           files = []
@@ -82,25 +82,25 @@ jobs:
               if '.git' in p.parts or 'node_modules' in p.parts or p.name in EXCLUDED:
                   continue
               files.append(p)
-
               text = p.read_text(encoding='utf-8')
               original = text
 
-              # Vercel cleanUrls redirects .html URLs. Internal links must point
-              # directly to the final clean URL so crawlers never need the 308 hop.
-              text = re.sub(r'(?P<prefix>(?:href|src)=["\\'])/(?P<url>[^"\\']+?)\\.html(?P<suffix>["\\'])', r'\\g<prefix>/\\g<url>\\g<suffix>', text, flags=re.I)
-              text = re.sub(r'(?P<prefix>(?:href|src)=["\\'])https://dailytoolkit\\.xyz/(?P<url>[^"\\']+?)\\.html(?P<suffix>["\\'])', r'\\g<prefix>https://dailytoolkit.xyz/\\g<url>\\g<suffix>', text, flags=re.I)
-              text = re.sub(r'(?P<prefix>(?:href|src)=["\\'])(?!https?://)(?P<url>(?:\\.{0,2}/)?(?:tools/)?[^"\\']+?)\\.html(?P<suffix>["\\'])', r'\\g<prefix>\\g<url>\\g<suffix>', text, flags=re.I)
+              # Normalize ALL local href/src .html links, including relative links such as privacy.html and ../privacy.html.
+              # External URLs (http://, https://, //) are intentionally left unchanged.
+              text = re.sub(
+                  r'(?P<prefix>(?:href|src)=["\'])(?P<url>(?!(?:https?:)?//)[^"\']+?)\.html(?P<suffix>["\'])',
+                  r'\g<prefix>\g<url>\g<suffix>', text, flags=re.I
+              )
 
-              matches = list(re.finditer(r'<meta\\s+[^>]*name=["\\']description["\\'][^>]*>', text, flags=re.I))
+              matches = list(re.finditer(r'<meta\s+[^>]*name=["\']description["\'][^>]*>', text, flags=re.I))
               if len(matches) > 1:
                   first_end = matches[0].end()
-                  tail = re.sub(r'<meta\\s+[^>]*name=["\\']description["\\'][^>]*>\\s*', '', text[first_end:], flags=re.I)
+                  tail = re.sub(r'<meta\s+[^>]*name=["\']description["\'][^>]*>\s*', '', text[first_end:], flags=re.I)
                   text = text[:first_end] + tail
 
               tm = re.search(r'<title>(.*?)</title>', text, flags=re.I | re.S)
-              title = re.sub(r'\\s+', ' ', tm.group(1)).strip() if tm else p.stem.replace('-', ' ').title()
-              dm = re.search(r'<meta\\s+[^>]*name=["\\']description["\\'][^>]*>', text, flags=re.I)
+              title = re.sub(r'\s+', ' ', tm.group(1)).strip() if tm else p.stem.replace('-', ' ').title()
+              dm = re.search(r'<meta\s+[^>]*name=["\']description["\'][^>]*>', text, flags=re.I)
               desc = meta_content(dm.group(0) if dm else None)
               if not desc:
                   desc = f'{title}. Free online utility from Daily Toolkit.'
@@ -141,7 +141,7 @@ jobs:
               freq = 'weekly' if u == BASE + '/' or '/tools' in u or u.endswith('/blog') or u.endswith('/articles') else 'monthly'
               lines.append(f'  <url><loc>{escape(u)}</loc><lastmod>2026-09-01</lastmod><changefreq>{freq}</changefreq><priority>{priority}</priority></url>')
           lines.append('</urlset>')
-          Path('sitemap.xml').write_text('\\n'.join(lines) + '\\n', encoding='utf-8')
+          Path('sitemap.xml').write_text('\n'.join(lines) + '\n', encoding='utf-8')
           PY
 
       - name: Commit SEO cleanup
@@ -152,6 +152,6 @@ jobs:
           if git diff --cached --quiet; then
             echo 'No crawl cleanup changes required.'
           else
-            git commit -m 'SEO: replace internal .html links with clean URLs [skip ci]'
+            git commit -m 'SEO: normalize all local html links to clean URLs [skip ci]'
             git push
           fi
