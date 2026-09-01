@@ -74,7 +74,6 @@ REDIRECTS = {
 def clean_internal_redirects(text):
     original = text
     for old, new in REDIRECTS.items():
-        # Only replace internal root-relative URL values, not external domains.
         text = re.sub(rf'(["\'(=:\s]){re.escape(old)}(?=(["\'?#\s)]|$))', rf'\1{new}', text)
         text = text.replace(f'https://dailytoolkit.xyz{old}', f'https://dailytoolkit.xyz{new}')
         text = text.replace(f'https://www.dailytoolkit.xyz{old}', f'https://dailytoolkit.xyz{new}')
@@ -82,11 +81,8 @@ def clean_internal_redirects(text):
 
 
 def fix_duplicate_h2(text):
-    # Keep the first occurrence as H2. If the exact same H2 is repeated on a page,
-    # make subsequent copies H3 so the heading hierarchy remains meaningful.
     seen = set()
     changed = False
-
     pattern = re.compile(r'<h2\b([^>]*)>(.*?)</h2>', re.I | re.S)
 
     def repl(match):
@@ -105,18 +101,69 @@ def fix_duplicate_h2(text):
 
 
 def fix_long_meta_description(text):
-    # Search engines commonly truncate long snippets. Keep descriptions concise.
     pattern = re.compile(r'(<meta\s+[^>]*name=["\']description["\'][^>]*content=["\'])(.*?)(["\'][^>]*>)', re.I | re.S)
 
     def repl(match):
         desc = re.sub(r'\s+', ' ', match.group(2)).strip()
         if len(desc) <= 160:
             return match.group(0)
-        # Cut at a word boundary and preserve a complete sentence where possible.
         short = desc[:157].rsplit(' ', 1)[0].rstrip(' ,;:-') + '...'
         return match.group(1) + short + match.group(3)
 
     return pattern.sub(repl, text)
+
+
+def fix_pdf_to_image_schema(path, text):
+    """Remove unsupported/incomplete SoftwareApplication markup from this tool.
+
+    Google requires a genuine rating or review for SoftwareApplication rich results.
+    Daily Toolkit has no user rating data on this page, so adding fake ratings would
+    violate Google's structured-data guidelines. The page already has visible
+    breadcrumbs, so replace the app markup with valid BreadcrumbList markup.
+    """
+    if path.as_posix() != 'tools/pdf-to-image.html':
+        return text
+
+    text = re.sub(
+        r'<script\s+type=["\']application/ld\+json["\']>\s*\{.*?"@type"\s*:\s*["\']SoftwareApplication["\'].*?</script>\s*',
+        '',
+        text,
+        flags=re.I | re.S,
+    )
+
+    if '"@type": "BreadcrumbList"' not in text:
+        breadcrumb = '''<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://dailytoolkit.xyz/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "PDF Tools",
+      "item": "https://dailytoolkit.xyz/#pdf-tools"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "PDF to Image",
+      "item": "https://dailytoolkit.xyz/tools/pdf-to-image"
+    }
+  ]
+}
+</script>
+'''
+        head_end = re.search(r'</head\s*>', text, re.I)
+        if head_end:
+            text = text[:head_end.start()] + breadcrumb + text[head_end.start():]
+
+    return text
 
 
 changed_files = []
@@ -129,6 +176,7 @@ for path in ROOT.rglob('*.html'):
     redirected, text = clean_internal_redirects(text)
     text, duplicate_changed = fix_duplicate_h2(text)
     text = fix_long_meta_description(text)
+    text = fix_pdf_to_image_schema(path, text)
 
     if text != original:
         path.write_text(text, encoding='utf-8')
