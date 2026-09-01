@@ -2,7 +2,7 @@
 
 Multiple H2 headings are valid HTML and are not automatically changed. Only duplicate H2 text, missing/extra H1, and invalid heading-level jumps are flagged.
 
-Pages with multiple H2 headings: 58
+Pages with multiple H2 headings: 59
 Pages with duplicate H2 text: 0
 Pages with heading-structure issues: 1
 
@@ -10,10 +10,10 @@ Pages with heading-structure issues: 1
 |---|---:|---:|---|---|
 | `about.html` | 1 | 7 | None | None |
 | `articles/age-calculator-guide-exact-age-by-date-of-birth.html` | 1 | 8 | None | None |
-| `articles/how-to-compress-a-pdf-without-losing-important-quality.html` | 1 | 6 | None | None |
+| `articles/how-to-compress-a-pdf-without-losing-important-quality.html` | 1 | 14 | None | None |
 | `articles/how-to-convert-images-to-pdf-online.html` | 1 | 9 | None | None |
 | `articles/how-to-resize-images-for-web-and-social-media.html` | 1 | 8 | None | None |
-| `articles/how-to-use-a-loan-calculator-and-understand-emi.html` | 1 | 8 | None | None |
+| `articles/how-to-use-a-loan-calculator-and-understand-emi.html` | 1 | 12 | None | None |
 | `articles/index.html` | 1 | 13 | None | None |
 | `articles/password-generator-best-practices.html` | 1 | 9 | None | None |
 | `articles/pdf-merge-vs-pdf-split-which-tool-to-use.html` | 1 | 9 | None | None |
@@ -42,6 +42,7 @@ Pages with heading-structure issues: 1
 | `tools/freelancer-hourly-rate-calculator.html` | 1 | 10 | None | None |
 | `tools/fuel-price-checker.html` | 1 | 7 | None | None |
 | `tools/gold-price-checker.html` | 1 | 8 | None | None |
+| `tools/gradient-generator.html` | 1 | 2 | None | None |
 | `tools/hashtag-generator.html` | 1 | 8 | None | None |
 | `tools/image-compressor.html` | 1 | 6 | None | None |
 | `tools/image-resizer.html` | 1 | 6 | None | None |
