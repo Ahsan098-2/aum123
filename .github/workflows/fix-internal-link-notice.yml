@@ -1,4 +1,4 @@
-name: Fix low internal link pages
+name: Remove injected related resources
 
 on:
   push:
@@ -9,75 +9,50 @@ permissions:
   contents: write
 
 jobs:
-  add-internal-links:
+  cleanup:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Remove homepage related-resources block and maintain hub links
+      - name: Remove Related Resources blocks from HTML
         shell: python
         run: |
           from pathlib import Path
           import re
 
-          # The homepage should not display the Related Resources block.
-          homepage = Path('index.html')
-          text = homepage.read_text(encoding='utf-8')
-          text = re.sub(
+          pattern = re.compile(
               r'\s*<section class="internal-link-resources"[^>]*>.*?</section>\s*',
-              '\n',
-              text,
-              flags=re.DOTALL,
-              count=1,
+              re.DOTALL,
           )
-          homepage.write_text(text, encoding='utf-8')
 
-          resources = [
-              ("/tools/pdf-splitter", "PDF Splitter"),
-              ("/articles/password-generator-best-practices", "Password Generator Best Practices"),
-              ("/articles/pdf-merge-vs-pdf-split-which-tool-to-use", "PDF Merge vs PDF Split"),
-              ("/articles/website-seo-audit-checklist-for-beginners", "Website SEO Audit Checklist"),
-              ("/articles/how-to-convert-images-to-pdf-online", "How to Convert Images to PDF"),
-              ("/articles/word-counter-guide-for-writing-and-seo", "Word Counter Guide"),
-              ("/articles/qr-code-guide-for-business-and-personal-use", "QR Code Guide"),
-              ("/articles/how-to-use-a-loan-calculator-and-understand-emi", "Loan Calculator & EMI Guide"),
-              ("/tools/gradient-generator", "Gradient Generator"),
-              ("/tools/website-seo-audit", "Website SEO Checker"),
-              ("/articles/how-to-compress-a-pdf-without-losing-important-quality", "PDF Compression Guide"),
-              ("/articles/how-to-resize-images-for-web-and-social-media", "Image Resize Guide"),
-              ("/articles/age-calculator-guide-exact-age-by-date-of-birth", "Age Calculator Guide"),
-              ("/articles", "Guides & Articles"),
-          ]
-
-          block = '<section class="internal-link-resources" aria-label="Related Daily Toolkit resources"><h2>Related Resources</h2><p>'
-          block += ' · '.join(f'<a href="{url}">{label}</a>' for url, label in resources)
-          block += '</p></section>'
-
-          # Keep the related-resources block on the tools and articles hub pages,
-          # but never add it back to the homepage.
-          for path in [Path('tools.html'), Path('articles/index.html')]:
-              text = path.read_text(encoding='utf-8')
-              marker = '<section class="internal-link-resources"'
-              if marker in text:
+          changed = []
+          for path in Path('.').rglob('*.html'):
+              if '.git' in path.parts:
                   continue
-              insert_at = text.rfind('</main>')
-              if insert_at == -1:
-                  insert_at = text.rfind('</body>')
-              if insert_at == -1:
-                  raise RuntimeError(f'No insertion point found in {path}')
-              text = text[:insert_at] + block + '\n' + text[insert_at:]
-              path.write_text(text, encoding='utf-8')
+              text = path.read_text(encoding='utf-8')
+              cleaned = pattern.sub('\n', text)
+              if cleaned != text:
+                  path.write_text(cleaned, encoding='utf-8')
+                  changed.append(str(path))
 
-      - name: Commit changes
+          print('Cleaned:', ', '.join(changed) if changed else 'none')
+
+      - name: Remove temporary trigger and this obsolete workflow
+        shell: bash
+        run: |
+          rm -f .related-resources-cleanup-trigger
+          rm -f .github/workflows/fix-internal-link-notice.yml
+
+      - name: Commit cleanup
         shell: bash
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add index.html tools.html articles/index.html
+          git add -A
           if git diff --cached --quiet; then
-            echo "No changes needed"
+            echo "No cleanup changes needed"
             exit 0
           fi
-          git commit -m "fix(homepage): remove related resources block [skip ci]"
+          git commit -m "fix(seo): remove related resources injection [skip ci]"
           git push
