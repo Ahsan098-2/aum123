@@ -9,10 +9,10 @@ Pages with heading-structure issues: 1
 | Page | H1 | H2 | Duplicate H2 | Structure issue |
 |---|---:|---:|---|---|
 | `about.html` | 1 | 7 | None | None |
-| `articles/age-calculator-guide-exact-age-by-date-of-birth.html` | 1 | 8 | None | None |
+| `articles/age-calculator-guide-exact-age-by-date-of-birth.html` | 1 | 14 | None | None |
 | `articles/how-to-compress-a-pdf-without-losing-important-quality.html` | 1 | 14 | None | None |
 | `articles/how-to-convert-images-to-pdf-online.html` | 1 | 9 | None | None |
-| `articles/how-to-resize-images-for-web-and-social-media.html` | 1 | 8 | None | None |
+| `articles/how-to-resize-images-for-web-and-social-media.html` | 1 | 17 | None | None |
 | `articles/how-to-use-a-loan-calculator-and-understand-emi.html` | 1 | 12 | None | None |
 | `articles/index.html` | 1 | 13 | None | None |
 | `articles/password-generator-best-practices.html` | 1 | 9 | None | None |
