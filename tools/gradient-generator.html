@@ -1,454 +1,713 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>🎨 Professional Gradient Generator Online | Daily Toolkit</title>
-    <meta name="description" content="Create beautiful CSS gradients online with a live preview. Generate linear or radial gradient CSS code for websites, apps and UI designs for free.">
-    <meta name="robots" content="index,follow">
+  <!-- Basic -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://pagead2.googlesyndication.com https://www.googletagmanager.com; connect-src 'self' https://www.google-analytics.com; img-src 'self' data: blob: https:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; object-src 'none'; base-uri 'self';">
+  <meta name="p:domain_verify" content="541f159793148c6b8774cc2238ddb47c"/>
+  <link rel="sitemap" type="application/xml" title="Sitemap" href="/sitemap.xml" />
 
-    <script>
-    window.dataLayer=window.dataLayer||[];
+  <!-- Content Security Policy -->
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://pagead2.googlesyndication.com https://www.googletagmanager.com https://www.highperformanceformat.com; connect-src 'self' https://www.google-analytics.com; img-src 'self' data: blob: https:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; frame-src https://pagead2.googlesyndication.com; object-src 'none'; base-uri 'self';">
+
+  <script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('consent', 'default', {
+    'ad_storage': 'denied',
+    'ad_user_data': 'denied',
+    'ad_personalization': 'denied',
+    'analytics_storage': 'denied',
+    'regions':['PK','EU']
+  });
+  gtag('consent', 'default', {
+    'ad_storage': 'denied',
+    'ad_user_data': 'denied',
+    'ad_personalization': 'denied',
+    'analytics_storage': 'denied'
+  });
+  </script>
+
+  <!-- Google AdSense -->
+  <script src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6737111642010842" crossorigin="anonymous" async defer></script>
+
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-3K7RBN1QSL"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
-    gtag('consent','default',{'ad_storage':'denied','ad_user_data':'denied','ad_personalization':'denied','analytics_storage':'denied','regions':['PK','EU']});
-    gtag('consent','default',{'ad_storage':'denied','ad_user_data':'denied','ad_personalization':'denied','analytics_storage':'denied'});
-    </script>
+    gtag('js', new Date());
+    gtag('config', 'G-3K7RBN1QSL');
+  </script>
 
-    <script src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6737111642010842" crossorigin="anonymous" async defer></script>
-    <script src="https://www.googletagmanager.com/gtag/js?id=G-3K7RBN1QSL" defer></script>
+  <!-- Website Favicon Logo -->
+  <link rel="icon" type="image/png" href="https://dailytoolkit.xyz/assets/logo.png">
+  <link rel="apple-touch-icon" href="https://dailytoolkit.xyz/assets/logo.png">
 
-    <script>
-    window.dataLayer=window.dataLayer||[];
-    function gtag(){dataLayer.push(arguments)}
-    gtag('js',new Date());
-    gtag('config','G-3K7RBN1QSL');
-    </script>
+  <!-- Optimized SEO Meta Tags -->
+  <title>CSS Gradient Generator Online Free | Daily Toolkit</title>
+  <meta name="description" content="Create beautiful CSS gradients online with a live preview. Generate linear or radial gradient CSS code for websites, apps and UI designs — free, no signup.">
+  <meta name="robots" content="index, follow">
+  <meta name="author" content="Ahsanullah Mahar">
 
-    <script type="application/ld+json">
-    {
-      "@context":"https://schema.org",
-      "@graph":[
-        {
-          "@type":"WebSite",
-          "name":"Daily Toolkit",
-          "url":"https://dailytoolkit.xyz"
-        },
-        {
-          "@type":"WebApplication",
-          "name":"CSS Gradient Generator",
-          "url":"https://dailytoolkit.xyz/tools/gradient-generator",
-          "applicationCategory":"UtilitiesApplication",
-          "operatingSystem":"Any",
-          "offers":{
-            "@type":"Offer",
-            "price":"0",
-            "priceCurrency":"USD"
-          },
-          "description":"Free online CSS gradient generator. Create linear and radial gradients visually, pick colors, adjust angle, and copy ready-to-use CSS code instantly."
-        },
-        {
-          "@type":"BreadcrumbList",
-          "itemListElement":[
-            {
-              "@type":"ListItem",
-              "position":1,
-              "name":"Home",
-              "item":"https://dailytoolkit.xyz/"
-            },
-            {
-              "@type":"ListItem",
-              "position":2,
-              "name":"Tools",
-              "item":"https://dailytoolkit.xyz/#tools"
-            },
-            {
-              "@type":"ListItem",
-              "position":3,
-              "name":"CSS Gradient Generator",
-              "item":"https://dailytoolkit.xyz/tools/gradient-generator"
-            }
-          ]
-        }
-      ]
-    }
-    </script>
-
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
-
-    <style>
-        body {
-            font-family: 'Poppins', sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            margin: 0;
-            background: linear-gradient(135deg, #a1c4fd 0%, #c2e9fb 100%);
-            color: #333;
-            padding: 20px;
-            box-sizing: border-box;
-        }
-
-        .container {
-            background: #ffffff;
-            padding: 40px;
-            border-radius: 15px;
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
-            text-align: center;
-            max-width: 600px;
-            width: 100%;
-            animation: fadeInScale 0.8s ease-out forwards;
-        }
-
-        @keyframes fadeInScale {
-            from { opacity: 0; transform: scale(0.9); }
-            to { opacity: 1; transform: scale(1); }
-        }
-
-        h1 {
-            color: #2c3e50;
-            margin-bottom: 20px;
-            font-size: 2.5em;
-            font-weight: 700;
-        }
-
-        p {
-            font-size: 1.1em;
-            color: #666;
-            margin-bottom: 30px;
-            line-height: 1.6;
-        }
-
-        .color-selector {
-            display: flex;
-            justify-content: space-around;
-            margin-bottom: 30px;
-            gap: 20px;
-            flex-wrap: wrap;
-        }
-
-        .color-group {
-            text-align: center;
-            flex: 1;
-            min-width: 120px;
-        }
-
-        .color-group label {
-            display: block;
-            margin-bottom: 10px;
-            font-size: 1.1em;
-            color: #555;
-            font-weight: 600;
-        }
-
-        input[type="color"] {
-            width: 80px;
-            height: 80px;
-            border: 3px solid #ddd;
-            border-radius: 10px;
-            padding: 0;
-            cursor: pointer;
-            transition: border-color 0.3s ease, transform 0.2s ease;
-        }
-
-        input[type="color"]:hover {
-            border-color: #a1c4fd;
-            transform: scale(1.05);
-        }
-
-        .gradient-preview {
-            width: 100%;
-            height: 150px;
-            border: 2px solid #e0e0e0;
-            border-radius: 10px;
-            margin-top: 25px;
-            margin-bottom: 25px;
-            background: linear-gradient(to right, #FF5F6D, #FFC371);
-            box-shadow: inset 0 2px 8px rgba(0,0,0,0.08);
-        }
-
-        textarea {
-            width: calc(100% - 24px);
-            height: 120px;
-            padding: 12px;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            font-size: 1em;
-            font-family: 'Courier New', monospace;
-            resize: vertical;
-            background-color: #f9f9f9;
-            box-shadow: inset 0 1px 3px rgba(0,0,0,0.05);
-            line-height: 1.6;
-            color: #333;
-        }
-
-        button {
-            background-color: #007bff;
-            color: white;
-            padding: 14px 30px;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            font-size: 1.2em;
-            font-weight: 600;
-            transition: background-color 0.3s ease, transform 0.2s ease;
-            box-shadow: 0 5px 15px rgba(0, 123, 255, 0.3);
-            margin-top: 30px;
-        }
-
-        button:hover {
-            background-color: #0056b3;
-            transform: translateY(-3px);
-        }
-
-        .note {
-            margin-top: 30px;
-            color: #888;
-            font-size: 0.9em;
-        }
-
-        .related-links {
-            margin-top: 40px;
-            padding-top: 25px;
-            border-top: 1px solid #e5e5e5;
-            text-align: left;
-        }
-
-        .related-links h2 {
-            color: #2c3e50;
-            font-size: 1.4em;
-            margin-bottom: 12px;
-        }
-
-        .related-links p {
-            font-size: 0.95em;
-            margin-bottom: 15px;
-        }
-
-        .related-links ul {
-            margin: 0;
-            padding-left: 20px;
-        }
-
-        .related-links li {
-            margin-bottom: 9px;
-        }
-
-        .related-links a {
-            color: #0066cc;
-            text-decoration: underline;
-        }
-
-        .related-links a:hover {
-            color: #004999;
-        }
-
-        @media (max-width: 768px) {
-            .container {
-                padding: 30px;
-            }
-
-            h1 {
-                font-size: 2em;
-            }
-
-            .color-selector {
-                flex-direction: column;
-                gap: 20px;
-            }
-
-            input[type="color"] {
-                width: 60px;
-                height: 60px;
-            }
-
-            button {
-                width: 100%;
-                padding: 12px 25px;
-                font-size: 1.1em;
-            }
-        }
-    </style>
-
-    <script src="/assets/js/canonical.js"></script>
-
-    <meta property="og:title" content="🎨 Professional Gradient Generator Online | Daily Toolkit">
-    <meta property="og:description" content="Create beautiful CSS gradients online with a live preview. Generate linear or radial gradient CSS code for websites, apps and UI designs for free.">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://dailytoolkit.xyz/tools/gradient-generator">
-    <meta property="og:site_name" content="Daily Toolkit">
-    <meta property="og:image" content="https://dailytoolkit.xyz/assets/preview.png">
-
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="🎨 Professional Gradient Generator Online | Daily Toolkit">
-    <meta name="twitter:description" content="Create beautiful CSS gradients online with a live preview. Generate linear or radial gradient CSS code for websites, apps and UI designs for free.">
-    <meta name="twitter:image" content="https://dailytoolkit.xyz/assets/preview.png">
   <link rel="canonical" href="https://dailytoolkit.xyz/tools/gradient-generator" />
-  </head>
 
+  <!-- Open Graph -->
+  <meta property="og:title" content="CSS Gradient Generator Online Free | Daily Toolkit">
+  <meta property="og:description" content="Create beautiful CSS gradients online with a live preview. Generate linear or radial gradient CSS code for websites, apps and UI designs — free, no signup.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://dailytoolkit.xyz/tools/gradient-generator">
+  <meta property="og:site_name" content="Daily Toolkit">
+  <meta property="og:image" content="https://dailytoolkit.xyz/assets/preview.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="CSS Gradient Generator Online Free | Daily Toolkit">
+  <meta name="twitter:description" content="Create beautiful CSS gradients online with a live preview. Generate linear or radial gradient CSS code for websites, apps and UI designs — free, no signup.">
+  <meta name="twitter:image" content="https://dailytoolkit.xyz/assets/preview.png">
+
+  <!-- Schema.org JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebSite",
+        "@id": "https://dailytoolkit.xyz/#website",
+        "url": "https://dailytoolkit.xyz/",
+        "name": "Daily Toolkit",
+        "publisher": { "@id": "https://dailytoolkit.xyz/#organization" },
+        "inLanguage": "en"
+      },
+      {
+        "@type": "Organization",
+        "@id": "https://dailytoolkit.xyz/#organization",
+        "name": "Daily Toolkit",
+        "url": "https://dailytoolkit.xyz/",
+        "logo": {
+          "@type": "ImageObject",
+          "@id": "https://dailytoolkit.xyz/#logo",
+          "url": "https://dailytoolkit.xyz/assets/logo.png",
+          "contentUrl": "https://dailytoolkit.xyz/assets/logo.png",
+          "width": 512,
+          "height": 512
+        },
+        "image": { "@id": "https://dailytoolkit.xyz/#logo" },
+        "sameAs": [
+          "https://www.facebook.com/Ahsanullah7116",
+          "https://www.instagram.com/ahsan_ontop01",
+          "https://www.linkedin.com/in/ahsanullah-mahar-b1b177285",
+          "https://github.com/Ahsan098-2"
+        ]
+      },
+      {
+        "@type": "WebPage",
+        "@id": "https://dailytoolkit.xyz/tools/gradient-generator#webpage",
+        "url": "https://dailytoolkit.xyz/tools/gradient-generator",
+        "name": "CSS Gradient Generator Online Free | Daily Toolkit",
+        "isPartOf": { "@id": "https://dailytoolkit.xyz/#website" },
+        "description": "Create beautiful CSS gradients online with a live preview. Generate linear or radial gradient CSS code for websites, apps and UI designs — free, no signup.",
+        "inLanguage": "en"
+      },
+      {
+        "@type": "WebApplication",
+        "name": "CSS Gradient Generator",
+        "url": "https://dailytoolkit.xyz/tools/gradient-generator",
+        "applicationCategory": "UtilitiesApplication",
+        "operatingSystem": "Any",
+        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+        "description": "Free online CSS gradient generator. Create linear and radial gradients visually, pick colors, adjust angle, and copy ready-to-use CSS code instantly."
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://dailytoolkit.xyz/" },
+          { "@type": "ListItem", "position": 2, "name": "Tools", "item": "https://dailytoolkit.xyz/#tools" },
+          { "@type": "ListItem", "position": 3, "name": "CSS Gradient Generator", "item": "https://dailytoolkit.xyz/tools/gradient-generator" }
+        ]
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Is this CSS gradient generator free?",
+            "acceptedAnswer": { "@type": "Answer", "text": "Yes. Daily Toolkit provides this online utility for free, with no software installation required." }
+          },
+          {
+            "@type": "Question",
+            "name": "Can I use it on a phone?",
+            "acceptedAnswer": { "@type": "Answer", "text": "Yes. The tool is designed to work in a modern mobile or desktop browser." }
+          },
+          {
+            "@type": "Question",
+            "name": "Can I generate radial gradients too?",
+            "acceptedAnswer": { "@type": "Answer", "text": "Yes. Switch the gradient type to Radial to generate a radial-gradient CSS snippet instead of a linear one." }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://pagead2.googlesyndication.com">
+  <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+  <link rel="preconnect" href="https://www.googletagmanager.com">
+  <link rel="dns-prefetch" href="https://www.googletagmanager.com">
+  <link rel="dns-prefetch" href="https://www.google-analytics.com">
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet"></noscript>
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    .icon { width: 1em; height: 1em; fill: currentColor; display: inline-block; vertical-align: -0.14em; flex-shrink: 0; }
+
+    :root {
+      --black: #0A0A0A;
+      --white: #FFFFFF;
+      --gray-100: #F7F7F7;
+      --gray-200: #EFEFEF;
+      --gray-400: #ABABAB;
+      --gray-600: #6B6B6B;
+      --gold: #C9A84C;
+      --gold-light: #E8D28A;
+      --gold-text: #7A5C18;
+      --font-display: 'Playfair Display', Georgia, serif;
+      --font-body: 'Inter', system-ui, sans-serif;
+      --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--font-body);
+      background: var(--white);
+      color: var(--black);
+      line-height: 1.6;
+      overflow-x: hidden;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+    a { text-decoration: none; color: inherit; }
+    img { max-width: 100%; display: block; }
+    .sr-only {
+      position: absolute !important; width: 1px !important; height: 1px !important;
+      padding: 0 !important; margin: -1px !important; overflow: hidden !important;
+      clip: rect(0,0,0,0) !important; white-space: nowrap !important; border: 0 !important;
+    }
+    ::-webkit-scrollbar { width: 4px; }
+    ::-webkit-scrollbar-track { background: var(--gray-100); }
+    ::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 2px; }
+
+    /* ── NAVBAR ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 4%; height: 68px;
+      background: rgba(255,255,255,0.96);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--gray-200);
+      transition: box-shadow var(--transition); gap: 1rem;
+    }
+    nav.scrolled { box-shadow: 0 2px 24px rgba(0,0,0,0.07); }
+    .nav-logo {
+      font-family: var(--font-display); font-size: 1.3rem; font-weight: 700;
+      color: var(--black); white-space: nowrap; display: flex; align-items: center; gap: 0.4rem;
+    }
+    .nav-logo span { color: var(--gold-text); }
+    .nav-logo .icon { color: var(--gold); font-size: 1.1rem; }
+    .nav-links { display: flex; gap: 1.6rem; list-style: none; align-items: center; }
+    .nav-links a {
+      font-size: 0.82rem; font-weight: 500; color: var(--gray-600);
+      letter-spacing: 0.04em; text-transform: uppercase;
+      transition: color var(--transition); padding: 4px 0; position: relative;
+    }
+    .nav-links a::after {
+      content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 1px;
+      background: var(--gold); transform: scaleX(0); transform-origin: left; transition: transform var(--transition);
+    }
+    .nav-links a:hover, .nav-links a.active { color: var(--black); }
+    .nav-links a:hover::after, .nav-links a.active::after { transform: scaleX(1); }
+    .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; background: none; border: none; }
+    .hamburger span { display: block; width: 22px; height: 1.5px; background: var(--black); transition: var(--transition); }
+    .mobile-menu {
+      display: none; position: fixed; top: 68px; left: 0; right: 0;
+      background: var(--white); border-bottom: 1px solid var(--gray-200);
+      padding: 1.2rem 4%; flex-direction: column; gap: 1rem; z-index: 999;
+    }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a {
+      font-size: 0.88rem; font-weight: 500; color: var(--gray-600);
+      letter-spacing: 0.04em; text-transform: uppercase; transition: color var(--transition);
+    }
+    .mobile-menu a:hover { color: var(--gold); }
+
+    /* ── BREADCRUMB ── */
+    .breadcrumb {
+      max-width: 900px; margin: 0 auto; padding: 100px 4% 0;
+      font-size: 0.78rem; color: var(--gray-600); letter-spacing: 0.02em;
+    }
+    .breadcrumb a { color: var(--gray-600); transition: color var(--transition); }
+    .breadcrumb a:hover { color: var(--gold-text); }
+    .breadcrumb span.sep { margin: 0 0.4rem; color: var(--gray-400); }
+    .breadcrumb span.current { color: var(--black); font-weight: 500; }
+
+    /* ── TOOL HERO ── */
+    .tool-hero { padding: 24px 4% 8px; text-align: center; }
+    .tool-hero-inner { max-width: 700px; margin: 0 auto; }
+    .sec-eyebrow {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      font-size: 0.7rem; font-weight: 600; letter-spacing: 0.14em;
+      text-transform: uppercase; color: var(--gold-text); margin-bottom: 0.7rem;
+      justify-content: center;
+    }
+    .tool-hero h1 {
+      font-family: var(--font-display); font-size: clamp(1.7rem, 3.6vw, 2.6rem);
+      font-weight: 700; letter-spacing: -0.02em; margin-bottom: 0.7rem;
+    }
+    .tool-hero p { font-size: 0.92rem; color: var(--gray-600); max-width: 520px; margin: 0 auto; line-height: 1.75; }
+
+    /* ── TOOL CARD ── */
+    section.sec { padding: 40px 4%; }
+    .sec-inner { max-width: 900px; margin: 0 auto; }
+
+    .tool-card {
+      background: var(--gray-100); border: 1px solid var(--gray-200);
+      border-radius: 6px; padding: 2.2rem; max-width: 700px; margin: 0 auto;
+    }
+
+    .type-toggle { display: flex; gap: 0.5rem; justify-content: center; margin-bottom: 1.8rem; }
+    .type-btn {
+      padding: 0.5rem 1.2rem; font-size: 0.78rem; font-weight: 600;
+      letter-spacing: 0.05em; text-transform: uppercase;
+      border: 1px solid var(--gray-200); background: var(--white); color: var(--gray-600);
+      border-radius: 2px; cursor: pointer; transition: var(--transition); font-family: var(--font-body);
+    }
+    .type-btn.active { background: var(--black); color: var(--white); border-color: var(--black); }
+
+    .color-selector { display: flex; justify-content: center; gap: 2.4rem; margin-bottom: 1.6rem; flex-wrap: wrap; }
+    .color-group { text-align: center; }
+    .color-group label {
+      display: block; margin-bottom: 0.6rem; font-size: 0.78rem; font-weight: 600;
+      letter-spacing: 0.04em; text-transform: uppercase; color: var(--gray-600);
+    }
+    input[type="color"] {
+      width: 62px; height: 62px; border: 3px solid var(--white); border-radius: 10px;
+      padding: 0; cursor: pointer; transition: var(--transition); box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+    }
+    input[type="color"]:hover { border-color: var(--gold); transform: scale(1.05); }
+
+    .angle-row { display: flex; align-items: center; gap: 1rem; justify-content: center; margin-bottom: 1.8rem; }
+    .angle-row label { font-size: 0.78rem; font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase; color: var(--gray-600); white-space: nowrap; }
+    .angle-row input[type="range"] { flex: 1; max-width: 260px; accent-color: var(--gold); }
+    .angle-value { font-family: var(--font-display); font-weight: 700; font-size: 1rem; min-width: 44px; text-align: right; }
+    #angleRow.hidden { display: none; }
+
+    .gradient-preview {
+      width: 100%; height: 150px; border: 1px solid var(--gray-200);
+      border-radius: 6px; margin-bottom: 1.4rem;
+      background: linear-gradient(90deg, #FF5F6D, #FFC371);
+      box-shadow: inset 0 2px 8px rgba(0,0,0,0.06);
+    }
+
+    textarea {
+      width: 100%; height: 90px; padding: 0.9rem; border: 1px solid var(--gray-200);
+      border-radius: 4px; font-size: 0.86rem; font-family: 'Courier New', monospace;
+      resize: vertical; background: var(--white); color: var(--black); line-height: 1.6;
+      margin-bottom: 1.2rem;
+    }
+
+    .tool-actions { display: flex; gap: 0.8rem; justify-content: center; flex-wrap: wrap; }
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      background: var(--black); color: var(--white);
+      padding: 0.82rem 1.8rem; font-size: 0.82rem; font-weight: 600;
+      letter-spacing: 0.06em; text-transform: uppercase;
+      border-radius: 2px; transition: var(--transition); border: none; cursor: pointer;
+    }
+    .btn-primary:hover { background: var(--gold); color: var(--black); }
+    .btn-secondary {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      background: transparent; color: var(--black);
+      padding: 0.82rem 1.8rem; font-size: 0.82rem; font-weight: 600;
+      letter-spacing: 0.06em; text-transform: uppercase;
+      border: 1px solid var(--gray-200); border-radius: 2px;
+      transition: var(--transition); cursor: pointer; font-family: var(--font-body);
+    }
+    .btn-secondary:hover { border-color: var(--black); }
+    .copy-toast {
+      display: none; text-align: center; margin-top: 1rem;
+      font-size: 0.8rem; color: var(--gold-text); font-weight: 600;
+    }
+    .copy-toast.show { display: block; }
+
+    /* ── AD BANNER ── */
+    .ad-banner-container { display: flex; justify-content: center; align-items: center; margin: 8px auto 0; max-width: 728px; overflow-x: auto; }
+
+    /* ── SEO CONTENT ── */
+    .sec-seo { background: var(--gray-100); }
+    .seo-content-inner { max-width: 760px; margin: 0 auto; }
+    .seo-content-inner h2 {
+      font-family: var(--font-display); font-size: 1.5rem; font-weight: 700;
+      margin-bottom: 0.8rem; margin-top: 1.8rem;
+    }
+    .seo-content-inner h2:first-child { margin-top: 0; }
+    .seo-content-inner h3 { font-size: 1.05rem; font-weight: 700; margin: 1.6rem 0 0.7rem; }
+    .seo-content-inner h4 { font-size: 0.92rem; font-weight: 700; margin: 1.2rem 0 0.4rem; }
+    .seo-content-inner p { font-size: 0.88rem; color: var(--gray-600); line-height: 1.8; margin-bottom: 0.8rem; }
+    .seo-content-inner ol, .seo-content-inner ul { padding-left: 1.3rem; margin-bottom: 0.8rem; }
+    .seo-content-inner li { font-size: 0.88rem; color: var(--gray-600); line-height: 1.8; margin-bottom: 0.35rem; }
+    .seo-content-inner a { color: var(--gold-text); text-decoration: underline; }
+    .seo-content-inner a:hover { color: var(--black); }
+
+    .related-links { margin-top: 2rem; padding-top: 1.8rem; border-top: 1px solid var(--gray-200); }
+
+    /* ── FOOTER ── */
+    footer { background: var(--black); color: var(--gray-400); padding: 56px 4% 28px; margin-top: auto; }
+    .footer-inner { max-width: 1200px; margin: 0 auto; }
+    .footer-top { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 2.5rem; margin-bottom: 2.5rem; }
+    .footer-brand .nav-logo { color: var(--white); margin-bottom: 0.9rem; }
+    .footer-desc { font-size: 0.82rem; line-height: 1.7; max-width: 240px; }
+    .footer-col h3 { font-size: 0.7rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--white); margin-bottom: 1.1rem; }
+    .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 0.65rem; }
+    .footer-col ul a { font-size: 0.8rem; color: var(--gray-400); transition: color var(--transition); }
+    .footer-col ul a:hover { color: var(--gold); }
+    .footer-bottom {
+      padding-top: 1.8rem; border-top: 1px solid rgba(255,255,255,0.06);
+      display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;
+    }
+    .footer-bottom p { font-size: 0.78rem; }
+    .social-links { display: flex; gap: 0.8rem; }
+    .social-link {
+      width: 34px; height: 34px; border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 50%; display: flex; align-items: center; justify-content: center;
+      color: var(--gray-400); font-size: 0.8rem; transition: var(--transition);
+    }
+    .social-link:hover { border-color: var(--gold); color: var(--gold); }
+
+    .back-top {
+      position: fixed; bottom: 1.8rem; right: 1.8rem;
+      width: 40px; height: 40px; background: var(--black);
+      color: var(--white); border: none; border-radius: 2px;
+      cursor: pointer; display: flex; align-items: center; justify-content: center;
+      opacity: 0; transform: translateY(8px); transition: var(--transition); z-index: 50; font-size: 1rem;
+    }
+    .back-top.show { opacity: 1; transform: translateY(0); }
+    .back-top:hover { background: var(--gold); color: var(--black); }
+
+    @media (max-width: 1024px) { .footer-top { grid-template-columns: 1fr 1fr; gap: 2rem; } }
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .hamburger { display: flex; }
+      .tool-card { padding: 1.5rem; }
+      .footer-top { grid-template-columns: 1fr; }
+      .color-selector { gap: 1.4rem; }
+    }
+  </style>
+
+  <script src="/assets/js/canonical.js"></script>
+</head>
 <body>
+<svg xmlns="http://www.w3.org/2000/svg" style="display:none">
+<symbol id="i-tools" viewBox="0 0 576 512"><path d="M70.8-6.7c5.4-5.4 13.8-6.2 20.2-2L209.9 70.5c8.9 5.9 14.2 15.9 14.2 26.6l0 49.6 90.8 90.8c33.3-15 73.9-8.9 101.2 18.5L542.2 382.1c18.7 18.7 18.7 49.1 0 67.9l-60.1 60.1c-18.7 18.7-49.1 18.7-67.9 0L288.1 384c-27.4-27.4-33.5-67.9-18.5-101.2l-90.8-90.8-49.6 0c-10.7 0-20.7-5.3-26.6-14.2L23.4 58.9c-4.2-6.3-3.4-14.8 2-20.2L70.8-6.7zm145 303.5c-6.3 36.9 2.3 75.9 26.2 107.2l-94.9 95c-28.1 28.1-73.7 28.1-101.8 0s-28.1-73.7 0-101.8l135.4-135.5 35.2 35.1zM384.1 0c20.1 0 39.4 3.7 57.1 10.5 10 3.8 11.8 16.5 4.3 24.1L388.8 91.3c-3 3-4.7 7.1-4.7 11.3l0 41.4c0 8.8 7.2 16 16 16l41.4 0c4.2 0 8.3-1.7 11.3-4.7l56.7-56.7c7.6-7.5 20.3-5.7 24.1 4.3 6.8 17.7 10.5 37 10.5 57.1 0 43.2-17.2 82.3-45 111.1l-49.1-49.1c-33.1-33-78.5-45.7-121.1-38.4l-56.8-56.8 0-29.7-.2-5c-.8-12.4-4.4-24.3-10.5-34.9 29.4-35 73.4-57.2 122.7-57.3z"/></symbol>
+<symbol id="i-arrow-up" viewBox="0 0 384 512"><path d="M214.6 9.4c-12.5-12.5-32.8-12.5-45.3 0l-160 160c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L160 109.3 160 480c0 17.7 14.3 32 32 32s32-14.3 32-32l0-370.7 105.4 105.4c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3l-160-160z"/></symbol>
+<symbol id="i-facebook-f" viewBox="0 0 320 512"><path d="M80 299.3l0 212.7 116 0 0-212.7 86.5 0 18-97.8-104.5 0 0-34.6c0-51.7 20.3-71.5 72.7-71.5 16.3 0 29.4 .4 37 1.2l0-88.7C291.4 4 256.4 0 236.2 0 129.3 0 80 50.5 80 159.4l0 42.1-66 0 0 97.8 66 0z"/></symbol>
+<symbol id="i-x-twitter" viewBox="0 0 448 512"><path d="M357.2 48L427.8 48 273.6 224.2 455 464 313 464 201.7 318.6 74.5 464 3.8 464 168.7 275.5-5.2 48 140.4 48 240.9 180.9 357.2 48zM332.4 421.8l39.1 0-252.4-333.8-42 0 255.3 333.8z"/></symbol>
+<symbol id="i-instagram" viewBox="0 0 448 512"><path d="M224.3 141a115 115 0 1 0 -.6 230 115 115 0 1 0 .6-230zm-.6 40.4a74.6 74.6 0 1 1 .6 149.2 74.6 74.6 0 1 1 -.6-149.2zm93.4-45.1a26.8 26.8 0 1 1 53.6 0 26.8 26.8 0 1 1 -53.6 0zm129.7 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8zM399 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1z"/></symbol>
+<symbol id="i-linkedin-in" viewBox="0 0 448 512"><path d="M100.3 448l-92.9 0 0-299.1 92.9 0 0 299.1zM53.8 108.1C24.1 108.1 0 83.5 0 53.8 0 39.5 5.7 25.9 15.8 15.8s23.8-15.8 38-15.8 27.9 5.7 38 15.8 15.8 23.8 15.8 38c0 29.7-24.1 54.3-53.8 54.3zM447.9 448l-92.7 0 0-145.6c0-34.7-.7-79.2-48.3-79.2-48.3 0-55.7 37.7-55.7 76.7l0 148.1-92.8 0 0-299.1 89.1 0 0 40.8 1.3 0c12.4-23.5 42.7-48.3 87.9-48.3 94 0 111.3 61.9 111.3 142.3l0 164.3-.1 0z"/></symbol>
+</svg>
 
-    <div class="container">
+<!-- ── NAVBAR ── -->
+<nav id="navbar">
+  <a href="/" class="nav-logo" aria-label="Daily Toolkit Home">
+    <svg class="icon" aria-hidden="true"><use href="#i-tools"></use></svg> Daily<span>Toolkit</span>
+  </a>
+  <ul class="nav-links" aria-label="Main navigation">
+    <li><a href="/">Home</a></li>
+    <li><a href="/#tools">Tools</a></li>
+    <li><a href="/about">About</a></li>
+    <li><a href="/privacy">Privacy</a></li>
+    <li><a href="/contact">Contact</a></li>
+    <li><a href="/terms">Terms</a></li>
+    <li><a href="/blog">Blog</a></li>
+  </ul>
+  <button class="hamburger" id="hamburger" onclick="toggleMenu()" aria-label="Toggle menu" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
 
-        <a href="/" style="display:inline-block;margin-bottom:14px;font-size:0.85em;color:#666;text-decoration:none;">
-            ← Daily Toolkit
-        </a>
+<div class="mobile-menu" id="mobileMenu" role="navigation" aria-label="Mobile navigation">
+  <a href="/">Home</a>
+  <a href="/#tools">Tools</a>
+  <a href="/about">About</a>
+  <a href="/privacy">Privacy</a>
+  <a href="/contact">Contact</a>
+  <a href="/terms">Terms</a>
+  <a href="/blog">Blog</a>
+</div>
 
-        <h1>🎨 Professional Gradient Generator</h1>
+<main id="mainContent">
 
-        <p>
-            Choose your colors, and we'll generate the perfect CSS gradient code for you!
-        </p>
+  <!-- ── BREADCRUMB ── -->
+  <nav class="breadcrumb" aria-label="Breadcrumb">
+    <a href="/">Home</a><span class="sep">/</span><a href="/#tools">Tools</a><span class="sep">/</span><span class="current">CSS Gradient Generator</span>
+  </nav>
+
+  <!-- ── TOOL HERO ── -->
+  <section class="tool-hero">
+    <div class="tool-hero-inner">
+      <span class="sec-eyebrow">Free Design Tool</span>
+      <h1>CSS Gradient Generator</h1>
+      <p>Pick your colors, choose linear or radial, adjust the angle, and copy ready-to-use CSS instantly — free, no signup required.</p>
+    </div>
+  </section>
+
+  <!-- ── TOOL ── -->
+  <section class="sec">
+    <div class="sec-inner">
+      <div class="tool-card">
+
+        <div class="type-toggle">
+          <button class="type-btn active" id="btnLinear" onclick="setType('linear')">Linear</button>
+          <button class="type-btn" id="btnRadial" onclick="setType('radial')">Radial</button>
+        </div>
 
         <div class="color-selector">
+          <div class="color-group">
+            <label for="color1">Start Color</label>
+            <input type="color" id="color1" value="#FF5F6D" oninput="updateGradient()">
+          </div>
+          <div class="color-group">
+            <label for="color2">End Color</label>
+            <input type="color" id="color2" value="#FFC371" oninput="updateGradient()">
+          </div>
+        </div>
 
-            <div class="color-group">
-                <label for="color1">Start Color:</label>
-                <input type="color" id="color1" value="#FF5F6D" oninput="updateGradient()">
-            </div>
-
-            <div class="color-group">
-                <label for="color2">End Color:</label>
-                <input type="color" id="color2" value="#FFC371" oninput="updateGradient()">
-            </div>
-
+        <div class="angle-row" id="angleRow">
+          <label for="angle">Angle</label>
+          <input type="range" id="angle" min="0" max="360" value="90" oninput="updateGradient()">
+          <span class="angle-value" id="angleValue">90°</span>
         </div>
 
         <div class="gradient-preview" id="gradientPreview"></div>
 
-        <textarea id="gradientCode" rows="5" readonly>background: linear-gradient(to right, #FF5F6D, #FFC371);</textarea>
+        <textarea id="gradientCode" readonly>background: linear-gradient(90deg, #FF5F6D, #FFC371);</textarea>
 
-        <button onclick="copyGradientCode()">Copy CSS Code</button>
+        <div class="tool-actions">
+          <button class="btn-primary" onclick="copyGradientCode()">Copy CSS Code</button>
+          <button class="btn-secondary" onclick="randomGradient()">Randomize</button>
+        </div>
 
-        <p class="note">
-            <em>Note: The gradient preview and code update in real-time with JavaScript.</em>
+        <p class="copy-toast" id="copyToast">✓ CSS copied to clipboard!</p>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ── AD BANNER (Adsterra) ── -->
+  <div class="ad-banner-container">
+    <script type="text/javascript">
+      atOptions = {
+        'key' : 'be20f5359d0c789bb4b8d8a84edd7803',
+        'format' : 'iframe',
+        'height' : 90,
+        'width' : 728,
+        'params' : {}
+      };
+    </script>
+    <script type="text/javascript" src="https://www.highperformanceformat.com/be20f5359d0c789bb4b8d8a84edd7803/invoke.js"></script>
+  </div>
+
+  <!-- ── SEO CONTENT ── -->
+  <section class="sec sec-seo">
+    <div class="sec-inner">
+      <div class="seo-content-inner reveal" style="opacity:1;transform:none;">
+
+        <h2>Gradient Generator Online</h2>
+        <p>
+          Use this free CSS gradient generator from Daily Toolkit to build a linear or radial
+          gradient in your browser — no software install and no signup. Pick two colors, adjust
+          the angle for linear gradients, preview the result live, and copy the ready-made CSS
+          straight into your project.
         </p>
 
+        <h3>How to Use This Tool</h3>
+        <ol>
+          <li>Choose Linear or Radial gradient type.</li>
+          <li>Pick a start color and an end color.</li>
+          <li>For linear gradients, adjust the angle slider.</li>
+          <li>Review the live gradient preview.</li>
+          <li>Copy the generated CSS code and paste it into your stylesheet.</li>
+        </ol>
+
+        <h3>Popular Related Searches</h3>
+        <ul>
+          <li>gradient generator</li>
+          <li>linear gradient generator</li>
+          <li>radial gradient generator</li>
+          <li>CSS gradient maker</li>
+        </ul>
+
+        <h3>Frequently Asked Questions</h3>
+
+        <h4>Is this CSS gradient generator free?</h4>
+        <p>Yes. Daily Toolkit provides this online utility for free, with no software installation required.</p>
+
+        <h4>Can I use it on a phone?</h4>
+        <p>Yes. The tool is designed to work in a modern mobile or desktop browser.</p>
+
+        <h4>Can I generate radial gradients too?</h4>
+        <p>Yes. Switch the gradient type to Radial to generate a radial-gradient CSS snippet instead of a linear one.</p>
+
+        <section class="related-links" aria-labelledby="related-tools-title">
+          <h2 id="related-tools-title">Related Tools &amp; Guides</h2>
+          <p>Explore more Daily Toolkit tools and guides for website optimization, image preparation and practical online tasks.</p>
+          <ul>
+            <li><a href="/tools/website-seo-audit-tool">Website SEO Audit Tool</a></li>
+            <li><a href="/tools/color-picker">Color Picker</a></li>
+            <li><a href="/articles/website-seo-audit-checklist-for-beginners">Website SEO Audit Checklist for Beginners</a></li>
+            <li><a href="/articles/how-to-resize-images-for-web-and-social-media">How to Resize Images for Web &amp; Social Media</a></li>
+            <li><a href="/articles/word-counter-guide-for-writing-and-seo">Word Counter Guide for Writing &amp; SEO</a></li>
+            <li><a href="/blog">Guides &amp; Articles</a></li>
+          </ul>
+        </section>
+
+      </div>
     </div>
+  </section>
 
-    <script>
-        function updateGradient() {
-            const color1 = document.getElementById('color1').value;
-            const color2 = document.getElementById('color2').value;
-            const gradientPreview = document.getElementById('gradientPreview');
-            const gradientCode = document.getElementById('gradientCode');
+</main>
 
-            const cssGradient = `linear-gradient(to right, ${color1}, ${color2})`;
-
-            gradientPreview.style.background = cssGradient;
-            gradientCode.value = `background: ${cssGradient};`;
-        }
-
-        function copyGradientCode() {
-            const gradientCode = document.getElementById('gradientCode');
-
-            gradientCode.select();
-            gradientCode.setSelectionRange(0, 99999);
-
-            navigator.clipboard.writeText(gradientCode.value)
-                .then(() => {
-                    alert("CSS gradient code copied to clipboard!");
-                })
-                .catch(err => {
-                    console.error('Failed to copy: ', err);
-                    alert("Failed to copy code. Please copy it manually.");
-                });
-        }
-
-        document.addEventListener('DOMContentLoaded', updateGradient);
-    </script>
-
-    <section class="seo-content-section" aria-labelledby="seo-content-title">
-        <div class="seo-content-inner">
-
-            <h2 id="seo-content-title">Gradient Generator Online</h2>
-
-            <p>
-                Use this free <strong>CSS gradient generator</strong> from Daily Toolkit
-                to complete your task quickly in your browser. This image and design
-                utility is designed to be simple, fast and easy to use on desktop and
-                mobile devices.
-            </p>
-
-            <h3>How to Use This Tool</h3>
-
-            <ol>
-                <li>Choose the start color and end color.</li>
-                <li>Review the live gradient preview.</li>
-                <li>Copy the generated CSS code.</li>
-                <li>Paste the CSS into your website or design project.</li>
-            </ol>
-
-            <h3>Popular Related Searches</h3>
-
-            <ul>
-                <li>gradient generator</li>
-                <li>linear gradient generator</li>
-                <li>radial gradient generator</li>
-                <li>gradient maker</li>
-            </ul>
-
-            <h3>Frequently Asked Questions</h3>
-
-            <h4>Is this CSS gradient generator free?</h4>
-            <p>
-                Yes. Daily Toolkit provides this online utility for free,
-                with no software installation required.
-            </p>
-
-            <h4>Can I use it on a phone?</h4>
-            <p>
-                Yes. The tool is designed to work in a modern mobile or
-                desktop browser.
-            </p>
-
-            <section class="related-links" aria-labelledby="related-tools-title">
-
-                <h2 id="related-tools-title">Related Tools & Guides</h2>
-
-                <p>
-                    Explore more Daily Toolkit tools and guides for website
-                    optimization, image preparation and practical online tasks.
-                </p>
-
-                <ul>
-                    <li>
-                        <a href="/tools/website-seo-audit">
-                            Website SEO Audit Tool
-                        </a>
-                    </li>
-
-                    <li>
-                        <a href="/articles/website-seo-audit-checklist-for-beginners">
-                            Website SEO Audit Checklist for Beginners
-                        </a>
-                    </li>
-
-                    <li>
-                        <a href="/articles/how-to-resize-images-for-web-and-social-media">
-                            How to Resize Images for Web &amp; Social Media
-                        </a>
-                    </li>
-
-                    <li>
-                        <a href="/articles/word-counter-guide-for-writing-and-seo">
-                            Word Counter Guide for Writing &amp; SEO
-                        </a>
-                    </li>
-
-                    <li>
-                        <a href="/articles">
-                            Guides &amp; Articles
-                        </a>
-                    </li>
-                </ul>
-
-            </section>
-
+<!-- ── FOOTER ── -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <a href="/" class="nav-logo" aria-label="Daily Toolkit Home"><svg class="icon" aria-hidden="true"><use href="#i-tools"></use></svg> Daily<span>Toolkit</span></a>
+        <p class="footer-desc">Free online tools for everyday digital tasks. No signup, no ads disruption, just useful utilities that work.</p>
+        <div class="social-links" style="margin-top:1.3rem;">
+          <a href="https://www.facebook.com/Ahsanullah7116/" class="social-link" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><svg class="icon" aria-hidden="true"><use href="#i-facebook-f"></use></svg></a>
+          <a href="https://x.com/Ahsan_OnTop01" class="social-link" target="_blank" rel="noopener noreferrer" aria-label="Twitter"><svg class="icon" aria-hidden="true"><use href="#i-x-twitter"></use></svg></a>
+          <a href="https://www.instagram.com/ahsan_ontop01/" class="social-link" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><svg class="icon" aria-hidden="true"><use href="#i-instagram"></use></svg></a>
+          <a href="https://pk.linkedin.com/in/ahsanullah-mahar-b1b177285" class="social-link" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><svg class="icon" aria-hidden="true"><use href="#i-linkedin-in"></use></svg></a>
         </div>
-    </section>
+      </div>
+      <div class="footer-col">
+        <h3>Quick Tools</h3>
+        <ul>
+          <li><a href="/tools/age-calculator">Age Calculator</a></li>
+          <li><a href="/tools/bmi-calculator">BMI Calculator</a></li>
+          <li><a href="/tools/image-compressor">Image Compressor</a></li>
+          <li><a href="/tools/compress-pdf">Compress PDF</a></li>
+          <li><a href="/tools/qr-generator">QR Generator</a></li>
+          <li><a href="/tools/password-gen">Password Generator</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h3>Pages</h3>
+        <ul>
+          <li><a href="/about">About</a></li>
+          <li><a href="/blog">Blog</a></li>
+          <li><a href="/privacy">Privacy Policy</a></li>
+          <li><a href="/terms">Terms of Service</a></li>
+          <li><a href="/contact">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h3>Categories</h3>
+        <ul>
+          <li><a href="/#categories">Calculators</a></li>
+          <li><a href="/#categories">PDF Tools</a></li>
+          <li><a href="/#categories">Image Tools</a></li>
+          <li><a href="/#categories">Text Utilities</a></li>
+          <li><a href="/#categories">Generators</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025 Daily Toolkit. All rights reserved.</p>
+      <nav class="footer-links" aria-label="Footer links" style="display:flex;gap:1.2rem;flex-wrap:wrap;">
+        <a href="/about" style="font-size:0.78rem;color:var(--gray-400);">About</a>
+        <a href="/privacy" style="font-size:0.78rem;color:var(--gray-400);">Privacy Policy</a>
+        <a href="/terms" style="font-size:0.78rem;color:var(--gray-400);">Terms of Service</a>
+        <a href="/contact" style="font-size:0.78rem;color:var(--gray-400);">Contact</a>
+        <a href="/blog" style="font-size:0.78rem;color:var(--gray-400);">Blog</a>
+      </nav>
+    </div>
+  </div>
+</footer>
 
+<button class="back-top" id="backTop" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Back to top">
+  <svg class="icon" aria-hidden="true"><use href="#i-arrow-up"></use></svg>
+</button>
+
+<script>
+  let gradientType = 'linear';
+
+  function setType(type) {
+    gradientType = type;
+    document.getElementById('btnLinear').classList.toggle('active', type === 'linear');
+    document.getElementById('btnRadial').classList.toggle('active', type === 'radial');
+    document.getElementById('angleRow').classList.toggle('hidden', type === 'radial');
+    updateGradient();
+  }
+
+  function updateGradient() {
+    const color1 = document.getElementById('color1').value;
+    const color2 = document.getElementById('color2').value;
+    const angle = document.getElementById('angle').value;
+    document.getElementById('angleValue').textContent = angle + '°';
+
+    let cssGradient;
+    if (gradientType === 'linear') {
+      cssGradient = `linear-gradient(${angle}deg, ${color1}, ${color2})`;
+    } else {
+      cssGradient = `radial-gradient(circle, ${color1}, ${color2})`;
+    }
+
+    document.getElementById('gradientPreview').style.background = cssGradient;
+    document.getElementById('gradientCode').value = `background: ${cssGradient};`;
+  }
+
+  function copyGradientCode() {
+    const code = document.getElementById('gradientCode');
+    code.select();
+    code.setSelectionRange(0, 99999);
+    navigator.clipboard.writeText(code.value).then(() => {
+      const toast = document.getElementById('copyToast');
+      toast.classList.add('show');
+      setTimeout(() => toast.classList.remove('show'), 2000);
+    }).catch(() => {
+      alert('Failed to copy. Please copy manually.');
+    });
+  }
+
+  function randomGradient() {
+    const rnd = () => '#' + Math.floor(Math.random() * 16777215).toString(16).padStart(6, '0');
+    document.getElementById('color1').value = rnd();
+    document.getElementById('color2').value = rnd();
+    document.getElementById('angle').value = Math.floor(Math.random() * 360);
+    updateGradient();
+  }
+
+  document.addEventListener('DOMContentLoaded', updateGradient);
+
+  // Navbar scroll
+  window.addEventListener('scroll', () => {
+    document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 60);
+    document.getElementById('backTop').classList.toggle('show', window.scrollY > 300);
+  }, { passive: true });
+
+  // Mobile menu
+  function toggleMenu() {
+    const menu = document.getElementById('mobileMenu');
+    const burger = document.getElementById('hamburger');
+    const open = menu.classList.toggle('open');
+    burger.setAttribute('aria-expanded', open);
+  }
+</script>
+<script src="/script.js"></script>
 </body>
 </html>
