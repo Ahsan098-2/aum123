@@ -18,7 +18,7 @@ Pages with heading-structure issues: 1
 | `articles/password-generator-best-practices.html` | 1 | 9 | None | None |
 | `articles/pdf-merge-vs-pdf-split-which-tool-to-use.html` | 1 | 9 | None | None |
 | `articles/qr-code-guide-for-business-and-personal-use.html` | 1 | 11 | None | None |
-| `articles/website-seo-audit-checklist-for-beginners.html` | 1 | 9 | None | None |
+| `articles/website-seo-audit-checklist-for-beginners.html` | 1 | 17 | None | None |
 | `articles/word-counter-guide-for-writing-and-seo.html` | 1 | 8 | None | None |
 | `blog.html` | 1 | 31 | None | None |
 | `contact.html` | 1 | 2 | None | None |
