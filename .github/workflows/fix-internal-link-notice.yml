@@ -15,10 +15,23 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Add targeted hub links
+      - name: Remove homepage related-resources block and maintain hub links
         shell: python
         run: |
           from pathlib import Path
+          import re
+
+          # The homepage should not display the Related Resources block.
+          homepage = Path('index.html')
+          text = homepage.read_text(encoding='utf-8')
+          text = re.sub(
+              r'\s*<section class="internal-link-resources"[^>]*>.*?</section>\s*',
+              '\n',
+              text,
+              flags=re.DOTALL,
+              count=1,
+          )
+          homepage.write_text(text, encoding='utf-8')
 
           resources = [
               ("/tools/pdf-splitter", "PDF Splitter"),
@@ -41,8 +54,9 @@ jobs:
           block += ' · '.join(f'<a href="{url}">{label}</a>' for url, label in resources)
           block += '</p></section>'
 
-          targets = [Path('index.html'), Path('tools.html'), Path('articles/index.html')]
-          for path in targets:
+          # Keep the related-resources block on the tools and articles hub pages,
+          # but never add it back to the homepage.
+          for path in [Path('tools.html'), Path('articles/index.html')]:
               text = path.read_text(encoding='utf-8')
               marker = '<section class="internal-link-resources"'
               if marker in text:
@@ -65,5 +79,5 @@ jobs:
             echo "No changes needed"
             exit 0
           fi
-          git commit -m "fix(seo): add internal links to low-inlink pages [skip ci]"
+          git commit -m "fix(homepage): remove related resources block [skip ci]"
           git push
