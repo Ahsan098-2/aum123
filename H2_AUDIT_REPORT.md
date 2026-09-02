@@ -14,7 +14,7 @@ Pages with heading-structure issues: 1
 | `articles/how-to-convert-images-to-pdf-online.html` | 1 | 9 | None | None |
 | `articles/how-to-resize-images-for-web-and-social-media.html` | 1 | 17 | None | None |
 | `articles/how-to-use-a-loan-calculator-and-understand-emi.html` | 1 | 12 | None | None |
-| `articles/index.html` | 1 | 13 | None | None |
+| `articles/index.html` | 1 | 8 | None | None |
 | `articles/password-generator-best-practices.html` | 1 | 9 | None | None |
 | `articles/pdf-merge-vs-pdf-split-which-tool-to-use.html` | 1 | 9 | None | None |
 | `articles/qr-code-guide-for-business-and-personal-use.html` | 1 | 11 | None | None |
@@ -23,7 +23,7 @@ Pages with heading-structure issues: 1
 | `blog.html` | 1 | 31 | None | None |
 | `contact.html` | 1 | 3 | None | None |
 | `google0c818b49b1950c41.html` | 0 | 0 | None | H1 count=0 |
-| `index.html` | 1 | 8 | None | None |
+| `index.html` | 1 | 9 | None | None |
 | `privacy.html` | 1 | 13 | None | None |
 | `terms.html` | 1 | 9 | None | None |
 | `tools/age-calculator.html` | 1 | 8 | None | None |
