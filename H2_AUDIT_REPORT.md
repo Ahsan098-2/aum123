@@ -3,7 +3,7 @@
 Multiple H2 headings are valid HTML and are not automatically changed. Only duplicate H2 text, missing/extra H1, and invalid heading-level jumps are flagged.
 
 Pages with multiple H2 headings: 59
-Pages with duplicate H2 text: 0
+Pages with duplicate H2 text: 1
 Pages with heading-structure issues: 2
 
 | Page | H1 | H2 | Duplicate H2 | Structure issue |
@@ -21,13 +21,13 @@ Pages with heading-structure issues: 2
 | `articles/website-seo-audit-checklist-for-beginners.html` | 1 | 17 | None | None |
 | `articles/word-counter-guide-for-writing-and-seo.html` | 1 | 8 | None | None |
 | `blog.html` | 1 | 31 | None | None |
-| `contact.html` | 1 | 2 | None | heading jump: H1->H3: How to Use This Form |
+| `contact.html` | 1 | 3 | None | None |
 | `google0c818b49b1950c41.html` | 0 | 0 | None | H1 count=0 |
 | `index.html` | 1 | 8 | None | None |
 | `privacy.html` | 1 | 13 | None | None |
 | `terms.html` | 1 | 9 | None | None |
 | `tools/age-calculator.html` | 1 | 8 | None | None |
-| `tools/ats-resume-score-checker.html` | 1 | 12 | None | None |
+| `tools/ats-resume-score-checker.html` | 1 | 13 | None | None |
 | `tools/background-remover.html` | 1 | 13 | None | None |
 | `tools/barcode-generator.html` | 1 | 6 | None | None |
 | `tools/bio-ideas-generator.html` | 1 | 3 | None | None |
@@ -42,7 +42,7 @@ Pages with heading-structure issues: 2
 | `tools/freelancer-hourly-rate-calculator.html` | 1 | 10 | None | None |
 | `tools/fuel-price-checker.html` | 1 | 7 | None | None |
 | `tools/gold-price-checker.html` | 1 | 8 | None | None |
-| `tools/gradient-generator.html` | 1 | 2 | None | None |
+| `tools/gradient-generator.html` | 1 | 3 | gradient generator online | duplicate H2: gradient generator online |
 | `tools/hashtag-generator.html` | 1 | 8 | None | None |
 | `tools/image-compressor.html` | 1 | 6 | None | None |
 | `tools/image-resizer.html` | 1 | 6 | None | None |
