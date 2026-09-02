@@ -3,8 +3,8 @@
 Multiple H2 headings are valid HTML and are not automatically changed. Only duplicate H2 text, missing/extra H1, and invalid heading-level jumps are flagged.
 
 Pages with multiple H2 headings: 59
-Pages with duplicate H2 text: 1
-Pages with heading-structure issues: 2
+Pages with duplicate H2 text: 0
+Pages with heading-structure issues: 1
 
 | Page | H1 | H2 | Duplicate H2 | Structure issue |
 |---|---:|---:|---|---|
@@ -42,7 +42,7 @@ Pages with heading-structure issues: 2
 | `tools/freelancer-hourly-rate-calculator.html` | 1 | 10 | None | None |
 | `tools/fuel-price-checker.html` | 1 | 7 | None | None |
 | `tools/gold-price-checker.html` | 1 | 8 | None | None |
-| `tools/gradient-generator.html` | 1 | 3 | gradient generator online | duplicate H2: gradient generator online |
+| `tools/gradient-generator.html` | 1 | 2 | None | None |
 | `tools/hashtag-generator.html` | 1 | 8 | None | None |
 | `tools/image-compressor.html` | 1 | 6 | None | None |
 | `tools/image-resizer.html` | 1 | 6 | None | None |
