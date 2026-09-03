@@ -160,6 +160,76 @@
     }
   }
 
+  function injectThirdPartyAd(src, key, width, height){
+    try{
+      if(document.querySelector('[data-daily-ad="' + key + '"]')) return;
+      var host = document.querySelector('[data-daily-ad-slot="' + key + '"]');
+      if(!host) return;
+      host.setAttribute('data-daily-ad', key);
+      host.style.width = '100%';
+      host.style.minHeight = height + 'px';
+      host.style.display = 'flex';
+      host.style.justifyContent = 'center';
+      host.style.alignItems = 'center';
+      host.style.overflow = 'hidden';
+      host.style.margin = '24px auto';
+
+      var script = document.createElement('script');
+      script.src = src;
+      script.async = true;
+      script.setAttribute('data-daily-ad-script', key);
+      host.appendChild(script);
+    }catch(error){
+      console.warn('Daily Toolkit ad injection:', error);
+    }
+  }
+
+  function injectMonetizationAds(){
+    try{
+      var path = (window.location.pathname || '/').replace(/\.html$/i, '').replace(/\/$/, '') || '/';
+      var configs = {
+        '/': {key:'home-728', src:'https://www.highrevenueformat.com/be20f5359d0c789bb4b8d8a84edd7803/invoke.js', width:728, height:90, type:'atoptions', atKey:'be20f5359d0c789bb4b8d8a84edd7803'},
+        '/tools': {key:'tools-300', src:'https://www.highrevenueformat.com/247221e0e0d706700a90a6d1bf887d85/invoke.js', width:300, height:250, type:'atoptions', atKey:'247221e0e0d706700a90a6d1bf887d85'},
+        '/blog': {key:'blog-pop', src:'https://pl31162667.profitableratecpmnetwork.com/23/19/0f/23190f1f5c9258a887e04a548b170747.js', width:728, height:90, type:'script'},
+        '/about': {key:'about-pop', src:'https://pl31162668.profitableratecpmnetwork.com/58/5c/96/585c966b974cd0c1ee29f1c2f4c5b945.js', width:728, height:90, type:'script'},
+        '/contact': {key:'contact-300', src:'https://www.highrevenueformat.com/247221e0e0d706700a90a6d1bf887d85/invoke.js', width:300, height:250, type:'atoptions', atKey:'247221e0e0d706700a90a6d1bf887d85'}
+      };
+      var config = configs[path];
+      if(!config) return;
+
+      var existing = document.querySelector('[data-daily-ad-slot="' + config.key + '"]');
+      if(existing) return;
+
+      var anchor = document.querySelector('main') || document.querySelector('.main-content') || document.querySelector('.content') || document.body;
+      if(!anchor) return;
+
+      var slot = document.createElement('div');
+      slot.setAttribute('data-daily-ad-slot', config.key);
+      slot.setAttribute('role', 'complementary');
+      slot.setAttribute('aria-label', 'Advertisement');
+      slot.innerHTML = '<span style="position:absolute!important;width:1px!important;height:1px!important;padding:0!important;margin:-1px!important;overflow:hidden!important;clip:rect(0,0,0,0)!important;white-space:nowrap!important;border:0!important;">Advertisement</span>';
+
+      if(path === '/'){
+        var homeAnchor = document.querySelector('.ad-banner-container') || document.querySelector('.hero') || anchor.firstElementChild;
+        if(homeAnchor && homeAnchor.parentNode){
+          homeAnchor.parentNode.insertBefore(slot, homeAnchor.nextSibling);
+        }else anchor.insertBefore(slot, anchor.firstChild);
+      }else{
+        var heading = anchor.querySelector('h1');
+        if(heading && heading.parentNode){
+          heading.parentNode.insertBefore(slot, heading.nextSibling);
+        }else anchor.insertBefore(slot, anchor.firstChild);
+      }
+
+      if(config.type === 'atoptions'){
+        window.atOptions = {key:config.atKey, format:'iframe', height:config.height, width:config.width, params:{}};
+      }
+      injectThirdPartyAd(config.src, config.key, config.width, config.height);
+    }catch(error){
+      console.warn('Daily Toolkit monetization ads:', error);
+    }
+  }
+
   function load(src){
     var s=document.createElement('script');
     s.src=src;
@@ -181,6 +251,7 @@
     ensureHomeCatalog();
     cleanRenderedHomepage();
     injectHomeYouTubePromo();
+    injectMonetizationAds();
   }
 
   function boot(){
