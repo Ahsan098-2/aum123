@@ -2,9 +2,9 @@
 
 Multiple H2 headings are valid HTML and are not automatically changed. Only duplicate H2 text, missing/extra H1, and invalid heading-level jumps are flagged.
 
-Pages with multiple H2 headings: 58
+Pages with multiple H2 headings: 59
 Pages with duplicate H2 text: 0
-Pages with heading-structure issues: 2
+Pages with heading-structure issues: 1
 
 | Page | H1 | H2 | Duplicate H2 | Structure issue |
 |---|---:|---:|---|---|
@@ -23,7 +23,7 @@ Pages with heading-structure issues: 2
 | `blog.html` | 1 | 31 | None | None |
 | `contact.html` | 1 | 3 | None | None |
 | `google0c818b49b1950c41.html` | 0 | 0 | None | H1 count=0 |
-| `index.html` | 0 | 0 | None | H1 count=0 |
+| `index (1) (1).html` | 1 | 9 | None | None |
 | `privacy.html` | 1 | 13 | None | None |
 | `terms.html` | 1 | 9 | None | None |
 | `tools/age-calculator.html` | 1 | 8 | None | None |
