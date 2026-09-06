@@ -4,7 +4,7 @@ Multiple H2 headings are valid HTML and are not automatically changed. Only dupl
 
 Pages with multiple H2 headings: 59
 Pages with duplicate H2 text: 0
-Pages with heading-structure issues: 1
+Pages with heading-structure issues: 2
 
 | Page | H1 | H2 | Duplicate H2 | Structure issue |
 |---|---:|---:|---|---|
@@ -23,8 +23,9 @@ Pages with heading-structure issues: 1
 | `blog.html` | 1 | 31 | None | None |
 | `contact.html` | 1 | 3 | None | None |
 | `google0c818b49b1950c41.html` | 0 | 0 | None | H1 count=0 |
-| `index (1) (1).html` | 1 | 9 | None | None |
+| `index.html` | 1 | 9 | None | None |
 | `privacy.html` | 1 | 13 | None | None |
+| `sitemap.html` | 0 | 0 | None | H1 count=0 |
 | `terms.html` | 1 | 9 | None | None |
 | `tools/age-calculator.html` | 1 | 8 | None | None |
 | `tools/ats-resume-score-checker.html` | 1 | 13 | None | None |
