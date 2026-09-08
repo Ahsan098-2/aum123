@@ -1,4 +1,4 @@
-{
+    {
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "cleanUrls": true,
   "trailingSlash": false,
@@ -219,10 +219,11 @@
           "value": "strict-origin-when-cross-origin"
         },
         {
-       "key": "Content-Security-Policy",
-       "value": "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com https://www.google-analytics.com https://*.google-analytics.com https://pagead2.googlesyndication.com https://*.googlesyndication.com https://www.googleadservices.com https://googleads.g.doubleclick.net https://*.doubleclick.net https://adtrafficquality.google; connect-src 'self' https://www.google-analytics.com https://*.google-analytics.com https://*.analytics.google.com https://www.googletagmanager.com https://pagead2.googlesyndication.com https://*.googlesyndication.com https://www.google.com https://*.google.com https://www.googleadservices.com https://googleads.g.doubleclick.net https://*.doubleclick.net https://adtrafficquality.google; img-src 'self' data: blob: https:; frame-src 'self' https://googleads.g.doubleclick.net https://*.doubleclick.net https://*.googlesyndication.com https://pagead2.googlesyndication.com https://www.google.com https://*.google.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com; font-src 'self' data: https://fonts.gstatic.com https://cdnjs.cloudflare.com; media-src 'self' blob: data:; worker-src 'self' blob:; object-src 'none'; base-uri 'self'; form-action 'self' https://www.google.com"
+          "key": "Content-Security-Policy",
+          "value": "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com https://www.google-analytics.com https://*.google-analytics.com https://pagead2.googlesyndication.com https://*.googlesyndication.com https://www.googleadservices.com https://googleads.g.doubleclick.net https://*.doubleclick.net https://adtrafficquality.google; connect-src 'self' https://www.google-analytics.com https://*.google-analytics.com https://*.analytics.google.com https://www.googletagmanager.com https://pagead2.googlesyndication.com https://*.googlesyndication.com https://www.google.com https://*.google.com https://www.googleadservices.com https://googleads.g.doubleclick.net https://*.doubleclick.net https://adtrafficquality.google; img-src 'self' data: blob: https:; frame-src 'self' https://googleads.g.doubleclick.net https://*.doubleclick.net https://*.googlesyndication.com https://pagead2.googlesyndication.com https://www.google.com https://*.google.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com; font-src 'self' data: https://fonts.gstatic.com https://cdnjs.cloudflare.com; media-src 'self' blob: data:; worker-src 'self' blob:; object-src 'none'; base-uri 'self'; form-action 'self' https://www.google.com"
         }
       ]
     }
   ]
-}
+    }
+      
