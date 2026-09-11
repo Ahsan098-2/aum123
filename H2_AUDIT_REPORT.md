@@ -4,7 +4,7 @@ Multiple H2 headings are valid HTML and are not automatically changed. Only dupl
 
 Pages with multiple H2 headings: 59
 Pages with duplicate H2 text: 0
-Pages with heading-structure issues: 2
+Pages with heading-structure issues: 3
 
 | Page | H1 | H2 | Duplicate H2 | Structure issue |
 |---|---:|---:|---|---|
@@ -52,7 +52,7 @@ Pages with heading-structure issues: 2
 | `tools/investment-return-calculator.html` | 1 | 11 | None | None |
 | `tools/ip-finder.html` | 1 | 7 | None | None |
 | `tools/job-offer-comparison-calculator.html` | 1 | 11 | None | None |
-| `tools/loan-calculator.html` | 1 | 2 | None | None |
+| `tools/loan-calculator.html` | 1 | 3 | None | heading jump: H2->H4: Quick Tools |
 | `tools/password-gen.html` | 1 | 9 | None | None |
 | `tools/pdf-merger.html` | 1 | 5 | None | None |
 | `tools/pdf-splitter.html` | 1 | 3 | None | None |
