@@ -25,7 +25,7 @@ Pages with heading-structure issues: 2
 | `google0c818b49b1950c41.html` | 0 | 0 | None | H1 count=0 |
 | `index.html` | 1 | 8 | None | None |
 | `privacy.html` | 1 | 13 | None | None |
-| `sitemap.html` | 0 | 0 | None | H1 count=0 |
+| `sitemap.html` | 1 | 0 | None | heading jump: H1->H3: Last updated: 2026, September 6 07:36:13 Total pages: 60 dailytoolkit.xyz Homepage |
 | `terms.html` | 1 | 9 | None | None |
 | `tools/age-calculator.html` | 1 | 8 | None | None |
 | `tools/ats-resume-score-checker.html` | 1 | 13 | None | None |
