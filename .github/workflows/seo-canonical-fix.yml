@@ -35,6 +35,8 @@ jobs:
                   return ORIGIN + '/'
               if rel == 'articles/index.html':
                   return ORIGIN + '/articles'
+              if rel == 'tools/website-seo-audit-tool.html':
+                  return ORIGIN + '/tools/website-seo-audit'
               clean = re.sub(r'\.html$', '', rel, flags=re.I)
               return ORIGIN + '/' + clean.lstrip('/')
 
