@@ -68,6 +68,8 @@ REDIRECTS = {
     '/word-counter': '/tools/word-counter',
     '/word-counter.html': '/tools/word-counter',
     '/privacy.html': '/privacy',
+    '/tools/website-seo-audit-tool': '/tools/website-seo-audit',
+    '/tools/website-seo-audit-tool.html': '/tools/website-seo-audit',
 }
 
 
