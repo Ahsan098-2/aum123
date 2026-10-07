@@ -175,6 +175,16 @@
       "source": "/word-counter",
       "destination": "/tools/word-counter",
       "permanent": true
+    },
+    {
+      "source": "/tools/website-seo-audit-tool",
+      "destination": "/tools/website-seo-audit",
+      "permanent": true
+    },
+    {
+      "source": "/tools/website-seo-audit-tool.html",
+      "destination": "/tools/website-seo-audit",
+      "permanent": true
     }
   ],
   "headers": [
