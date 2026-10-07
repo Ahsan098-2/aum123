@@ -34,6 +34,8 @@ REDIRECTS = {
     "/url-encoder-decoder":"/tools/url-encoder-decoder","/url-encoder-decoder.html":"/tools/url-encoder-decoder",
     "/word-counter":"/tools/word-counter","/word-counter.html":"/tools/word-counter",
     "/privacy.html":"/privacy",
+    "/tools/website-seo-audit-tool":"/tools/website-seo-audit",
+    "/tools/website-seo-audit-tool.html":"/tools/website-seo-audit",
 }
 ABS_RE = re.compile(r"https?://(?:www\.)?dailytoolkit\.xyz(?P<path>/[^\"'\s?#]*)", re.I)
 SOCIAL_RE = re.compile(r"<meta\s+[^>]*(?:property|name)\s*=\s*[\"'](?:og:[^\"']+|twitter:[^\"']+)[\"'][^>]*>\s*", re.I)
