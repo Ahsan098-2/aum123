@@ -8,6 +8,8 @@ export default function handler(req, res) {
     paidMonthlyLimit: 1000,
     currency: "PKR",
     billingInterval: "month",
+    supabaseUrl: process.env.SUPABASE_URL || null,
+    supabaseAnonKey: process.env.SUPABASE_ANON_KEY || null,
     authConfigured: Boolean(process.env.SUPABASE_URL && process.env.SUPABASE_ANON_KEY),
     billingConfigured: Boolean(process.env.SAFEPAY_PLAN_ID && process.env.SAFEPAY_SECRET_KEY && process.env.SAFEPAY_WEBHOOK_SECRET)
   });
