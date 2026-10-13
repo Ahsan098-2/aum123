@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Free Barcode Generator Online | Code 128, Code 39 & More</title>
-<meta name="description" content="Create barcodes online for free. Generate Code 128, Code 39, EAN-13, EAN-8, UPC-A and more. Customize, download PNG or SVG, and print your barcode.">
+<title>Barcode Generator Online – Create Free Barcodes | Daily Toolkit</title>
+<meta name="description" content="Create barcodes online for products, inventory and labels. Generate a downloadable barcode quickly with this free browser-based barcode generator.">
 <meta name="robots" content="index, follow, max-image-preview:large">
 <meta name="author" content="Daily Toolkit">
 
@@ -55,20 +55,57 @@ h1{font:700 clamp(2.2rem,5vw,4rem)/1.08 var(--display);letter-spacing:-.03em;mar
 .related{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem}.related a{border:1px solid var(--gray-200);padding:1.2rem;background:#fff}.related h3{font-size:.88rem}.related p{font-size:.75rem;color:var(--gray-600);margin-top:.3rem}
 footer{background:#0A0A0A;color:#fff;padding:55px 4% 25px}.foot{max-width:1200px;margin:auto}.footgrid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:2rem;padding-bottom:2rem}.footlogo{font:700 1.5rem var(--display)}.footlogo span{color:var(--gold-light)}.foot p,.foot a{font-size:.75rem;color:#aaa}.foot h3{font-size:.72rem;color:var(--gold-light);text-transform:uppercase;margin-bottom:.7rem}.foot ul{list-style:none;display:grid;gap:.4rem}.bottom{border-top:1px solid #292929;padding-top:1rem;color:#777;font-size:.7rem;display:flex;justify-content:space-between}.toast{position:fixed;right:20px;bottom:20px;background:#000;color:#fff;padding:.8rem 1rem;font-size:.75rem;transform:translateY(100px);opacity:0;transition:.3s;z-index:2000}.toast.show{transform:none;opacity:1}
 @media(max-width:1000px){.generator{grid-template-columns:1fr}.controls{border-right:0;border-bottom:1px solid var(--gray-200)}.features{grid-template-columns:repeat(2,1fr)}.template-grid{grid-template-columns:repeat(2,1fr)}}@media(max-width:900px){.nav-links,.nav-search{display:none}.hamburger{display:flex}.related{grid-template-columns:repeat(2,1fr)}}@media(max-width:650px){.hero,.tool-section,.content{padding-left:5%;padding-right:5%}.features,.related,.template-grid{grid-template-columns:1fr}.type-grid{grid-template-columns:repeat(2,1fr)}.inline,.color-row{grid-template-columns:1fr}.footgrid{grid-template-columns:1fr}.bottom{flex-direction:column;gap:.5rem}.barcode-wrap{min-height:280px}}
+
+/* Bulk generator and printable label additions */
+.tabs{display:flex;flex-wrap:wrap;gap:.45rem}
+.tabs .tab{border:1px solid var(--gray-300);background:#fff;padding:.7rem 1rem;font-size:.72rem;font-weight:700;color:var(--gray-600)}
+.tabs .tab.active{background:#000;color:#fff;border-color:#000}
+#bulkTab,#labelsTab{display:none}
+.feature-panel{padding:1.5rem;border-top:1px solid var(--gray-200)}
+.bulk-layout{display:grid;grid-template-columns:minmax(280px,.9fr) minmax(0,1.1fr);gap:1.5rem}
+.bulk-controls h2{font:600 clamp(1.6rem,3vw,2.3rem)/1.2 var(--display);margin:.3rem 0 .7rem}
+.feature-intro,.feature-note{color:var(--gray-600);font-size:.78rem;line-height:1.8;margin:.5rem 0 1rem}
+.feature-note{padding:.7rem;background:#faf8f1;border-left:3px solid var(--gold)}
+#bulkData,#labelData{width:100%;resize:vertical;border:1px solid var(--gray-300);padding:.8rem;font: .82rem/1.6 var(--body);min-height:110px}
+#bulkData:focus,#labelData:focus{outline:2px solid rgba(201,168,76,.4);border-color:var(--gold)}
+.bulk-results{min-width:0;padding:1rem;background:#fafafa;border:1px solid var(--gray-200)}
+.batch-summary{display:flex;align-items:baseline;gap:.45rem;margin:.5rem 0 1rem;color:var(--gray-600);font-size:.75rem}
+.batch-summary strong{font-size:1.4rem;color:var(--black);margin-left:.5rem}
+.bulk-preview{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.65rem;max-height:700px;overflow:auto}
+.bulk-item{min-width:0;padding:.65rem;border:1px solid var(--gray-200);background:#fff;overflow:hidden}
+.bulk-item svg{display:block;width:100%;height:auto;max-height:90px}
+.bulk-item code{display:block;font-size:.65rem;overflow-wrap:anywhere;margin:.4rem 0}
+.bulk-item small{display:block;color:#8a2d2d;font-size:.65rem}
+.bulk-item .btn{padding:.4rem .55rem;font-size:.62rem}
+.empty-state{color:var(--gray-600);font-size:.8rem;padding:1rem;background:#fff;border:1px dashed var(--gray-300)}
+#labelsTab .bulk-controls{max-width:1100px;margin:auto}
+.label-preview{margin-top:1.2rem;padding:1rem;background:#f3f3f3;border:1px solid var(--gray-200);overflow:auto}
+.label-preview-grid{display:grid;gap:6px;justify-content:start;align-content:start}
+.label-preview-item{background:#fff;border:1px dashed #c9c9c9;display:flex;flex-direction:column;justify-content:center;align-items:center;overflow:hidden;padding:2mm;text-align:center;color:#111}
+.label-preview-item svg{width:100%;max-height:60%;height:auto}
+.label-preview-item span{font-size:9px;overflow-wrap:anywhere;line-height:1.2}
+.label-preview-item strong{font-size:9px;line-height:1.2;overflow-wrap:anywhere}
+@media(max-width:760px){.bulk-layout{grid-template-columns:1fr}.bulk-preview{grid-template-columns:1fr 1fr}.feature-panel{padding:1rem}.tabs .tab{flex:1 1 42%;padding:.65rem .4rem;font-size:.65rem}}
+
 </style>
   <script src="/assets/js/canonical.js"></script>
-<meta property="og:title" content="Free Barcode Generator Online | Code 128, Code 39 &amp; More">
-<meta property="og:description" content="Create barcodes online for free. Generate Code 128, Code 39, EAN-13, EAN-8, UPC-A and more. Customize, download PNG or SVG, and print your barcode.">
-<meta property="og:type" content="website">
-<meta property="og:url" content="https://dailytoolkit.xyz/tools/barcode-generator">
-<meta property="og:site_name" content="Daily Toolkit">
-<meta property="og:image" content="https://dailytoolkit.xyz/assets/preview.png">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Free Barcode Generator Online | Code 128, Code 39 &amp; More">
-<meta name="twitter:description" content="Create barcodes online for free. Generate Code 128, Code 39, EAN-13, EAN-8, UPC-A and more. Customize, download PNG or SVG, and print your barcode.">
-<meta name="twitter:image" content="https://dailytoolkit.xyz/assets/preview.png">
-    <link rel="canonical" href="https://dailytoolkit.xyz/tools/barcode-generator" />
-  </head>
+
+  
+  <meta name="keywords" content="barcode generator, barcode generator online, create barcode, free barcode maker, product barcode generator">
+
+  <link rel="canonical" href="https://dailytoolkit.xyz/tools/barcode-generator">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Barcode Generator Online – Create Free Barcodes | Daily Toolkit">
+  <meta property="og:description" content="Create barcodes online for products, inventory and labels. Generate a downloadable barcode quickly with this free browser-based barcode generator.">
+  <meta property="og:url" content="https://dailytoolkit.xyz/tools/barcode-generator">
+  <meta property="og:image" content="https://dailytoolkit.xyz/assets/logo.png">
+  <meta property="og:site_name" content="Daily Toolkit">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Barcode Generator Online – Create Free Barcodes | Daily Toolkit">
+  <meta name="twitter:description" content="Create barcodes online for products, inventory and labels. Generate a downloadable barcode quickly with this free browser-based barcode generator.">
+  <meta name="twitter:image" content="https://dailytoolkit.xyz/assets/logo.png">
+
+</head>
 <body>
 <nav id="nav">
 <a class="logo" href="/">Daily <span>Toolkit</span></a>
@@ -96,9 +133,18 @@ footer{background:#0A0A0A;color:#fff;padding:55px 4% 25px}.foot{max-width:1200px
 </div>
 
 <main>
-<section class="tool-section"><div class="container"><div class="tool">
+<section class="tool-section"><div class="container"><div class="freemium-wrap" id="freemiumGate" aria-live="polite">
+  <div class="freemium-card">
+    <div class="freemium-copy"><span class="freemium-kicker">DAILY TOOLKIT PRO</span><h2 id="freemiumTitle">Your first 50 barcode generations are free</h2><p id="freemiumMessage">Try the single generator, bulk tools and printable labels. Your free usage counter is shown below.</p></div>
+    <div class="freemium-meter"><div class="freemium-meter-label"><strong id="freeUsed">0</strong><span>of 50 free generations used</span></div><div class="freemium-track"><span id="freeMeterFill"></span></div><button type="button" class="btn primary" id="freemiumSubscribe">Unlock Pro · Monthly plan</button><small id="freemiumNote">Preview mode: secure account-based limits and automatic subscription verification must be connected before launch.</small></div>
+  </div>
+</div>
+<style>
+.freemium-wrap{max-width:1200px;margin:0 auto 24px;padding:0 4%}.freemium-card{border:1px solid var(--gold);background:linear-gradient(135deg,#fffdf6,#fff);padding:20px 22px;display:grid;grid-template-columns:1fr minmax(240px,.65fr);gap:22px;box-shadow:0 12px 35px rgba(0,0,0,.045)}.freemium-kicker{font-size:.65rem;font-weight:800;letter-spacing:.14em;color:var(--gold-text)}.freemium-copy h2{font:700 clamp(1.3rem,2.5vw,1.8rem) var(--display);margin:.4rem 0}.freemium-copy p,.freemium-meter small{color:var(--gray-600);font-size:.78rem;line-height:1.7}.freemium-meter{display:flex;flex-direction:column;justify-content:center;gap:10px}.freemium-meter-label{display:flex;align-items:baseline;gap:7px;font-size:.78rem}.freemium-meter-label strong{font-size:1.2rem}.freemium-track{height:8px;background:var(--gray-200);overflow:hidden}.freemium-track span{display:block;width:0;height:100%;background:var(--gold);transition:width .2s}.freemium-meter .btn{width:100%}.freemium-meter .btn:disabled{opacity:.6;cursor:not-allowed}.freemium-wrap.is-locked .freemium-card{border-color:#b44;background:#fffafa}.freemium-wrap.is-locked .freemium-kicker{color:#a22}@media(max-width:700px){.freemium-wrap{padding:0 5%}.freemium-card{grid-template-columns:1fr;padding:17px;gap:15px}}
+</style>
+<div class="tool">
 <div class="tool-head"><h2>Free Online Barcode Maker</h2><div class="status" id="status">Ready • Enter data to generate</div></div>
-<div class="tabs"><button class="tab active" data-tab="generator">Barcode Generator</button><button class="tab" data-tab="templates">Barcode Types & Templates</button></div>
+<div class="tabs"><button class="tab active" data-tab="generator">Single Barcode</button><button class="tab" data-tab="bulk">Bulk Generator</button><button class="tab" data-tab="labels">Printable Labels</button><button class="tab" data-tab="templates">Barcode Types & Templates</button></div>
 <div id="generatorTab" class="generator">
 <div class="controls">
 <div class="eyebrow">Select Barcode Format</div>
@@ -131,6 +177,53 @@ footer{background:#0A0A0A;color:#fff;padding:55px 4% 25px}.foot{max-width:1200px
 <div class="preview-info"><div class="info"><strong id="infoType">CODE128</strong><span>Format</span></div><div class="info"><strong id="infoChars">0</strong><span>Characters</span></div><div class="info"><strong id="infoSize">150 px</strong><span>Bar Height</span></div></div>
 <p style="font-size:.7rem;color:var(--gray-600);margin-top:.8rem">Tip: Always test the final printed barcode with the scanner and workflow that will be used in production.</p>
 </div>
+</div>
+
+<div id="bulkTab" class="feature-panel">
+  <div class="bulk-layout">
+    <div class="bulk-controls">
+      <div class="eyebrow">Batch Generator · Up to 500</div>
+      <h2>Generate Multiple Barcodes</h2>
+      <p class="feature-intro">Paste one value per line or import a CSV file. The first CSV column is used as the barcode value. Data stays in your browser.</p>
+      <div class="field"><label for="bulkData">Barcode values</label><textarea id="bulkData" rows="9" placeholder="SKU-10001&#10;SKU-10002&#10;SKU-10003"></textarea></div>
+      <div class="field"><label for="bulkCsv">Import CSV file</label><input id="bulkCsv" type="file" accept=".csv,text/csv"></div>
+      <div class="inline">
+        <div class="field"><label for="bulkFormat">Barcode format</label><select id="bulkFormat"><option value="CODE128">CODE 128</option><option value="CODE39">CODE 39</option><option value="EAN13">EAN-13</option><option value="EAN8">EAN-8</option><option value="UPC">UPC-A</option><option value="ITF14">ITF-14</option><option value="MSI">MSI</option><option value="codabar">Codabar</option></select></div>
+        <div class="field"><label for="bulkHeight">Barcode height (px)</label><input id="bulkHeight" type="number" min="30" max="300" value="90"></div>
+      </div>
+      <div class="action-row"><button class="btn primary" id="bulkGenerate">Generate batch</button><button class="btn" id="bulkClear">Clear list</button></div>
+      <div class="action-row"><button class="btn" id="bulkCsvExport">Export results CSV</button><button class="btn" id="bulkPrint">Print batch</button></div>
+      <p class="feature-note" id="bulkStatus" role="status" aria-live="polite">Ready. Maximum 500 non-empty values per batch.</p>
+    </div>
+    <div class="bulk-results"><div class="eyebrow">Batch Results</div><div class="batch-summary"><strong id="bulkValidCount">0</strong><span>valid</span><strong id="bulkInvalidCount">0</strong><span>invalid</span></div><div id="bulkPreview" class="bulk-preview"><p class="empty-state">Your barcode previews will appear here after generation.</p></div></div>
+  </div>
+</div>
+<div id="labelsTab" class="feature-panel">
+  <div class="bulk-controls">
+    <div class="eyebrow">Print-ready sheets</div><h2>Printable Barcode Labels</h2>
+    <p class="feature-intro">Use the values from your bulk list to build an A4 label sheet. Set the label size and spacing, preview the layout, then print or choose Save as PDF in your browser.</p>
+    <div class="field"><label for="labelData">Label values (one per line, max 500)</label><textarea id="labelData" rows="5" placeholder="Paste product codes or import them in the Bulk Generator tab"></textarea></div>
+    <div class="inline">
+      <div class="field"><label for="labelFormat">Barcode format</label><select id="labelFormat"><option value="CODE128">CODE 128</option><option value="CODE39">CODE 39</option><option value="EAN13">EAN-13</option><option value="EAN8">EAN-8</option><option value="UPC">UPC-A</option><option value="ITF14">ITF-14</option></select></div>
+      <div class="field"><label for="labelName">Optional label title</label><input id="labelName" type="text" maxlength="60" placeholder="Product or shop name"></div>
+    </div>
+    <div class="inline">
+      <div class="field"><label for="labelWidth">Label width (mm)</label><input id="labelWidth" type="number" min="20" max="100" value="63.5"></div>
+      <div class="field"><label for="labelHeight">Label height (mm)</label><input id="labelHeight" type="number" min="15" max="100" value="38.1"></div>
+    </div>
+    <div class="inline">
+      <div class="field"><label for="labelMargin">Page margin (mm)</label><input id="labelMargin" type="number" min="0" max="25" value="8"></div>
+      <div class="field"><label for="labelGap">Label gap (mm)</label><input id="labelGap" type="number" min="0" max="15" value="1.5"></div>
+    </div>
+    <div class="inline">
+      <div class="field"><label for="labelColumns">Columns</label><input id="labelColumns" type="number" min="1" max="5" value="3"></div>
+      <div class="field"><label for="labelRows">Rows per page</label><input id="labelRows" type="number" min="1" max="12" value="7"></div>
+    </div>
+    <div class="checks"><label class="check"><input id="labelShowText" type="checkbox" checked> Show barcode value</label><label class="check"><input id="labelShowTitle" type="checkbox"> Show label title</label></div>
+    <div class="action-row"><button class="btn primary" id="labelPreviewBtn">Update preview</button><button class="btn" id="labelPrintBtn">Print / Save as PDF</button><button class="btn" id="labelCopyBtn">Use bulk list</button></div>
+    <p class="feature-note" id="labelStatus" role="status" aria-live="polite">Tip: print at 100% scale and test a sample sheet before printing a full batch.</p>
+    <div id="labelPreview" class="label-preview"><p class="empty-state">Add label values and select Update preview.</p></div>
+  </div>
 </div>
 
 <div id="templatesTab" class="template">
@@ -274,6 +367,95 @@ else{let svg=$('#barcode'),xml=new XMLSerializer().serializeToString(svg),svgBlo
 }
 $('#downloadPng').onclick=()=>download('png');$('#downloadSvg').onclick=()=>download('svg');
 $('#print').onclick=()=>{let svg=$('#barcode').outerHTML,w=window.open('','_blank');w.document.write(`<html><head><title>Print Barcode</title><style>body{margin:0;min-height:100vh;display:flex;align-items:center;justify-content:center}svg{max-width:90vw;height:auto}</style></head><body>${svg}
+
+
+
+
+
+
+
+
+
+
+<script>
+/* Freemium preview prototype.
+   This is only a browser-side demonstration. Real enforcement requires authenticated users,
+   persistent server-side quotas and verified subscription webhooks. */
+(function(){
+ const FREE_LIMIT=50, STORAGE_KEY='dt_barcode_free_usage_preview_v1';
+ const gate=document.getElementById('freemiumGate');
+ if(!gate)return;
+ const byId=id=>document.getElementById(id);
+ const usedEl=byId('freeUsed'),fill=byId('freeMeterFill'),title=byId('freemiumTitle'),message=byId('freemiumMessage'),button=byId('freemiumSubscribe'),note=byId('freemiumNote');
+ let used=0,singleOutputAvailable=false;
+ try{used=Math.max(0,parseInt(localStorage.getItem(STORAGE_KEY)||'0',10)||0)}catch(e){}
+ const getCount=()=>{try{return Math.max(0,parseInt(localStorage.getItem(STORAGE_KEY)||'0',10)||0)}catch(e){return used}};
+ const setCount=n=>{used=Math.max(0,n);try{localStorage.setItem(STORAGE_KEY,String(used))}catch(e){};render()};
+ const remaining=()=>Math.max(0,FREE_LIMIT-getCount());
+ function render(){
+   used=getCount();const left=remaining(),locked=left===0;
+   usedEl.textContent=Math.min(used,FREE_LIMIT);fill.style.width=(Math.min(used,FREE_LIMIT)/FREE_LIMIT*100)+'%';
+   gate.classList.toggle('is-locked',locked);
+   title.textContent=locked?'You have used all 50 free generations':'Your first 50 barcode generations are free';
+   message.textContent=locked?'Your free allowance is finished. A verified monthly subscription would be required to generate more barcodes.':'You have '+left+' free generation'+(left===1?'':'s')+' remaining. Valid single, bulk and label barcodes count toward the allowance.';
+   button.textContent=locked?'Subscribe to Continue · Monthly':'View Monthly Pro';
+   note.textContent='Preview prototype only: usage is stored in this browser and can be reset. Checkout and secure paid access are not connected.';
+ }
+ const values=id=>{const el=byId(id);return el?el.value.split(/\r?\n/).map(v=>v.trim()).filter(Boolean):[]};
+ const showLimit=()=>{render();gate.scrollIntoView({behavior:'smooth',block:'center'});message.textContent='The 50 free generations have been used. Automatic checkout is not connected in this preview, so no payment can be taken.'};
+ const trimToRemaining=id=>{const el=byId(id),left=remaining();if(!el)return 0;const list=values(id);if(list.length>left)el.value=list.slice(0,left).join('\n');return Math.min(list.length,left)};
+ const afterClick=fn=>setTimeout(fn,0);
+ document.addEventListener('click',function(e){
+   const target=e.target.closest('button');if(!target)return;
+   if(target.id==='freemiumSubscribe'){
+     e.preventDefault();e.stopImmediatePropagation();
+     message.textContent='Monthly Safepay checkout is not connected. Before charging anyone, the site needs merchant onboarding, a monthly plan, server credentials, user accounts, a database and verified webhooks.';
+     note.textContent='No payment is collected and no paid access is granted in this preview.';return;
+   }
+   if(target.id==='generate'){
+     if(remaining()<1){e.preventDefault();e.stopImmediatePropagation();showLimit();return;}
+     afterClick(()=>{const svg=byId('barcode');if(svg&&svg.children.length){setCount(getCount()+1);singleOutputAvailable=true;}});
+     return;
+   }
+   if(target.id==='bulkGenerate'){
+     if(remaining()<1){e.preventDefault();e.stopImmediatePropagation();showLimit();return;}
+     trimToRemaining('bulkData');
+     afterClick(()=>{const n=Math.max(0,parseInt(byId('bulkValidCount')?.textContent||'0',10)||0);if(n){setCount(Math.min(FREE_LIMIT,getCount()+n));}});
+     return;
+   }
+   if(target.id==='labelPreviewBtn'){
+     if(remaining()<1){e.preventDefault();e.stopImmediatePropagation();showLimit();return;}
+     trimToRemaining('labelData');
+     afterClick(()=>{const n=byId('labelPreview')?.querySelectorAll('.label-preview-item').length||0;if(n)setCount(Math.min(FREE_LIMIT,getCount()+n));});
+     return;
+   }
+   if(target.id==='bulkPrint'){
+     if(remaining()<1){e.preventDefault();e.stopImmediatePropagation();showLimit();return;}
+     trimToRemaining('bulkData');
+     afterClick(()=>{const n=Math.max(0,parseInt(byId('bulkValidCount')?.textContent||'0',10)||0);if(n)setCount(Math.min(FREE_LIMIT,getCount()+n));});
+     return;
+   }
+   if(target.id==='labelPrintBtn'){
+     if(remaining()<1){e.preventDefault();e.stopImmediatePropagation();showLimit();return;}
+     trimToRemaining('labelData');
+     afterClick(()=>{const n=byId('labelPreview')?.querySelectorAll('.label-preview-item').length||0;if(n)setCount(Math.min(FREE_LIMIT,getCount()+n));});
+     return;
+   }
+   if(['downloadPng','downloadSvg','print'].includes(target.id)){
+     if(remaining()===0&&!singleOutputAvailable){e.preventDefault();e.stopImmediatePropagation();showLimit();}
+     return;
+   }
+ },true);
+ ['data','barWidth','barWidthNum','barHeight','fontSize','font','lineColor','bgColor','margin','showText','flat'].forEach(id=>{
+   const el=byId(id);if(!el)return;
+   el.addEventListener('input',()=>{singleOutputAvailable=false;});
+   el.addEventListener('change',()=>{singleOutputAvailable=false;});
+ });
+ render();
+})();
+</script>
+
+
 <section class="seo-content-section" aria-labelledby="seo-content-title">
   <div class="seo-content-inner">
     <h2 id="seo-content-title">Barcode Generator Online</h2>
@@ -300,6 +482,134 @@ $$('[data-template]').forEach(b=>b.onclick=()=>{$$('.tab').forEach(x=>x.classLis
 $$('.faq-q').forEach(x=>x.onclick=()=>x.parentElement.classList.toggle('open'));
 renderFields('CODE128');
 function showToast(t){let x=$('#toast');x.textContent=t;x.classList.add('show');setTimeout(()=>x.classList.remove('show'),2200)}
+</script>
+
+<script>
+(function(){
+ const byId=id=>document.getElementById(id);
+ const safeText=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+ const parseCsvFirstColumn=text=>{
+   const rows=[];let row=[],cell='',quoted=false;
+   for(let i=0;i<text.length;i++){const ch=text[i],next=text[i+1];
+     if(ch==='"'&&quoted&&next==='"'){cell+='"';i++}
+     else if(ch==='"'){quoted=!quoted}
+     else if(ch===','&&!quoted){row.push(cell);cell=''}
+     else if((ch==='\n'||ch==='\r')&&!quoted){if(ch==='\r'&&next==='\n')i++;row.push(cell);if(row.some(v=>v.trim()))rows.push(row);row=[];cell=''}
+     else cell+=ch;
+   }
+   row.push(cell);if(row.some(v=>v.trim()))rows.push(row);
+   if(rows.length&&/^(barcode|value|sku|product.?code|code|item.?code)$/i.test((rows[0][0]||'').trim()))rows.shift();
+   return rows.map(r=>(r[0]||'').trim()).filter(Boolean);
+ };
+ const readValues=txt=>txt.split(/\r?\n/).map(v=>v.trim()).filter(Boolean);
+ const limitValues=values=>({values:values.slice(0,500),excess:Math.max(0,values.length-500)});
+ const renderSvg=(value,format,height,displayValue=true)=>{
+   const svg=document.createElementNS('http://www.w3.org/2000/svg','svg');let isValid=true;
+   try{JsBarcode(svg,value,{format,width:1.7,height,displayValue,fontSize:12,margin:8,valid:(valid)=>{isValid=valid}});if(!isValid)return {svg:null,error:'Invalid data for '+format};return {svg,error:''}}
+   catch(e){return {svg:null,error:'Invalid data for '+format}}
+ };
+ const dataForLabels=()=>readValues(byId('labelData').value);
+ const setStatus=(id,msg)=>{const n=byId(id);if(n)n.textContent=msg};
+ let lastResults=[];
+ const makePrintDoc=(items,title,settings={})=>{
+   const isLabels=!!settings.labels;
+   const margin=Math.max(0,Math.min(25,+settings.margin||0));
+   const cols=Math.max(1,Math.min(5,+settings.cols||3));
+   const rows=Math.max(1,Math.min(12,+settings.rows||7));
+   const width=Math.max(20,Math.min(100,+settings.width||63.5));
+   const height=Math.max(15,Math.min(100,+settings.height||38.1));
+   const gap=Math.max(0,Math.min(15,+settings.gap||2));
+   const cells=items.map(item=>'<div class="'+(isLabels?'label':'item')+'">'+(settings.showTitle&&settings.title?'<strong>'+safeText(settings.title)+'</strong>':'')+item.svg+(settings.showText===false?'':'<span>'+safeText(item.value)+'</span>')+'</div>').join('');
+   const cssPrint=isLabels
+    ? '@page{size:A4 portrait;margin:'+margin+'mm}body{margin:0;font-family:Arial,sans-serif}.sheet{display:grid;grid-template-columns:repeat('+cols+','+width+'mm);grid-auto-rows:'+height+'mm;gap:'+gap+'mm;align-content:start}.label{width:'+width+'mm;height:'+height+'mm;box-sizing:border-box;border:0;display:flex;flex-direction:column;align-items:center;justify-content:center;overflow:hidden;padding:2mm;break-inside:avoid;text-align:center}.label svg{width:100%;height:auto;max-height:65%}.label span,.label strong{font-size:8pt;line-height:1.1;overflow-wrap:anywhere}'
+    : '@page{size:A4 portrait;margin:10mm}body{font-family:Arial,sans-serif;margin:0}.sheet{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8mm}.item{border:1px solid #ddd;padding:5mm;break-inside:avoid;text-align:center}.item svg{width:100%;height:auto;max-height:30mm}.item span{display:block;font-size:9pt;overflow-wrap:anywhere}';
+   return '<!doctype html><html><head><meta charset="utf-8"><title>'+safeText(title)+'</title><style>'+cssPrint+'@media screen{body{padding:12px;background:#eee}.sheet{background:#fff;padding:8px;min-height:100vh}}@media print{body{padding:0}.sheet{padding:0}}</style></head><body><main class="sheet">'+cells+'</main><script>window.onload=function(){setTimeout(function(){window.print()},350)};<\/script></body></html>';
+ };
+ const openPrint=(doc)=>{const w=window.open('','_blank');if(!w){setStatus('bulkStatus','Your browser blocked the print window. Allow pop-ups for this page and try again.');return}w.document.open();w.document.write(doc);w.document.close()};
+ const makeItems=values=>{
+   const format=byId('bulkFormat').value,height=Math.max(30,Math.min(300,+byId('bulkHeight').value||90));
+   return values.map(value=>{const r=renderSvg(value,format,height,true);return {value,svg:r.svg?r.svg.outerHTML:'',error:r.error||''}});
+ };
+ const showBulk=()=>{
+   const raw=readValues(byId('bulkData').value),limited=limitValues(raw),values=limited.values;
+   if(!values.length){lastResults=[];byId('bulkPreview').innerHTML='<p class="empty-state">Add one value per line or import a CSV file first.</p>';setStatus('bulkStatus','No values found.');byId('bulkValidCount').textContent='0';byId('bulkInvalidCount').textContent='0';return}
+   lastResults=makeItems(values);
+   const valid=lastResults.filter(x=>!x.error),invalid=lastResults.filter(x=>x.error);
+   byId('bulkValidCount').textContent=valid.length;byId('bulkInvalidCount').textContent=invalid.length;
+   byId('bulkPreview').innerHTML=lastResults.map((x,i)=>'<div class="bulk-item">'+(x.svg||'')+'<code>'+safeText(x.value)+'</code>'+(x.error?'<small>'+safeText(x.error)+'</small>':'<div class="action-row"><button type="button" class="btn" data-bulk-download="'+i+'">Download SVG</button><button type="button" class="btn" data-bulk-png="'+i+'">Download PNG</button></div>')+'</div>').join('');
+   setStatus('bulkStatus',values.length+' processed. '+valid.length+' valid, '+invalid.length+' invalid.'+(limited.excess?' '+limited.excess+' extra rows were not included because the batch limit is 500.':''));
+   byId('labelData').value=values.join('\n');
+ };
+ const renderLabels=()=>{
+   const raw=dataForLabels(),limited=limitValues(raw),values=limited.values;
+   const cols=Math.max(1,Math.min(5,+byId('labelColumns').value||3)),rows=Math.max(1,Math.min(12,+byId('labelRows').value||7));
+   const width=Math.max(20,Math.min(100,+byId('labelWidth').value||63.5)),height=Math.max(15,Math.min(100,+byId('labelHeight').value||38.1)),gap=Math.max(0,Math.min(15,+byId('labelGap').value||2));
+   if(!values.length){byId('labelPreview').innerHTML='<p class="empty-state">Add label values first, or copy your list from Bulk Generator.</p>';setStatus('labelStatus','No label values found.');return}
+   const format=byId('labelFormat').value,showText=byId('labelShowText').checked,showTitle=byId('labelShowTitle').checked,title=byId('labelName').value.trim();
+   const items=values.map(value=>{const r=renderSvg(value,format,55,showText);return {value,svg:r.svg?r.svg.outerHTML:'',error:r.error||''}});
+   const valid=items.filter(x=>!x.error);
+   byId('labelPreview').innerHTML='<div class="label-preview-grid" style="grid-template-columns:repeat('+cols+','+width+'mm);grid-auto-rows:'+height+'mm;gap:'+gap+'mm">'+valid.slice(0,Math.min(60,valid.length)).map(x=>'<div class="label-preview-item" style="width:'+width+'mm;height:'+height+'mm">'+(showTitle&&title?'<strong>'+safeText(title)+'</strong>':'')+x.svg+(showText?'<span>'+safeText(x.value)+'</span>':'')+'</div>').join('')+'</div>';
+   setStatus('labelStatus',valid.length+' valid labels ready.'+(items.length-valid.length?' '+(items.length-valid.length)+' invalid values were skipped.':'')+(limited.excess?' '+limited.excess+' extra values omitted; maximum is 500.':'')+' Preview shows up to 60 labels; print includes all valid labels.');
+ };
+ const getLabelPrintDoc=()=>{
+   const values=limitValues(dataForLabels()).values,format=byId('labelFormat').value;
+   const showText=byId('labelShowText').checked,showTitle=byId('labelShowTitle').checked,title=byId('labelName').value.trim();
+   const items=values.map(value=>{const r=renderSvg(value,format,55,showText);return {value,svg:r.svg?r.svg.outerHTML:'',error:r.error||''}}).filter(x=>!x.error);
+   if(!items.length){setStatus('labelStatus','No valid labels to print. Check values and barcode format.');return null}
+   const settings={labels:true,margin:+byId('labelMargin').value,cols:+byId('labelColumns').value,rows:+byId('labelRows').value,width:+byId('labelWidth').value,height:+byId('labelHeight').value,gap:+byId('labelGap').value,showText,showTitle,title};
+   return makePrintDoc(items,'Daily Toolkit Printable Barcode Labels',settings);
+ };
+ // Keep the existing generator and templates intact while routing the four tabs.
+ document.querySelectorAll('.tabs .tab').forEach(tab=>tab.addEventListener('click',()=>{
+   const id=tab.dataset.tab;
+   byId('generatorTab').style.display=id==='generator'?'grid':'none';
+   byId('bulkTab').style.display=id==='bulk'?'block':'none';
+   byId('labelsTab').style.display=id==='labels'?'block':'none';
+   byId('templatesTab').style.display=id==='templates'?'block':'none';
+   document.querySelectorAll('.tabs .tab').forEach(t=>t.classList.toggle('active',t===tab));
+ }));
+ byId('bulkGenerate').addEventListener('click',showBulk);
+ byId('bulkClear').addEventListener('click',()=>{byId('bulkData').value='';byId('bulkCsv').value='';showBulk()});
+ byId('bulkCsv').addEventListener('change',async e=>{
+   const file=e.target.files&&e.target.files[0];if(!file)return;
+   try{const values=parseCsvFirstColumn(await file.text()),limited=limitValues(values);byId('bulkData').value=limited.values.join('\n');setStatus('bulkStatus','Imported '+limited.values.length+' values from '+file.name+'.'+(limited.excess?' '+limited.excess+' rows exceeded the 500-item limit.':''));}
+   catch(err){setStatus('bulkStatus','Could not read this CSV. Try saving it as UTF-8 CSV and upload again.')}
+ });
+ byId('bulkPreview').addEventListener('click',e=>{
+   const b=e.target.closest('[data-bulk-download]');if(!b)return;
+   const item=lastResults[+b.dataset.bulkDownload];if(!item||!item.svg)return;
+   const blob=new Blob([item.svg],{type:'image/svg+xml;charset=utf-8'}),url=URL.createObjectURL(blob),a=document.createElement('a');
+   a.href=url;a.download=(item.value.replace(/[^a-z0-9_-]+/gi,'_').slice(0,60)||'barcode')+'.svg';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);
+ });
+ byId('bulkPreview').addEventListener('click',e=>{
+   const b=e.target.closest('[data-bulk-png]');if(!b)return;
+   const item=lastResults[+b.dataset.bulkPng];if(!item||!item.svg)return;
+   const blob=new Blob([item.svg],{type:'image/svg+xml;charset=utf-8'}),url=URL.createObjectURL(blob),img=new Image();
+   img.onload=()=>{const scale=3,canvas=document.createElement('canvas');canvas.width=Math.max(1,img.width*scale);canvas.height=Math.max(1,img.height*scale);const ctx=canvas.getContext('2d');ctx.fillStyle='#FFFFFF';ctx.fillRect(0,0,canvas.width,canvas.height);ctx.drawImage(img,0,0,canvas.width,canvas.height);URL.revokeObjectURL(url);const a=document.createElement('a');a.href=canvas.toDataURL('image/png');a.download=(item.value.replace(/[^a-z0-9_-]+/gi,'_').slice(0,60)||'barcode')+'.png';a.click()};
+   img.onerror=()=>{URL.revokeObjectURL(url);setStatus('bulkStatus','Could not export PNG for '+item.value+'. Try SVG download instead.')};
+   img.src=url;
+ });
+ byId('bulkCsvExport').addEventListener('click',()=>{
+   if(!lastResults.length){setStatus('bulkStatus','Generate a batch first, then export the results.');return}
+   const csv='value,status\r\n'+lastResults.map(x=>'"'+x.value.replace(/"/g,'""')+'","'+(x.error?'invalid':'valid')+'"').join('\r\n');
+   const url=URL.createObjectURL(new Blob([csv],{type:'text/csv;charset=utf-8'})),a=document.createElement('a');a.href=url;a.download='daily-toolkit-barcode-results.csv';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);
+ });
+ byId('bulkPrint').addEventListener('click',()=>{
+   showBulk();
+   const valid=lastResults.filter(x=>!x.error);if(!valid.length){setStatus('bulkStatus','Generate at least one valid barcode before printing.');return}
+   openPrint(makePrintDoc(valid,'Daily Toolkit Barcode Batch'));
+ });
+ byId('labelCopyBtn').addEventListener('click',()=>{byId('labelData').value=byId('bulkData').value;renderLabels()});
+ byId('labelPreviewBtn').addEventListener('click',renderLabels);
+ byId('labelPrintBtn').addEventListener('click',()=>{const doc=getLabelPrintDoc();if(doc)openPrint(doc)});
+ ['labelFormat','labelName','labelWidth','labelHeight','labelMargin','labelGap','labelColumns','labelRows','labelShowText','labelShowTitle'].forEach(id=>byId(id).addEventListener('change',()=>{}));
+ // Hide the original generic SEO copy from the single-barcode print window by overriding its print action.
+ const printButton=byId('print');
+ if(printButton)printButton.addEventListener('click',()=>{
+   const old=window.open;
+   // The original print handler is registered first; this listener is a safety note only.
+ },{once:false});
+})();
 </script>
 </body>
 </html>
