@@ -38,18 +38,17 @@
   document.head.appendChild(style);
 
   function mount() {
-    var nav = document.querySelector('nav');
-    var mobileMenu = document.querySelector('.mobile-menu');
-    if (nav) {
-      nav.appendChild(host);
-    } else if (mobileMenu) {
-      mobileMenu.insertBefore(host, mobileMenu.firstChild);
-    } else {
-      host.style.position = 'fixed';
-      host.style.top = '10px';
-      host.style.right = '12px';
+    // Keep the selector outside the site's nav/header so responsive navigation
+    // scripts cannot replace it or hide it during page initialization.
+    if (!document.body.contains(host)) {
       document.body.appendChild(host);
     }
+    host.style.position = 'fixed';
+    host.style.top = '10px';
+    host.style.right = '10px';
+    host.style.left = 'auto';
+    host.style.bottom = 'auto';
+    host.style.zIndex = '2147483000';
   }
 
   function applyLanguage(code) {
