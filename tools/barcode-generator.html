@@ -329,7 +329,8 @@ else{let svg=$('#barcode'),xml=new XMLSerializer().serializeToString(svg),svgBlo
 }catch(e){showToast('Export failed')}
 }
 $('#downloadPng').onclick=()=>download('png');$('#downloadSvg').onclick=()=>download('svg');
-$('#print').onclick=()=>{const svg=$('#barcode').outerHTML;const w=window.open('','_blank');if(!w){showToast('Allow pop-ups to print the barcode');return;}w.document.write('<!doctype html><html><head><title>Print Barcode</title><style>body{margin:0;min-height:100vh;display:flex;align-items:center;justify-content:center}svg{max-width:90vw;height:auto}</style></head><body>'+svg+'</body></html>');w.document.close();w.focus();setTimeout(()=>w.print(),300)};
+$('#print').onclick=()=>{const svg=$('#barcode').outerHTML;const w=window.open('','_blank');if(!w){showToast('Allow pop-ups to print the barcode');return;}w.document.write('<!doctype html><html><head><title>Print Barcode</title><style>body{margin:0;min-height:100vh;display:flex;align-items:center;justify-content:center}svg{max-width:90vw;height:auto}</style></head><body>'+svg+'  <script src="/assets/multilingual.js" defer></script>
+</body></html>');w.document.close();w.focus();setTimeout(()=>w.print(),300)};
 $('#clear').onclick=()=>{renderFields(currentType);$('#data').value='';generate();$('#status').textContent='Cleared • Enter data to generate'};
 $$('.tab').forEach(t=>t.onclick=()=>{$$('.tab').forEach(x=>x.classList.remove('active'));t.classList.add('active');let id=t.dataset.tab;$('#generatorTab').style.display=id==='generator'?'grid':'none';$('#templatesTab').classList.toggle('active',id==='templates')});
 $$('[data-template]').forEach(b=>b.onclick=()=>{$$('.tab').forEach(x=>x.classList.toggle('active',x.dataset.tab==='generator'));$('#generatorTab').style.display='grid';$('#templatesTab').classList.remove('active');renderFields(b.dataset.template);window.scrollTo({top:document.querySelector('.tool').offsetTop-80,behavior:'smooth'})});
