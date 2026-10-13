@@ -129,7 +129,16 @@ footer{background:#0A0A0A;color:#fff;padding:55px 4% 25px}.foot{max-width:1200px
 </div>
 
 <main>
-<section class="tool-section"><div class="container"><div class="tool">
+<section class="tool-section"><div class="container"><div class="freemium-wrap" id="freemiumGate" aria-live="polite">
+  <div class="freemium-card">
+    <div class="freemium-copy"><span class="freemium-kicker">DAILY TOOLKIT PRO</span><h2 id="freemiumTitle">Your first 50 barcode generations are free</h2><p id="freemiumMessage">Try the single generator, bulk tools and printable labels. Your free usage counter is shown below.</p></div>
+    <div class="freemium-meter"><div class="freemium-meter-label"><strong id="freeUsed">0</strong><span>of 50 free generations used</span></div><div class="freemium-track"><span id="freeMeterFill"></span></div><button type="button" class="btn primary" id="freemiumSubscribe">Unlock Pro · Monthly plan</button><small id="freemiumNote">Preview mode: secure account-based limits and automatic subscription verification must be connected before launch.</small></div>
+  </div>
+</div>
+<style>
+.freemium-wrap{max-width:1200px;margin:0 auto 24px;padding:0 4%}.freemium-card{border:1px solid var(--gold);background:linear-gradient(135deg,#fffdf6,#fff);padding:20px 22px;display:grid;grid-template-columns:1fr minmax(240px,.65fr);gap:22px;box-shadow:0 12px 35px rgba(0,0,0,.045)}.freemium-kicker{font-size:.65rem;font-weight:800;letter-spacing:.14em;color:var(--gold-text)}.freemium-copy h2{font:700 clamp(1.3rem,2.5vw,1.8rem) var(--display);margin:.4rem 0}.freemium-copy p,.freemium-meter small{color:var(--gray-600);font-size:.78rem;line-height:1.7}.freemium-meter{display:flex;flex-direction:column;justify-content:center;gap:10px}.freemium-meter-label{display:flex;align-items:baseline;gap:7px;font-size:.78rem}.freemium-meter-label strong{font-size:1.2rem}.freemium-track{height:8px;background:var(--gray-200);overflow:hidden}.freemium-track span{display:block;width:0;height:100%;background:var(--gold);transition:width .2s}.freemium-meter .btn{width:100%}.freemium-meter .btn:disabled{opacity:.6;cursor:not-allowed}.freemium-wrap.is-locked .freemium-card{border-color:#b44;background:#fffafa}.freemium-wrap.is-locked .freemium-kicker{color:#a22}@media(max-width:700px){.freemium-wrap{padding:0 5%}.freemium-card{grid-template-columns:1fr;padding:17px;gap:15px}}
+</style>
+<div class="tool">
 <div class="tool-head"><h2>Free Online Barcode Maker</h2><div class="status" id="status">Ready • Enter data to generate</div></div>
 <div class="tabs"><button class="tab active" data-tab="generator">Single Barcode</button><button class="tab" data-tab="bulk">Bulk Generator</button><button class="tab" data-tab="labels">Printable Labels</button><button class="tab" data-tab="templates">Barcode Types & Templates</button></div>
 <div id="generatorTab" class="generator">
@@ -363,6 +372,47 @@ $('#print').onclick=()=>{let svg=$('#barcode').outerHTML,w=window.open('','_blan
 
 
 
+
+<script>
+/* Freemium preview prototype.
+   Browser storage is only a UI prototype, not tamper-resistant enforcement.
+   Do not enable paid access until server-side identity, quota storage and verified Safepay webhooks are configured. */
+(function(){
+ const FREE_LIMIT=50, STORAGE_KEY='dt_barcode_free_usage_preview_v1';
+ const gate=document.getElementById('freemiumGate');
+ if(!gate)return;
+ const usedEl=document.getElementById('freeUsed'),fill=document.getElementById('freeMeterFill'),title=document.getElementById('freemiumTitle'),message=document.getElementById('freemiumMessage'),button=document.getElementById('freemiumSubscribe'),note=document.getElementById('freemiumNote');
+ let used=0;
+ try{used=Math.max(0,Math.min(100000,parseInt(localStorage.getItem(STORAGE_KEY)||'0',10)||0))}catch(e){}
+ const getCount=()=>{try{return Math.max(0,parseInt(localStorage.getItem(STORAGE_KEY)||'0',10)||0)}catch(e){return used}};
+ const setCount=n=>{used=Math.max(0,n);try{localStorage.setItem(STORAGE_KEY,String(used))}catch(e){};render()};
+ function render(){
+   used=getCount();const remaining=Math.max(0,FREE_LIMIT-used);
+   usedEl.textContent=Math.min(used,FREE_LIMIT);fill.style.width=(Math.min(used,FREE_LIMIT)/FREE_LIMIT*100)+'%';
+   const locked=remaining===0;gate.classList.toggle('is-locked',locked);
+   title.textContent=locked?'You have used all 50 free generations':'Your first 50 barcode generations are free';
+   message.textContent=locked?'Your preview free allowance is finished. A verified monthly subscription is required for continued use.':'You have '+remaining+' free generation'+(remaining===1?'':'s')+' remaining. Single generation counts as one; bulk and label actions count each non-empty value.';
+   button.textContent=locked?'Subscribe to Continue · Monthly':'View Monthly Pro';
+   note.textContent='Preview only: this counter uses browser storage and can be reset. It is not secure and does not activate paid access.';
+ }
+ const estimateBulk=()=>{const el=document.getElementById('bulkData');return el?(el.value.split(/\r?\n/).map(x=>x.trim()).filter(Boolean).length):0};
+ const estimateLabels=()=>{const el=document.getElementById('labelData');return el?(el.value.split(/\r?\n/).map(x=>x.trim()).filter(Boolean).length):0};
+ const canUse=n=>getCount()+Math.max(1,n)<=FREE_LIMIT;
+ const lockNotice=()=>{render();gate.scrollIntoView({behavior:'smooth',block:'center'});message.textContent='Free limit reached. Monthly checkout is not connected in this preview yet, so no payment has been taken.'};
+ document.addEventListener('click',function(e){
+   const target=e.target.closest('button');if(!target)return;
+   if(target.id==='freemiumSubscribe'){e.preventDefault();e.stopImmediatePropagation();message.textContent='Automatic monthly checkout is not connected yet. Safepay merchant onboarding, a recurring plan, secure account identity, database storage and verified webhooks must be configured before payments can be accepted.';note.textContent='No payment will be charged from this preview.';return}
+   let cost=0;
+   if(target.id==='generate')cost=1;
+   else if(target.id==='bulkGenerate')cost=Math.min(500,estimateBulk());
+   else if(target.id==='labelPreviewBtn'||target.id==='labelPrintBtn')cost=Math.min(500,estimateLabels());
+   if(!cost)return;
+   if(!canUse(cost)){e.preventDefault();e.stopImmediatePropagation();lockNotice();return}
+   setCount(getCount()+cost);
+ },true);
+ render();
+})();
+</script>
 
 </body></html>`);w.document.close();w.focus();setTimeout(()=>w.print(),300)};
 $('#clear').onclick=()=>{renderFields(currentType);$('#data').value='';generate();$('#status').textContent='Cleared • Enter data to generate'};
