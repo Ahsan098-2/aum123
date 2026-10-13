@@ -52,6 +52,19 @@
     }
   }
 
+  function applyLanguage(code) {
+    var custom = document.getElementById('dt-language-select');
+    var native = document.querySelector('#dt-google-translate select.goog-te-combo');
+    if (!custom || !native || !supported.includes(code)) return false;
+    custom.value = code;
+    native.value = code;
+    native.dispatchEvent(new Event('change', { bubbles: true }));
+    return true;
+  }
+
+  var browserLanguage = (navigator.language || 'en').toLowerCase().split('-')[0];
+  var initialLanguage = supported.includes(browserLanguage) ? browserLanguage : 'en';
+
   window.googleTranslateElementInit = function () {
     if (!window.google || !google.translate || !google.translate.TranslateElement) return;
     new google.translate.TranslateElement({
@@ -59,12 +72,37 @@
       includedLanguages: supported.join(','),
       autoDisplay: false
     }, 'dt-google-translate');
+
     var custom = document.getElementById('dt-language-select');
-    var native = document.querySelector('#dt-google-translate select.goog-te-combo');
-    if (custom && native) {
+    if (custom) {
+      custom.value = initialLanguage;
       custom.addEventListener('change', function () {
-        native.value = custom.value;
-        native.dispatchEvent(new Event('change'));
+        var chosen = custom.value;
+        try { localStorage.setItem('dt-language', chosen); } catch (e) {}
+        var attempts = 0;
+        if (applyLanguage(chosen)) return;
+        var observer = new MutationObserver(function () {
+          attempts++;
+          if (applyLanguage(chosen) || attempts > 30) observer.disconnect();
+        });
+        observer.observe(document.getElementById('dt-google-translate'), {
+          childList: true, subtree: true
+        });
+      });
+    }
+
+    try {
+      var saved = localStorage.getItem('dt-language');
+      if (saved && supported.includes(saved)) initialLanguage = saved;
+    } catch (e) {}
+    if (initialLanguage !== 'en') {
+      var attempts = 0;
+      var observer = new MutationObserver(function () {
+        attempts++;
+        if (applyLanguage(initialLanguage) || attempts > 30) observer.disconnect();
+      });
+      observer.observe(document.getElementById('dt-google-translate'), {
+        childList: true, subtree: true
       });
     }
   };
