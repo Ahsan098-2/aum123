@@ -446,7 +446,7 @@ function showToast(t){let x=$('#toast');x.textContent=t;x.classList.add('show');
    lastResults=makeItems(values);
    const valid=lastResults.filter(x=>!x.error),invalid=lastResults.filter(x=>x.error);
    byId('bulkValidCount').textContent=valid.length;byId('bulkInvalidCount').textContent=invalid.length;
-   byId('bulkPreview').innerHTML=lastResults.map((x,i)=>'<div class="bulk-item">'+(x.svg||'')+'<code>'+safeText(x.value)+'</code>'+(x.error?'<small>'+safeText(x.error)+'</small>':'<button type="button" class="btn" data-bulk-download="'+i+'">Download SVG</button>')+'</div>').join('');
+   byId('bulkPreview').innerHTML=lastResults.map((x,i)=>'<div class="bulk-item">'+(x.svg||'')+'<code>'+safeText(x.value)+'</code>'+(x.error?'<small>'+safeText(x.error)+'</small>':'<div class="action-row"><button type="button" class="btn" data-bulk-download="'+i+'">Download SVG</button><button type="button" class="btn" data-bulk-png="'+i+'">Download PNG</button></div>')+'</div>').join('');
    setStatus('bulkStatus',values.length+' processed. '+valid.length+' valid, '+invalid.length+' invalid.'+(limited.excess?' '+limited.excess+' extra rows were not included because the batch limit is 500.':''));
    byId('labelData').value=values.join('\n');
  };
@@ -490,6 +490,14 @@ function showToast(t){let x=$('#toast');x.textContent=t;x.classList.add('show');
    const item=lastResults[+b.dataset.bulkDownload];if(!item||!item.svg)return;
    const blob=new Blob([item.svg],{type:'image/svg+xml;charset=utf-8'}),url=URL.createObjectURL(blob),a=document.createElement('a');
    a.href=url;a.download=(item.value.replace(/[^a-z0-9_-]+/gi,'_').slice(0,60)||'barcode')+'.svg';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);
+ });
+ byId('bulkPreview').addEventListener('click',e=>{
+   const b=e.target.closest('[data-bulk-png]');if(!b)return;
+   const item=lastResults[+b.dataset.bulkPng];if(!item||!item.svg)return;
+   const blob=new Blob([item.svg],{type:'image/svg+xml;charset=utf-8'}),url=URL.createObjectURL(blob),img=new Image();
+   img.onload=()=>{const scale=3,canvas=document.createElement('canvas');canvas.width=Math.max(1,img.width*scale);canvas.height=Math.max(1,img.height*scale);const ctx=canvas.getContext('2d');ctx.fillStyle='#FFFFFF';ctx.fillRect(0,0,canvas.width,canvas.height);ctx.drawImage(img,0,0,canvas.width,canvas.height);URL.revokeObjectURL(url);const a=document.createElement('a');a.href=canvas.toDataURL('image/png');a.download=(item.value.replace(/[^a-z0-9_-]+/gi,'_').slice(0,60)||'barcode')+'.png';a.click()};
+   img.onerror=()=>{URL.revokeObjectURL(url);setStatus('bulkStatus','Could not export PNG for '+item.value+'. Try SVG download instead.')};
+   img.src=url;
  });
  byId('bulkCsvExport').addEventListener('click',()=>{
    if(!lastResults.length){setStatus('bulkStatus','Generate a batch first, then export the results.');return}
