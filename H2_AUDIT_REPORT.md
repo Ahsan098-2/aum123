@@ -29,7 +29,7 @@ Pages with heading-structure issues: 1
 | `tools/age-calculator.html` | 1 | 8 | None | None |
 | `tools/ats-resume-score-checker.html` | 1 | 13 | None | None |
 | `tools/background-remover.html` | 1 | 13 | None | None |
-| `tools/barcode-generator.html` | 1 | 6 | None | None |
+| `tools/barcode-generator.html` | 1 | 10 | None | None |
 | `tools/bio-ideas-generator.html` | 1 | 3 | None | None |
 | `tools/bmi-calculator.html` | 1 | 6 | None | None |
 | `tools/business-break-even-calculator.html` | 1 | 11 | None | None |
@@ -64,7 +64,7 @@ Pages with heading-structure issues: 1
 | `tools/text-case-converter.html` | 1 | 6 | None | None |
 | `tools/unit-converter.html` | 1 | 6 | None | None |
 | `tools/url-encoder-decoder.html` | 1 | 6 | None | None |
-| `tools/website-seo-audit-tool.html` | 1 | 10 | None | None |
+| `tools/website-seo-audit-tool.html` | 1 | 11 | None | None |
 | `tools/website-seo-audit.html` | 1 | 6 | None | None |
 | `tools/word-counter.html` | 1 | 6 | None | None |
 | `tools.html` | 1 | 3 | None | None |
