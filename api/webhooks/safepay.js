@@ -24,8 +24,16 @@ export default async function handler(req, res) {
       headers: { ...({ apikey: env("SUPABASE_SERVICE_ROLE_KEY"), Authorization: "Bearer " + env("SUPABASE_SERVICE_ROLE_KEY"), "Content-Type": "application/json", Prefer: "return=minimal" }) },
       body: JSON.stringify({ event_id: eventId, event_type: eventType, payload: event })
     });
-    if (insert.status === 409) return json(res, 200, { received: true, duplicate: true });
-    if (!insert.ok) return json(res, 500, { error: "event_persistence_failed" });
+    if (insert.status === 409) {
+      const existing = await fetch(env("SUPABASE_URL").replace(/\/$/, "") + "/rest/v1/safepay_webhook_events?event_id=eq." + encodeURIComponent(eventId) + "&select=processed_at", {
+        headers: { apikey: env("SUPABASE_SERVICE_ROLE_KEY"), Authorization: "Bearer " + env("SUPABASE_SERVICE_ROLE_KEY") }
+      });
+      const prior = await existing.json();
+      if (prior?.[0]?.processed_at) return json(res, 200, { received: true, duplicate: true });
+      // Previous attempt persisted the event but did not finish. Continue processing it.
+    } else if (!insert.ok) {
+      return json(res, 500, { error: "event_persistence_failed" });
+    }
 
     const data = event.data || event.payload || event;
     const reference = String(data.reference || event.reference || "");
@@ -52,10 +60,10 @@ export default async function handler(req, res) {
         }
         const base = env("SUPABASE_URL").replace(/\/$/, "");
         const key = env("SUPABASE_SERVICE_ROLE_KEY");
-        const update = await fetch(base + "/rest/v1/barcode_entitlements?user_id=eq." + encodeURIComponent(userId), {
-          method: "PATCH",
-          headers: { apikey: key, Authorization: "Bearer " + key, "Content-Type": "application/json", Prefer: "return=minimal" },
-          body: JSON.stringify(patch)
+        const update = await fetch(base + "/rest/v1/barcode_entitlements?on_conflict=user_id", {
+          method: "POST",
+          headers: { apikey: key, Authorization: "Bearer " + key, "Content-Type": "application/json", Prefer: "resolution=merge-duplicates,return=minimal" },
+          body: JSON.stringify({ user_id: userId, ...patch })
         });
         if (!update.ok) return json(res, 500, { error: "entitlement_update_failed" });
         await fetch(base + "/rest/v1/barcode_subscription_intents?reference=eq." + encodeURIComponent(reference), {
