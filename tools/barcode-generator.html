@@ -356,25 +356,7 @@ else{let svg=$('#barcode'),xml=new XMLSerializer().serializeToString(svg),svgBlo
 }
 $('#downloadPng').onclick=()=>download('png');$('#downloadSvg').onclick=()=>download('svg');
 $('#print').onclick=()=>{let svg=$('#barcode').outerHTML,w=window.open('','_blank');w.document.write(`<html><head><title>Print Barcode</title><style>body{margin:0;min-height:100vh;display:flex;align-items:center;justify-content:center}svg{max-width:90vw;height:auto}</style></head><body>${svg}
-<section class="seo-content-section" aria-labelledby="seo-content-title">
-  <div class="seo-content-inner">
-    <h2 id="seo-content-title">Barcode Generator Online</h2>
-    <p>Use this free <strong>barcode generator</strong> from Daily Toolkit to complete your task quickly in your browser. This qr and barcode utility is designed to be simple, fast and easy to use on desktop and mobile devices.</p>
-    <h3>How to Use This Tool</h3>
-    <ol>
-      <li>Enter or upload the information required by the tool.</li>
-      <li>Choose the available options that match your task.</li>
-      <li>Run the tool and review the result before downloading or copying it.</li>
-    </ol>
-    <h3>Popular Related Searches</h3>
-    <ul><li>barcode generator online</li><li>create barcode</li><li>free barcode maker</li><li>product barcode generator</li></ul>
-    <h3>Frequently Asked Questions</h3>
-    <h4>Is this barcode generator free?</h4>
-    <p>Yes. Daily Toolkit provides this online utility for free, with no software installation required.</p>
-    <h4>Can I use it on a phone?</h4>
-    <p>Yes. The tool is designed to work in a modern mobile or desktop browser.</p>
-  </div>
-</section>
+
 
 <script>
 (function(){
@@ -479,7 +461,7 @@ $('#print').onclick=()=>{let svg=$('#barcode').outerHTML,w=window.open('','_blan
    const url=URL.createObjectURL(new Blob([csv],{type:'text/csv;charset=utf-8'})),a=document.createElement('a');a.href=url;a.download='daily-toolkit-barcode-results.csv';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);
  });
  byId('bulkPrint').addEventListener('click',()=>{
-   if(!lastResults.length)showBulk();
+   showBulk();
    const valid=lastResults.filter(x=>!x.error);if(!valid.length){setStatus('bulkStatus','Generate at least one valid barcode before printing.');return}
    openPrint(makePrintDoc(valid,'Daily Toolkit Barcode Batch'));
  });
