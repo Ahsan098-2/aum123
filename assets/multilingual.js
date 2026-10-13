@@ -112,6 +112,13 @@
     mount();
   }
 
+  // Re-attach if a page/header script replaces DOM nodes after initialization.
+  // This observer only restores our selector; it does not modify other page content.
+  var keepAlive = new MutationObserver(function () {
+    if (document.body && !document.body.contains(host)) mount();
+  });
+  keepAlive.observe(document.documentElement, { childList: true, subtree: true });
+
   var translateScript = document.createElement('script');
   translateScript.src = 'https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit';
   translateScript.async = true;
