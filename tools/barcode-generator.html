@@ -378,41 +378,66 @@ $('#print').onclick=()=>{let svg=$('#barcode').outerHTML,w=window.open('','_blan
 
 <script>
 /* Freemium preview prototype.
-   Browser storage is only a UI prototype, not tamper-resistant enforcement.
-   Do not enable paid access until server-side identity, quota storage and verified Safepay webhooks are configured. */
+   This is only a browser-side demonstration. Real enforcement requires authenticated users,
+   persistent server-side quotas and verified subscription webhooks. */
 (function(){
  const FREE_LIMIT=50, STORAGE_KEY='dt_barcode_free_usage_preview_v1';
  const gate=document.getElementById('freemiumGate');
  if(!gate)return;
- const usedEl=document.getElementById('freeUsed'),fill=document.getElementById('freeMeterFill'),title=document.getElementById('freemiumTitle'),message=document.getElementById('freemiumMessage'),button=document.getElementById('freemiumSubscribe'),note=document.getElementById('freemiumNote');
- let used=0;
- try{used=Math.max(0,Math.min(100000,parseInt(localStorage.getItem(STORAGE_KEY)||'0',10)||0))}catch(e){}
+ const byId=id=>document.getElementById(id);
+ const usedEl=byId('freeUsed'),fill=byId('freeMeterFill'),title=byId('freemiumTitle'),message=byId('freemiumMessage'),button=byId('freemiumSubscribe'),note=byId('freemiumNote');
+ let used=0,singleOutputAvailable=false;
+ try{used=Math.max(0,parseInt(localStorage.getItem(STORAGE_KEY)||'0',10)||0)}catch(e){}
  const getCount=()=>{try{return Math.max(0,parseInt(localStorage.getItem(STORAGE_KEY)||'0',10)||0)}catch(e){return used}};
  const setCount=n=>{used=Math.max(0,n);try{localStorage.setItem(STORAGE_KEY,String(used))}catch(e){};render()};
+ const remaining=()=>Math.max(0,FREE_LIMIT-getCount());
  function render(){
-   used=getCount();const remaining=Math.max(0,FREE_LIMIT-used);
+   used=getCount();const left=remaining(),locked=left===0;
    usedEl.textContent=Math.min(used,FREE_LIMIT);fill.style.width=(Math.min(used,FREE_LIMIT)/FREE_LIMIT*100)+'%';
-   const locked=remaining===0;gate.classList.toggle('is-locked',locked);
+   gate.classList.toggle('is-locked',locked);
    title.textContent=locked?'You have used all 50 free generations':'Your first 50 barcode generations are free';
-   message.textContent=locked?'Your preview free allowance is finished. A verified monthly subscription is required for continued use.':'You have '+remaining+' free generation'+(remaining===1?'':'s')+' remaining. Single generation counts as one; bulk and label actions count each non-empty value.';
+   message.textContent=locked?'Your free allowance is finished. A verified monthly subscription would be required to generate more barcodes.':'You have '+left+' free generation'+(left===1?'':'s')+' remaining. Valid single, bulk and label barcodes count toward the allowance.';
    button.textContent=locked?'Subscribe to Continue · Monthly':'View Monthly Pro';
-   note.textContent='Preview only: this counter uses browser storage and can be reset. It is not secure and does not activate paid access.';
+   note.textContent='Preview prototype only: usage is stored in this browser and can be reset. Checkout and secure paid access are not connected.';
  }
- const estimateBulk=()=>{const el=document.getElementById('bulkData');return el?(el.value.split(/\r?\n/).map(x=>x.trim()).filter(Boolean).length):0};
- const estimateLabels=()=>{const el=document.getElementById('labelData');return el?(el.value.split(/\r?\n/).map(x=>x.trim()).filter(Boolean).length):0};
- const canUse=n=>getCount()+Math.max(1,n)<=FREE_LIMIT;
- const lockNotice=()=>{render();gate.scrollIntoView({behavior:'smooth',block:'center'});message.textContent='Free limit reached. Monthly checkout is not connected in this preview yet, so no payment has been taken.'};
+ const values=id=>{const el=byId(id);return el?el.value.split(/\r?\n/).map(v=>v.trim()).filter(Boolean):[]};
+ const showLimit=()=>{render();gate.scrollIntoView({behavior:'smooth',block:'center'});message.textContent='The 50 free generations have been used. Automatic checkout is not connected in this preview, so no payment can be taken.'};
+ const trimToRemaining=id=>{const el=byId(id),left=remaining();if(!el)return 0;const list=values(id);if(list.length>left)el.value=list.slice(0,left).join('\n');return Math.min(list.length,left)};
+ const afterClick=fn=>setTimeout(fn,0);
  document.addEventListener('click',function(e){
    const target=e.target.closest('button');if(!target)return;
-   if(target.id==='freemiumSubscribe'){e.preventDefault();e.stopImmediatePropagation();message.textContent='Automatic monthly checkout is not connected yet. Safepay merchant onboarding, a recurring plan, secure account identity, database storage and verified webhooks must be configured before payments can be accepted.';note.textContent='No payment will be charged from this preview.';return}
-   let cost=0;
-   if(target.id==='generate')cost=1;
-   else if(target.id==='bulkGenerate')cost=Math.min(500,estimateBulk());
-   else if(target.id==='labelPreviewBtn'||target.id==='labelPrintBtn')cost=Math.min(500,estimateLabels());
-   if(!cost)return;
-   if(!canUse(cost)){e.preventDefault();e.stopImmediatePropagation();lockNotice();return}
-   setCount(getCount()+cost);
+   if(target.id==='freemiumSubscribe'){
+     e.preventDefault();e.stopImmediatePropagation();
+     message.textContent='Monthly Safepay checkout is not connected. Before charging anyone, the site needs merchant onboarding, a monthly plan, server credentials, user accounts, a database and verified webhooks.';
+     note.textContent='No payment is collected and no paid access is granted in this preview.';return;
+   }
+   if(target.id==='generate'){
+     if(remaining()<1){e.preventDefault();e.stopImmediatePropagation();showLimit();return;}
+     afterClick(()=>{const svg=byId('barcode');if(svg&&svg.children.length){setCount(getCount()+1);singleOutputAvailable=true;}});
+     return;
+   }
+   if(target.id==='bulkGenerate'){
+     if(remaining()<1){e.preventDefault();e.stopImmediatePropagation();showLimit();return;}
+     trimToRemaining('bulkData');
+     afterClick(()=>{const n=Math.max(0,parseInt(byId('bulkValidCount')?.textContent||'0',10)||0);if(n){setCount(Math.min(FREE_LIMIT,getCount()+n));}});
+     return;
+   }
+   if(target.id==='labelPreviewBtn'){
+     if(remaining()<1){e.preventDefault();e.stopImmediatePropagation();showLimit();return;}
+     trimToRemaining('labelData');
+     afterClick(()=>{const n=byId('labelPreview')?.querySelectorAll('.label-preview-item').length||0;if(n)setCount(Math.min(FREE_LIMIT,getCount()+n));});
+     return;
+   }
+   if(['downloadPng','downloadSvg','print'].includes(target.id)){
+     if(remaining()===0&&!singleOutputAvailable){e.preventDefault();e.stopImmediatePropagation();showLimit();}
+     return;
+   }
  },true);
+ ['data','barWidth','barWidthNum','barHeight','fontSize','font','lineColor','bgColor','margin','showText','flat'].forEach(id=>{
+   const el=byId(id);if(!el)return;
+   el.addEventListener('input',()=>{singleOutputAvailable=false;});
+   el.addEventListener('change',()=>{singleOutputAvailable=false;});
+ });
  render();
 })();
 </script>
