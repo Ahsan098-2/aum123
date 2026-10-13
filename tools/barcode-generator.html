@@ -407,27 +407,7 @@ function showToast(t){let x=$('#toast');x.textContent=t;x.classList.add('show');
    const cssPrint=isLabels
     ? '@page{size:A4 portrait;margin:'+margin+'mm}body{margin:0;font-family:Arial,sans-serif}.sheet{display:grid;grid-template-columns:repeat('+cols+','+width+'mm);grid-auto-rows:'+height+'mm;gap:'+gap+'mm;align-content:start}.label{width:'+width+'mm;height:'+height+'mm;box-sizing:border-box;border:0;display:flex;flex-direction:column;align-items:center;justify-content:center;overflow:hidden;padding:2mm;break-inside:avoid;text-align:center}.label svg{width:100%;height:auto;max-height:65%}.label span,.label strong{font-size:8pt;line-height:1.1;overflow-wrap:anywhere}'
     : '@page{size:A4 portrait;margin:10mm}body{font-family:Arial,sans-serif;margin:0}.sheet{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8mm}.item{border:1px solid #ddd;padding:5mm;break-inside:avoid;text-align:center}.item svg{width:100%;height:auto;max-height:30mm}.item span{display:block;font-size:9pt;overflow-wrap:anywhere}';
-   return '<!doctype html><html><head><meta charset="utf-8"><title>'+safeText(title)+'</title><style>'+cssPrint+'@media screen{body{padding:12px;background:#eee}.sheet{background:#fff;padding:8px;min-height:100vh}}@media print{body{padding:0}.sheet{padding:0}}</style></head><body><main class="sheet">'+cells+'</main><script>window.onload=function(){setTimeout(function(){window.print()},350)};<\/script>
-<section class="seo-content-section" aria-labelledby="seo-content-title">
-  <div class="seo-content-inner">
-    <h2 id="seo-content-title">Barcode Generator Online</h2>
-    <p>Use this free <strong>barcode generator</strong> from Daily Toolkit to complete your task quickly in your browser. This qr and barcode utility is designed to be simple, fast and easy to use on desktop and mobile devices.</p>
-    <h3>How to Use This Tool</h3>
-    <ol>
-      <li>Enter or upload the information required by the tool.</li>
-      <li>Choose the available options that match your task.</li>
-      <li>Run the tool and review the result before downloading or copying it.</li>
-    </ol>
-    <h3>Popular Related Searches</h3>
-    <ul><li>barcode generator online</li><li>create barcode</li><li>free barcode maker</li><li>product barcode generator</li></ul>
-    <h3>Frequently Asked Questions</h3>
-    <h4>Is this barcode generator free?</h4>
-    <p>Yes. Daily Toolkit provides this online utility for free, with no software installation required.</p>
-    <h4>Can I use it on a phone?</h4>
-    <p>Yes. The tool is designed to work in a modern mobile or desktop browser.</p>
-  </div>
-</section>
-</body></html>';
+   return '<!doctype html><html><head><meta charset="utf-8"><title>'+safeText(title)+'</title><style>'+cssPrint+'@media screen{body{padding:12px;background:#eee}.sheet{background:#fff;padding:8px;min-height:100vh}}@media print{body{padding:0}.sheet{padding:0}}</style></head><body><main class="sheet">'+cells+'</main><script>window.onload=function(){setTimeout(function(){window.print()},350)};<\/script></body></html>';
  };
  const openPrint=(doc)=>{const w=window.open('','_blank');if(!w){setStatus('bulkStatus','Your browser blocked the print window. Allow pop-ups for this page and try again.');return}w.document.open();w.document.write(doc);w.document.close()};
  const makeItems=values=>{
