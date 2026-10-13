@@ -427,6 +427,18 @@ $('#print').onclick=()=>{let svg=$('#barcode').outerHTML,w=window.open('','_blan
      afterClick(()=>{const n=byId('labelPreview')?.querySelectorAll('.label-preview-item').length||0;if(n)setCount(Math.min(FREE_LIMIT,getCount()+n));});
      return;
    }
+   if(target.id==='bulkPrint'){
+     if(remaining()<1){e.preventDefault();e.stopImmediatePropagation();showLimit();return;}
+     trimToRemaining('bulkData');
+     afterClick(()=>{const n=Math.max(0,parseInt(byId('bulkValidCount')?.textContent||'0',10)||0);if(n)setCount(Math.min(FREE_LIMIT,getCount()+n));});
+     return;
+   }
+   if(target.id==='labelPrintBtn'){
+     if(remaining()<1){e.preventDefault();e.stopImmediatePropagation();showLimit();return;}
+     trimToRemaining('labelData');
+     afterClick(()=>{const n=byId('labelPreview')?.querySelectorAll('.label-preview-item').length||0;if(n)setCount(Math.min(FREE_LIMIT,getCount()+n));});
+     return;
+   }
    if(['downloadPng','downloadSvg','print'].includes(target.id)){
      if(remaining()===0&&!singleOutputAvailable){e.preventDefault();e.stopImmediatePropagation();showLimit();}
      return;
