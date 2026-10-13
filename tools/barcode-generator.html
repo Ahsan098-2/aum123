@@ -201,7 +201,7 @@ footer{background:#0A0A0A;color:#fff;padding:55px 4% 25px}.foot{max-width:1200px
     </div>
     <div class="inline">
       <div class="field"><label for="labelMargin">Page margin (mm)</label><input id="labelMargin" type="number" min="0" max="25" value="8"></div>
-      <div class="field"><label for="labelGap">Label gap (mm)</label><input id="labelGap" type="number" min="0" max="15" value="2"></div>
+      <div class="field"><label for="labelGap">Label gap (mm)</label><input id="labelGap" type="number" min="0" max="15" value="1.5"></div>
     </div>
     <div class="inline">
       <div class="field"><label for="labelColumns">Columns</label><input id="labelColumns" type="number" min="1" max="5" value="3"></div>
@@ -392,8 +392,8 @@ function showToast(t){let x=$('#toast');x.textContent=t;x.classList.add('show');
  const readValues=txt=>txt.split(/\r?\n/).map(v=>v.trim()).filter(Boolean);
  const limitValues=values=>({values:values.slice(0,500),excess:Math.max(0,values.length-500)});
  const renderSvg=(value,format,height,displayValue=true)=>{
-   const svg=document.createElementNS('http://www.w3.org/2000/svg','svg');
-   try{JsBarcode(svg,value,{format,width:1.7,height,displayValue,fontSize:12,margin:8,valid:(valid)=>{}});return {svg,error:''}}
+   const svg=document.createElementNS('http://www.w3.org/2000/svg','svg');let isValid=true;
+   try{JsBarcode(svg,value,{format,width:1.7,height,displayValue,fontSize:12,margin:8,valid:(valid)=>{isValid=valid}});if(!isValid)return {svg:null,error:'Invalid data for '+format};return {svg,error:''}}
    catch(e){return {svg:null,error:'Invalid data for '+format}}
  };
  const dataForLabels=()=>readValues(byId('labelData').value);
