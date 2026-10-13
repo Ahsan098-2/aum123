@@ -136,7 +136,13 @@ footer{background:#0A0A0A;color:#fff;padding:55px 4% 25px}.foot{max-width:1200px
 <section class="tool-section"><div class="container"><div class="freemium-wrap" id="freemiumGate" aria-live="polite">
   <div class="freemium-card">
     <div class="freemium-copy"><span class="freemium-kicker">DAILY TOOLKIT PRO</span><h2 id="freemiumTitle">Your first 50 barcode generations are free</h2><p id="freemiumMessage">Try the single generator, bulk tools and printable labels. Your free usage counter is shown below.</p></div>
-    <div class="freemium-meter"><div class="freemium-meter-label"><strong id="freeUsed">0</strong><span>of 50 free generations used</span></div><div class="freemium-track"><span id="freeMeterFill"></span></div><button type="button" class="btn primary" id="freemiumSubscribe">Unlock Pro · Monthly plan</button><small id="freemiumNote">Preview mode: secure account-based limits and automatic subscription verification must be connected before launch.</small></div>
+    <div class="freemium-meter"><div class="freemium-meter-label"><strong id="freeUsed">0</strong><span>of 50 free generations used</span></div><div class="freemium-track"><span id="freeMeterFill"></span></div><button type="button" class="btn primary" id="freemiumSubscribe">Unlock Pro · Monthly plan</button><div class="barcode-auth-panel" style="display:grid;gap:8px">
+      <label for="barcodeAccountEmail" style="font-size:.7rem;font-weight:700">ACCOUNT EMAIL</label>
+      <input id="barcodeAccountEmail" type="email" autocomplete="email" placeholder="you@example.com" style="width:100%;border:1px solid var(--gray-300);padding:.7rem" />
+      <div style="display:flex;gap:8px;flex-wrap:wrap"><button type="button" class="btn" id="barcodeSignIn">Email me a secure sign-in link</button><button type="button" class="btn" id="barcodeSignOut" hidden>Sign out</button></div>
+      <small id="barcodeAuthStatus" role="status">Sign in to start your server-tracked free allowance.</small>
+    </div>
+    <small id="freemiumNote">Preview branch only. Account auth, server quota and Safepay Sandbox must be configured in Vercel Preview.</small></div>
   </div>
 </div>
 <style>
@@ -381,78 +387,8 @@ $('#print').onclick=()=>{let svg=$('#barcode').outerHTML,w=window.open('','_blan
 /* Freemium preview prototype.
    This is only a browser-side demonstration. Real enforcement requires authenticated users,
    persistent server-side quotas and verified subscription webhooks. */
-(function(){
- const FREE_LIMIT=50, STORAGE_KEY='dt_barcode_free_usage_preview_v1';
- const gate=document.getElementById('freemiumGate');
- if(!gate)return;
- const byId=id=>document.getElementById(id);
- const usedEl=byId('freeUsed'),fill=byId('freeMeterFill'),title=byId('freemiumTitle'),message=byId('freemiumMessage'),button=byId('freemiumSubscribe'),note=byId('freemiumNote');
- let used=0,singleOutputAvailable=false;
- try{used=Math.max(0,parseInt(localStorage.getItem(STORAGE_KEY)||'0',10)||0)}catch(e){}
- const getCount=()=>{try{return Math.max(0,parseInt(localStorage.getItem(STORAGE_KEY)||'0',10)||0)}catch(e){return used}};
- const setCount=n=>{used=Math.max(0,n);try{localStorage.setItem(STORAGE_KEY,String(used))}catch(e){};render()};
- const remaining=()=>Math.max(0,FREE_LIMIT-getCount());
- function render(){
-   used=getCount();const left=remaining(),locked=left===0;
-   usedEl.textContent=Math.min(used,FREE_LIMIT);fill.style.width=(Math.min(used,FREE_LIMIT)/FREE_LIMIT*100)+'%';
-   gate.classList.toggle('is-locked',locked);
-   title.textContent=locked?'You have used all 50 free generations':'Your first 50 barcode generations are free';
-   message.textContent=locked?'Your free allowance is finished. A verified monthly subscription would be required to generate more barcodes.':'You have '+left+' free generation'+(left===1?'':'s')+' remaining. Valid single, bulk and label barcodes count toward the allowance.';
-   button.textContent=locked?'Subscribe to Continue · Monthly':'View Monthly Pro';
-   note.textContent='Preview prototype only: usage is stored in this browser and can be reset. Checkout and secure paid access are not connected.';
- }
- const values=id=>{const el=byId(id);return el?el.value.split(/\r?\n/).map(v=>v.trim()).filter(Boolean):[]};
- const showLimit=()=>{render();gate.scrollIntoView({behavior:'smooth',block:'center'});message.textContent='The 50 free generations have been used. Automatic checkout is not connected in this preview, so no payment can be taken.'};
- const trimToRemaining=id=>{const el=byId(id),left=remaining();if(!el)return 0;const list=values(id);if(list.length>left)el.value=list.slice(0,left).join('\n');return Math.min(list.length,left)};
- const afterClick=fn=>setTimeout(fn,0);
- document.addEventListener('click',function(e){
-   const target=e.target.closest('button');if(!target)return;
-   if(target.id==='freemiumSubscribe'){
-     e.preventDefault();e.stopImmediatePropagation();
-     message.textContent='Monthly Safepay checkout is not connected. Before charging anyone, the site needs merchant onboarding, a monthly plan, server credentials, user accounts, a database and verified webhooks.';
-     note.textContent='No payment is collected and no paid access is granted in this preview.';return;
-   }
-   if(target.id==='generate'){
-     if(remaining()<1){e.preventDefault();e.stopImmediatePropagation();showLimit();return;}
-     afterClick(()=>{const svg=byId('barcode');if(svg&&svg.children.length){setCount(getCount()+1);singleOutputAvailable=true;}});
-     return;
-   }
-   if(target.id==='bulkGenerate'){
-     if(remaining()<1){e.preventDefault();e.stopImmediatePropagation();showLimit();return;}
-     trimToRemaining('bulkData');
-     afterClick(()=>{const n=Math.max(0,parseInt(byId('bulkValidCount')?.textContent||'0',10)||0);if(n){setCount(Math.min(FREE_LIMIT,getCount()+n));}});
-     return;
-   }
-   if(target.id==='labelPreviewBtn'){
-     if(remaining()<1){e.preventDefault();e.stopImmediatePropagation();showLimit();return;}
-     trimToRemaining('labelData');
-     afterClick(()=>{const n=byId('labelPreview')?.querySelectorAll('.label-preview-item').length||0;if(n)setCount(Math.min(FREE_LIMIT,getCount()+n));});
-     return;
-   }
-   if(target.id==='bulkPrint'){
-     if(remaining()<1){e.preventDefault();e.stopImmediatePropagation();showLimit();return;}
-     trimToRemaining('bulkData');
-     afterClick(()=>{const n=Math.max(0,parseInt(byId('bulkValidCount')?.textContent||'0',10)||0);if(n)setCount(Math.min(FREE_LIMIT,getCount()+n));});
-     return;
-   }
-   if(target.id==='labelPrintBtn'){
-     if(remaining()<1){e.preventDefault();e.stopImmediatePropagation();showLimit();return;}
-     trimToRemaining('labelData');
-     afterClick(()=>{const n=byId('labelPreview')?.querySelectorAll('.label-preview-item').length||0;if(n)setCount(Math.min(FREE_LIMIT,getCount()+n));});
-     return;
-   }
-   if(['downloadPng','downloadSvg','print'].includes(target.id)){
-     if(remaining()===0&&!singleOutputAvailable){e.preventDefault();e.stopImmediatePropagation();showLimit();}
-     return;
-   }
- },true);
- ['data','barWidth','barWidthNum','barHeight','fontSize','font','lineColor','bgColor','margin','showText','flat'].forEach(id=>{
-   const el=byId(id);if(!el)return;
-   el.addEventListener('input',()=>{singleOutputAvailable=false;});
-   el.addEventListener('change',()=>{singleOutputAvailable=false;});
- });
- render();
-})();
+// Replaced browser-only usage counter with account auth + server quota reservation.
+
 </script>
 
 
@@ -475,6 +411,103 @@ $('#print').onclick=()=>{let svg=$('#barcode').outerHTML,w=window.open('','_blan
     <p>Yes. The tool is designed to work in a modern mobile or desktop browser.</p>
   </div>
 </section>
+<script type="module">
+import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
+const gate=document.getElementById("freemiumGate");
+if(gate){
+ const $=id=>document.getElementById(id);
+ const status=$("barcodeAuthStatus"),email=$("barcodeAccountEmail"),signIn=$("barcodeSignIn"),signOut=$("barcodeSignOut");
+ const title=$("freemiumTitle"),message=$("freemiumMessage"),usedEl=$("freeUsed"),fill=$("freeMeterFill"),subscribe=$("freemiumSubscribe"),note=$("freemiumNote");
+ let supabase=null,session=null,quota=null,busy=false,skipOnce=null;
+ const setStatus=(s)=>{status.textContent=s};
+ const post=async(path,body)=>{
+   if(!session?.access_token) throw new Error("Please sign in first.");
+   const r=await fetch(path,{method:"POST",headers:{"Content-Type":"application/json","Authorization":"Bearer "+session.access_token},body:JSON.stringify(body||{})});
+   const d=await r.json().catch(()=>({}));
+   if(!r.ok){const e=new Error(d.message||d.error||"Request failed");e.status=r.status;e.data=d;throw e}
+   return d;
+ };
+ const refresh=async()=>{
+   if(!session){quota=null;usedEl.textContent="0";fill.style.width="0%";title.textContent="Your first 50 barcode generations are free";message.textContent="Sign in to track your free usage securely across devices.";subscribe.textContent="Subscribe · Rs 499/month";signOut.hidden=true;note.textContent="50 free barcode units per account, then Rs 499/month for 1,000 units. Preview billing only.";return}
+   signOut.hidden=false;email.value=session.user?.email||email.value;
+   const r=await fetch("/api/barcode/quota",{headers:{Authorization:"Bearer "+session.access_token}});
+   const d=await r.json().catch(()=>({}));
+   if(!r.ok) throw new Error(d.message||d.error||"Could not load server quota.");
+   quota=d;usedEl.textContent=String(d.used||0);fill.style.width=(Math.min(100,(d.used||0)/(d.limit||50)*100))+"%";
+   title.textContent=d.tier==="pro"?"Daily Toolkit Pro":"Your first 50 barcode generations are free";
+   message.textContent=d.tier==="pro"?(d.remaining+" of 1,000 monthly barcode units remaining."):((d.remaining||0)+" of 50 free barcode units remaining.");
+   subscribe.textContent=d.tier==="pro"?"Pro active · Rs 499/month":"Upgrade to Pro · Rs 499/month";
+   setStatus("Signed in as "+(session.user?.email||"your account")+". Usage is checked by the server.");
+ };
+ const load=async()=>{
+   const r=await fetch("/api/barcode/config");const cfg=await r.json();
+   if(!cfg.authConfigured){setStatus("Preview setup needed: add SUPABASE_URL and SUPABASE_ANON_KEY to Vercel Preview.");signIn.disabled=true;return}
+   supabase=createClient(cfg.supabaseUrl,cfg.supabaseAnonKey,{auth:{persistSession:true,autoRefreshToken:true,detectSessionInUrl:true}});
+   const s=await supabase.auth.getSession();session=s.data.session;
+   await refresh().catch(e=>setStatus(e.message));
+   supabase.auth.onAuthStateChange((_event,next)=>{session=next;setTimeout(()=>refresh().catch(e=>setStatus(e.message)),0)});
+   const billing=new URLSearchParams(location.search).get("billing");
+   if(billing==="return") setStatus("Checkout returned. Subscription access is only enabled after Safepay verifies the payment webhook.");
+   if(billing==="cancel") setStatus("Checkout cancelled. No paid access was granted.");
+ };
+ signIn.addEventListener("click",async()=>{
+   if(!supabase)return setStatus("Authentication is not configured for this preview yet.");
+   const value=email.value.trim();if(!value||!value.includes("@"))return setStatus("Enter a valid email address.");
+   signIn.disabled=true;
+   try{const r=await supabase.auth.signInWithOtp({email:value,options:{emailRedirectTo:location.origin+location.pathname}});if(r.error)throw r.error;setStatus("Secure sign-in link sent. Open it on this device to continue.");}
+   catch(e){setStatus(e.message||"Could not send sign-in link.");}
+   finally{signIn.disabled=false}
+ });
+ signOut.addEventListener("click",async()=>{if(supabase)await supabase.auth.signOut();session=null;await refresh()});
+ subscribe.addEventListener("click",async()=>{
+   if(!session){email.focus();setStatus("Sign in with your email before starting checkout.");return}
+   if(quota?.tier==="pro"&&quota?.subscriptionStatus==="active"){setStatus("Your Pro entitlement is active. Billing status is verified by Safepay webhooks.");return}
+   subscribe.disabled=true;
+   try{const d=await post("/api/barcode/checkout",{});location.assign(d.checkoutUrl);}
+   catch(e){setStatus(e.message||"Safepay Sandbox checkout is not configured.");subscribe.disabled=false}
+ });
+ const reserve=async(count)=>{
+   if(!session)throw new Error("Sign in first. Your generation was not started.");
+   const d=await post("/api/barcode/quota",{count});
+   quota={...quota,...d};usedEl.textContent=String(d.used);fill.style.width=(Math.min(100,d.used/d.limit*100))+"%";
+   message.textContent=d.remaining+" barcode units remaining in your "+(d.tier==="pro"?"monthly Pro allowance":"free allowance")+".";
+   return d;
+ };
+ const getCount=button=>{
+   if(button.id==="generate")return 1;
+   if(button.id==="bulkGenerate"||button.id==="bulkPrint"){
+     const raw=$("bulkData")?.value||"";
+     const count=raw.split(/\r?\n/).map(x=>x.trim()).filter(Boolean).length;
+     return Math.max(1,Math.min(500,count));
+   }
+   if(button.id==="labelPreviewBtn"||button.id==="labelPrintBtn"){
+     const raw=$("labelData")?.value||"";
+     const count=raw.split(/\r?\n/).map(x=>x.trim()).filter(Boolean).length;
+     return Math.max(1,Math.min(500,count));
+   }
+   return 0;
+ };
+ document.addEventListener("click",async e=>{
+   const button=e.target.closest("button");if(!button)return;
+   const count=getCount(button);if(!count)return;
+   if(skipOnce===button.id){skipOnce=null;return}
+   e.preventDefault();e.stopPropagation();e.stopImmediatePropagation();
+   if(busy)return;
+   busy=true;button.disabled=true;
+   try{
+     await reserve(count);
+     skipOnce=button.id;
+     button.disabled=false;
+     button.click();
+   }catch(err){
+     setStatus(err.message||"Quota check failed. Generation is blocked until the server can confirm your allowance.");
+     if(err.status===402){message.textContent="Your allowance is used. Subscribe for Rs 499/month and 1,000 barcode units."}
+   }finally{busy=false;button.disabled=false}
+ },true);
+ load().catch(e=>setStatus(e.message||"Could not initialize account services."));
+}
+</script>
+
 </body></html>`);w.document.close();w.focus();setTimeout(()=>w.print(),300)};
 $('#clear').onclick=()=>{renderFields(currentType);$('#data').value='';generate();$('#status').textContent='Cleared • Enter data to generate'};
 $$('.tab').forEach(t=>t.onclick=()=>{$$('.tab').forEach(x=>x.classList.remove('active'));t.classList.add('active');let id=t.dataset.tab;$('#generatorTab').style.display=id==='generator'?'grid':'none';$('#templatesTab').classList.toggle('active',id==='templates')});
