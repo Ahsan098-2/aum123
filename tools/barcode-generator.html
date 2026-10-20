@@ -87,6 +87,15 @@ footer{background:#0A0A0A;color:#fff;padding:55px 4% 25px}.foot{max-width:1200px
 .label-preview-item strong{font-size:9px;line-height:1.2;overflow-wrap:anywhere}
 @media(max-width:760px){.bulk-layout{grid-template-columns:1fr}.bulk-preview{grid-template-columns:1fr 1fr}.feature-panel{padding:1rem}.tabs .tab{flex:1 1 42%;padding:.65rem .4rem;font-size:.65rem}}
 
+
+/* Layout correction: keep the barcode tool full-width, balanced, and responsive. */
+.tool-section > .container{width:100%;max-width:1440px;min-width:0}
+.tool-section .tool{width:100%;max-width:100%;min-width:0}
+.generator{width:100%;grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
+.generator>.controls,.generator>.preview{min-width:0;width:auto;box-sizing:border-box}
+.barcode-wrap{width:100%;min-width:0;box-sizing:border-box}
+.barcode-wrap svg{display:block;max-width:100%;height:auto}
+@media(max-width:1000px){.generator{grid-template-columns:minmax(0,1fr)}}
 </style>
   <script src="/assets/js/canonical.js"></script>
 
