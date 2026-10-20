@@ -525,7 +525,7 @@
         <div class="info-content">
           <h2>Email Us</h2>
           <p>For general questions, feedback, or tool suggestions.<br>
-          <a href="mailto:contact@dailytoolkit.xyz">contact@dailytoolkit.xyz</a></p>
+          <a href="mailto:maharahsanullah883@gmail.com">maharahsanullah883@gmail.com</a></p>
         </div>
       </div>
 
@@ -635,15 +635,15 @@
           <button type="submit" class="btn-submit" id="submitBtn">
             <i class="fas fa-paper-plane"></i> Send Message
           </button>
-          <p class="form-note"><i class="fas fa-lock"></i> Your information is safe and never shared with third parties.</p>
+          <p class="form-note"><i class="fas fa-lock"></i> Your message will be prepared in your email app. You must press Send there.</p>
         </form>
       </div>
 
       <!-- Success state -->
       <div class="success-msg" id="successMsg">
         <div class="success-icon"><i class="fas fa-check"></i></div>
-        <h3>Message Sent!</h3>
-        <p>Thank you for reaching out. We'll get back to you within 24–48 hours.</p>
+        <h3>Email App Opened</h3>
+        <p>If your email app opened, review the message and press Send. This website cannot send or store messages directly.</p>
         <button onclick="resetForm()" style="margin-top:1.2rem;background:var(--black);color:var(--white);border:none;padding:0.7rem 1.4rem;border-radius:2px;font-size:0.82rem;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;cursor:pointer;transition:background 0.3s;" onmouseover="this.style.background='#C9A84C';this.style.color='#000'" onmouseout="this.style.background='#0A0A0A';this.style.color='#fff'">Send Another</button>
       </div>
     </div>
@@ -759,15 +759,22 @@
       return;
     }
 
-    // Simulate sending
-    const btn = document.getElementById('submitBtn');
-    btn.disabled = true;
-    btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
-
-    setTimeout(() => {
-      document.getElementById('formArea').style.display = 'none';
-      document.getElementById('successMsg').style.display = 'block';
-    }, 1400);
+    // This static site has no email backend. Open the visitor's email app with a prefilled message instead of pretending it was sent.
+    const recipient = 'maharahsanullah883@gmail.com';
+    const body = [
+      'Name: ' + name,
+      'Reply email: ' + email,
+      'Subject: ' + subject,
+      'Rating: ' + (document.getElementById('ratingValue').value || 'Not provided'),
+      '',
+      'Message:',
+      message
+    ].join('\n');
+    const mailto = 'mailto:' + recipient +
+      '?subject=' + encodeURIComponent('[Daily Toolkit] ' + subject) +
+      '&body=' + encodeURIComponent(body);
+    alert('Your email app should open with the message prepared. Please press Send in your email app; this website does not send messages itself.');
+    window.location.href = mailto;
   }
 
   function resetForm() {
