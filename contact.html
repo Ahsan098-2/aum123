@@ -448,18 +448,17 @@
   
   
   
-  <link rel="canonical" href="https://dailytoolkit.xyz/contact.html">
-  <meta property="og:type" content="website">
-  <meta property="og:title" content="Contact Daily Toolkit | Free Online Tools">
-  <meta property="og:description" content="Contact Daily Toolkit — send us your feedback, suggestions, or questions about our free online tools.">
-  <meta property="og:url" content="https://dailytoolkit.xyz/contact.html">
-  <meta property="og:image" content="https://dailytoolkit.xyz/assets/logo.png">
-  <meta property="og:site_name" content="Daily Toolkit">
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Contact Daily Toolkit | Free Online Tools">
-  <meta name="twitter:description" content="Contact Daily Toolkit — send us your feedback, suggestions, or questions about our free online tools.">
-  <meta name="twitter:image" content="https://dailytoolkit.xyz/assets/logo.png">
-
+  <link rel="canonical" href="https://dailytoolkit.xyz/contact">
+<meta property="og:title" content="Contact Daily Toolkit | Free Online Tools">
+<meta property="og:description" content="Contact Daily Toolkit — send us your feedback, suggestions, or questions about our free online tools.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://dailytoolkit.xyz/contact">
+<meta property="og:site_name" content="Daily Toolkit">
+<meta property="og:image" content="https://dailytoolkit.xyz/assets/preview.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Contact Daily Toolkit | Free Online Tools">
+<meta name="twitter:description" content="Contact Daily Toolkit — send us your feedback, suggestions, or questions about our free online tools.">
+<meta name="twitter:image" content="https://dailytoolkit.xyz/assets/preview.png">
 </head>
 <body>
 
@@ -759,15 +758,29 @@
       return;
     }
 
-    // Simulate sending
+    // This static site has no message-delivery backend. Open the visitor's
+    // email app instead of displaying a false "message sent" confirmation.
+    const mailSubject = '[Daily Toolkit] ' + subject;
+    const mailBody = [
+      'Name: ' + name,
+      'Reply email: ' + email,
+      '',
+      'Message:',
+      message
+    ].join('\n');
+    const mailto = 'mailto:contact@dailytoolkit.xyz'
+      + '?subject=' + encodeURIComponent(mailSubject)
+      + '&body=' + encodeURIComponent(mailBody);
+
     const btn = document.getElementById('submitBtn');
     btn.disabled = true;
-    btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
-
-    setTimeout(() => {
-      document.getElementById('formArea').style.display = 'none';
-      document.getElementById('successMsg').style.display = 'block';
-    }, 1400);
+    btn.innerHTML = '<i class="fas fa-envelope"></i> Opening email app...';
+    document.getElementById('successMsg').querySelector('h3').textContent = 'Continue in your email app';
+    document.getElementById('successMsg').querySelector('p').textContent =
+      'Your email app should open with your message prepared. Please send the email there; this website cannot send messages directly.';
+    document.getElementById('formArea').style.display = 'none';
+    document.getElementById('successMsg').style.display = 'block';
+    window.location.href = mailto;
   }
 
   function resetForm() {
