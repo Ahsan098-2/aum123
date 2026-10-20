@@ -23,13 +23,13 @@ Pages with heading-structure issues: 1
 | `blog.html` | 1 | 31 | None | None |
 | `contact.html` | 1 | 3 | None | None |
 | `google0c818b49b1950c41.html` | 0 | 0 | None | H1 count=0 |
-| `index.html` | 1 | 8 | None | None |
+| `index.html` | 1 | 7 | None | None |
 | `privacy.html` | 1 | 13 | None | None |
 | `terms.html` | 1 | 9 | None | None |
 | `tools/age-calculator.html` | 1 | 8 | None | None |
 | `tools/ats-resume-score-checker.html` | 1 | 13 | None | None |
 | `tools/background-remover.html` | 1 | 13 | None | None |
-| `tools/barcode-generator.html` | 1 | 8 | None | None |
+| `tools/barcode-generator.html` | 1 | 7 | None | None |
 | `tools/bio-ideas-generator.html` | 1 | 3 | None | None |
 | `tools/bmi-calculator.html` | 1 | 6 | None | None |
 | `tools/business-break-even-calculator.html` | 1 | 11 | None | None |
