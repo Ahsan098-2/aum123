@@ -87,12 +87,26 @@ footer{background:#0A0A0A;color:#fff;padding:55px 4% 25px}.foot{max-width:1200px
 .label-preview-item strong{font-size:9px;line-height:1.2;overflow-wrap:anywhere}
 @media(max-width:760px){.bulk-layout{grid-template-columns:1fr}.bulk-preview{grid-template-columns:1fr 1fr}.feature-panel{padding:1rem}.tabs .tab{flex:1 1 42%;padding:.65rem .4rem;font-size:.65rem}}
 
+
+/* Barcode layout repair: fill the page container and keep both panels visible. */
+html,body{width:100%;max-width:100%;overflow-x:hidden}
+main{display:block;width:100%;max-width:100%}
+.tool-section{width:100%;box-sizing:border-box}
+.tool-section>.container{width:100%;max-width:1440px;margin-left:auto;margin-right:auto;min-width:0;box-sizing:border-box}
+.tool-section .tool{display:block;width:100%;max-width:100%;min-width:0;box-sizing:border-box}
+#generatorTab.generator{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);width:100%;min-width:0;box-sizing:border-box}
+#generatorTab>.controls,#generatorTab>.preview{width:auto;min-width:0;max-width:100%;box-sizing:border-box}
+#generatorTab>.preview{overflow:hidden}
+#generatorTab .barcode-wrap{width:100%;min-width:0;max-width:100%;box-sizing:border-box}
+#generatorTab .barcode-wrap svg{display:block;width:auto;max-width:100%;height:auto}
+@media(max-width:1000px){#generatorTab.generator{grid-template-columns:minmax(0,1fr)}}
 </style>
   <script src="/assets/js/canonical.js"></script>
 
   
   <meta name="keywords" content="barcode generator, barcode generator online, create barcode, free barcode maker, product barcode generator">
 
+  
   
   
   
@@ -332,8 +346,7 @@ else{let svg=$('#barcode'),xml=new XMLSerializer().serializeToString(svg),svgBlo
 }catch(e){showToast('Export failed')}
 }
 $('#downloadPng').onclick=()=>download('png');$('#downloadSvg').onclick=()=>download('svg');
-$('#print').onclick=()=>{const svg=$('#barcode').outerHTML;const w=window.open('','_blank');if(!w){showToast('Allow pop-ups to print the barcode');return;}w.document.write('<!doctype html><html><head><title>Print Barcode</title><style>body{margin:0;min-height:100vh;display:flex;align-items:center;justify-content:center}svg{max-width:90vw;height:auto}</style></head><body>'+svg+'  <script src="/assets/multilingual.js" defer></script>
-
+$('#print').onclick=()=>{const svg=$('#barcode').outerHTML;const w=window.open('','_blank');if(!w){showToast('Allow pop-ups to print the barcode');return;}w.document.open();w.document.write('<!doctype html><html><head><title>Print Barcode</title><style>body{margin:0;min-height:100vh;display:flex;align-items:center;justify-content:center}svg{max-width:90vw;height:auto}</style></head><body>'+svg+'
 <section class="seo-content-section" aria-labelledby="seo-content-title">
   <div class="seo-content-inner">
     <h2 id="seo-content-title">Barcode Generator Online</h2>
@@ -353,8 +366,7 @@ $('#print').onclick=()=>{const svg=$('#barcode').outerHTML;const w=window.open('
     <p>Yes. The tool is designed to work in a modern mobile or desktop browser.</p>
   </div>
 </section>
-</body></html>');w.document.close();w.focus();setTimeout(()=>w.print(),300)};
-$('#clear').onclick=()=>{renderFields(currentType);$('#data').value='';generate();$('#status').textContent='Cleared • Enter data to generate'};
+</body></html>');w.document.close();w.focus();setTimeout(()=>w.print(),300)};$('#clear').onclick=()=>{renderFields(currentType);$('#data').value='';generate();$('#status').textContent='Cleared • Enter data to generate'};
 $$('.tab').forEach(t=>t.onclick=()=>{$$('.tab').forEach(x=>x.classList.remove('active'));t.classList.add('active');let id=t.dataset.tab;$('#generatorTab').style.display=id==='generator'?'grid':'none';$('#templatesTab').classList.toggle('active',id==='templates')});
 $$('[data-template]').forEach(b=>b.onclick=()=>{$$('.tab').forEach(x=>x.classList.toggle('active',x.dataset.tab==='generator'));$('#generatorTab').style.display='grid';$('#templatesTab').classList.remove('active');renderFields(b.dataset.template);window.scrollTo({top:document.querySelector('.tool').offsetTop-80,behavior:'smooth'})});
 $$('.faq-q').forEach(x=>x.onclick=()=>x.parentElement.classList.toggle('open'));
