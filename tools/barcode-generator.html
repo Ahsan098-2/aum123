@@ -96,17 +96,19 @@ footer{background:#0A0A0A;color:#fff;padding:55px 4% 25px}.foot{max-width:1200px
   
   
   
+  
   <link rel="canonical" href="https://dailytoolkit.xyz/tools/barcode-generator">
-<meta property="og:title" content="Barcode Generator Online – Create Free Barcodes | Daily Toolkit">
-<meta property="og:description" content="Create barcodes online for products, inventory and labels. Generate a downloadable barcode quickly with this free browser-based barcode generator.">
-<meta property="og:type" content="website">
-<meta property="og:url" content="https://dailytoolkit.xyz/tools/barcode-generator">
-<meta property="og:site_name" content="Daily Toolkit">
-<meta property="og:image" content="https://dailytoolkit.xyz/assets/preview.png">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Barcode Generator Online – Create Free Barcodes | Daily Toolkit">
-<meta name="twitter:description" content="Create barcodes online for products, inventory and labels. Generate a downloadable barcode quickly with this free browser-based barcode generator.">
-<meta name="twitter:image" content="https://dailytoolkit.xyz/assets/preview.png">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Barcode Generator Online – Create Free Barcodes | Daily Toolkit">
+  <meta property="og:description" content="Create barcodes online for products, inventory and labels. Generate a downloadable barcode quickly with this free browser-based barcode generator.">
+  <meta property="og:url" content="https://dailytoolkit.xyz/tools/barcode-generator">
+  <meta property="og:image" content="https://dailytoolkit.xyz/assets/logo.png">
+  <meta property="og:site_name" content="Daily Toolkit">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Barcode Generator Online – Create Free Barcodes | Daily Toolkit">
+  <meta name="twitter:description" content="Create barcodes online for products, inventory and labels. Generate a downloadable barcode quickly with this free browser-based barcode generator.">
+  <meta name="twitter:image" content="https://dailytoolkit.xyz/assets/logo.png">
+
 </head>
 <body>
 <nav id="nav">
@@ -331,7 +333,27 @@ else{let svg=$('#barcode'),xml=new XMLSerializer().serializeToString(svg),svgBlo
 }catch(e){showToast('Export failed')}
 }
 $('#downloadPng').onclick=()=>download('png');$('#downloadSvg').onclick=()=>download('svg');
-$('#print').onclick=()=>{const svg=$('#barcode').outerHTML;const w=window.open('','_blank');if(!w){showToast('Allow pop-ups to print the barcode');return;}w.document.open();w.document.write('<!doctype html><html><head><meta charset="utf-8"><title>Print Barcode</title><style>body{margin:0;min-height:100vh;display:flex;align-items:center;justify-content:center}svg{max-width:90vw;height:auto}</style></head><body>'+svg+'</body></html>');w.document.close();w.focus();setTimeout(()=>w.print(),300)};
+$('#print').onclick=()=>{const svg=$('#barcode').outerHTML;const w=window.open('','_blank');if(!w){showToast('Allow pop-ups to print the barcode');return;}w.document.open();w.document.write('<!doctype html><html><head><meta charset="utf-8"><title>Print Barcode</title><style>body{margin:0;min-height:100vh;display:flex;align-items:center;justify-content:center}svg{max-width:90vw;height:auto}</style></head><body>'+svg+'
+<section class="seo-content-section" aria-labelledby="seo-content-title">
+  <div class="seo-content-inner">
+    <h2 id="seo-content-title">Barcode Generator Online</h2>
+    <p>Use this free <strong>barcode generator</strong> from Daily Toolkit to complete your task quickly in your browser. This qr and barcode utility is designed to be simple, fast and easy to use on desktop and mobile devices.</p>
+    <h3>How to Use This Tool</h3>
+    <ol>
+      <li>Enter or upload the information required by the tool.</li>
+      <li>Choose the available options that match your task.</li>
+      <li>Run the tool and review the result before downloading or copying it.</li>
+    </ol>
+    <h3>Popular Related Searches</h3>
+    <ul><li>barcode generator online</li><li>create barcode</li><li>free barcode maker</li><li>product barcode generator</li></ul>
+    <h3>Frequently Asked Questions</h3>
+    <h4>Is this barcode generator free?</h4>
+    <p>Yes. Daily Toolkit provides this online utility for free, with no software installation required.</p>
+    <h4>Can I use it on a phone?</h4>
+    <p>Yes. The tool is designed to work in a modern mobile or desktop browser.</p>
+  </div>
+</section>
+</body></html>');w.document.close();w.focus();setTimeout(()=>w.print(),300)};
 $('#clear').onclick=()=>{renderFields(currentType);$('#data').value='';generate();$('#status').textContent='Cleared • Enter data to generate'};
 $$('.tab').forEach(t=>t.onclick=()=>{$$('.tab').forEach(x=>x.classList.remove('active'));t.classList.add('active');let id=t.dataset.tab;$('#generatorTab').style.display=id==='generator'?'grid':'none';$('#templatesTab').classList.toggle('active',id==='templates')});
 $$('[data-template]').forEach(b=>b.onclick=()=>{$$('.tab').forEach(x=>x.classList.toggle('active',x.dataset.tab==='generator'));$('#generatorTab').style.display='grid';$('#templatesTab').classList.remove('active');renderFields(b.dataset.template);window.scrollTo({top:document.querySelector('.tool').offsetTop-80,behavior:'smooth'})});
