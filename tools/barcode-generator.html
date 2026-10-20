@@ -87,6 +87,19 @@ footer{background:#0A0A0A;color:#fff;padding:55px 4% 25px}.foot{max-width:1200px
 .label-preview-item strong{font-size:9px;line-height:1.2;overflow-wrap:anywhere}
 @media(max-width:760px){.bulk-layout{grid-template-columns:1fr}.bulk-preview{grid-template-columns:1fr 1fr}.feature-panel{padding:1rem}.tabs .tab{flex:1 1 42%;padding:.65rem .4rem;font-size:.65rem}}
 
+
+/* Barcode layout repair: fill the page container and keep both panels visible. */
+html,body{width:100%;max-width:100%;overflow-x:hidden}
+main{display:block;width:100%;max-width:100%}
+.tool-section{width:100%;box-sizing:border-box}
+.tool-section>.container{width:100%;max-width:1440px;margin-left:auto;margin-right:auto;min-width:0;box-sizing:border-box}
+.tool-section .tool{display:block;width:100%;max-width:100%;min-width:0;box-sizing:border-box}
+#generatorTab.generator{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);width:100%;min-width:0;box-sizing:border-box}
+#generatorTab>.controls,#generatorTab>.preview{width:auto;min-width:0;max-width:100%;box-sizing:border-box}
+#generatorTab>.preview{overflow:hidden}
+#generatorTab .barcode-wrap{width:100%;min-width:0;max-width:100%;box-sizing:border-box}
+#generatorTab .barcode-wrap svg{display:block;width:auto;max-width:100%;height:auto}
+@media(max-width:1000px){#generatorTab.generator{grid-template-columns:minmax(0,1fr)}}
 </style>
   <script src="/assets/js/canonical.js"></script>
 
