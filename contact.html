@@ -759,15 +759,29 @@
       return;
     }
 
-    // Simulate sending
+    // This static site has no message-delivery backend. Open the visitor's
+    // email app instead of displaying a false "message sent" confirmation.
+    const mailSubject = '[Daily Toolkit] ' + subject;
+    const mailBody = [
+      'Name: ' + name,
+      'Reply email: ' + email,
+      '',
+      'Message:',
+      message
+    ].join('\n');
+    const mailto = 'mailto:contact@dailytoolkit.xyz'
+      + '?subject=' + encodeURIComponent(mailSubject)
+      + '&body=' + encodeURIComponent(mailBody);
+
     const btn = document.getElementById('submitBtn');
     btn.disabled = true;
-    btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
-
-    setTimeout(() => {
-      document.getElementById('formArea').style.display = 'none';
-      document.getElementById('successMsg').style.display = 'block';
-    }, 1400);
+    btn.innerHTML = '<i class="fas fa-envelope"></i> Opening email app...';
+    document.getElementById('successMsg').querySelector('h3').textContent = 'Continue in your email app';
+    document.getElementById('successMsg').querySelector('p').textContent =
+      'Your email app should open with your message prepared. Please send the email there; this website cannot send messages directly.';
+    document.getElementById('formArea').style.display = 'none';
+    document.getElementById('successMsg').style.display = 'block';
+    window.location.href = mailto;
   }
 
   function resetForm() {
