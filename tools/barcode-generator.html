@@ -96,6 +96,7 @@ footer{background:#0A0A0A;color:#fff;padding:55px 4% 25px}.foot{max-width:1200px
   
   
   
+  
   <link rel="canonical" href="https://dailytoolkit.xyz/tools/barcode-generator">
   <meta property="og:type" content="website">
   <meta property="og:title" content="Barcode Generator Online – Create Free Barcodes | Daily Toolkit">
@@ -332,8 +333,7 @@ else{let svg=$('#barcode'),xml=new XMLSerializer().serializeToString(svg),svgBlo
 }catch(e){showToast('Export failed')}
 }
 $('#downloadPng').onclick=()=>download('png');$('#downloadSvg').onclick=()=>download('svg');
-$('#print').onclick=()=>{const svg=$('#barcode').outerHTML;const w=window.open('','_blank');if(!w){showToast('Allow pop-ups to print the barcode');return;}w.document.write('<!doctype html><html><head><title>Print Barcode</title><style>body{margin:0;min-height:100vh;display:flex;align-items:center;justify-content:center}svg{max-width:90vw;height:auto}</style></head><body>'+svg+'  <script src="/assets/multilingual.js" defer></script>
-
+$('#print').onclick=()=>{const svg=$('#barcode').outerHTML;const w=window.open('','_blank');if(!w){showToast('Allow pop-ups to print the barcode');return;}w.document.open();w.document.write('<!doctype html><html><head><meta charset="utf-8"><title>Print Barcode</title><style>body{margin:0;min-height:100vh;display:flex;align-items:center;justify-content:center}svg{max-width:90vw;height:auto}</style></head><body>'+svg+'
 <section class="seo-content-section" aria-labelledby="seo-content-title">
   <div class="seo-content-inner">
     <h2 id="seo-content-title">Barcode Generator Online</h2>

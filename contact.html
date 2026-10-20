@@ -448,6 +448,7 @@
   
   
   
+  
   <link rel="canonical" href="https://dailytoolkit.xyz/contact.html">
   <meta property="og:type" content="website">
   <meta property="og:title" content="Contact Daily Toolkit | Free Online Tools">
@@ -525,7 +526,7 @@
         <div class="info-content">
           <h2>Email Us</h2>
           <p>For general questions, feedback, or tool suggestions.<br>
-          <a href="mailto:contact@dailytoolkit.xyz">contact@dailytoolkit.xyz</a></p>
+          <a href="mailto:maharahsanullah883@gmail.com">contact@dailytoolkit.xyz</a></p>
         </div>
       </div>
 
@@ -636,6 +637,7 @@
             <i class="fas fa-paper-plane"></i> Send Message
           </button>
           <p class="form-note"><i class="fas fa-lock"></i> Your information is safe and never shared with third parties.</p>
+          <p id="formNotice" class="form-note" role="status" style="display:none"></p>
         </form>
       </div>
 
@@ -759,15 +761,26 @@
       return;
     }
 
-    // Simulate sending
-    const btn = document.getElementById('submitBtn');
-    btn.disabled = true;
-    btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
-
-    setTimeout(() => {
-      document.getElementById('formArea').style.display = 'none';
-      document.getElementById('successMsg').style.display = 'block';
-    }, 1400);
+    // This static site has no mail-server endpoint. Open the visitor's email
+    // application with the message prefilled instead of falsely claiming delivery.
+    const body = [
+      'Name: ' + name,
+      'Reply email: ' + email,
+      'Subject: ' + subject,
+      'Rating: ' + (document.getElementById('ratingValue').value || 'Not provided'),
+      '',
+      'Message:',
+      message
+    ].join('\n');
+    const mailto = 'mailto:maharahsanullah883@gmail.com'
+      + '?subject=' + encodeURIComponent('[Daily Toolkit] ' + subject)
+      + '&body=' + encodeURIComponent(body);
+    const notice = document.getElementById('formNotice');
+    if (notice) {
+      notice.textContent = 'Your email app should open with the message prepared. Please send it there; the website itself does not send or store messages.';
+      notice.style.display = 'block';
+    }
+    window.location.href = mailto;
   }
 
   function resetForm() {
